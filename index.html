@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#1e6a47">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Pogłębieni z Przebudzenia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: jedna kolumna jak notatnik, stała dolna nawigacja kciukiem, karty tylko dla wpisów */
+:root{
+  --bg:#f5f5ec; --surface:#ffffff; --ink:#18291f; --muted:#5a6a5f; --line:#dfe3d6;
+  --lake:#1e6a47; --lake-soft:#e2efe6; --amber:#a86f06; --amber-soft:#fbefcc; --sun:#efb02c;
+  --good:#2f7a52; --good-soft:#e1f1e8; --alert:#b03a3a; --alert-soft:#f7e3e3;
+  --display:"Nunito", "Figtree", system-ui, sans-serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111a15; --surface:#18241d; --ink:#e8efe9; --muted:#9db0a3; --line:#2a3a30;
+  --lake:#6cc495; --lake-soft:#1b3427; --amber:#f0bd4f; --amber-soft:#3a2f14; --sun:#f0bd4f;
+  --good:#6fc394; --good-soft:#18342a; --alert:#e88181; --alert-soft:#3d1f22; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111a15; --surface:#18241d; --ink:#e8efe9; --muted:#9db0a3; --line:#2a3a30;
+  --lake:#6cc495; --lake-soft:#1b3427; --amber:#f0bd4f; --amber-soft:#3a2f14; --sun:#f0bd4f;
+  --good:#6fc394; --good-soft:#18342a; --alert:#e88181; --alert-soft:#3d1f22; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0 calc(84px + env(safe-area-inset-bottom,0px))}
+.wrap{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:20px;padding-block:20px}
+h1,h2,h3{font-family:var(--display);font-weight:800;text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:1.6rem} h2{font-size:1.35rem} h3{font-size:1.05rem}
+p{margin:0}
+.muted{color:var(--muted)} .small{font-size:.875rem}
+.label{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+header.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.banner{background:var(--lake-soft);border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:.9rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.stack{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.between{justify-content:space-between}
+button,.btn{font:inherit;font-weight:600;font-size:.9rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 14px;cursor:pointer}
+button.primary{background:var(--lake);border-color:var(--lake);color:var(--bg)}
+button.ghost{background:transparent;border-color:transparent;color:var(--muted);padding:6px 8px}
+button.danger{color:var(--alert)}
+button.danger.armed{background:var(--alert);border-color:var(--alert);color:var(--bg)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,.chip:focus-within{outline:2px solid var(--lake);outline-offset:2px}
+input,textarea,select{font:inherit;width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg);color:var(--ink)}
+textarea{min-height:72px;resize:vertical}
+.field{display:flex;flex-direction:column;gap:6px}
+.field>span{font-size:.85rem;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip span{display:inline-block;padding:6px 12px;border-radius:999px;border:1px solid var(--line);font-size:.875rem;cursor:pointer;background:var(--surface)}
+.chip input:checked+span{background:var(--lake);border-color:var(--lake);color:var(--bg)}
+.chip.warm input:checked+span{background:var(--amber);border-color:var(--amber)}
+.scale{display:flex;align-items:center;gap:12px}
+.scale input[type=range]{padding:0;border:0;background:none;accent-color:var(--lake)}
+.scale output{font-variant-numeric:tabular-nums;font-weight:700;min-width:2.5ch;text-align:right;font-size:1.1rem}
+details.new{background:var(--surface);border:1px solid var(--line);border-radius:14px}
+details.new summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+details.new summary::-webkit-details-marker{display:none}
+details.new summary::after{content:"+";font-size:1.4rem;color:var(--lake);line-height:1}
+details.new[open] summary::after{content:"–"}
+details.new form{padding:0 16px 16px;display:flex;flex-direction:column;gap:14px}
+.entry .meta{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
+.pill{display:inline-block;font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--lake-soft);color:var(--lake)}
+.pill.amber{background:var(--amber-soft);color:var(--amber)}
+.pill.good{background:var(--good-soft);color:var(--good)}
+.pill.alert{background:var(--alert-soft);color:var(--alert)}
+.pill.ex{background:transparent;border:1px dashed var(--muted);color:var(--muted)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.92rem}
+.kv dt{color:var(--muted)} .kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--amber)}
+/* licznik */
+.counter{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 18px;display:flex;flex-direction:column;gap:14px}
+.days{font-family:var(--display);font-size:clamp(3.4rem,16vw,5rem);line-height:1;font-weight:800;color:var(--lake);font-variant-numeric:tabular-nums}
+.stones{display:flex;gap:6px;flex-wrap:wrap}
+.stone{font-size:.75rem;padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-variant-numeric:tabular-nums}
+.stone.done{background:var(--good-soft);border-color:transparent;color:var(--good);font-weight:700}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quick button{padding:14px;text-align:left;display:flex;flex-direction:column;gap:2px;border-radius:14px}
+.quick button b{font-size:1rem} .quick button small{color:var(--muted);font-weight:500}
+.quick .sos{background:var(--alert-soft);border-color:transparent;grid-column:1/-1}
+.quick .sos b{color:var(--alert)}
+.quick .warn{background:var(--amber-soft);border-color:transparent;grid-column:1/-1}
+.quick .warn b{color:var(--amber)}
+.quick .ok{background:var(--good-soft);border-color:transparent;grid-column:1/-1}
+.quick .ok b{color:var(--good)}
+.list{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.list li{display:flex;gap:8px;align-items:flex-start;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}
+.list li:last-child{border-bottom:0}
+.list li span{min-width:0;overflow-wrap:anywhere}
+.phone{font-variant-numeric:tabular-nums;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+a.phone{color:var(--lake);text-decoration:none}
+.goal{display:flex;gap:12px;align-items:flex-start}
+.goal input[type=checkbox]{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--good)}
+.goal.done .gt{text-decoration:line-through;color:var(--muted)}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat b{font-size:1.5rem;font-variant-numeric:tabular-nums;font-family:var(--display)}
+.chart{display:flex;align-items:flex-end;gap:6px;height:90px;padding-top:6px}
+.chart div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end;min-width:0}
+.chart i{display:block;width:100%;background:var(--amber);border-radius:4px 4px 0 0;min-height:2px}
+.chart small{font-size:.7rem;color:var(--muted)}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);z-index:5}
+nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr)}
+nav.tabs button{border:0;border-radius:0;background:none;padding:10px 2px 12px;font-size:.72rem;font-weight:600;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:4px}
+nav.tabs button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav.tabs button[aria-current="page"]{color:var(--lake)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:.9rem;z-index:9;max-width:calc(100% - 32px)}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:64px;height:64px;flex:none}
+.brand .g{font-family:var(--display);font-weight:800;font-size:1.05rem;color:var(--lake);line-height:1.15}
+.counter{border-top:5px solid var(--sun)}
+.find{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.find a{display:flex;flex-direction:column;gap:2px;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;min-width:0}
+.find a small{color:var(--muted);font-weight:500}
+.find a:focus-visible{outline:2px solid var(--lake);outline-offset:2px}
+.gate{min-height:70vh;display:flex;flex-direction:column;justify-content:center;gap:18px;text-align:center;align-items:center}
+.gate img{width:120px;height:120px}
+.gate form,.gate .stack{width:100%;max-width:340px}
+.gate input{text-align:center;font-size:1.1rem;letter-spacing:.08em;text-transform:uppercase}
+.trial{display:inline-block;margin-top:4px;font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--amber-soft);color:var(--amber)}
+.credit{text-align:center;font-size:.75rem;color:var(--muted);letter-spacing:.04em;padding-top:8px}
+.quote{margin:0;background:var(--amber-soft);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.quote blockquote{margin:0;font-family:var(--display);font-weight:700;font-size:1.15rem;line-height:1.35;text-wrap:balance}
+.quote figcaption{font-size:.85rem;color:var(--muted)}
+.quote figcaption::before{content:"— "}
+.quote.big{text-align:center;padding:22px 20px}
+.quote.big blockquote{font-size:1.4rem}
+.steps{text-align:left;margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px}
+.wave{align-items:center;text-align:center;background:var(--lake-soft);border-color:transparent}
+.wave-time{font-family:var(--display);font-weight:800;font-size:3rem;color:var(--lake);font-variant-numeric:tabular-nums;line-height:1}
+.breath-card{align-items:center;text-align:center}
+.breath{display:flex;flex-direction:column;align-items:center;gap:12px;padding:8px 0}
+.ball{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 35%,var(--sun),var(--amber));transform:scale(.6);transition:transform 4s ease-in-out}
+.ball.in{transform:scale(1)}.ball.hold{transform:scale(1)}.ball.out{transform:scale(.6);transition-duration:6s}
+.breath-txt{font-weight:700;font-size:1.05rem;min-height:1.5em}
+@media (prefers-reduced-motion:reduce){.ball{transition:none}}
+.tip{font-family:var(--display);font-weight:700;font-size:1.15rem;line-height:1.35;margin:0}
+.tipcard{background:var(--amber-soft);border-color:transparent}
+.alertcard{background:var(--lake-soft);border-color:transparent}
+.subs li{align-items:center}.subdays{font-weight:700;color:var(--lake);font-variant-numeric:tabular-nums;white-space:nowrap}
+.addrow input[type=date]{margin-top:4px;padding:6px 10px}
+.grp-prev{width:56px;height:56px;object-fit:contain;flex:none}
+.brand img{object-fit:contain}.gate img{object-fit:contain}
+.filebtn{display:block;text-align:center}
+.visually-hidden{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.empty{color:var(--muted);font-size:.92rem;padding:12px 0}
+@media (prefers-reduced-motion:no-preference){.toast{animation:up .2s ease-out}@keyframes up{from{opacity:.4;transform:translate(-50%,8px)}}}
+</style>
+
+<div class="wrap" id="app"></div>
+<nav class="tabs" aria-label="Sekcje"><div class="in" id="tabs"></div></nav>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+/* ===== USTAWIENIA TESTU – zmień tutaj ===== */
+const TEST_END='2027-10-14';      // ostatni dzień testów (RRRR-MM-DD)
+const ACCESS_CODE='PRZEBUDZENI';  // kod dla grupy; pusty '' = bez kodu
+const APP_VERSION='0.6.1';
+const APP_AUTHOR='StoneMatic';
+/* ============================================ */
+const KEY='dzienniczek-trzezwosci-v1';
+const LOGO='data:image/webp;base64,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';
+const SAMPLE_PLAN=['Izoluję się i nie odbieram telefonów','Myślę „jeden raz nic nie zmieni”','Śpię mniej niż 6 godzin','Odczekać 20 minut, głód mija jak fala','Zadzwonić do kogoś z listy','Wyjść na spacer, zmienić miejsce','Zjeść coś i napić się wody (HALT)','Córka i jej zaufanie','Zdrowie wątroby','Spokojne poranki bez wstydu'];
+const QUOTES=[
+ ['Tylko dzisiaj.','hasło wspólnot 12 kroków'],
+ ['Krok po kroku.','hasło wspólnot 12 kroków'],
+ ['Najpierw rzeczy najważniejsze.','hasło wspólnot 12 kroków'],
+ ['Żyj i pozwól żyć innym.','hasło wspólnot 12 kroków'],
+ ['Podróż tysiąca mil zaczyna się od pierwszego kroku.','Lao Tzu'],
+ ['Kto zwycięża innych, jest silny. Kto zwycięża siebie, jest potężny.','Lao Tzu'],
+ ['Kto zna innych, jest mądry. Kto zna siebie, jest oświecony.','Lao Tzu'],
+ ['Nie dlatego nie mamy odwagi, że rzeczy są trudne. Dlatego są trudne, że nie mamy odwagi.','Seneka'],
+ ['Przez całe życie trzeba się uczyć, jak żyć.','Seneka'],
+ ['Nie rzeczy nas niepokoją, lecz nasze mniemania o rzeczach.','Epiktet'],
+ ['Nikt nie jest wolny, kto nie panuje nad sobą.','Epiktet'],
+ ['Szczęście twojego życia zależy od jakości twoich myśli.','Marek Aureliusz'],
+ ['Kto ma po co żyć, zniesie prawie każde jak.','Fryderyk Nietzsche'],
+ ['Nic nie jest stałe oprócz zmiany.','Heraklit'],
+ ['Mierz siłę na zamiary, nie zamiar podług sił.','Adam Mickiewicz'],
+ ['Ludzkie przygody ludzkie noś.','Jan Kochanowski'],
+ ['Każdy dzień ma dość swojej biedy.','Ewangelia wg św. Mateusza 6,34'],
+ ['Każdy święty ma przeszłość, a każdy grzesznik ma przyszłość.','Oscar Wilde'],
+ ['Wszyscy myślą o tym, by zmienić świat, ale nikt nie myśli o tym, by zmienić siebie.','Lew Tołstoj'],
+ ['Idź śmiało w kierunku swoich marzeń.','Henry David Thoreau'],
+ ['To też minie.','przysłowie'],
+ ['Nie musisz wygrać całego życia. Wystarczy, że wygrasz dzisiaj.',''],
+ ['Głód jest jak fala. Rośnie, osiąga szczyt i opada. Ty zostajesz.',''],
+ ['Prośba o pomoc to odwaga, nie słabość.',''],
+ ['Nawrót nie wymazuje drogi, którą już przeszedłeś.',''],
+ ['Dziś nie musisz być idealny. Wystarczy, że będziesz trzeźwy.',''],
+ ['Uczucia przychodzą i odchodzą. Nie musisz za nimi iść.',''],
+ ['Zadzwoń, zanim sięgniesz. Telefon jest lżejszy niż kieliszek.',''],
+ ['Nie oceniaj swojego wczoraj. Zadbaj o swoje dzisiaj.',''],
+ ['Każdy trzeźwy dzień to cegła w nowym domu.',''],
+ ['Wdzięczność za małe rzeczy robi miejsce na większe.',''],
+ ['Jesteś ważniejszy niż twój nałóg.',''],
+ ['Zmęczony? Głodny? Zły? Samotny? Najpierw zadbaj o to.','zasada HALT'],
+ ['Nie jesteś sam. Grupa jest obok.','']
+];
+function quoteToday(){const d=today();const n=Math.floor((d-new Date(2026,0,1))/864e5);return QUOTES[((n%QUOTES.length)+QUOTES.length)%QUOTES.length]}
+function greet(){const h=new Date().getHours();
+ if(h>=4&&h<11)return 'Dzień dobry';if(h<18&&h>=11)return 'Cześć';if(h<23&&h>=18)return 'Dobry wieczór';return 'Dobrej nocy'}
+const hello=()=>greet()+(S.name?', '+esc(S.name):'');
+const quoteCard=(big)=>{const q=quoteToday();return `<figure class="quote${big?' big':''}"><div class="label">Myśl na dziś</div><blockquote>${esc(q[0])}</blockquote>${q[1]?`<figcaption>${esc(q[1])}</figcaption>`:''}</figure>`};
+const isStandalone=()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}catch(e){return false}};
+const inFrame=()=>{try{return window.top!==window.self}catch(e){return true}};
+const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent);
+const EMOTIONS=['spokój','radość','wdzięczność','nadzieja','smutek','złość','lęk','wstyd','poczucie winy','samotność','nuda','zmęczenie','napięcie','żal'];
+const TRIGGERS=['głód (H)','złość (A)','samotność (L)','zmęczenie (T)','stres w pracy','konflikt','spotkanie ze znajomymi','alkohol w zasięgu','pieniądze','nuda','świętowanie','wspomnienia'];
+const STONES=[1,7,14,30,60,90,180,365,730];
+const TABS=[
+ ['dzis','Dziś','<path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/>'],
+ ['uczucia','Uczucia','<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'],
+ ['glod','Głód','<path d="M12 3c2 4 6 5 6 10a6 6 0 0 1-12 0c0-3 2-4 2-7 2 1 3 3 3 5 1-2 1-5 1-8z"/>'],
+ ['plan','SOS','<path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/>'],
+ ['cele','Cele','<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>'],
+ ['bilans','Bilans','<path d="M5 4h11l3 3v13H5z"/><path d="M9 10h6M9 14h6M9 18h3"/>']
+];
+
+const today=()=>{const d=new Date();d.setHours(0,0,0,0);return d};
+const iso=d=>{const z=new Date(d);return z.getFullYear()+'-'+String(z.getMonth()+1).padStart(2,'0')+'-'+String(z.getDate()).padStart(2,'0')};
+const daysAgo=n=>{const d=today();d.setDate(d.getDate()-n);return d};
+const ts=(n,h)=>{const d=daysAgo(n);d.setHours(h,15);return d.toISOString()};
+const uid=()=>Math.random().toString(36).slice(2,10);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=s=>{const d=new Date(s);return d.toLocaleDateString('pl-PL',{weekday:'short',day:'numeric',month:'short'})+', '+d.toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'})};
+const dayName=d=>d.toLocaleDateString('pl-PL',{weekday:'short'});
+
+function sample(){
+ return {examples:true,start:iso(daysAgo(47)),substance:'alkohol',
+  feelings:[
+   {id:uid(),ex:true,at:ts(0,8),emotions:['napięcie','lęk'],level:6,situation:'Rano przed rozmową z szefem o premii.',thoughts:'„Znowu coś zawalę.”',body:'Ścisk w żołądku, szybki oddech.',did:'Zrobiłem 10 oddechów i zjadłem śniadanie.',need:'Spokoju i konkretnej informacji.'},
+   {id:uid(),ex:true,at:ts(1,21),emotions:['samotność','smutek'],level:7,situation:'Wieczór sam w domu, żona u matki.',thoughts:'Nikt się mną nie interesuje.',body:'Ciężar w klatce.',did:'Zadzwoniłem do Marka z grupy.',need:'Kontaktu z kimś.'},
+   {id:uid(),ex:true,at:ts(3,19),emotions:['wdzięczność','spokój'],level:3,situation:'Mityng i spacer z psem.',thoughts:'Daję radę dzień po dniu.',body:'Rozluźnione ramiona.',did:'Zapisałem 3 rzeczy, za które jestem wdzięczny.',need:''}
+  ],
+  cravings:[
+   {id:uid(),ex:true,at:ts(1,20),level:8,triggers:['samotność (L)','zmęczenie (T)'],situation:'Przejeżdżałem obok sklepu, w którym zawsze kupowałem.',did:'Pojechałem dalej, zadzwoniłem do sponsora.',minutes:25,used:false},
+   {id:uid(),ex:true,at:ts(4,18),level:5,triggers:['stres w pracy'],situation:'Po kłótni z klientem.',did:'Trening na siłowni.',minutes:15,used:false},
+   {id:uid(),ex:true,at:ts(6,22),level:4,triggers:['nuda'],situation:'Sobota bez planu.',did:'Film z rodziną.',minutes:10,used:false}
+  ],
+  plan:{
+   warning:['Izoluję się i nie odbieram telefonów','Myślę „jeden raz nic nie zmieni”','Śpię mniej niż 6 godzin'],
+   strategies:['Odczekać 20 minut, głód mija jak fala','Zadzwonić do kogoś z listy','Wyjść na spacer, zmienić miejsce','Zjeść coś i napić się wody (HALT)'],
+   contacts:[{id:uid(),name:'Marek – sponsor (przykład)',phone:'600 000 000'},{id:uid(),name:'Terapeutka (przykład)',phone:'700 000 000'}],
+   reasons:['Córka i jej zaufanie','Zdrowie wątroby','Spokojne poranki bez wstydu']
+  },
+  goals:[
+   {id:uid(),ex:true,text:'Chodzić na mityng 2 razy w tygodniu',from:'terapeuta',done:false,at:ts(10,12)},
+   {id:uid(),ex:true,text:'Spisać listę sytuacji wysokiego ryzyka',from:'terapeuta',done:true,at:ts(14,12)},
+   {id:uid(),ex:true,text:'Codziennie wieczorem zrobić bilans dnia',from:'własny',done:false,at:ts(7,12)}
+  ],
+  notes:[
+   {id:uid(),ex:true,at:ts(1,22),kind:'bilans',good:'Nie sięgnąłem mimo silnego głodu.',hard:'Wieczór w samotności.',grateful:'Marek odebrał od razu.',tomorrow:'Zaplanować wieczór, nie zostawiać go pustego.'},
+   {id:uid(),ex:true,at:ts(2,17),kind:'notatka',text:'Na sesji: rozmawialiśmy o tym, że złość u mnie często przykrywa wstyd. Obserwować w tym tygodniu.'}
+  ]};
+}
+let S;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
+if(!S||typeof S!=='object')S=sample();
+function normalize(){
+ if(!Array.isArray(S.addictions))S.addictions=[{id:uid(),name:S.substance||'alkohol',start:S.start||''}];
+ if(!S.group)S.group={name:'',logo:''};
+}
+normalize();
+let storageOk=true;
+let cloud=null,cloudBusy=false,cloudAgain=false,cloudTimer=null;
+async function cloudWrite(){
+ if(!cloud)return;
+ if(cloudBusy){cloudAgain=true;return}
+ cloudBusy=true;
+ try{await cloud.set({json:JSON.stringify(S),at:new Date().toISOString(),v:APP_VERSION})}catch(e){}
+ cloudBusy=false;
+ if(cloudAgain){cloudAgain=false;cloudWrite()}
+}
+function save(){
+ try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){storageOk=false}
+ if(cloud){clearTimeout(cloudTimer);cloudTimer=setTimeout(cloudWrite,500)}
+}
+
+let tab='dzis';
+try{const h=location.hash.slice(1);if(TABS.some(t=>t[0]===h))tab=h}catch(e){}
+
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,2400)}
+function copy(text){
+ const done=()=>toast('Skopiowano');
+ const fallback=()=>{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){toast('Zaznacz tekst i skopiuj ręcznie')}ta.remove()};
+ try{navigator.clipboard.writeText(text).then(done,fallback)}catch(e){fallback()}
+}
+const exTag=o=>o&&o.ex?' <span class="pill ex">przykład</span>':'';
+const chips=(name,items,warm,sel=[])=>'<div class="chips">'+items.map((x,i)=>`<label class="chip${warm?' warm':''}"><input type="checkbox" name="${name}" value="${esc(x)}" id="${name}-${i}"${sel.includes(x)?' checked':''}><span>${esc(x)}</span></label>`).join('')+'</div>';
+const scale=(id,label,v=5)=>`<label class="field"><span>${label}</span><div class="scale"><input type="range" min="0" max="10" value="${v}" id="${id}" name="${id}" oninput="this.nextElementSibling.value=this.value"><output>${v}</output></div></label>`;
+const ta=(id,label,ph='')=>`<label class="field"><span>${label}</span><textarea id="${id}" name="${id}" placeholder="${esc(ph)}"></textarea></label>`;
+const delBtn=(type,id)=>`<button class="ghost danger" data-del="${type}" data-id="${id}">Usuń</button>`;
+
+function sober(a){
+ a=a||S.addictions[0];if(!a||!a.start)return null;
+ const s=new Date(a.start+'T00:00:00');return Math.max(0,Math.round((today()-s)/864e5));
+}
+const DEF_GROUP='Pogłębieni z Przebudzenia';
+const gName=()=>(S.group&&S.group.name)||DEF_GROUP;
+const gLogo=()=>(S.group&&S.group.logo)||LOGO;
+const gImg=(cls)=>`<img src="${gLogo()}" alt="Logo grupy ${esc(gName())}"${cls?` class="${cls}"`:''}>`;
+const SUB_PRESETS=['alkohol','nikotyna','marihuana','narkotyki','leki','hazard','gry i internet','zakupy','współuzależnienie'];
+const daysWord=n=>n===1?'dzień':'dni';
+function fitLogo(file){return new Promise((res,rej)=>{
+ const r=new FileReader();r.onerror=rej;r.onload=()=>{const im=new Image();im.onerror=rej;im.onload=()=>{
+  const S2=192,c=document.createElement('canvas');c.width=c.height=S2;const x=c.getContext('2d');
+  const k=Math.min(S2/im.width,S2/im.height),w=im.width*k,h=im.height*k;x.drawImage(im,(S2-w)/2,(S2-h)/2,w,h);
+  res(c.toDataURL('image/png'))};im.src=r.result};r.readAsDataURL(file)})}
+
+/* ---------- widoki ---------- */
+function vDzis(){
+ const d=sober();
+ const next=STONES.find(x=>x>(d??0));
+ const lastF=S.feelings.slice().sort((a,b)=>b.at.localeCompare(a.at))[0];
+ const todayNotes=S.notes.some(n=>n.kind==='bilans'&&n.at.slice(0,10)===new Date().toISOString().slice(0,10));
+ return `
+ <header class="brand">${gImg()}<div><div class="g">${esc(gName())}</div><h1>${hello()}</h1><span class="muted small">${new Date().toLocaleDateString('pl-PL',{weekday:'long',day:'numeric',month:'long'})}</span><br><span class="trial">Wersja testowa · ${trialLeft()===1?'został 1 dzień':'zostało '+trialLeft()+' dni'}</span></div></header>
+ ${hardDays()?`<section class="card alertcard"><h2>Ostatnie dni są trudne</h2><p>Widzę kilka ciężkich wpisów z rzędu. To dobry moment, żeby porozmawiać z terapeutą albo kimś z grupy. Nie czekaj, aż będzie gorzej.</p><div class="row"><button class="primary" data-helpfeel="1">Pomoc teraz</button><button data-tab="plan">Moje kontakty</button></div></section>`:''}
+ ${quoteCard(false)}
+ <section class="counter">
+  ${(()=>{const a=S.addictions[0],d=a?sober(a):null;
+   if(d===null)return `<h2>Ustaw datę początku trzeźwości</h2><p class="muted">Otwórz ustawienia poniżej i wpisz, od kiedy liczysz.</p>`;
+   const next=STONES.find(x=>x>d);
+   return `<div class="label">Bez: ${esc(a.name||'substancji')}</div>
+   <div class="row" style="align-items:baseline;gap:12px"><div class="days">${d}</div><div class="muted">${daysWord(d)} trzeźwości<br><span class="small">od ${new Date(a.start).toLocaleDateString('pl-PL')}</span></div></div>
+   ${next?`<p class="small">Do ${next} ${next===1?'dnia':'dni'}: <b>${next-d}</b></p>`:''}
+   <div class="stones">${STONES.map(x=>`<span class="stone${d>=x?' done':''}">${x>=365?(x/365)+' r.':x+' d.'}</span>`).join('')}</div>`})()}
+  ${S.addictions.length>1?`<ul class="list subs">${S.addictions.slice(1).map(a=>{const d=sober(a);return `<li><span>Bez: <b>${esc(a.name)}</b></span><span class="subdays">${d===null?'<span class="muted small">ustaw datę</span>':d+' '+daysWord(d)}</span></li>`}).join('')}</ul>`:''}
+  <details class="new" style="border:0;background:none"><summary style="padding:4px 0">Ustawienia</summary>
+   <div class="stack" style="padding:8px 0 0">
+   <form id="f-start" class="stack">
+    <label class="field"><span>Twoje imię</span><input id="st-name" name="name" value="${esc(S.name||'')}" placeholder="jak mamy się do Ciebie zwracać" autocomplete="given-name"></label>
+    <button class="primary" type="submit">Zapisz imię</button></form>
+   <div class="field"><span>Moje uzależnienia</span>
+    <p class="small muted">Możesz dodać kilka, np. alkohol i nikotynę albo współuzależnienie. Każde ma swój licznik i swoje podpowiedzi.</p>
+    <ul class="list">${S.addictions.map(a=>`<li class="addrow"><span style="flex:1;min-width:0"><b>${esc(a.name)}</b><br><input type="date" id="ad-${a.id}" data-addate="${a.id}" value="${a.start||''}" max="${iso(today())}" aria-label="Data początku: ${esc(a.name)}"></span><span class="stack" style="gap:4px"><button class="ghost danger" data-adreset="${a.id}">Od dziś</button>${S.addictions.length>1?`<button class="ghost danger" data-addel="${a.id}">Usuń</button>`:''}</span></li>`).join('')}</ul>
+    <form id="f-addsub" class="stack"><input id="new-sub" name="sub" list="sub-presets" placeholder="Dodaj: wybierz z listy lub wpisz"><datalist id="sub-presets">${SUB_PRESETS.map(x=>`<option value="${x}">`).join('')}</datalist>
+     <div class="row"><input type="date" id="new-sub-date" name="date" max="${iso(today())}" style="flex:1;min-width:0" aria-label="Od kiedy"><button type="submit">Dodaj</button></div></form>
+   </div>
+   <div class="field"><span>Moja grupa</span>
+    <div class="row" style="gap:12px">${gImg('grp-prev')}<span class="small muted" style="flex:1;min-width:0">Logo i nazwa grupy na ekranach aplikacji. Kolory zostają bez zmian.</span></div>
+    <form id="f-group" class="stack"><input id="grp-name" name="gname" value="${esc((S.group&&S.group.name)||'')}" placeholder="${DEF_GROUP}">
+     <label class="btn filebtn" for="grp-logo">Wybierz logo z telefonu</label><input type="file" id="grp-logo" accept="image/*" class="visually-hidden">
+     <div class="row"><button class="primary" type="submit">Zapisz grupę</button>${S.group&&(S.group.name||S.group.logo)?`<button type="button" data-grpreset="1">Przywróć ${DEF_GROUP}</button>`:''}</div></form>
+   </div>
+   <p class="small muted">Nawrót to część drogi, nie jej koniec. Licznik możesz zacząć od nowa w każdej chwili.</p>
+   </div></details>
+ </section>
+ <section class="quick">
+  <button class="sos" data-helpnow="1"><b>Mam silny głód</b><small>Poprowadzę Cię krok po kroku</small></button>
+  <button class="warn" data-helpfeel="1"><b>Jest mi ciężko</b><small>Smutek, lęk, samotność, złość</small></button>
+  <button class="ok" data-good="1"><b>Dziś jest dobrze</b><small>${goodToday()?'Zapisane. Tak trzymaj!':'Jednym dotknięciem zapisz dobry dzień'}</small></button>
+  <button data-go="plan" data-find="1" style="grid-column:1/-1"><b>Znajdź pomoc w pobliżu</b><small>Poradnie, ośrodki, mityngi AA i NA na mapie</small></button>
+  <button data-go="uczucia" data-open="1"><b>Zapisz uczucie</b><small>${lastF?'Ostatnio: '+esc(lastF.emotions.join(', ')):'Jak się teraz czujesz?'}</small></button>
+  <button data-go="glod" data-open="1"><b>Zapisz głód</b><small>Siła, wyzwalacz, co pomogło</small></button>
+  <button data-go="bilans" data-open="1"><b>Bilans dnia</b><small>${todayNotes?'Dzisiejszy już zapisany':'Jeszcze nie dziś'}</small></button>
+  <button data-go="cele"><b>Moje cele</b><small>${S.goals.filter(g=>!g.done).length} w toku</small></button>
+ </section>
+ ${listSec('reasons','Dlaczego to robię','Dopisz swój powód, np. dzieci, zdrowie, praca')}`;
+}
+
+function vUczucia(){
+ const list=S.feelings.slice().sort((a,b)=>b.at.localeCompare(a.at));
+ return `<header class="top"><h1>Dzienniczek uczuć</h1></header>
+ ${tipCard()}
+ <details class="new" id="new-form"><summary>Nowy wpis</summary>
+ <form id="f-feel">
+  <div class="field"><span>Co czujesz? (możesz wybrać kilka)</span>${chips('emo',EMOTIONS,false)}</div>
+  <label class="field"><span>Inne uczucie</span><input id="emo-other" name="other" placeholder="własnymi słowami"></label>
+  ${scale('lvl','Natężenie (0–10)')}
+  ${ta('sit','Sytuacja – co się wydarzyło?')}
+  ${ta('tho','Myśli','Co sobie wtedy mówiłem/am?')}
+  ${ta('bod','Ciało','Gdzie to czuję?')}
+  ${ta('did','Co z tym zrobiłem/am?')}
+  ${ta('need','Czego potrzebuję?')}
+  <button class="primary" type="submit">Zapisz wpis</button>
+ </form></details>
+ <div class="stack">${list.length?list.map(f=>`<article class="card entry">
+  <div class="meta"><span class="small muted">${fmt(f.at)}${exTag(f)}</span><span class="pill">${f.level}/10</span></div>
+  <h3>${esc(f.emotions.join(', ')||'—')}</h3>
+  <dl class="kv">${[['Sytuacja',f.situation],['Myśli',f.thoughts],['Ciało',f.body],['Zrobiłem/am',f.did],['Potrzeba',f.need]].filter(x=>x[1]).map(x=>`<dt>${x[0]}</dt><dd>${esc(x[1])}</dd>`).join('')}</dl>
+  <div class="row" style="justify-content:flex-end">${delBtn('feelings',f.id)}</div></article>`).join(''):'<p class="empty">Brak wpisów. Dodaj pierwszy powyżej.</p>'}</div>`;
+}
+
+function vGlod(){
+ const list=S.cravings.slice().sort((a,b)=>b.at.localeCompare(a.at));
+ return `<header class="top"><h1>Dziennik głodu</h1></header>
+ ${tipCard()}
+ <p class="muted small">Głód narasta, osiąga szczyt i opada, zwykle w ciągu kilkunastu–kilkudziesięciu minut. Zapisując go, uczysz się swoich wyzwalaczy.</p>
+ <details class="new" id="new-form"><summary>Nowy wpis</summary>
+ <form id="f-crave">
+  ${scale('clvl','Siła głodu (0–10)',6)}
+  ${S.addictions.length>1?`<div class="field"><span>Na co jest głód?</span>${chips('csub',S.addictions.map(a=>a.name),false)}</div>`:''}
+  <div class="field"><span>Co go wywołało?</span>${chips('trg',TRIGGERS,true)}</div>
+  ${ta('csit','Sytuacja – gdzie byłem/am, z kim?')}
+  ${ta('cdid','Co zrobiłem/am, żeby sobie poradzić?')}
+  <label class="field"><span>Ile trwał (minuty)</span><input type="number" min="0" max="1440" id="cmin" name="min" inputmode="numeric" placeholder="np. 20"></label>
+  <div class="field"><span>Czy sięgnąłem/am po substancję?</span><div class="chips">
+   <label class="chip"><input type="radio" name="used" value="nie" id="used-n" checked><span>Nie</span></label>
+   <label class="chip warm"><input type="radio" name="used" value="tak" id="used-t"><span>Tak</span></label></div></div>
+  <button class="primary" type="submit">Zapisz wpis</button>
+ </form></details>
+ <div class="stack">${list.length?list.map(c=>`<article class="card entry">
+  <div class="meta"><span class="small muted">${fmt(c.at)}${exTag(c)}</span>${c.used?'<span class="pill alert">sięgnąłem/am</span>':'<span class="pill good">przetrwany</span>'}</div>
+  <div class="row between"><h3>Siła ${c.level}/10</h3>${c.minutes?`<span class="small muted">${c.minutes} min</span>`:''}</div>
+  <div class="bar"><i style="width:${c.level*10}%"></i></div>
+  ${(c.subs||[]).length||c.triggers.length?`<div class="chips">${(c.subs||[]).map(t=>`<span class="pill">${esc(t)}</span>`).join('')}${c.triggers.map(t=>`<span class="pill amber">${esc(t)}</span>`).join('')}</div>`:''}
+  <dl class="kv">${[['Sytuacja',c.situation],['Co pomogło',c.did]].filter(x=>x[1]).map(x=>`<dt>${x[0]}</dt><dd>${esc(x[1])}</dd>`).join('')}</dl>
+  <div class="row" style="justify-content:flex-end">${delBtn('cravings',c.id)}</div></article>`).join(''):'<p class="empty">Brak wpisów.</p>'}</div>`;
+}
+
+function listSec(key,title,ph){
+ const arr=S.plan[key];
+ return `<section class="card"><h2>${title}</h2>
+  ${arr.length?`<ul class="list">${arr.map((x,i)=>`<li><span>${esc(x)}</span><button class="ghost danger" data-pdel="${key}" data-i="${i}">Usuń</button></li>`).join('')}</ul>`:'<p class="empty">Pusto.</p>'}
+  <form class="row" data-padd="${key}"><input id="add-${key}" name="v" placeholder="${esc(ph)}" style="flex:1;min-width:0"><button type="submit">Dodaj</button></form></section>`;
+}
+function vPlan(){
+ return `<header class="top"><h1>Plan awaryjny</h1></header>
+ <div class="quick"><button class="sos" data-helpnow="1"><b>Pomoc teraz: głód</b><small>Oddech, odliczanie fali, telefon</small></button><button class="warn" data-helpfeel="1"><b>Pomoc teraz: ciężkie uczucia</b><small>Krok po kroku, bez myślenia</small></button></div>
+ <section class="card" style="background:var(--alert-soft);border-color:transparent">
+  <h2>Teraz, kiedy jest trudno</h2>
+  <p>Zatrzymaj się. Głód minie. Masz 20 minut, żeby zrobić jedną rzecz z listy poniżej albo zadzwonić do kogoś.</p>
+  <ul class="list">
+   <li><span>Numer alarmowy</span><span class="row"><span class="phone">112</span><button class="ghost" data-copy="112">Kopiuj</button></span></li>
+   <li><span>Telefon zaufania dla dorosłych w kryzysie emocjonalnym</span><span class="row"><span class="phone">116 123</span><button class="ghost" data-copy="116 123">Kopiuj</button></span></li>
+   <li><span>Ogólnopolski Telefon Zaufania – uzależnienia<br><span class="small muted">bezpłatny, codziennie 16–21</span></span><span class="row"><span class="phone">800 199 990</span><button class="ghost" data-copy="800 199 990">Kopiuj</button></span></li>
+   <li><span>Niebieska Linia – przemoc w rodzinie<br><span class="small muted">bezpłatny, całą dobę</span></span><span class="row"><span class="phone">800 120 002</span><button class="ghost" data-copy="800 120 002">Kopiuj</button></span></li>
+  </ul></section>
+ <section class="card" id="finder"><h2>Pomoc w pobliżu</h2>
+  <p class="small muted">${geo?'Szukam wokół Twojej lokalizacji.':'Wpisz miejscowość albo użyj lokalizacji telefonu.'}</p>
+  <form id="f-city" class="row"><input id="city" name="city" value="${esc(city)}" placeholder="np. Strzegom, Wrocław" style="flex:1 1 100%;min-width:0" autocomplete="address-level2"><button type="submit" class="primary">Szukaj</button><button type="button" id="use-geo">Moja lokalizacja</button></form>
+  <div class="find">${PLACES.map(p=>`<a href="${mapUrl(p[0])}" target="_blank" rel="noopener">${p[1]}<small>${p[2]}</small></a>`).join('')}</div>
+  <p class="small muted">Wyniki otwierają się w Mapach Google. Przed wizytą zadzwoń i potwierdź godziny. Pełną bazę placówek prowadzi Krajowe Centrum Przeciwdziałania Uzależnieniom.</p>
+ </section>
+ <section class="card"><h2>Moje osoby wsparcia</h2>
+  ${S.plan.contacts.length?`<ul class="list">${S.plan.contacts.map(c=>`<li><span><b>${esc(c.name)}</b><br><a class="phone" href="tel:${esc(c.phone.replace(/\s/g,''))}">${esc(c.phone)}</a></span><span class="row"><button class="ghost" data-copy="${esc(c.phone)}">Kopiuj</button><button class="ghost danger" data-cdel="${c.id}">Usuń</button></span></li>`).join('')}</ul>`:'<p class="empty">Dodaj sponsora, terapeutę lub bliską osobę.</p>'}
+  <form id="f-contact" class="stack"><div class="row"><input id="c-name" name="name" placeholder="Imię / rola" style="flex:1 1 140px;min-width:0"><input id="c-phone" name="phone" placeholder="Numer" inputmode="tel" style="flex:1 1 120px;min-width:0"></div><button type="submit">Dodaj osobę</button></form></section>
+ ${listSec('strategies','Co mi pomaga','np. zimny prysznic, spacer, modlitwa')}
+ ${listSec('warning','Moje sygnały ostrzegawcze','np. przestaję jeść regularnie')}
+ `;
+}
+
+function vCele(){
+ const open=S.goals.filter(g=>!g.done),done=S.goals.filter(g=>g.done);
+ const g=x=>`<div class="goal${x.done?' done':''}"><input type="checkbox" id="g-${x.id}" data-gtog="${x.id}"${x.done?' checked':''}><label for="g-${x.id}" style="flex:1;min-width:0"><span class="gt">${esc(x.text)}</span><br><span class="small muted">${x.from==='terapeuta'?'Zadanie od terapeuty':'Cel własny'}${x.ex?' · przykład':''}</span></label>${delBtn('goals',x.id)}</div>`;
+ return `<header class="top"><h1>Cele i zadania</h1><span class="muted small">${done.length}/${S.goals.length} wykonane</span></header>
+ <form id="f-goal" class="card">
+  <label class="field"><span>Nowy cel lub zadanie</span><input id="g-text" name="text" placeholder="np. Przeczytać rozdział o nawrotach"></label>
+  <div class="row between"><div class="chips">
+   <label class="chip"><input type="radio" name="from" value="terapeuta" id="gf-t" checked><span>Od terapeuty</span></label>
+   <label class="chip"><input type="radio" name="from" value="własny" id="gf-w"><span>Własny</span></label></div>
+   <button class="primary" type="submit">Dodaj</button></div></form>
+ <section class="card"><h2>W toku</h2>${open.length?open.map(g).join(''):'<p class="empty">Wszystko zrobione.</p>'}</section>
+ ${done.length?`<section class="card"><h2>Zrobione</h2>${done.map(g).join('')}</section>`:''}`;
+}
+
+function weekStats(){
+ const from=daysAgo(6).toISOString();
+ const F=S.feelings.filter(x=>x.at>=from),C=S.cravings.filter(x=>x.at>=from);
+ const count=(arr,key)=>{const m={};arr.forEach(x=>x[key].forEach(k=>m[k]=(m[k]||0)+1));return Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,3)};
+ const days=[...Array(7)].map((_,i)=>{const d=daysAgo(6-i),k=iso(d);const cs=C.filter(c=>iso(new Date(c.at))===k);return {d,max:cs.reduce((m,c)=>Math.max(m,c.level),0),n:cs.length}});
+ const avg=C.length?(C.reduce((s,c)=>s+c.level,0)/C.length):0;
+ return {F,C,emo:count(F,'emotions'),trg:count(C,'triggers'),days,avg,used:C.filter(c=>c.used).length};
+}
+function summaryText(){
+ const w=weekStats(),d=sober();
+ return [`Podsumowanie tygodnia (${daysAgo(6).toLocaleDateString('pl-PL')} – ${today().toLocaleDateString('pl-PL')})`,
+  ...S.addictions.filter(a=>a.start).map(a=>`Dni bez: ${a.name}: ${sober(a)}`),
+  `Wpisy w dzienniczku uczuć: ${w.F.length}`,
+  `Najczęstsze uczucia: ${w.emo.map(e=>e[0]+' ('+e[1]+')').join(', ')||'brak'}`,
+  `Epizody głodu: ${w.C.length}, średnia siła ${w.avg.toFixed(1)}/10, sięgnięcie: ${w.used}`,
+  `Najczęstsze wyzwalacze: ${w.trg.map(e=>e[0]+' ('+e[1]+')').join(', ')||'brak'}`,
+  `Cele wykonane: ${S.goals.filter(g=>g.done).length} z ${S.goals.length}`].filter(Boolean).join('\n');
+}
+function vBilans(){
+ const w=weekStats();
+ const notes=S.notes.slice().sort((a,b)=>b.at.localeCompare(a.at));
+ return `<header class="top"><h1>Notatki i bilanse</h1></header>
+ <details class="new" id="new-form"><summary>Bilans dnia</summary>
+ <form id="f-bilans">
+  ${ta('b-good','Co mi się dziś udało?')}
+  ${ta('b-hard','Co było trudne?')}
+  ${ta('b-grat','Za co jestem wdzięczny/a?')}
+  ${ta('b-tom','Mój plan na jutro')}
+  <button class="primary" type="submit">Zapisz bilans</button></form></details>
+ <details class="new"><summary>Notatka (np. po sesji)</summary>
+ <form id="f-note">${ta('n-text','Treść')}<button class="primary" type="submit">Zapisz notatkę</button></form></details>
+ <section class="card"><div class="row between"><h2>Ostatnie 7 dni</h2><button data-summary="1">Kopiuj dla terapeuty</button></div>
+  <div class="stat"><div><span class="label">Uczucia</span><b>${w.F.length}</b></div><div><span class="label">Głód</span><b>${w.C.length}</b></div><div><span class="label">Śr. siła</span><b>${w.avg?w.avg.toFixed(1):'–'}</b></div></div>
+  <div class="label">Najwyższy głód danego dnia</div>
+  <div class="chart" role="img" aria-label="Najwyższa siła głodu w kolejnych dniach">${w.days.map(x=>`<div><span class="small" style="font-variant-numeric:tabular-nums">${x.n?x.max:''}</span><i style="height:${x.max*7}%"></i><small>${dayName(x.d)}</small></div>`).join('')}</div>
+  <dl class="kv"><dt>Uczucia</dt><dd>${w.emo.map(e=>esc(e[0])+' ×'+e[1]).join(', ')||'—'}</dd><dt>Wyzwalacze</dt><dd>${w.trg.map(e=>esc(e[0])+' ×'+e[1]).join(', ')||'—'}</dd></dl></section>
+ <div class="stack">${notes.length?notes.map(n=>`<article class="card entry"><div class="meta"><span class="small muted">${fmt(n.at)}${exTag(n)}</span><span class="pill${n.kind==='bilans'?' good':''}">${n.kind}</span></div>
+  ${n.kind==='bilans'?`<dl class="kv">${[['Udało się',n.good],['Trudne',n.hard],['Wdzięczność',n.grateful],['Jutro',n.tomorrow]].filter(x=>x[1]).map(x=>`<dt>${x[0]}</dt><dd>${esc(x[1])}</dd>`).join('')}</dl>`:`<p style="white-space:pre-wrap">${esc(n.text)}</p>`}
+  <div class="row" style="justify-content:flex-end">${delBtn('notes',n.id)}</div></article>`).join(''):'<p class="empty">Brak notatek.</p>'}</div>
+ <details class="new"><summary>Kopia zapasowa danych</summary><div class="stack" style="padding:0 16px 16px">
+  <p class="small muted">Dane są tylko w tej przeglądarce na tym urządzeniu. Skopiuj kopię i zachowaj ją w bezpiecznym miejscu. Aby przywrócić, wklej ją poniżej.</p>
+  <button data-backup="1">Kopiuj kopię zapasową</button>
+  <textarea id="restore-txt" placeholder="Wklej tu kopię zapasową"></textarea>
+  <button id="restore-btn">Przywróć z kopii</button></div></details>`;
+}
+
+const PLACES=[
+ ['poradnia terapii uzależnień','Poradnia terapii uzależnień','ambulatoryjnie, bez skierowania na NFZ'],
+ ['ośrodek leczenia uzależnień','Ośrodek stacjonarny','terapia z pobytem'],
+ ['mityng AA','Mityng AA','Anonimowi Alkoholicy'],
+ ['mityng NA anonimowi narkomani','Mityng NA','Anonimowi Narkomani'],
+ ['oddział detoksykacyjny','Detoks','oddział leczenia zespołów abstynencyjnych'],
+ ['punkt konsultacyjny uzależnienia','Punkt konsultacyjny','gminny, bezpłatny'],
+ ['mityng Al-Anon','Mityng Al-Anon','dla rodzin i współuzależnionych'],
+ ['Anonimowi Hazardziści mityng','Mityng AH','Anonimowi Hazardziści']
+];
+let geo=null,city='';
+try{city=localStorage.getItem(KEY+'-city')||''}catch(e){}
+if(S.city)city=S.city;
+function mapUrl(q){
+ if(geo)return 'https://www.google.com/maps/search/'+encodeURIComponent(q)+'/@'+geo[0].toFixed(4)+','+geo[1].toFixed(4)+',12z';
+ return 'https://www.google.com/maps/search/'+encodeURIComponent(q+(city?' '+city:' w pobliżu'));
+}
+const credit=()=>`<p class="credit">Wersja ${APP_VERSION} · autor: ${APP_AUTHOR}</p>`;
+
+/* ---------- pomoc teraz: podpowiedzi dopasowane do stanu ---------- */
+const HEAVY=['smutek','złość','lęk','wstyd','poczucie winy','samotność','napięcie','żal','zmęczenie','nuda'];
+const TIPS={
+ _crave:['Odczekaj 20 minut. Głód rośnie, osiąga szczyt i opada.','Zmień miejsce. Wyjdź z pokoju, ze sklepu, z sytuacji.','Przewiń film do końca: przypomnij sobie, jak skończył się ostatni raz.','Zjedz coś i napij się wody albo herbaty.','Zajmij ręce: zmywanie, sprzątanie, spacer z psem.','Napisz do kogoś z grupy jedno zdanie: „Mam głód, pogadasz chwilę?”','Policz w myślach od 100 w dół co 7. To odciąga uwagę.'],
+ 'smutek':['Wyjdź na 10 minut na zewnątrz, na światło dzienne.','Weź prysznic i przebierz się w czyste ubranie.','Włącz muzykę, która kiedyś dodawała Ci sił.','Zapisz trzy małe rzeczy, które dziś się udały.','Napisz do jednej osoby: „Masz chwilę?”'],
+ 'samotność':['Zadzwoń do kogoś z listy wsparcia, nawet na 5 minut.','Idź tam, gdzie są ludzie: park, sklep, kościół, mityng.','Sprawdź najbliższy mityng w zakładce SOS.'],
+ 'złość':['Nie odpowiadaj teraz. Wróć do sprawy za godzinę.','Rozładuj ciało: szybki marsz, 20 przysiadów, pompki.','Wypisz na kartce wszystko, co Cię złości. Nie wysyłaj tego nikomu.'],
+ 'lęk':['Uziemienie 5-4-3-2-1: nazwij 5 rzeczy, które widzisz, 4 które słyszysz, 3 których dotykasz, 2 zapachy, 1 smak.','Zrób 5 spokojnych oddechów z dłuższym wydechem.','Pomyśl tylko o najbliższej godzinie, nie o całym jutrze.'],
+ 'napięcie':['Napnij mocno dłonie i ramiona na 5 sekund, potem puść. Powtórz 3 razy.','Zrób 5 spokojnych oddechów z dłuższym wydechem.','Wyjdź na krótki spacer.'],
+ 'wstyd':['Wstyd karmi nałóg. Powiedz komuś zaufanemu, co czujesz.','Pomyśl, co powiedziałbyś przyjacielowi w takiej sytuacji. Powiedz to sobie.'],
+ 'poczucie winy':['Zapisz, co możesz naprawić. Jedną rzecz, małym krokiem.','Porozmawiaj o tym na grupie lub z terapeutą. Nie noś tego sam.'],
+ 'żal':['Daj sobie prawo do smutku. Nie musisz go zagłuszać.','Napisz kilka zdań o tym, czego Ci żal.'],
+ 'zmęczenie':['Zjedz coś ciepłego i napij się wody.','Połóż się na 20 minut. Zmęczenie wzmacnia głód.'],
+ 'nuda':['Zaplanuj najbliższe dwie godziny, punkt po punkcie.','Zrób coś rękami: majsterkowanie, gotowanie, porządek.'],
+ 'głód (H)':['Zjedz coś teraz. Głód fizyczny łatwo pomylić z głodem substancji.'],
+ 'złość (A)':['Nie odpowiadaj teraz. Wróć do sprawy za godzinę.'],
+ 'samotność (L)':['Zadzwoń do kogoś z listy wsparcia, nawet na 5 minut.'],
+ 'zmęczenie (T)':['Połóż się na 20 minut. Zmęczenie wzmacnia głód.'],
+ 'alkohol w zasięgu':['Odsuń się od alkoholu: wyjdź z pomieszczenia albo poproś kogoś, by go zabrał.'],
+ 'spotkanie ze znajomymi':['Trzymaj w ręku swój napój bezalkoholowy. Miej gotowy powód, żeby wyjść wcześniej.'],
+ 'świętowanie':['Trzymaj w ręku swój napój bezalkoholowy. Umów się z kimś, że zadzwonisz w trakcie.'],
+ 'stres w pracy':['Zrób 10 minut przerwy z dala od biurka i telefonu.'],
+ 'konflikt':['Nie odpowiadaj teraz. Wróć do sprawy za godzinę.'],
+ 'pieniądze':['Zapisz jeden konkretny krok w sprawie pieniędzy na jutro. Dziś tylko tyle.'],
+ 'wspomnienia':['Zapisz to wspomnienie w dzienniczku uczuć i pokaż je terapeucie.']
+};
+const SUB_TIPS={
+ 'alkohol':['Nie wchodź dziś do sklepu z alkoholem. Jeśli musisz, idź z listą i z kimś.','Miej pod ręką napój bezalkoholowy, który lubisz.','Drżenie, poty, kołatanie serca albo omamy po odstawieniu alkoholu to stan zagrożenia. Dzwoń 112.'],
+ 'nikotyn':['Głód nikotyny trwa zwykle kilka minut. Wypij szklankę wody małymi łykami.','Zajmij ręce i usta: guma bez cukru, marchewka, długopis.','Przez pierwsze tygodnie omijaj miejsca i chwile, w których zwykle paliłeś/aś.'],
+ 'marihuan':['Usuń kontakty, przez które załatwiałeś/aś. Zablokuj numery.','Omijaj miejsca i ludzi związanych z braniem.','Kłopoty ze snem po odstawieniu są częste i mijają. Powiedz o nich lekarzowi.'],
+ 'narkotyk':['Usuń kontakty, przez które załatwiałeś/aś. Zablokuj numery.','Omijaj miejsca i ludzi związanych z braniem.','Po przerwie organizm jest mniej odporny. Nawrót po abstynencji jest szczególnie niebezpieczny. W razie złego samopoczucia dzwoń 112.'],
+ 'lek':['Nie odstawiaj leków nagle na własną rękę. Niektóre trzeba zmniejszać pod kontrolą lekarza.','Oddaj nadmiar leków do apteki albo poproś bliską osobę o przechowanie.'],
+ 'hazard':['Zainstaluj blokadę stron hazardowych i wyloguj się z aplikacji bukmacherskich.','Na trudny czas oddaj kontrolę nad kartą zaufanej osobie albo ustaw limity w banku.','Nie noś przy sobie więcej gotówki, niż potrzebujesz dziś.'],
+ 'gry':['Odłóż telefon do innego pokoju na 30 minut.','Ustaw w telefonie limit czasu dla aplikacji.'],
+ 'internet':['Odłóż telefon do innego pokoju na 30 minut.','Ustaw w telefonie limit czasu dla aplikacji.'],
+ 'zakup':['Usuń zapisane karty ze sklepów internetowych.','Odczekaj 48 godzin przed każdym zakupem spoza listy.'],
+ 'współuzależ':['Zatrzymaj się i zapytaj: czyja to odpowiedzialność, moja czy jego/jej?','Zrób dziś jedną rzecz tylko dla siebie.','Nie musisz ratować drugiej osoby. Możesz zadbać o siebie.','Sprawdź mityng Al-Anon w pobliżu w zakładce SOS.']
+};
+function subTips(names){const out=[];(names||[]).forEach(n=>{const k=Object.keys(SUB_TIPS).find(k=>String(n).toLowerCase().includes(k));if(k)SUB_TIPS[k].forEach(t=>{if(!out.includes(t))out.push(t)})});return out}
+let help=null,lastTip=null,waveTimer=null,breathTimer=null;
+function tipsFor(tags,mode,subs){
+ const out=[];const add=a=>(a||[]).forEach(t=>{if(!out.includes(t))out.push(t)});
+ const names=(subs&&subs.length)?subs:S.addictions.map(a=>a.name);
+ if(mode!=='feel')add(subTips(names));
+ (tags||[]).forEach(t=>add(TIPS[t]));
+ if(mode==='feel')add(subTips(names.filter(n=>/współuzależ/i.test(n))));
+ if(mode!=='feel')add(TIPS._crave);
+ add(S.plan.strategies);
+ if(mode==='feel')add(['Zrób 5 spokojnych oddechów z dłuższym wydechem.','Napisz do kogoś z grupy jedno zdanie.']);
+ return out;
+}
+function openHelp(mode,tags,level,subs){help={mode,tags:tags||[],subs:subs||[],level:level||0,start:Date.now(),i:0};go('pomoc')}
+const contactsHtml=()=>S.plan.contacts.length?`<ul class="list">${S.plan.contacts.map(c=>`<li><span><b>${esc(c.name)}</b><br><a class="phone" href="tel:${esc(c.phone.replace(/\s/g,''))}">${esc(c.phone)}</a></span><button class="ghost" data-copy="${esc(c.phone)}">Kopiuj</button></li>`).join('')}</ul>`:`<p class="small muted">Nie masz jeszcze osób wsparcia. Dodaj je w zakładce SOS.</p>`;
+function vPomoc(){
+ if(!help)help={mode:'crave',tags:[],level:0,start:Date.now(),i:0};
+ const m=help.mode,tips=tipsFor(help.tags,m,help.subs),tip=tips[help.i%tips.length];
+ const name=S.name?', '+esc(S.name):'';
+ const title=m==='relapse'?`Dobrze, że to zapisałeś/aś${name}.`:m==='feel'?`Jestem z Tobą${name}.`:`Wytrzymasz${name}. Głód minie.`;
+ const lead=m==='relapse'?'Nawrót to nie koniec drogi. Teraz liczy się tylko jedno: nie zostawaj z tym sam/a.':m==='feel'?'Nie musisz teraz nic rozwiązywać. Zróbmy jedną małą rzecz naraz.':'Nie musisz teraz myśleć. Zrób po kolei to, co poniżej.';
+ return `<header class="top"><h1>${title}</h1></header>
+ <p>${lead}</p>
+ ${m==='crave'?`<section class="card wave"><div class="label">Fala głodu</div><div class="wave-time" data-wave="1">20:00</div><p class="small muted">Większość fal głodu słabnie w ciągu 20–30 minut. Odliczam razem z Tobą.</p></section>`:''}
+ ${m==='relapse'?`<section class="card"><h2>1. Zadzwoń teraz</h2>${contactsHtml()}<p class="small muted">Sponsor, terapeuta albo ktoś z grupy. Powiedz po prostu: „Zapiłem/am, potrzebuję pogadać”.</p></section>`:''}
+ <section class="card breath-card"><h2>${m==='relapse'?'2. ':'1. '}Oddychaj ze mną</h2>
+  <div class="breath"><div class="ball" id="ball"></div><div class="breath-txt" id="breath-txt">Dotknij „Start”</div></div>
+  <button class="primary" id="breath-btn">Start</button></section>
+ <section class="card"><h2>${m==='relapse'?'3. ':'2. '}Zrób teraz jedną rzecz</h2>
+  <p class="tip">${esc(tip)}</p>
+  <div class="row"><button class="primary" data-tipdone="1">Zrobione</button><button data-tipnext="1">Inna propozycja</button></div></section>
+ ${m!=='relapse'?`<section class="card"><h2>3. Zadzwoń albo napisz</h2>${contactsHtml()}</section>`:''}
+ ${S.plan.reasons.length?`<section class="card"><div class="label">Pamiętaj, dlaczego to robisz</div><ul class="list">${S.plan.reasons.map(r=>`<li><span>${esc(r)}</span></li>`).join('')}</ul></section>`:''}
+ <section class="card" style="background:var(--alert-soft);border-color:transparent">
+  <p class="small">${m==='feel'?'Jeśli pojawiają się myśli, żeby zrobić sobie krzywdę, zadzwoń od razu: ':'Gdy jest naprawdę źle: '}<span class="phone">116 123</span> (telefon zaufania) albo <span class="phone">112</span>. Uzależnienia: <span class="phone">800 199 990</span> (16–21).</p></section>
+ <div class="stack">
+  ${m==='relapse'?(help.subs.length?S.addictions.filter(a=>help.subs.includes(a.name)):S.addictions).map(a=>`<button data-restart="${a.id}">Licz od dziś: ${esc(a.name)}</button>`).join(''):`<button class="primary" data-better="1">Jest mi lepiej</button>`}
+  <button class="ghost" data-tab="dzis">Wróć do ekranu głównego</button></div>`;
+}
+const goodToday=()=>S.feelings.some(f=>f.quick&&iso(new Date(f.at))===iso(today()));
+const GOOD_MSG=['Dobry dzień to cegła w nowym domu.','Zapamiętaj ten dzień. Przyda się, gdy przyjdzie gorszy.','Spokój też trzeba zauważać. Dobrze, że to robisz.','Tak wygląda trzeźwość, która działa.'];
+function tipCard(){
+ if(!lastTip)return '';
+ const t=tipsFor(lastTip.tags,lastTip.mode,lastTip.subs).slice(0,3);lastTip=null;
+ return `<section class="card tipcard"><div class="label">Co może pomóc teraz</div><ul class="list">${t.map(x=>`<li><span>${esc(x)}</span></li>`).join('')}</ul>
+  <button data-helpnow="1">Potrzebuję więcej pomocy</button></section>`;
+}
+function hardDays(){
+ const from=new Date(Date.now()-3*864e5).toISOString();
+ const f=S.feelings.filter(x=>!x.ex&&x.at>=from&&x.level>=6&&x.emotions.some(e=>HEAVY.includes(e))).length;
+ const c=S.cravings.filter(x=>!x.ex&&x.at>=from&&x.level>=7).length;
+ return f>=3||c>=2||(f>=2&&c>=1);
+}
+function tick(){
+ const w=document.querySelector('[data-wave]');
+ if(w&&help){const left=Math.max(0,20*60e3-(Date.now()-help.start));const m=Math.floor(left/60e3),sec=Math.floor(left%60e3/1e3);
+  w.textContent=left?`${m}:${String(sec).padStart(2,'0')}`:'Fala minęła';}
+}
+setInterval(tick,1000);
+function breathe(btn){
+ const ball=document.getElementById('ball'),txt=document.getElementById('breath-txt');if(!ball)return;
+ if(breathTimer){clearTimeout(breathTimer);breathTimer=null;ball.className='ball';txt.textContent='Dotknij „Start”';btn.textContent='Start';return}
+ btn.textContent='Stop';let n=0;
+ const steps=[['in','Wdech nosem…',4000],['hold','Zatrzymaj…',4000],['out','Powolny wydech ustami…',6000]];
+ const step=()=>{const s=steps[n%3];ball.className='ball '+s[0];txt.textContent=s[1];n++;
+  if(n>=3*6){breathTimer=setTimeout(()=>{ball.className='ball';txt.textContent='Dobrze. Jak się teraz czujesz?';btn.textContent='Jeszcze raz';breathTimer=null},s[2]);return}
+  breathTimer=setTimeout(step,s[2])};
+ step();
+}
+const VIEWS={dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
+let unlocked=false;
+try{unlocked=localStorage.getItem(KEY+'-ok')==='1'}catch(e){}
+if(S.unlocked)unlocked=true;
+function applyMeta(){normalize();if(S.unlocked)unlocked=true;if(S.city)city=S.city}
+const endDate=()=>new Date(TEST_END+'T23:59:59');
+function trialLeft(){return Math.max(1,Math.round((new Date(TEST_END+'T00:00:00')-today())/864e5)+1)}
+function gate(){
+ const app=document.getElementById('app'),tb=document.getElementById('tabs');
+ if(new Date()>endDate()){
+  tb.innerHTML='';
+  app.innerHTML=`<section class="gate">${gImg()}
+   <h1>Test zakończony</h1>
+   <p class="muted">Dziękujemy za udział w testach aplikacji grupy ${esc(gName())}. Twoje wpisy nadal są na tym telefonie. Skopiuj je, jeśli chcesz je zachować.</p>
+   <div class="stack"><button class="primary" data-backup="1">Kopiuj moje wpisy</button>
+   <p class="small muted">W razie kryzysu: <span class="phone">112</span> · <span class="phone">116 123</span> · uzależnienia <span class="phone">800 199 990</span> (16–21)</p></div>${credit()}</section>`;
+  return true}
+ if(ACCESS_CODE&&!unlocked){
+  tb.innerHTML='';
+  app.innerHTML=`<section class="gate">${gImg()}
+   <h1>Witaj w aplikacji grupy</h1>
+   <p class="muted">Wersja testowa do ${endDate().toLocaleDateString('pl-PL')}. Wpisz kod, który dostałeś/aś na spotkaniu.</p>
+   <form id="f-code" class="stack"><input id="code" name="code" autocomplete="off" autocapitalize="characters" placeholder="Kod grupy" aria-label="Kod grupy"><button class="primary" type="submit">Wejdź</button></form>
+   <p class="small muted">Twoje wpisy zostaną tylko na tym telefonie.</p>${credit()}</section>`;
+  return true}
+ if(S.name===undefined){
+  tb.innerHTML='';
+  app.innerHTML=`<section class="gate">${gImg()}
+   <h1>Jak mamy się do Ciebie zwracać?</h1>
+   <p class="muted">Aplikacja będzie Cię witać po imieniu. Wystarczy samo imię albo pseudonim.</p>
+   <form id="f-name" class="stack"><input id="first-name" name="name" autocomplete="given-name" placeholder="Twoje imię" aria-label="Twoje imię" style="text-transform:none;letter-spacing:0"><button class="primary" type="submit">Dalej</button><button type="button" class="ghost" data-skipname="1">Pomiń</button></form>
+   ${credit()}</section>`;
+  return true}
+ if(!S.installSeen&&!isStandalone()&&!inFrame()){
+  tb.innerHTML='';
+  app.innerHTML=`<section class="gate">${gImg()}
+   <h1>Dodaj aplikację do ekranu głównego</h1>
+   <p class="muted">Wtedy otworzysz ją jednym dotknięciem, a Twoje wpisy będą bezpieczne.</p>
+   ${isIOS()?`<ol class="steps"><li>Dotknij przycisku <b>Udostępnij</b> na dole Safari.</li><li>Wybierz <b>Do ekranu początkowego</b>.</li><li>Dotknij <b>Dodaj</b>.</li></ol>`:`<ol class="steps"><li>Dotknij <b>⋮</b> w prawym górnym rogu przeglądarki.</li><li>Wybierz <b>Zainstaluj aplikację</b> albo <b>Dodaj do ekranu głównego</b>.</li><li>Potwierdź.</li></ol>`}
+   <div class="stack"><button class="primary" data-installok="1">Gotowe</button></div>${credit()}</section>`;
+  return true}
+ const h=new Date().getHours();
+ if(h>=4&&h<11&&S.lastMorning!==iso(today())){
+  tb.innerHTML='';
+  app.innerHTML=`<section class="gate">${gImg()}
+   <h1>${hello()}</h1>
+   <p class="muted">${new Date().toLocaleDateString('pl-PL',{weekday:'long',day:'numeric',month:'long'})}${sober()?` · ${sober()}. dzień trzeźwości`:''}</p>
+   ${quoteCard(true)}
+   <div class="stack"><button class="primary" data-morning="1">Zaczynam dzień</button></div>${credit()}</section>`;
+  return true}
+ return false}
+function render(openForm){
+ if(gate())return;
+ const ex=S.examples&&(S.feelings.concat(S.cravings,S.goals,S.notes).some(x=>x.ex)||['warning','strategies','reasons'].some(k=>S.plan[k].some(x=>SAMPLE_PLAN.includes(x))));
+ document.getElementById('app').innerHTML=
+  (ex&&tab!=='pomoc'?`<div class="banner"><span>Widzisz przykładowe wpisy, żeby pokazać, jak działa dzienniczek.</span><button data-clear="1">Usuń przykłady</button></div>`:'')+
+  (!storageOk?`<div class="banner" style="background:var(--alert-soft)">Ta przeglądarka nie pozwala zapisywać danych. Wpisy znikną po zamknięciu strony.</div>`:'')+
+  VIEWS[tab]()+credit();
+ document.getElementById('tabs').innerHTML=TABS.map(t=>`<button data-tab="${t[0]}"${t[0]===tab?' aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${t[2]}</svg>${t[1]}</button>`).join('');
+ if(openForm){const f=document.getElementById('new-form');if(f){f.open=true;const i=f.querySelector('input,textarea');i&&i.focus()}}
+}
+function go(t,open){if(breathTimer){clearTimeout(breathTimer);breathTimer=null}tab=t;render(open);window.scrollTo(0,0)}
+
+/* ---------- zdarzenia ---------- */
+const vals=(form,name)=>[...form.querySelectorAll(`input[name="${name}"]:checked`)].map(x=>x.value);
+const v=(form,id)=>(form.querySelector('#'+id)||{}).value?.trim()||'';
+document.addEventListener('submit',e=>{
+ const f=e.target;e.preventDefault();const now=new Date().toISOString();
+ if(f.id==='f-code'){
+  if(v(f,'code').toUpperCase()===ACCESS_CODE.toUpperCase()){unlocked=true;S.unlocked=true;save();try{localStorage.setItem(KEY+'-ok','1')}catch(e){}render();return toast('Witaj!')}
+  return toast('Nieprawidłowy kod. Zapytaj prowadzącego grupę.')}
+ if(f.id==='f-name'){S.name=v(f,'first-name');save();render();return S.name?toast('Miło Cię poznać, '+S.name):null}
+ if(f.id==='f-feel'){const emos=vals(f,'emo');const o=v(f,'emo-other');if(o)emos.push(o);
+  if(!emos.length)return toast('Wybierz lub wpisz uczucie');
+  S.feelings.push({id:uid(),at:now,emotions:emos,level:+f.lvl.value,situation:v(f,'sit'),thoughts:v(f,'tho'),body:v(f,'bod'),did:v(f,'did'),need:v(f,'need')});
+  const heavy=emos.filter(e=>HEAVY.includes(e));
+  if(heavy.length&&+f.lvl.value>=6){save();toast('Zapisano wpis');return openHelp('feel',heavy,+f.lvl.value)}
+  if(heavy.length)lastTip={mode:'feel',tags:heavy};
+  toast('Zapisano wpis')}
+ else if(f.id==='f-crave'){S.cravings.push({id:uid(),at:now,level:+f.clvl.value,subs:vals(f,'csub'),triggers:vals(f,'trg'),situation:v(f,'csit'),did:v(f,'cdid'),minutes:+v(f,'cmin')||0,used:f.querySelector('input[name=used]:checked').value==='tak'});
+  {const used=f.querySelector('input[name=used]:checked').value==='tak',lv=+f.clvl.value,tr=vals(f,'trg');
+   const sb=vals(f,'csub');
+   if(used){save();return openHelp('relapse',tr,lv,sb)}
+   if(lv>=6){save();toast('Zapisano');return openHelp('crave',tr,lv,sb)}
+   lastTip={mode:'crave',tags:tr,subs:sb};toast('Zapisano. Dobrze, że to zauważasz.')}}
+ else if(f.id==='f-start'){S.name=v(f,'st-name');toast('Zapisano imię')}
+ else if(f.id==='f-addsub'){const n=v(f,'new-sub');if(!n)return toast('Wpisz lub wybierz uzależnienie');
+  if(S.addictions.some(a=>a.name.toLowerCase()===n.toLowerCase()))return toast('To uzależnienie już jest na liście');
+  S.addictions.push({id:uid(),name:n,start:v(f,'new-sub-date')});toast('Dodano: '+n)}
+ else if(f.id==='f-group'){
+  const file=f.querySelector('#grp-logo').files[0],nm=v(f,'grp-name');
+  if(file){fitLogo(file).then(u=>{S.group={name:nm,logo:u};save();render();toast('Zapisano grupę')}).catch(()=>toast('Nie udało się wczytać obrazka. Wybierz plik JPG lub PNG.'));return}
+  S.group={name:nm,logo:(S.group&&S.group.logo)||''};toast('Zapisano grupę')}
+ else if(f.id==='f-city'){city=v(f,'city');geo=null;S.city=city;save();try{localStorage.setItem(KEY+'-city',city)}catch(e){}render();document.getElementById('finder').scrollIntoView();return toast(city?'Szukam w: '+city:'Szukam w pobliżu')}
+ else if(f.id==='f-contact'){const n=v(f,'c-name'),p=v(f,'c-phone');if(!n||!p)return toast('Podaj imię i numer');S.plan.contacts.push({id:uid(),name:n,phone:p});toast('Dodano osobę')}
+ else if(f.dataset.padd){const k=f.dataset.padd,x=v(f,'add-'+k);if(!x)return;S.plan[k].push(x);toast('Dodano')}
+ else if(f.id==='f-goal'){const t=v(f,'g-text');if(!t)return toast('Wpisz treść celu');S.goals.push({id:uid(),at:now,text:t,from:f.querySelector('input[name=from]:checked').value,done:false});toast('Dodano cel')}
+ else if(f.id==='f-bilans'){const b={good:v(f,'b-good'),hard:v(f,'b-hard'),grateful:v(f,'b-grat'),tomorrow:v(f,'b-tom')};if(!Object.values(b).some(Boolean))return toast('Wypełnij choć jedno pole');S.notes.push({id:uid(),at:now,kind:'bilans',...b});toast('Zapisano bilans')}
+ else if(f.id==='f-note'){const t=v(f,'n-text');if(!t)return;S.notes.push({id:uid(),at:now,kind:'notatka',text:t});toast('Zapisano notatkę')}
+ const top=!!lastTip;save();render();if(top)window.scrollTo(0,0);
+});
+document.addEventListener('change',e=>{
+ const t=e.target;
+ if(t.dataset&&t.dataset.addate){const a=S.addictions.find(x=>x.id===t.dataset.addate);if(a&&t.value){a.start=t.value;save();render();toast('Zapisano datę')}}
+ if(t.id==='grp-logo'&&t.files[0]){const l=document.querySelector('label[for=grp-logo]');if(l)l.textContent='Wybrano: '+t.files[0].name}
+});
+document.addEventListener('click',e=>{
+ const b=e.target.closest('button,input[type=checkbox][data-gtog]');if(!b)return;
+ const d=b.dataset;
+ if(d.tab)return go(d.tab);
+ if(d.good){
+  if(!goodToday())S.feelings.push({id:uid(),at:new Date().toISOString(),emotions:['spokój'],level:2,situation:'Szybki wpis: dziś jest dobrze',thoughts:'',body:'',did:'',need:'',quick:true});
+  save();render();return toast(GOOD_MSG[Math.floor(Math.random()*GOOD_MSG.length)])}
+ if(d.grpreset){S.group={name:'',logo:''};save();render();return toast('Przywrócono '+DEF_GROUP)}
+ if(d.helpnow)return openHelp('crave',[],0);
+ if(d.helpfeel)return openHelp('feel',[],0);
+ if(d.tipnext){help.i++;return render()}
+ if(d.tipdone){help.i++;toast('Brawo. Jeszcze jedna rzecz?');return render()}
+ if(d.better){toast('Dobra robota. Zapisz potem, co pomogło.');help=null;return go('dzis')}
+ if(d.restart){const a=S.addictions.find(x=>x.id===d.restart);if(a)a.start=iso(today());save();toast('Nowy start. Każdy dzień się liczy.');help=null;return go('dzis')}
+ if(b.id==='breath-btn')return breathe(b);
+ if(d.skipname){S.name='';save();return render()}
+ if(d.installok){S.installSeen=true;save();return render()}
+ if(d.morning){S.lastMorning=iso(today());save();return go('dzis')}
+ if(d.go){go(d.go,!!d.open);if(d.find){const el=document.getElementById('finder');el&&el.scrollIntoView()}return}
+ if(b.id==='use-geo'){
+  const fail=()=>toast('Lokalizacja niedostępna. Wpisz miejscowość.');
+  try{navigator.geolocation.getCurrentPosition(p=>{geo=[p.coords.latitude,p.coords.longitude];render();document.getElementById('finder').scrollIntoView();toast('Mam Twoją lokalizację')},fail,{timeout:8000,maximumAge:600000})}catch(err){fail()}
+  return}
+ if(d.copy)return copy(d.copy);
+ if(d.summary)return copy(summaryText());
+ if(d.backup)return copy(JSON.stringify(S));
+ if(d.gtog){const g=S.goals.find(x=>x.id===d.gtog);g.done=b.checked;save();return setTimeout(render,150)}
+ if(d.clear){['feelings','cravings','goals','notes'].forEach(k=>S[k]=S[k].filter(x=>!x.ex));S.plan.contacts=S.plan.contacts.filter(c=>!/przykład/.test(c.name));['warning','strategies','reasons'].forEach(k=>S.plan[k]=S.plan[k].filter(x=>!SAMPLE_PLAN.includes(x)));S.examples=false;save();render();return toast('Usunięto przykłady')}
+ // dwustopniowe potwierdzenie usuwania
+ if(d.del||d.pdel||d.cdel||d.adreset||d.addel){
+  if(!b.classList.contains('armed')){b.classList.add('armed');const old=b.textContent;b.textContent='Na pewno?';setTimeout(()=>{if(b.isConnected){b.classList.remove('armed');b.textContent=old}},3000);return}
+  if(d.del)S[d.del]=S[d.del].filter(x=>x.id!==d.id);
+  if(d.pdel)S.plan[d.pdel].splice(+d.i,1);
+  if(d.cdel)S.plan.contacts=S.plan.contacts.filter(c=>c.id!==d.cdel);
+  if(d.adreset){const a=S.addictions.find(x=>x.id===d.adreset);if(a)a.start=iso(today());toast('Licznik liczy od dziś. Każdy dzień się liczy.')}
+  if(d.addel){S.addictions=S.addictions.filter(x=>x.id!==d.addel)}
+  save();render();return}
+ if(b.id==='restore-btn'){try{const o=JSON.parse(document.getElementById('restore-txt').value);if(!o||!Array.isArray(o.feelings))throw 0;S=o;normalize();applyMeta();save();render();toast('Przywrócono dane')}catch(err){toast('To nie wygląda na kopię zapasową z tej aplikacji')}}
+});
+save();render();
+})();
+</script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}</script>
+</body></html>
