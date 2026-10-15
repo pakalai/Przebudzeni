@@ -1,4 +1,4 @@
-Pogłębieni z Przebudzenia – wersja 0.10, autor: StoneMatic
+Pogłębieni z Przebudzenia – wersja 1.0, autor: StoneMatic
 Wdrożenie na serwer
 
 1. Wgraj cały folder "przebudzeni" na serwer (np. przez FTP do public_html),
@@ -8,7 +8,7 @@ Wdrożenie na serwer
    - Android (Chrome): menu ⋮ → "Dodaj do ekranu głównego" / "Zainstaluj aplikację"
    - iPhone (Safari): Udostępnij → "Do ekranu początkowego"
 4. Dane każdej osoby zostają tylko na jej telefonie. Serwer niczego nie zbiera.
-5. Po zmianie plików podnieś wersję w sw.js (np. przebudzeni-v0.1 → przebudzeni-v0.2), żeby telefony pobrały nowość.
+5. Po zmianie plików podnieś wersję w sw.js (np. przebudzeni-v1.0 → przebudzeni-v1.1), żeby telefony pobrały nowość.
 
 6. Test trwa do 14.10.2027 (rok). Datę i kod grupy (PRZEBUDZENI) zmienisz na początku
    skryptu w index.html: TEST_END i ACCESS_CODE. Po zmianie podnieś wersję w sw.js.
@@ -16,3 +16,6 @@ Wdrożenie na serwer
    Wtedy możesz wyłączyć GitHub Pages (Settings → Pages → Unpublish).
 
 8. Film instruktażowy: instrukcja.mp4 (+ okładka instrukcja-okladka.jpg). Wgraj oba pliki razem z resztą.
+
+9. Numeracja wersji: 1.0, 1.1 … 1.9, potem 2.0, 2.1 … 2.9, potem 3.0 itd.
+   Zmień APP_VERSION w index.html i nazwę w sw.js (przebudzeni-vX.Y).

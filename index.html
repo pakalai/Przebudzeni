@@ -201,6 +201,7 @@ nav.tabs button[aria-current="page"]{color:var(--lake)}
 .cal.mini .cday.blank{background:none}.cal.mini .cday.good{background:var(--good)}.cal.mini .cday.mid{background:var(--amber)}.cal.mini .cday.hard{background:var(--alert)}.cal.mini .cday.relapse{background:var(--ink)}.cal.mini .cday.neutral{background:var(--lake-soft)}
 .cal.mini .cday.today{outline-width:1px;outline-offset:0}
 @media (max-width:360px){.yeargrid{grid-template-columns:repeat(2,1fr)}}
+.anniv{margin:0;background:var(--sun);color:#18291f;font-weight:800;border-radius:12px;padding:10px 14px;font-family:var(--display)}
 .empty{color:var(--muted);font-size:.92rem;padding:12px 0}
 @media (prefers-reduced-motion:no-preference){.toast{animation:up .2s ease-out}@keyframes up{from{opacity:.4;transform:translate(-50%,8px)}}}
 </style>
@@ -214,7 +215,7 @@ nav.tabs button[aria-current="page"]{color:var(--lake)}
 /* ===== USTAWIENIA TESTU – zmień tutaj ===== */
 const TEST_END='2027-10-14';      // ostatni dzień testów (RRRR-MM-DD)
 const ACCESS_CODE='PRZEBUDZENI';  // kod dla grupy; pusty '' = bez kodu
-const APP_VERSION='0.10';
+const APP_VERSION='1.0';
 const APP_AUTHOR='StoneMatic';
 /* ============================================ */
 const KEY='dzienniczek-trzezwosci-v1';
@@ -266,7 +267,26 @@ const inFrame=()=>{try{return window.top!==window.self}catch(e){return true}};
 const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent);
 const EMOTIONS=['spokój','radość','wdzięczność','nadzieja','smutek','złość','lęk','wstyd','poczucie winy','samotność','nuda','zmęczenie','napięcie','żal'];
 const TRIGGERS=['głód (H)','złość (A)','samotność (L)','zmęczenie (T)','stres w pracy','konflikt','spotkanie ze znajomymi','alkohol w zasięgu','pieniądze','nuda','świętowanie','wspomnienia'];
-const STONES=[1,7,14,30,60,90,180,365,730];
+const STONES=[1,7,14,30,60,90,180];
+const yWord=n=>n===1?'rok':(n%10>=2&&n%10<=4&&(n%100<12||n%100>14))?'lata':'lat';
+function addYears(st,n){const d=new Date(st+'T00:00:00');d.setFullYear(d.getFullYear()+n);return d}
+function soberYMD(st){const s=new Date(st+'T00:00:00'),t=today();let y=t.getFullYear()-s.getFullYear(),m=t.getMonth()-s.getMonth(),dd=t.getDate()-s.getDate();
+ if(dd<0){m--;dd+=new Date(t.getFullYear(),t.getMonth(),0).getDate()}if(m<0){y--;m+=12}return {y,m,d:dd}}
+function ymdText(st){const r=soberYMD(st);const p=[];if(r.y)p.push(r.y+' '+yWord(r.y));if(r.m)p.push(r.m+' mies.');if(r.d||!p.length)p.push(r.d+' '+(r.d===1?'dzień':'dni'));return p.join(', ')}
+function stonesHtml(a,d){
+ const Y=soberYMD(a.start).y;const chip=(lbl,done)=>`<span class="stone${done?' done':''}">${lbl}</span>`;
+ if(Y<1)return STONES.map(x=>chip(x+' d.',d>=x)).join('')+chip('1 r.',false)+chip('2 r.',false);
+ let h='';const from=Math.max(1,Y-3);
+ if(from>1)h+=chip(from===2?'1 r.':'1–'+(from-1)+' r.',true);
+ for(let y=from;y<=Y;y++)h+=chip(y+' r.',true);
+ for(let y=Y+1;y<=Y+2;y++)h+=chip(y+' r.',false);
+ return h}
+function nextStone(a,d){
+ const Y=soberYMD(a.start).y;
+ if(Y<1){const n=STONES.find(x=>x>d);if(n)return `Do ${n} ${n===1?'dnia':'dni'}: <b>${n-d}</b>`}
+ const nx=addYears(a.start,Y+1);const left=Math.round((nx-today())/864e5);
+ return `Do ${Y+1}. rocznicy: <b>${left} ${left===1?'dzień':'dni'}</b>`}
+function isAnniv(a){if(!a||!a.start)return 0;const r=soberYMD(a.start);return r.y>=1&&r.m===0&&r.d===0?r.y:0}
 const TABS=[
  ['dzis','Dziś','<path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/>'],
  ['uczucia','Uczucia','<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'],
@@ -380,12 +400,13 @@ function vDzis(){
  <section class="counter">
   ${(()=>{const a=S.addictions[0],d=a?sober(a):null;
    if(d===null)return `<h2>Ustaw datę początku trzeźwości</h2><p class="muted">Otwórz ustawienia poniżej i wpisz, od kiedy liczysz.</p>`;
-   const next=STONES.find(x=>x>d);
+   const an=isAnniv(a);
    return `<div class="label">Bez: ${esc(a.name||'substancji')}</div>
-   <div class="row" style="align-items:baseline;gap:12px"><div class="days">${d}</div><div class="muted">${daysWord(d)} trzeźwości<br><span class="small">od ${new Date(a.start).toLocaleDateString('pl-PL')}</span></div></div>
-   ${next?`<p class="small">Do ${next} ${next===1?'dnia':'dni'}: <b>${next-d}</b></p>`:''}
-   <div class="stones">${STONES.map(x=>`<span class="stone${d>=x?' done':''}">${x>=365?(x/365)+' r.':x+' d.'}</span>`).join('')}</div>`})()}
-  ${S.addictions.length>1?`<ul class="list subs">${S.addictions.slice(1).map(a=>{const d=sober(a);return `<li><span>Bez: <b>${esc(a.name)}</b></span><span class="subdays">${d===null?'<span class="muted small">ustaw datę</span>':d+' '+daysWord(d)}</span></li>`}).join('')}</ul>`:''}
+   <div class="row" style="align-items:baseline;gap:12px"><div class="days">${d}</div><div class="muted">${daysWord(d)} trzeźwości<br><span class="small">${d>=365?'<b>'+ymdText(a.start)+'</b><br>':''}od ${new Date(a.start).toLocaleDateString('pl-PL')}</span></div></div>
+   ${an?`<p class="anniv">Dziś mija ${an} ${yWord(an)} trzeźwości. Gratulacje!</p>`:''}
+   <p class="small">${nextStone(a,d)}</p>
+   <div class="stones">${stonesHtml(a,d)}</div>`})()}
+  ${S.addictions.length>1?`<ul class="list subs">${S.addictions.slice(1).map(a=>{const d=sober(a);return `<li><span>Bez: <b>${esc(a.name)}</b></span><span class="subdays">${d===null?'<span class="muted small">ustaw datę</span>':d>=365?ymdText(a.start).split(', ').slice(0,2).join(', '):d+' '+daysWord(d)}</span></li>`}).join('')}</ul>`:''}
   <details class="new" style="border:0;background:none"><summary style="padding:4px 0">Ustawienia</summary>
    <div class="stack" style="padding:8px 0 0">
    <form id="f-start" class="stack">
