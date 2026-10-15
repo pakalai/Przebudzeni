@@ -160,6 +160,47 @@ nav.tabs button[aria-current="page"]{color:var(--lake)}
 .filmcard video{width:100%;max-height:70vh;border-radius:12px;background:#000;display:block}
 .quick .filmbtn{grid-column:1/-1;background:var(--lake-soft);border-color:transparent}
 .quick .filmbtn b{color:var(--lake)}
+.quick .stepsbtn{grid-column:1/-1;background:var(--surface);border:2px solid var(--lake)}
+.quick .stepsbtn b{color:var(--lake)}
+.path{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.pstep{width:100%;display:flex;gap:12px;align-items:center;text-align:left;padding:10px 12px;border-radius:14px}
+.pstep .num{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:var(--bg);border:2px solid var(--line);color:var(--muted);font-variant-numeric:tabular-nums}
+.pstep .pt{display:flex;flex-direction:column;min-width:0}.pstep small{color:var(--muted);font-weight:500}
+.pstep.praca .num,.pstep.sponsor .num{border-color:var(--amber);color:var(--amber)}
+.pstep.done .num{background:var(--good);border-color:var(--good);color:var(--bg)}
+.pstep.cur{border-color:var(--lake);box-shadow:0 0 0 1px var(--lake)}
+.pdots{display:flex;gap:14px;justify-content:center;margin:6px 0}
+.pdot{width:16px;height:16px;border-radius:50%;border:2px solid var(--lake)}.pdot.on{background:var(--lake)}
+.pdots.shake{animation:shake .35s}@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.keypad{display:grid;grid-template-columns:repeat(3,72px);gap:14px;justify-content:center}
+.keypad button{height:72px;border-radius:50%;font-size:1.6rem;font-weight:700;padding:0}
+.quick .calbtn{grid-column:1/-1}
+.ins{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.ins div{background:var(--bg);border-radius:10px;padding:10px 12px;min-width:0}
+.ins dt{font-size:.8rem;color:var(--muted)}.ins dd{margin:2px 0 0;font-weight:700;font-size:1.02rem;overflow-wrap:anywhere}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.cwd{text-align:center;font-size:.72rem;color:var(--muted);font-weight:600;text-transform:uppercase}
+.cday{aspect-ratio:1;max-width:100%;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:.9rem;font-weight:600;padding:0;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.cday.blank{border:0;background:none}
+.cday:disabled{opacity:.35}
+.cday.good{background:var(--good-soft);border-color:var(--good);color:var(--good)}
+.cday.neutral{background:var(--lake-soft);border-color:transparent}
+.cday.mid{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+.cday.hard{background:var(--alert-soft);border-color:var(--alert);color:var(--alert)}
+.cday.relapse{background:var(--alert);border-color:var(--alert);color:var(--bg)}
+.cday.today{outline:2px solid var(--lake);outline-offset:1px}
+.cday.sel{box-shadow:0 0 0 3px var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.78rem;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:5px}.legend i{width:14px;height:14px;border-radius:4px;display:inline-block;aspect-ratio:auto}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;border-radius:0;padding:7px 12px;background:var(--surface)}.seg button.on{background:var(--lake);color:var(--bg)}
+.yeargrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.minim{display:flex;flex-direction:column;gap:5px;padding:8px;text-align:left;min-width:0}
+.minim b{font-size:.8rem;text-transform:capitalize}.minim small{font-size:.66rem;color:var(--muted);font-weight:500}
+.cal.mini{gap:2px}.cal.mini .cday{border-radius:2px;border-width:0;background:var(--line)}
+.cal.mini .cday.blank{background:none}.cal.mini .cday.good{background:var(--good)}.cal.mini .cday.mid{background:var(--amber)}.cal.mini .cday.hard{background:var(--alert)}.cal.mini .cday.relapse{background:var(--ink)}.cal.mini .cday.neutral{background:var(--lake-soft)}
+.cal.mini .cday.today{outline-width:1px;outline-offset:0}
+@media (max-width:360px){.yeargrid{grid-template-columns:repeat(2,1fr)}}
 .empty{color:var(--muted);font-size:.92rem;padding:12px 0}
 @media (prefers-reduced-motion:no-preference){.toast{animation:up .2s ease-out}@keyframes up{from{opacity:.4;transform:translate(-50%,8px)}}}
 </style>
@@ -173,7 +214,7 @@ nav.tabs button[aria-current="page"]{color:var(--lake)}
 /* ===== USTAWIENIA TESTU – zmień tutaj ===== */
 const TEST_END='2027-10-14';      // ostatni dzień testów (RRRR-MM-DD)
 const ACCESS_CODE='PRZEBUDZENI';  // kod dla grupy; pusty '' = bez kodu
-const APP_VERSION='0.8';
+const APP_VERSION='0.10';
 const APP_AUTHOR='StoneMatic';
 /* ============================================ */
 const KEY='dzienniczek-trzezwosci-v1';
@@ -231,7 +272,7 @@ const TABS=[
  ['uczucia','Uczucia','<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'],
  ['glod','Głód','<path d="M12 3c2 4 6 5 6 10a6 6 0 0 1-12 0c0-3 2-4 2-7 2 1 3 3 3 5 1-2 1-5 1-8z"/>'],
  ['plan','SOS','<path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/>'],
- ['cele','Cele','<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>'],
+ ['kroki','Kroki','<path d="M3 20h5v-4h5v-4h5V8h3"/><path d="M3 20V9"/>'],
  ['bilans','Bilans','<path d="M5 4h11l3 3v13H5z"/><path d="M9 10h6M9 14h6M9 18h3"/>']
 ];
 
@@ -362,6 +403,12 @@ function vDzis(){
      <label class="btn filebtn" for="grp-logo">Wybierz logo z telefonu</label><input type="file" id="grp-logo" accept="image/*" class="visually-hidden">
      <div class="row"><button class="primary" type="submit">Zapisz grupę</button>${S.group&&(S.group.name||S.group.logo)?`<button type="button" data-grpreset="1">Przywróć ${DEF_GROUP}</button>`:''}</div></form>
    </div>
+   <div class="field"><span>Blokada PIN-em</span>
+    ${S.pinHash?`<p class="small muted">Blokada jest włączona. Aplikacja poprosi o PIN przy otwarciu i po powrocie po minucie.</p>
+     <form id="f-pinoff" class="row"><input type="password" inputmode="numeric" id="pin-cur" maxlength="6" placeholder="Obecny PIN" style="flex:1;min-width:0" autocomplete="off"><button type="submit">Wyłącz blokadę</button></form>`
+    :`<p class="small muted">Chroni Twoje wpisy przed innymi osobami, które mają dostęp do telefonu.</p>
+     <form id="f-pin" class="stack"><div class="row"><input type="password" inputmode="numeric" id="pin-new" maxlength="6" placeholder="PIN (4–6 cyfr)" style="flex:1;min-width:0" autocomplete="off"><input type="password" inputmode="numeric" id="pin-rep" maxlength="6" placeholder="Powtórz PIN" style="flex:1;min-width:0" autocomplete="off"></div><button type="submit">Włącz blokadę</button></form>`}
+    <p class="small muted">Zapamiętaj PIN. Nie da się go odzyskać, a bez niego można tylko usunąć wszystkie dane.</p></div>
    <p class="small muted">Nawrót to część drogi, nie jej koniec. Licznik możesz zacząć od nowa w każdej chwili.</p>
    </div></details>
  </section>
@@ -372,8 +419,10 @@ function vDzis(){
   <button data-go="plan" data-find="1" style="grid-column:1/-1"><b>Znajdź pomoc w pobliżu</b><small>Poradnie, ośrodki, mityngi AA i NA na mapie</small></button>
   <button data-go="uczucia" data-open="1"><b>Zapisz uczucie</b><small>${lastF?'Ostatnio: '+esc(lastF.emotions.join(', ')):'Jak się teraz czujesz?'}</small></button>
   <button data-go="glod" data-open="1"><b>Zapisz głód</b><small>Siła, wyzwalacz, co pomogło</small></button>
+  <button class="calbtn" data-tab="kalendarz"><b>Kalendarz dni</b><small>Lepsze i gorsze dni w miesiącu i roku</small></button>
   <button data-go="bilans" data-open="1"><b>Bilans dnia</b><small>${todayNotes?'Dzisiejszy już zapisany':'Jeszcze nie dziś'}</small></button>
   <button data-go="cele"><b>Moje cele</b><small>${S.goals.filter(g=>!g.done).length} w toku</small></button>
+  <button class="stepsbtn" data-tab="kroki"><b>12 Kroków</b><small>${stepsDone()}/12 ukończone · teraz krok ${currentStep()+1}: ${STEPS[currentStep()].t}</small></button>
   <button class="filmbtn" data-film="1"><b>▶ Jak korzystać?</b><small>Film instruktażowy, 2 minuty</small></button>
  </section>
  ${listSec('reasons','Dlaczego to robię','Dopisz swój powód, np. dzieci, zdrowie, praca')}`;
@@ -395,11 +444,11 @@ function vUczucia(){
   ${ta('need','Czego potrzebuję?')}
   <button class="primary" type="submit">Zapisz wpis</button>
  </form></details>
- <div class="stack">${list.length?list.map(f=>`<article class="card entry">
+ <div class="stack">${list.length?list.slice(0,shown.feelings).map(f=>`<article class="card entry">
   <div class="meta"><span class="small muted">${fmt(f.at)}${exTag(f)}</span><span class="pill">${f.level}/10</span></div>
   <h3>${esc(f.emotions.join(', ')||'—')}</h3>
   <dl class="kv">${[['Sytuacja',f.situation],['Myśli',f.thoughts],['Ciało',f.body],['Zrobiłem/am',f.did],['Potrzeba',f.need]].filter(x=>x[1]).map(x=>`<dt>${x[0]}</dt><dd>${esc(x[1])}</dd>`).join('')}</dl>
-  <div class="row" style="justify-content:flex-end">${delBtn('feelings',f.id)}</div></article>`).join(''):'<p class="empty">Brak wpisów. Dodaj pierwszy powyżej.</p>'}</div>`;
+  <div class="row" style="justify-content:flex-end">${delBtn('feelings',f.id)}</div></article>`).join(''):'<p class="empty">Brak wpisów. Dodaj pierwszy powyżej.</p>'}${moreBtn('feelings',list.length)}</div>`;
 }
 
 function vGlod(){
@@ -420,13 +469,13 @@ function vGlod(){
    <label class="chip warm"><input type="radio" name="used" value="tak" id="used-t"><span>Tak</span></label></div></div>
   <button class="primary" type="submit">Zapisz wpis</button>
  </form></details>
- <div class="stack">${list.length?list.map(c=>`<article class="card entry">
+ <div class="stack">${list.length?list.slice(0,shown.cravings).map(c=>`<article class="card entry">
   <div class="meta"><span class="small muted">${fmt(c.at)}${exTag(c)}</span>${c.used?'<span class="pill alert">sięgnąłem/am</span>':'<span class="pill good">przetrwany</span>'}</div>
   <div class="row between"><h3>Siła ${c.level}/10</h3>${c.minutes?`<span class="small muted">${c.minutes} min</span>`:''}</div>
   <div class="bar"><i style="width:${c.level*10}%"></i></div>
   ${(c.subs||[]).length||c.triggers.length?`<div class="chips">${(c.subs||[]).map(t=>`<span class="pill">${esc(t)}</span>`).join('')}${c.triggers.map(t=>`<span class="pill amber">${esc(t)}</span>`).join('')}</div>`:''}
   <dl class="kv">${[['Sytuacja',c.situation],['Co pomogło',c.did]].filter(x=>x[1]).map(x=>`<dt>${x[0]}</dt><dd>${esc(x[1])}</dd>`).join('')}</dl>
-  <div class="row" style="justify-content:flex-end">${delBtn('cravings',c.id)}</div></article>`).join(''):'<p class="empty">Brak wpisów.</p>'}</div>`;
+  <div class="row" style="justify-content:flex-end">${delBtn('cravings',c.id)}</div></article>`).join(''):'<p class="empty">Brak wpisów.</p>'}${moreBtn('cravings',list.length)}</div>`;
 }
 
 function listSec(key,title,ph){
@@ -496,7 +545,7 @@ function summaryText(){
 function vBilans(){
  const w=weekStats();
  const notes=S.notes.slice().sort((a,b)=>b.at.localeCompare(a.at));
- return `<header class="top"><h1>Notatki i bilanse</h1></header>
+ return `<header class="top"><h1>Notatki i bilanse</h1><button data-tab="kalendarz">Kalendarz</button></header>
  <details class="new" id="new-form"><summary>Bilans dnia</summary>
  <form id="f-bilans">
   ${ta('b-good','Co mi się dziś udało?')}
@@ -511,9 +560,9 @@ function vBilans(){
   <div class="label">Najwyższy głód danego dnia</div>
   <div class="chart" role="img" aria-label="Najwyższa siła głodu w kolejnych dniach">${w.days.map(x=>`<div><span class="small" style="font-variant-numeric:tabular-nums">${x.n?x.max:''}</span><i style="height:${x.max*7}%"></i><small>${dayName(x.d)}</small></div>`).join('')}</div>
   <dl class="kv"><dt>Uczucia</dt><dd>${w.emo.map(e=>esc(e[0])+' ×'+e[1]).join(', ')||'—'}</dd><dt>Wyzwalacze</dt><dd>${w.trg.map(e=>esc(e[0])+' ×'+e[1]).join(', ')||'—'}</dd></dl></section>
- <div class="stack">${notes.length?notes.map(n=>`<article class="card entry"><div class="meta"><span class="small muted">${fmt(n.at)}${exTag(n)}</span><span class="pill${n.kind==='bilans'?' good':''}">${n.kind}</span></div>
+ <div class="stack">${notes.length?notes.slice(0,shown.notes).map(n=>`<article class="card entry"><div class="meta"><span class="small muted">${fmt(n.at)}${exTag(n)}</span><span class="pill${n.kind==='bilans'?' good':''}">${n.kind}</span></div>
   ${n.kind==='bilans'?`<dl class="kv">${[['Udało się',n.good],['Trudne',n.hard],['Wdzięczność',n.grateful],['Jutro',n.tomorrow]].filter(x=>x[1]).map(x=>`<dt>${x[0]}</dt><dd>${esc(x[1])}</dd>`).join('')}</dl>`:`<p style="white-space:pre-wrap">${esc(n.text)}</p>`}
-  <div class="row" style="justify-content:flex-end">${delBtn('notes',n.id)}</div></article>`).join(''):'<p class="empty">Brak notatek.</p>'}</div>
+  <div class="row" style="justify-content:flex-end">${delBtn('notes',n.id)}</div></article>`).join(''):'<p class="empty">Brak notatek.</p>'}${moreBtn('notes',notes.length)}</div>
  <details class="new"><summary>Kopia zapasowa danych</summary><div class="stack" style="padding:0 16px 16px">
   <p class="small muted">Dane są tylko w tej przeglądarce na tym urządzeniu. Skopiuj kopię i zachowaj ją w bezpiecznym miejscu. Aby przywrócić, wklej ją poniżej.</p>
   <button data-backup="1">Kopiuj kopię zapasową</button>
@@ -540,6 +589,139 @@ function mapUrl(q){
 }
 const credit=()=>`<p class="credit">Wersja ${APP_VERSION} · autor: ${APP_AUTHOR} · <button class="linkbtn" data-film="1">Instrukcja</button> · <button class="linkbtn" data-privacy="1">Prywatność</button></p>`;
 let backTab='dzis';
+
+/* ---------- 12 Kroków: opisy i pytania własnymi słowami (nie oficjalny tekst AA) ---------- */
+const STEPS=[
+ {t:'Bezsilność',d:'Przyznaję, że sam/a nie wygram z nałogiem i że moje życie wymknęło się spod kontroli. To nie przegrana, tylko uczciwy początek.',q:['Kiedy pierwszy raz zauważyłem/am, że nie panuję nad nałogiem?','Ile razy obiecywałem/am sobie, że przestanę lub ograniczę? Co się wtedy działo?','Co straciłem/am przez nałóg: zdrowie, relacje, pracę, pieniądze, szacunek do siebie?','Jak wyglądało moje życie w najgorszym momencie?','Co czuję, kiedy przyznaję, że sam/a sobie nie poradzę?']},
+ {t:'Nadzieja',d:'Zaczynam wierzyć, że istnieje siła większa ode mnie, jakkolwiek ją rozumiem, która może pomóc mi odzyskać równowagę. Może to być Bóg, grupa, wspólnota albo coś jeszcze innego.',q:['Co dziś daje mi nadzieję?','Kogo widziałem/am, kto wyszedł z nałogu? Co mnie w tym poruszyło?','Jak rozumiem siłę większą ode mnie?','Co w moim zachowaniu było nierozsądne, kiedy byłem/am w nałogu?','Co mogłoby się zmienić, gdybym przestał/a walczyć sam/a?']},
+ {t:'Decyzja',d:'Podejmuję decyzję, żeby oddać swoje życie i wolę pod opiekę tej siły, tak jak ją rozumiem. Przestaję kierować wszystkim sam/a.',q:['Czego najbardziej boję się, oddając kontrolę?','W jakich sprawach wciąż próbuję wszystkim kierować?','Co oznacza dla mnie „opieka siły większej ode mnie”?','Jak mogę dziś, w małej sprawie, zaufać zamiast kontrolować?','Kto może mnie wspierać w tej decyzji?']},
+ {t:'Obrachunek',d:'Robię odważny i szczery przegląd swojego życia: urazy, lęki, krzywdy, ale też swoje mocne strony.',q:['Do kogo i do czego mam żal? Dlaczego?','Czego się boję? Jak te lęki wpływały na moje wybory?','Kogo skrzywdziłem/am i w jaki sposób?','Jakie moje wady powtarzają się w różnych sytuacjach?','Jakie mam mocne strony i dobre cechy?']},
+ {t:'Wyznanie',d:'Dzielę się tym, co odkryłem/am w obrachunku, z siłą większą ode mnie, ze sobą i z drugim człowiekiem, któremu ufam.',q:['Komu mogę zaufać na tyle, żeby powiedzieć prawdę o sobie?','Czego najbardziej wstydzę się powiedzieć na głos?','Co czuję, myśląc o tej rozmowie?','Co się zmieniło po tym, jak się podzieliłem/am?']},
+ {t:'Gotowość',d:'Staję się gotowy/a, żeby pozbyć się wad charakteru, które odkryłem/am. Nie muszę jeszcze umieć, wystarczy, że chcę.',q:['Z którą wadą najtrudniej mi się rozstać? Co mi ona „daje”?','Jak moje wady szkodzą mnie i bliskim?','Jakim człowiekiem chcę być bez nich?','Co mogę zrobić, żeby być bardziej gotowym/gotową na zmianę?']},
+ {t:'Pokora',d:'Z pokorą proszę o pomoc w usunięciu swoich braków. Pokora to nie poniżanie się, tylko prawda o sobie.',q:['Czym dla mnie jest pokora?','O co dziś chcę poprosić?','Kiedy ostatnio zachowałem/am się z pokorą? Jak się z tym czułem/am?','Która wada daje o sobie znać najczęściej i jak mogę jej nie ulegać dziś?']},
+ {t:'Lista krzywd',d:'Spisuję osoby, które skrzywdziłem/am, i staję się gotowy/a, żeby naprawić szkody.',q:['Kogo skrzywdziłem/am? Wypisz imiona.','Na czym polegała każda krzywda?','Czy na liście jestem także ja sam/a?','Co czuję, myśląc o naprawieniu tych szkód?','Gdzie potrzebuję rady sponsora, zanim coś zrobię?']},
+ {t:'Zadośćuczynienie',d:'Tam, gdzie to możliwe, naprawiam wyrządzone szkody, chyba że zraniłoby to tę osobę lub kogoś innego.',q:['Komu mogę zadośćuczynić teraz, a z kim lepiej poczekać?','Jak konkretnie mogę naprawić szkodę: słowem, czynem, spłatą?','Gdzie naprawienie mogłoby kogoś zranić? Co wtedy zamiast tego?','Co się zmieniło we mnie po pierwszych rozmowach?']},
+ {t:'Codzienny obrachunek',d:'Każdego dnia przyglądam się sobie. Kiedy popełniam błąd, szybko to przyznaję i naprawiam.',q:['W czym dziś byłem/am w porządku?','Czy dziś kogoś zraniłem/am? Jak mogę to naprawić?','Czy kierowały mną dziś złość, lęk albo egoizm?','Za co jestem dziś wdzięczny/a?']},
+ {t:'Modlitwa i medytacja',d:'Szukam kontaktu z siłą większą ode mnie, przez modlitwę, medytację albo ciszę. Proszę o zrozumienie, co jest dla mnie dobre, i o siłę, żeby to robić.',q:['Jak wygląda moja chwila ciszy w ciągu dnia?','Kiedy czuję spokój i bliskość czegoś większego?','O co dziś proszę?','Co pomaga mi się wyciszyć: spacer, modlitwa, oddech, przyroda?']},
+ {t:'Służba',d:'Dzielę się tym, co dostałem/am, z innymi, którzy cierpią, i stosuję te zasady w całym swoim życiu.',q:['Komu mogę dziś pomóc?','Jak mogę dzielić się swoim doświadczeniem z nowymi osobami?','Jak zasady programu zmieniają moje życie poza grupą: w domu, w pracy?','Co dała mi służba innym?']}
+];
+const STEP_ST={'':['Nie zaczęty',''],praca:['Pracuję','amber'],sponsor:['Omówione ze sponsorem',''],done:['Ukończony','good']};
+let stepIdx=0;
+function stepData(i){S.steps=S.steps||{};return S.steps[i]||(S.steps[i]={status:'',answers:{},updated:''})}
+function stepsDone(){return STEPS.filter((_,i)=>S.steps&&S.steps[i]&&S.steps[i].status==='done').length}
+function currentStep(){const i=STEPS.findIndex((_,i)=>!(S.steps&&S.steps[i]&&S.steps[i].status==='done'));return i<0?11:i}
+function vKroki(){
+ const done=stepsDone(),cur=currentStep();
+ return `<header class="top"><h1>12 Kroków</h1><span class="muted small">${done}/12 ukończone</span></header>
+ <div class="bar"><i style="width:${done/12*100}%;background:var(--good)"></i></div>
+ <section class="card"><div class="label">Jesteś na kroku ${cur+1}</div><h2>${cur+1}. ${STEPS[cur].t}</h2><p class="small">${STEPS[cur].d}</p>
+  <button class="primary" data-step="${cur}">Pracuj z tym krokiem</button></section>
+ <ol class="path">${STEPS.map((x,i)=>{const st=(S.steps&&S.steps[i]&&S.steps[i].status)||'';const n=Object.values((S.steps&&S.steps[i]&&S.steps[i].answers)||{}).filter(Boolean).length;
+  return `<li><button class="pstep ${st}${i===cur?' cur':''}" data-step="${i}"><span class="num">${st==='done'?'✓':i+1}</span><span class="pt"><b>${x.t}</b><small>${STEP_ST[st][0]}${n?' · '+n+'/'+x.q.length+' odpowiedzi':''}</small></span></button></li>`}).join('')}</ol>
+ <p class="small muted">Opisy kroków i pytania są napisane własnymi słowami, jako pomoc w pracy. Oficjalny tekst Dwunastu Kroków znajdziesz w literaturze swojej wspólnoty i na stronie <a href="https://aa.org.pl/12-krokow-aa/" target="_blank" rel="noopener">aa.org.pl</a>. Najlepiej pracować z krokami razem ze sponsorem.</p>
+ <p class="small muted">Wszystkie Twoje odpowiedzi zostają tylko na tym telefonie.</p>`;
+}
+function vKrok(){
+ const i=stepIdx,x=STEPS[i],d=stepData(i);
+ return `<header class="top"><h1>Krok ${i+1}</h1><button class="ghost" data-tab="kroki">Wszystkie kroki</button></header>
+ <section class="card"><h2>${x.t}</h2><p>${x.d}</p>
+  ${i===9?`<button data-go="bilans" data-open="1">Zrób dziś bilans dnia</button>`:''}</section>
+ <section class="card"><div class="label">Pytania do refleksji</div>
+  ${x.q.map((q,k)=>`<label class="field"><span>${k+1}. ${q}</span><textarea id="sq-${i}-${k}" data-sq="${i}" data-k="${k}" placeholder="Napisz, co czujesz i myślisz…">${esc(d.answers[k]||'')}</textarea></label>`).join('')}
+  <p class="small muted">Zapisuje się samo, na bieżąco.</p></section>
+ <section class="card"><div class="label">Status kroku</div><div class="chips">
+  ${Object.entries(STEP_ST).map(([k,v])=>`<label class="chip"><input type="radio" name="st-${i}" id="st-${i}-${k||'none'}" value="${k}" data-stst="${i}"${d.status===k?' checked':''}><span>${v[0]}</span></label>`).join('')}</div>
+  ${d.updated?`<p class="small muted">Ostatnia zmiana: ${new Date(d.updated).toLocaleDateString('pl-PL')}</p>`:''}</section>
+ <div class="row between">${i>0?`<button data-step="${i-1}">← Krok ${i}</button>`:'<span></span>'}${i<11?`<button data-step="${i+1}">Krok ${i+2} →</button>`:''}</div>`;
+}
+
+/* ---------- kalendarz lepszych i gorszych dni ---------- */
+const DAY_CLS={good:['Dobry dzień','good'],neutral:['Tylko notatka',''],mid:['Trudniej','mid'],hard:['Ciężki dzień','hard'],relapse:['Nawrót','relapse']};
+const SEV={good:0,neutral:0,mid:1,hard:2,relapse:3};
+const WD=['poniedziałek','wtorek','środa','czwartek','piątek','sobota','niedziela'];
+const WDS=['pn','wt','śr','cz','pt','sb','nd'];
+const MON=['styczeń','luty','marzec','kwiecień','maj','czerwiec','lipiec','sierpień','wrzesień','październik','listopad','grudzień'];
+let calY=null,calM=null,calDay=null,calMode='m';
+function dayMap(){
+ const m={},g=k=>m[k]||(m[k]={f:[],c:[],n:[]});
+ S.feelings.filter(x=>!x.ex).forEach(x=>g(iso(new Date(x.at))).f.push(x));
+ S.cravings.filter(x=>!x.ex).forEach(x=>g(iso(new Date(x.at))).c.push(x));
+ S.notes.filter(x=>!x.ex).forEach(x=>g(iso(new Date(x.at))).n.push(x));
+ for(const k in m){const d=m[k];
+  const heavy=Math.max(0,...d.f.filter(f=>f.emotions.some(e=>HEAVY.includes(e))).map(f=>f.level));
+  const crave=Math.max(0,...d.c.map(c=>c.level));
+  d.cls=d.c.some(c=>c.used)?'relapse':(crave>=7||heavy>=7)?'hard':(crave>=4||heavy>=4)?'mid':(d.f.length||d.c.length)?'good':'neutral';
+ }
+ return m;
+}
+function insights(m){
+ const out=[],from=iso(new Date(today().getTime()-90*864e5));
+ const days=Object.keys(m).filter(k=>k>=from);
+ // dzień tygodnia
+ const wd=Array.from({length:7},()=>({n:0,s:0}));
+ days.forEach(k=>{const w=(new Date(k+'T12:00').getDay()+6)%7;wd[w].n++;wd[w].s+=SEV[m[k].cls]});
+ const cand=wd.map((x,i)=>({i,avg:x.n?x.s/x.n:0,n:x.n})).filter(x=>x.n>=2).sort((a,b)=>b.avg-a.avg);
+ if(days.length>=10&&cand.length&&cand[0].avg>0.5)out.push(['Najtrudniejszy dzień tygodnia',WD[cand[0].i]]);
+ // pora dnia głodu
+ const pora=[['rano (5–11)',0],['po południu (12–17)',0],['wieczorem (18–22)',0],['w nocy (23–4)',0]];
+ S.cravings.filter(c=>!c.ex&&iso(new Date(c.at))>=from).forEach(c=>{const h=new Date(c.at).getHours();pora[h>=5&&h<12?0:h<18&&h>=12?1:h<23&&h>=18?2:3][1]++});
+ const pz=pora.slice().sort((a,b)=>b[1]-a[1]);if(pz[0][1]>=3)out.push(['Głód pojawia się najczęściej',pz[0][0]]);
+ // wyzwalacz
+ const tr={};S.cravings.filter(c=>!c.ex&&iso(new Date(c.at))>=from).forEach(c=>c.triggers.forEach(t=>tr[t]=(tr[t]||0)+1));
+ const tz=Object.entries(tr).sort((a,b)=>b[1]-a[1]);if(tz.length&&tz[0][1]>=3)out.push(['Najczęstszy wyzwalacz',tz[0][0]]);
+ // seria bez ciężkiego dnia
+ const bad=Object.keys(m).filter(k=>m[k].cls==='hard'||m[k].cls==='relapse').sort().pop();
+ if(Object.keys(m).length){const since=bad?Math.round((today()-new Date(bad+'T00:00'))/864e5):null;
+  out.push(['Dni od ostatniego ciężkiego dnia',since===null?'jeszcze nie było ciężkiego dnia':since===0?'dziś było ciężko, jutro nowy dzień':String(since)])}
+ return out;
+}
+function monthGrid(y,mo,m,mini){
+ const first=(new Date(y,mo,1).getDay()+6)%7,len=new Date(y,mo+1,0).getDate(),tk=iso(today());
+ let h='';for(let i=0;i<first;i++)h+='<span class="cday blank"></span>';
+ for(let d=1;d<=len;d++){const k=y+'-'+String(mo+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');const c=m[k]?m[k].cls:'';
+  const fut=k>tk;
+  h+=mini?`<span class="cday ${c}${k===tk?' today':''}"></span>`
+   :`<button class="cday ${c}${k===tk?' today':''}${k===calDay?' sel':''}" data-cday="${k}"${fut?' disabled':''} aria-label="${d} ${MON[mo]}${c?': '+DAY_CLS[c][0]:''}">${d}</button>`}
+ return h;
+}
+function dayDetails(k,m){
+ const d=m[k],dt=new Date(k+'T12:00');
+ const title=dt.toLocaleDateString('pl-PL',{weekday:'long',day:'numeric',month:'long'});
+ if(!d)return `<section class="card"><h2>${title}</h2><p class="muted">Brak wpisów tego dnia.</p></section>`;
+ const t=x=>new Date(x.at).toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'});
+ const rows=[...d.f.map(f=>({at:f.at,h:`<span class="pill">uczucie ${f.level}/10</span> ${esc(f.emotions.join(', '))}${f.situation?' · '+esc(f.situation):''}`})),
+  ...d.c.map(c=>({at:c.at,h:`<span class="pill ${c.used?'alert':'amber'}">${c.used?'nawrót':'głód '+c.level+'/10'}</span> ${esc((c.triggers||[]).join(', '))}${c.did?' · pomogło: '+esc(c.did):''}`})),
+  ...d.n.map(n=>({at:n.at,h:`<span class="pill good">${n.kind}</span> ${esc(n.kind==='bilans'?(n.good||n.hard||n.grateful||''):n.text||'')}`}))].sort((a,b)=>a.at.localeCompare(b.at));
+ return `<section class="card"><div class="row between"><h2>${title}</h2><span class="pill ${DAY_CLS[d.cls][1]==='good'?'good':DAY_CLS[d.cls][1]==='mid'?'amber':DAY_CLS[d.cls][1]?'alert':''}">${DAY_CLS[d.cls][0]}</span></div>
+  <ul class="list">${rows.map(r=>`<li><span><span class="small muted">${t(r)}</span> ${r.h}</span></li>`).join('')}</ul></section>`;
+}
+function vKalendarz(){
+ if(calY===null){const t=today();calY=t.getFullYear();calM=t.getMonth()}
+ const m=dayMap();
+ const legend=`<div class="legend">${['good','mid','hard','relapse'].map(c=>`<span><i class="cday ${c}"></i>${DAY_CLS[c][0]}</span>`).join('')}<span><i class="cday"></i>Brak wpisów</span></div>`;
+ const ins=insights(m);
+ const insHtml=ins.length?`<section class="card"><div class="label">Co widać w ostatnich 3 miesiącach</div><dl class="ins">${ins.map(x=>`<div><dt>${x[0]}</dt><dd>${esc(x[1])}</dd></div>`).join('')}</dl>
+  <p class="small muted">To podpowiedzi do rozmowy z terapeutą lub sponsorem. Im więcej wpisów, tym są trafniejsze.</p></section>`:'';
+ const tabs=`<div class="seg"><button class="${calMode==='m'?'on':''}" data-calmode="m">Miesiąc</button><button class="${calMode==='y'?'on':''}" data-calmode="y">Rok</button></div>`;
+ if(calMode==='y'){
+  return `<header class="top"><h1>Kalendarz</h1>${tabs}</header>
+  <div class="row between"><button class="ghost" data-calyear="-1">‹ ${calY-1}</button><h2>${calY}</h2><button class="ghost" data-calyear="1"${calY>=today().getFullYear()?' disabled':''}>${calY+1} ›</button></div>
+  <div class="yeargrid">${MON.map((n,i)=>{const ks=Object.keys(m).filter(k=>k.startsWith(calY+'-'+String(i+1).padStart(2,'0')));const cnt={};ks.forEach(k=>cnt[m[k].cls]=(cnt[m[k].cls]||0)+1);
+   return `<button class="minim" data-calmonth="${i}"><b>${n}</b><span class="cal mini">${monthGrid(calY,i,m,true)}</span><small>${ks.length?`${cnt.good||0} dobrych · ${(cnt.hard||0)+(cnt.relapse||0)} ciężkich`:'brak wpisów'}</small></button>`}).join('')}</div>
+  ${legend}${insHtml}`;
+ }
+ const pre=calY+'-'+String(calM+1).padStart(2,'0');const ks=Object.keys(m).filter(k=>k.startsWith(pre));const cnt={};ks.forEach(k=>cnt[m[k].cls]=(cnt[m[k].cls]||0)+1);
+ const isNow=calY===today().getFullYear()&&calM===today().getMonth();
+ return `<header class="top"><h1>Kalendarz</h1>${tabs}</header>
+ <section class="card">
+  <div class="row between"><button class="ghost" data-calnav="-1" aria-label="Poprzedni miesiąc">‹</button><h2>${MON[calM]} ${calY}</h2><button class="ghost" data-calnav="1"${isNow?' disabled':''} aria-label="Następny miesiąc">›</button></div>
+  <div class="cal">${WDS.map(x=>`<span class="cwd">${x}</span>`).join('')}${monthGrid(calY,calM,m,false)}</div>
+  ${legend}
+  <div class="stat">${[['good','Dobre'],['mid','Trudniej'],['hard','Ciężkie']].map(([c,l])=>`<div><span class="label">${l}</span><b>${(cnt[c]||0)+(c==='hard'?(cnt.relapse||0):0)}</b></div>`).join('')}</div>
+  <p class="small muted">Dotknij dnia, żeby zobaczyć, co się wtedy działo.</p></section>
+ ${calDay&&calDay.startsWith(pre)?dayDetails(calDay,m):''}
+ ${insHtml}`;
+}
 function vFilm(){
  return `<header class="top"><h1>Jak korzystać z aplikacji</h1></header>
  <section class="card filmcard"><video id="film-video" controls playsinline preload="metadata" poster="instrukcja-okladka.jpg" src="instrukcja.mp4">Twoja przeglądarka nie odtwarza tego filmu.</video>
@@ -608,6 +790,8 @@ const SUB_TIPS={
  'współuzależ':['Zatrzymaj się i zapytaj: czyja to odpowiedzialność, moja czy jego/jej?','Zrób dziś jedną rzecz tylko dla siebie.','Nie musisz ratować drugiej osoby. Możesz zadbać o siebie.','Sprawdź mityng Al-Anon w pobliżu w zakładce SOS.']
 };
 function subTips(names){const out=[];(names||[]).forEach(n=>{const k=Object.keys(SUB_TIPS).find(k=>String(n).toLowerCase().includes(k));if(k)SUB_TIPS[k].forEach(t=>{if(!out.includes(t))out.push(t)})});return out}
+const shown={feelings:30,cravings:30,notes:30};
+const moreBtn=(k,len)=>len>shown[k]?`<button data-more="${k}">Pokaż starsze (${len-shown[k]})</button>`:'';
 let help=null,lastTip=null,waveTimer=null,breathTimer=null;
 function tipsFor(tags,mode,subs){
  const out=[];const add=a=>(a||[]).forEach(t=>{if(!out.includes(t))out.push(t)});
@@ -676,13 +860,39 @@ function breathe(btn){
   breathTimer=setTimeout(step,s[2])};
  step();
 }
-const VIEWS={film:vFilm,prywatnosc:vPrywatnosc,dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
+const VIEWS={kalendarz:vKalendarz,kroki:vKroki,krok:vKrok,film:vFilm,prywatnosc:vPrywatnosc,dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
 let unlocked=false;
 try{unlocked=localStorage.getItem(KEY+'-ok')==='1'}catch(e){}
 if(S.unlocked)unlocked=true;
-function applyMeta(){normalize();if(S.unlocked)unlocked=true;if(S.city)city=S.city}
+function applyMeta(){normalize();if(S.pinHash&&typeof locked!=='undefined'&&!applyMeta.done){locked=true}applyMeta.done=true;if(S.unlocked)unlocked=true;if(S.city)city=S.city}
 const endDate=()=>new Date(TEST_END+'T23:59:59');
 function trialLeft(){return Math.max(1,Math.round((new Date(TEST_END+'T00:00:00')-today())/864e5)+1)}
+
+/* ---------- blokada PIN-em ---------- */
+let locked=false,pinBuf='',hiddenAt=0;
+async function hashPin(p){
+ try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('przebudzeni:'+p));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')}
+ catch(e){let h=0;for(const ch of 'przebudzeni:'+p)h=(h*31+ch.charCodeAt(0))|0;return 'x'+h}
+}
+if(S.pinHash)locked=true;
+document.addEventListener('visibilitychange',()=>{
+ if(document.hidden){hiddenAt=Date.now()}
+ else if(S.pinHash&&hiddenAt&&Date.now()-hiddenAt>60000){locked=true;pinBuf='';render()}
+});
+function lockScreen(){
+ const dots=Array.from({length:S.pinLen||4},(_,i)=>`<span class="pdot${i<pinBuf.length?' on':''}"></span>`).join('');
+ return `<section class="gate">${gImg()}<h1>Wpisz PIN</h1><div class="pdots" aria-label="Wpisano ${pinBuf.length} cyfr">${dots}</div>
+  <div class="keypad">${[1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(k=>k===''?'<span></span>':`<button data-key="${k}" aria-label="${k==='⌫'?'Usuń cyfrę':k}">${k}</button>`).join('')}</div>
+  <button class="ghost" id="pin-forgot">Nie pamiętam PIN-u</button>${credit()}</section>`;
+}
+async function pinKey(k){
+ if(k==='⌫'){pinBuf=pinBuf.slice(0,-1)}else if(pinBuf.length<(S.pinLen||4)){pinBuf+=k}
+ if(pinBuf.length===(S.pinLen||4)){
+  const ok=(await hashPin(pinBuf))===S.pinHash;pinBuf='';
+  if(ok){locked=false;render();return}
+  render();const d=document.querySelector('.pdots');if(d){d.classList.add('shake');setTimeout(()=>d.classList.remove('shake'),400)}toast('Nieprawidłowy PIN');return}
+ render();
+}
 function gate(){
  const app=document.getElementById('app'),tb=document.getElementById('tabs');
  if(new Date()>endDate()){
@@ -702,6 +912,7 @@ function gate(){
    <p class="small muted">Twoje wpisy zostaną tylko na tym telefonie. <button class="linkbtn" data-privacy="1">Jak dbamy o prywatność</button></p>
    <button data-film="1">▶ Zobacz, jak to działa (film, 2 min)</button>${credit()}</section>`;
   return true}
+ if(locked&&S.pinHash){tb.innerHTML='';app.innerHTML=lockScreen();return true}
  if(S.name===undefined){
   tb.innerHTML='';
   app.innerHTML=`<section class="gate">${gImg()}
@@ -762,6 +973,10 @@ document.addEventListener('submit',e=>{
    if(used){save();return openHelp('relapse',tr,lv,sb)}
    if(lv>=6){save();toast('Zapisano');return openHelp('crave',tr,lv,sb)}
    lastTip={mode:'crave',tags:tr,subs:sb};toast('Zapisano. Dobrze, że to zauważasz.')}}
+ else if(f.id==='f-pin'){const a=v(f,'pin-new'),b2=v(f,'pin-rep');
+  if(!/^\d{4,6}$/.test(a))return toast('PIN to 4 do 6 cyfr');if(a!==b2)return toast('PIN-y się różnią. Wpisz je jeszcze raz.');
+  hashPin(a).then(h=>{S.pinHash=h;S.pinLen=a.length;save();render();toast('Blokada włączona')});return}
+ else if(f.id==='f-pinoff'){hashPin(v(f,'pin-cur')).then(h=>{if(h!==S.pinHash)return toast('Nieprawidłowy PIN');delete S.pinHash;delete S.pinLen;save();render();toast('Blokada wyłączona')});return}
  else if(f.id==='f-start'){S.name=v(f,'st-name');toast('Zapisano imię')}
  else if(f.id==='f-addsub'){const n=v(f,'new-sub');if(!n)return toast('Wpisz lub wybierz uzależnienie');
   if(S.addictions.some(a=>a.name.toLowerCase()===n.toLowerCase()))return toast('To uzależnienie już jest na liście');
@@ -778,7 +993,13 @@ document.addEventListener('submit',e=>{
  else if(f.id==='f-note'){const t=v(f,'n-text');if(!t)return;S.notes.push({id:uid(),at:now,kind:'notatka',text:t});toast('Zapisano notatkę')}
  const top=!!lastTip;save();render();if(top)window.scrollTo(0,0);
 });
+let sqTimer=null;
+document.addEventListener('input',e=>{const t=e.target;
+ if(t.dataset&&t.dataset.sq!==undefined){const d=stepData(+t.dataset.sq);d.answers[+t.dataset.k]=t.value;d.updated=new Date().toISOString();
+  if(!d.status&&t.value.trim())d.status='praca';clearTimeout(sqTimer);sqTimer=setTimeout(save,600)}});
 document.addEventListener('change',e=>{
+ if(e.target.dataset&&e.target.dataset.stst!==undefined){const d=stepData(+e.target.dataset.stst);d.status=e.target.value;d.updated=new Date().toISOString();save();
+  toast(d.status==='done'?'Gratulacje! Krok ukończony.':'Zapisano status');if(d.status==='done')setTimeout(()=>render(),300);return}
  const t=e.target;
  if(t.dataset&&t.dataset.addate){const a=S.addictions.find(x=>x.id===t.dataset.addate);if(a&&t.value){a.start=t.value;save();render();toast('Zapisano datę')}}
  if(t.id==='grp-logo'&&t.files[0]){const l=document.querySelector('label[for=grp-logo]');if(l)l.textContent='Wybrano: '+t.files[0].name}
@@ -793,6 +1014,17 @@ document.addEventListener('click',e=>{
  if(d.privacy){backTab=['prywatnosc','film'].includes(tab)?backTab:tab;return go('prywatnosc')}
  if(d.film){backTab=['prywatnosc','film'].includes(tab)?backTab:tab;return go('film')}
  if(d.privback){return go(backTab||'dzis')}
+ if(d.key!==undefined){return pinKey(d.key)}
+ if(b.id==='pin-forgot'){
+  if(!b.classList.contains('armed')){b.classList.add('armed');b.textContent='Usuń wszystkie dane i zacznij od nowa';return}
+  try{localStorage.clear()}catch(e){}S=sample();normalize();delete S.pinHash;locked=false;unlocked=false;save();render();return toast('Dane usunięte')}
+ if(d.cday){calDay=d.cday;render();const el=document.querySelectorAll('section.card')[1];if(el)el.scrollIntoView({behavior:'smooth',block:'start'});return}
+ if(d.calnav){calM+=+d.calnav;if(calM<0){calM=11;calY--}if(calM>11){calM=0;calY++}calDay=null;return render()}
+ if(d.calmode){calMode=d.calmode;return render()}
+ if(d.calyear){calY+=+d.calyear;return render()}
+ if(d.calmonth!==undefined){calM=+d.calmonth;calMode='m';calDay=null;return render()}
+ if(d.more){shown[d.more]+=30;const y=scrollY;render();scrollTo(0,y);return}
+ if(d.step!==undefined){stepIdx=+d.step;return go('krok')}
  if(d.grpreset){S.group={name:'',logo:''};save();render();return toast('Przywrócono '+DEF_GROUP)}
  if(d.helpnow)return openHelp('crave',[],0);
  if(d.helpfeel)return openHelp('feel',[],0);

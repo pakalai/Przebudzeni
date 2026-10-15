@@ -1,4 +1,4 @@
-Pogłębieni z Przebudzenia – wersja 0.8, autor: StoneMatic
+Pogłębieni z Przebudzenia – wersja 0.10, autor: StoneMatic
 Wdrożenie na serwer
 
 1. Wgraj cały folder "przebudzeni" na serwer (np. przez FTP do public_html),
