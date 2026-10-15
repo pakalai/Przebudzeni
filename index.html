@@ -8,16 +8,14 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
 <title>Pogłębieni z Przebudzenia</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: jedna kolumna jak notatnik, stała dolna nawigacja kciukiem, karty tylko dla wpisów */
 :root{
   --bg:#f5f5ec; --surface:#ffffff; --ink:#18291f; --muted:#5a6a5f; --line:#dfe3d6;
   --lake:#1e6a47; --lake-soft:#e2efe6; --amber:#a86f06; --amber-soft:#fbefcc; --sun:#efb02c;
   --good:#2f7a52; --good-soft:#e1f1e8; --alert:#b03a3a; --alert-soft:#f7e3e3;
-  --display:"Nunito", "Figtree", system-ui, sans-serif;
-  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display:ui-rounded, "SF Pro Rounded", "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --body:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#111a15; --surface:#18241d; --ink:#e8efe9; --muted:#9db0a3; --line:#2a3a30;
@@ -154,6 +152,11 @@ nav.tabs button[aria-current="page"]{color:var(--lake)}
 .brand img{object-fit:contain}.gate img{object-fit:contain}
 .filebtn{display:block;text-align:center}
 .visually-hidden{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--lake);text-decoration:underline;cursor:pointer;font-weight:600;font-size:inherit}
+.privacy-hero{background:var(--good-soft);border-color:transparent}
+.plist{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:10px}
+.declaration{border:2px solid var(--lake)}
+.declaration .sign{font-family:var(--display);font-weight:800;font-size:1.1rem;margin-top:6px}
 .empty{color:var(--muted);font-size:.92rem;padding:12px 0}
 @media (prefers-reduced-motion:no-preference){.toast{animation:up .2s ease-out}@keyframes up{from{opacity:.4;transform:translate(-50%,8px)}}}
 </style>
@@ -167,7 +170,7 @@ nav.tabs button[aria-current="page"]{color:var(--lake)}
 /* ===== USTAWIENIA TESTU – zmień tutaj ===== */
 const TEST_END='2027-10-14';      // ostatni dzień testów (RRRR-MM-DD)
 const ACCESS_CODE='PRZEBUDZENI';  // kod dla grupy; pusty '' = bez kodu
-const APP_VERSION='0.6.1';
+const APP_VERSION='0.7';
 const APP_AUTHOR='StoneMatic';
 /* ============================================ */
 const KEY='dzienniczek-trzezwosci-v1';
@@ -531,7 +534,24 @@ function mapUrl(q){
  if(geo)return 'https://www.google.com/maps/search/'+encodeURIComponent(q)+'/@'+geo[0].toFixed(4)+','+geo[1].toFixed(4)+',12z';
  return 'https://www.google.com/maps/search/'+encodeURIComponent(q+(city?' '+city:' w pobliżu'));
 }
-const credit=()=>`<p class="credit">Wersja ${APP_VERSION} · autor: ${APP_AUTHOR}</p>`;
+const credit=()=>`<p class="credit">Wersja ${APP_VERSION} · autor: ${APP_AUTHOR} · <button class="linkbtn" data-privacy="1">Prywatność</button></p>`;
+let backTab='dzis';
+function vPrywatnosc(){
+ return `<header class="top"><h1>Prywatność</h1></header>
+ <section class="card privacy-hero"><h2>Twoje wpisy są tylko Twoje</h2>
+  <p>Wszystko, co zapisujesz w aplikacji, zostaje wyłącznie na tym telefonie, w pamięci przeglądarki na Twoim urządzeniu.</p></section>
+ <section class="card"><ul class="plist">
+  <li><b>Nic nie wysyłamy.</b> Aplikacja nie przesyła Twoich wpisów nigdzie. Nie ma kont, logowania, serwera z danymi ani statystyk.</li>
+  <li><b>Nikt inny nie ma dostępu.</b> Ani autor aplikacji, ani prowadzący, ani grupa.</li>
+  <li><b>Internet tylko wtedy, gdy trzeba.</b> Aplikacja łączy się z siecią, żeby pobrać swoje pliki i aktualizacje (bez Twoich wpisów). Mapy Google otwierają się dopiero, gdy dotkniesz „Pomoc w pobliżu”. O lokalizację telefon zawsze najpierw zapyta.</li>
+  <li><b>Ty decydujesz, co udostępnić.</b> „Kopiuj dla terapeuty” i kopia zapasowa trafiają tylko do schowka Twojego telefonu.</li>
+  <li><b>Pamiętaj:</b> każdy, kto weźmie Twój odblokowany telefon, może otworzyć aplikację. Wyczyszczenie danych przeglądarki usuwa wpisy, dlatego rób kopię zapasową.</li>
+ </ul></section>
+ <section class="card declaration"><div class="label">Deklaracja autora</div>
+  <p>Oświadczam, że nikt poza użytkownikiem nie widzi i nie ma dostępu do danych zapisanych w tej aplikacji. Biorę za to odpowiedzialność.</p>
+  <p class="sign">Krystian Prucnel<br><span class="small muted">autor aplikacji</span></p></section>
+ <button class="primary" data-privback="1">Wróć</button>`;
+}
 
 /* ---------- pomoc teraz: podpowiedzi dopasowane do stanu ---------- */
 const HEAVY=['smutek','złość','lęk','wstyd','poczucie winy','samotność','napięcie','żal','zmęczenie','nuda'];
@@ -640,7 +660,7 @@ function breathe(btn){
   breathTimer=setTimeout(step,s[2])};
  step();
 }
-const VIEWS={dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
+const VIEWS={prywatnosc:vPrywatnosc,dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
 let unlocked=false;
 try{unlocked=localStorage.getItem(KEY+'-ok')==='1'}catch(e){}
 if(S.unlocked)unlocked=true;
@@ -663,7 +683,7 @@ function gate(){
    <h1>Witaj w aplikacji grupy</h1>
    <p class="muted">Wersja testowa do ${endDate().toLocaleDateString('pl-PL')}. Wpisz kod, który dostałeś/aś na spotkaniu.</p>
    <form id="f-code" class="stack"><input id="code" name="code" autocomplete="off" autocapitalize="characters" placeholder="Kod grupy" aria-label="Kod grupy"><button class="primary" type="submit">Wejdź</button></form>
-   <p class="small muted">Twoje wpisy zostaną tylko na tym telefonie.</p>${credit()}</section>`;
+   <p class="small muted">Twoje wpisy zostaną tylko na tym telefonie. <button class="linkbtn" data-privacy="1">Jak dbamy o prywatność</button></p>${credit()}</section>`;
   return true}
  if(S.name===undefined){
   tb.innerHTML='';
@@ -692,10 +712,10 @@ function gate(){
   return true}
  return false}
 function render(openForm){
- if(gate())return;
+ if(tab!=='prywatnosc'&&gate())return;
  const ex=S.examples&&(S.feelings.concat(S.cravings,S.goals,S.notes).some(x=>x.ex)||['warning','strategies','reasons'].some(k=>S.plan[k].some(x=>SAMPLE_PLAN.includes(x))));
  document.getElementById('app').innerHTML=
-  (ex&&tab!=='pomoc'?`<div class="banner"><span>Widzisz przykładowe wpisy, żeby pokazać, jak działa dzienniczek.</span><button data-clear="1">Usuń przykłady</button></div>`:'')+
+  (ex&&tab!=='pomoc'&&tab!=='prywatnosc'?`<div class="banner"><span>Widzisz przykładowe wpisy, żeby pokazać, jak działa dzienniczek.</span><button data-clear="1">Usuń przykłady</button></div>`:'')+
   (!storageOk?`<div class="banner" style="background:var(--alert-soft)">Ta przeglądarka nie pozwala zapisywać danych. Wpisy znikną po zamknięciu strony.</div>`:'')+
   VIEWS[tab]()+credit();
  document.getElementById('tabs').innerHTML=TABS.map(t=>`<button data-tab="${t[0]}"${t[0]===tab?' aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${t[2]}</svg>${t[1]}</button>`).join('');
@@ -753,6 +773,8 @@ document.addEventListener('click',e=>{
  if(d.good){
   if(!goodToday())S.feelings.push({id:uid(),at:new Date().toISOString(),emotions:['spokój'],level:2,situation:'Szybki wpis: dziś jest dobrze',thoughts:'',body:'',did:'',need:'',quick:true});
   save();render();return toast(GOOD_MSG[Math.floor(Math.random()*GOOD_MSG.length)])}
+ if(d.privacy){backTab=tab==='prywatnosc'?backTab:tab;return go('prywatnosc')}
+ if(d.privback){return go(backTab||'dzis')}
  if(d.grpreset){S.group={name:'',logo:''};save();render();return toast('Przywrócono '+DEF_GROUP)}
  if(d.helpnow)return openHelp('crave',[],0);
  if(d.helpfeel)return openHelp('feel',[],0);
