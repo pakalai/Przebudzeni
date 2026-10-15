@@ -157,6 +157,9 @@ nav.tabs button[aria-current="page"]{color:var(--lake)}
 .plist{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:10px}
 .declaration{border:2px solid var(--lake)}
 .declaration .sign{font-family:var(--display);font-weight:800;font-size:1.1rem;margin-top:6px}
+.filmcard video{width:100%;max-height:70vh;border-radius:12px;background:#000;display:block}
+.quick .filmbtn{grid-column:1/-1;background:var(--lake-soft);border-color:transparent}
+.quick .filmbtn b{color:var(--lake)}
 .empty{color:var(--muted);font-size:.92rem;padding:12px 0}
 @media (prefers-reduced-motion:no-preference){.toast{animation:up .2s ease-out}@keyframes up{from{opacity:.4;transform:translate(-50%,8px)}}}
 </style>
@@ -170,7 +173,7 @@ nav.tabs button[aria-current="page"]{color:var(--lake)}
 /* ===== USTAWIENIA TESTU – zmień tutaj ===== */
 const TEST_END='2027-10-14';      // ostatni dzień testów (RRRR-MM-DD)
 const ACCESS_CODE='PRZEBUDZENI';  // kod dla grupy; pusty '' = bez kodu
-const APP_VERSION='0.7';
+const APP_VERSION='0.8';
 const APP_AUTHOR='StoneMatic';
 /* ============================================ */
 const KEY='dzienniczek-trzezwosci-v1';
@@ -371,6 +374,7 @@ function vDzis(){
   <button data-go="glod" data-open="1"><b>Zapisz głód</b><small>Siła, wyzwalacz, co pomogło</small></button>
   <button data-go="bilans" data-open="1"><b>Bilans dnia</b><small>${todayNotes?'Dzisiejszy już zapisany':'Jeszcze nie dziś'}</small></button>
   <button data-go="cele"><b>Moje cele</b><small>${S.goals.filter(g=>!g.done).length} w toku</small></button>
+  <button class="filmbtn" data-film="1"><b>▶ Jak korzystać?</b><small>Film instruktażowy, 2 minuty</small></button>
  </section>
  ${listSec('reasons','Dlaczego to robię','Dopisz swój powód, np. dzieci, zdrowie, praca')}`;
 }
@@ -534,8 +538,20 @@ function mapUrl(q){
  if(geo)return 'https://www.google.com/maps/search/'+encodeURIComponent(q)+'/@'+geo[0].toFixed(4)+','+geo[1].toFixed(4)+',12z';
  return 'https://www.google.com/maps/search/'+encodeURIComponent(q+(city?' '+city:' w pobliżu'));
 }
-const credit=()=>`<p class="credit">Wersja ${APP_VERSION} · autor: ${APP_AUTHOR} · <button class="linkbtn" data-privacy="1">Prywatność</button></p>`;
+const credit=()=>`<p class="credit">Wersja ${APP_VERSION} · autor: ${APP_AUTHOR} · <button class="linkbtn" data-film="1">Instrukcja</button> · <button class="linkbtn" data-privacy="1">Prywatność</button></p>`;
 let backTab='dzis';
+function vFilm(){
+ return `<header class="top"><h1>Jak korzystać z aplikacji</h1></header>
+ <section class="card filmcard"><video id="film-video" controls playsinline preload="metadata" poster="instrukcja-okladka.jpg" src="instrukcja.mp4">Twoja przeglądarka nie odtwarza tego filmu.</video>
+  <p class="small muted">Film trwa ok. 2 minuty i ma muzykę. Pobiera się tylko wtedy, gdy go włączysz.</p></section>
+ <section class="card"><h2>W skrócie</h2><ol class="steps">
+  <li>Wpisz kod grupy i swoje imię.</li>
+  <li>Dodaj aplikację do ekranu głównego.</li>
+  <li>W <b>Ustawieniach</b> na ekranie Dziś ustaw datę początku trzeźwości.</li>
+  <li>Gdy jest trudno, dotknij <b style="color:var(--alert)">Mam silny głód</b> albo <b style="color:var(--amber)">Jest mi ciężko</b>.</li>
+  <li>Zapisuj uczucia i rób wieczorem bilans dnia.</li></ol></section>
+ <button class="primary" data-privback="1">Wróć</button>`;
+}
 function vPrywatnosc(){
  return `<header class="top"><h1>Prywatność</h1></header>
  <section class="card privacy-hero"><h2>Twoje wpisy są tylko Twoje</h2>
@@ -660,7 +676,7 @@ function breathe(btn){
   breathTimer=setTimeout(step,s[2])};
  step();
 }
-const VIEWS={prywatnosc:vPrywatnosc,dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
+const VIEWS={film:vFilm,prywatnosc:vPrywatnosc,dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
 let unlocked=false;
 try{unlocked=localStorage.getItem(KEY+'-ok')==='1'}catch(e){}
 if(S.unlocked)unlocked=true;
@@ -683,7 +699,8 @@ function gate(){
    <h1>Witaj w aplikacji grupy</h1>
    <p class="muted">Wersja testowa do ${endDate().toLocaleDateString('pl-PL')}. Wpisz kod, który dostałeś/aś na spotkaniu.</p>
    <form id="f-code" class="stack"><input id="code" name="code" autocomplete="off" autocapitalize="characters" placeholder="Kod grupy" aria-label="Kod grupy"><button class="primary" type="submit">Wejdź</button></form>
-   <p class="small muted">Twoje wpisy zostaną tylko na tym telefonie. <button class="linkbtn" data-privacy="1">Jak dbamy o prywatność</button></p>${credit()}</section>`;
+   <p class="small muted">Twoje wpisy zostaną tylko na tym telefonie. <button class="linkbtn" data-privacy="1">Jak dbamy o prywatność</button></p>
+   <button data-film="1">▶ Zobacz, jak to działa (film, 2 min)</button>${credit()}</section>`;
   return true}
  if(S.name===undefined){
   tb.innerHTML='';
@@ -712,16 +729,16 @@ function gate(){
   return true}
  return false}
 function render(openForm){
- if(tab!=='prywatnosc'&&gate())return;
+ if(tab!=='prywatnosc'&&tab!=='film'&&gate())return;
  const ex=S.examples&&(S.feelings.concat(S.cravings,S.goals,S.notes).some(x=>x.ex)||['warning','strategies','reasons'].some(k=>S.plan[k].some(x=>SAMPLE_PLAN.includes(x))));
  document.getElementById('app').innerHTML=
-  (ex&&tab!=='pomoc'&&tab!=='prywatnosc'?`<div class="banner"><span>Widzisz przykładowe wpisy, żeby pokazać, jak działa dzienniczek.</span><button data-clear="1">Usuń przykłady</button></div>`:'')+
+  (ex&&!['pomoc','prywatnosc','film'].includes(tab)?`<div class="banner"><span>Widzisz przykładowe wpisy, żeby pokazać, jak działa dzienniczek.</span><button data-clear="1">Usuń przykłady</button></div>`:'')+
   (!storageOk?`<div class="banner" style="background:var(--alert-soft)">Ta przeglądarka nie pozwala zapisywać danych. Wpisy znikną po zamknięciu strony.</div>`:'')+
   VIEWS[tab]()+credit();
  document.getElementById('tabs').innerHTML=TABS.map(t=>`<button data-tab="${t[0]}"${t[0]===tab?' aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${t[2]}</svg>${t[1]}</button>`).join('');
  if(openForm){const f=document.getElementById('new-form');if(f){f.open=true;const i=f.querySelector('input,textarea');i&&i.focus()}}
 }
-function go(t,open){if(breathTimer){clearTimeout(breathTimer);breathTimer=null}tab=t;render(open);window.scrollTo(0,0)}
+function go(t,open){if(breathTimer){clearTimeout(breathTimer);breathTimer=null}{const fv=document.getElementById('film-video');if(fv)try{fv.pause()}catch(e){}}tab=t;render(open);window.scrollTo(0,0)}
 
 /* ---------- zdarzenia ---------- */
 const vals=(form,name)=>[...form.querySelectorAll(`input[name="${name}"]:checked`)].map(x=>x.value);
@@ -773,7 +790,8 @@ document.addEventListener('click',e=>{
  if(d.good){
   if(!goodToday())S.feelings.push({id:uid(),at:new Date().toISOString(),emotions:['spokój'],level:2,situation:'Szybki wpis: dziś jest dobrze',thoughts:'',body:'',did:'',need:'',quick:true});
   save();render();return toast(GOOD_MSG[Math.floor(Math.random()*GOOD_MSG.length)])}
- if(d.privacy){backTab=tab==='prywatnosc'?backTab:tab;return go('prywatnosc')}
+ if(d.privacy){backTab=['prywatnosc','film'].includes(tab)?backTab:tab;return go('prywatnosc')}
+ if(d.film){backTab=['prywatnosc','film'].includes(tab)?backTab:tab;return go('film')}
  if(d.privback){return go(backTab||'dzis')}
  if(d.grpreset){S.group={name:'',logo:''};save();render();return toast('Przywrócono '+DEF_GROUP)}
  if(d.helpnow)return openHelp('crave',[],0);
