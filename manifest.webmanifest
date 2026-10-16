@@ -34,5 +34,11 @@
    "url": "https://pakalai.github.io/Przebudzeni/manifest.webmanifest"
   }
  ],
- "prefer_related_applications": false
+ "prefer_related_applications": false,
+ "description": "Azyl – bezpieczne miejsce na trudny czas. Dzienniczek trzeźwości.",
+ "orientation": "portrait",
+ "categories": [
+  "health",
+  "lifestyle"
+ ]
 }

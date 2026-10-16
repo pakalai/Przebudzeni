@@ -1,24 +1,33 @@
-Azyl – wersja 2.3, autor: StoneMatic
-Wdrożenie na serwer
+Azyl – wersja 3.1.1, autor: StoneMatic
+Aktualizacja na GitHubie
 
-1. Wgraj cały folder "przebudzeni" na serwer (np. przez FTP do public_html),
-   tak aby adres był np. https://twojadomena.pl/przebudzeni/
-2. Serwer musi działać po HTTPS (wymagane do instalacji na telefonie i lokalizacji).
-3. Na telefonie: otwórz adres w przeglądarce
-   - Android (Chrome): menu ⋮ → "Dodaj do ekranu głównego" / "Zainstaluj aplikację"
-   - iPhone (Safari): Udostępnij → "Do ekranu początkowego"
-4. Dane każdej osoby zostają tylko na jej telefonie. Serwer niczego nie zbiera.
-5. Po zmianie plików podnieś wersję w sw.js (np. przebudzeni-v1.0 → przebudzeni-v1.1), żeby telefony pobrały nowość.
+1. Wgraj wszystkie pliki z folderu "przebudzeni" do repozytorium Przebudzeni,
+   zastępując stare (Add file → Upload files → Commit changes).
+   Adres zostaje ten sam: https://pakalai.github.io/Przebudzeni/
+2. Telefony pobierają nową wersję same, przy kolejnym otwarciu aplikacji.
+   Czasem potrzebne są dwa otwarcia.
 
-6. Test trwa do 14.10.2027 (rok). Datę i kod grupy (PRZEBUDZENI) zmienisz na początku
-   skryptu w index.html: TEST_END i ACCESS_CODE. Po zmianie podnieś wersję w sw.js.
+Numeracja wersji (trzy liczby)
+   3.0.1, 3.0.2 …  poprawki
+   3.1.0, 3.2.0 …  nowe funkcje
+   4.0.0           duże zmiany
+   Wersja jest w index.html (APP_VERSION) i w sw.js (przebudzeni-v3.0.0).
+
+Dane użytkowników
+3. Wpisy są na telefonie użytkownika. Bez kont, e-maili i statystyk.
+4. Synchronizacja (opcjonalna) szyfruje wpisy na telefonie. Serwer przechowuje
+   tylko zaszyfrowane paczki. Uruchomienie serwera: plik INSTRUKCJA-SERWER.txt.
+5. Ktoś ma starą ikonę Przebudzeni? Nowa ikona Azyl zapyta przy pierwszym
+   otwarciu i przeniesie wpisy (Kopiuj moje wpisy → Wklej moje wpisy).
+
+Test
+6. Test trwa do 14.10.2027. Datę (TEST_END) i kod dostępu (ACCESS_CODE: PRZEBUDZENI)
+   zmienisz na początku skryptu w index.html.
 7. Po końcu testu aplikacja sama pokaże ekran "Test zakończony".
-   Wtedy możesz wyłączyć GitHub Pages (Settings → Pages → Unpublish).
 
-8. Film instruktażowy: instrukcja.mp4 (+ okładka instrukcja-okladka.jpg). Wgraj oba pliki razem z resztą.
-
-9. Numeracja wersji: 1.0, 1.1 … 1.9, potem 2.0, 2.1 … 2.9, potem 3.0 itd.
-   Zmień APP_VERSION w index.html i nazwę w sw.js (przebudzeni-vX.Y).
-10. 12 Kroków są ukryte. Aby je włączyć, zmień w index.html FEATURE_STEPS=false na true.
-11. Sentencje: listy MORNING_Q (rano) i EVENING_Q (wieczór) na początku skryptu w index.html. Można dopisywać własne.
-12. og.png to obrazek, który pokazuje się po wklejeniu linku w Messengerze/WhatsAppie. Wgraj go razem z resztą.
+Pliki
+8. instrukcja.mp4 i instrukcja-okladka.jpg – film instruktażowy w aplikacji.
+9. og.png – obrazek, który pokazuje się po wklejeniu linku w Messengerze i WhatsAppie.
+10. icon-*.png, apple-touch-icon.png – ikony Azyl.
+11. Sentencje: listy MORNING_Q, EVENING_Q i HARD_Q na początku skryptu w index.html.
+12. 12 Kroków są ukryte (FEATURE_STEPS=false).
