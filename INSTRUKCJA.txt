@@ -1,4 +1,4 @@
-Pogłębieni z Przebudzenia – wersja 1.0, autor: StoneMatic
+Pogłębieni z Przebudzenia – wersja 2.0, autor: StoneMatic
 Wdrożenie na serwer
 
 1. Wgraj cały folder "przebudzeni" na serwer (np. przez FTP do public_html),
@@ -19,3 +19,6 @@ Wdrożenie na serwer
 
 9. Numeracja wersji: 1.0, 1.1 … 1.9, potem 2.0, 2.1 … 2.9, potem 3.0 itd.
    Zmień APP_VERSION w index.html i nazwę w sw.js (przebudzeni-vX.Y).
+10. 12 Kroków są ukryte. Aby je włączyć, zmień w index.html FEATURE_STEPS=false na true.
+11. Sentencje: listy MORNING_Q (rano) i EVENING_Q (wieczór) na początku skryptu w index.html. Można dopisywać własne.
+12. og.png to obrazek, który pokazuje się po wklejeniu linku w Messengerze/WhatsAppie. Wgraj go razem z resztą.

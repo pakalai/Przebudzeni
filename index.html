@@ -2,6 +2,16 @@
 <html lang="pl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pogłębieni z Przebudzenia">
+<meta property="og:title" content="Pogłębieni z Przebudzenia">
+<meta property="og:description" content="Twój dzienniczek trzeźwości. Dotknij, aby otworzyć.">
+<meta property="og:url" content="https://pakalai.github.io/Przebudzeni/">
+<meta property="og:image" content="https://pakalai.github.io/Przebudzeni/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Twój dzienniczek trzeźwości. Dotknij, aby otworzyć.">
 <meta name="theme-color" content="#1e6a47">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -61,10 +71,10 @@ textarea{min-height:72px;resize:vertical}
 .scale input[type=range]{padding:0;border:0;background:none;accent-color:var(--lake)}
 .scale output{font-variant-numeric:tabular-nums;font-weight:700;min-width:2.5ch;text-align:right;font-size:1.1rem}
 details.new{background:var(--surface);border:1px solid var(--line);border-radius:14px}
-details.new summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
-details.new summary::-webkit-details-marker{display:none}
-details.new summary::after{content:"+";font-size:1.4rem;color:var(--lake);line-height:1}
-details.new[open] summary::after{content:"–"}
+details.new>summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+details.new>summary::-webkit-details-marker{display:none}
+details.new>summary::after{content:"+";font-size:1.4rem;color:var(--lake);line-height:1}
+details.new[open]>summary::after{content:"–"}
 details.new form{padding:0 16px 16px;display:flex;flex-direction:column;gap:14px}
 .entry .meta{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
 .pill{display:inline-block;font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--lake-soft);color:var(--lake)}
@@ -202,6 +212,102 @@ nav.tabs button[aria-current="page"]{color:var(--lake)}
 .cal.mini .cday.today{outline-width:1px;outline-offset:0}
 @media (max-width:360px){.yeargrid{grid-template-columns:repeat(2,1fr)}}
 .anniv{margin:0;background:var(--sun);color:#18291f;font-weight:800;border-radius:12px;padding:10px 14px;font-family:var(--display)}
+.counters{display:flex;flex-direction:column;gap:12px}
+.counter.sub{border-top-width:1px;padding:16px 18px;gap:8px}
+.counter.sub .days{font-size:2.6rem}
+.setbtn{width:100%;text-align:left;font-weight:600}
+.gear{flex:none;width:44px;height:44px;border-radius:50%;padding:0;font-size:1.3rem;display:grid;place-items:center}
+.addrow{flex-wrap:wrap}
+.quote.evening{background:var(--lake-soft)}
+.okbtn{background:var(--good-soft);border-color:transparent;color:var(--good)}
+.sumcard{text-align:left;width:100%;max-width:420px}
+.gate .sumcard{align-self:center}
+.sumdot{width:18px;height:18px;border-radius:5px;aspect-ratio:auto}
+.sumlbl{display:flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;color:var(--muted)}
+.summsg{margin:4px 0 0;font-weight:600}
+.nudge{background:var(--lake-soft);border-color:transparent}
+.nudgebtns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.nudgebtns button{padding:10px 6px;font-weight:700}
+.nudgebtns .ok{background:var(--good-soft);color:var(--good);border-color:transparent}
+.nudgebtns .warn{background:var(--amber-soft);color:var(--amber);border-color:transparent}
+.nudgebtns .sos{background:var(--alert-soft);color:var(--alert);border-color:transparent}
+.ic{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-4px}
+.ic.big{width:28px;height:28px}
+.checkin h2{font-size:1.15rem}
+.moods{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.mood{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 2px;border-radius:14px;border:2px solid transparent;background:var(--bg);cursor:pointer;position:relative}
+.mood input{position:absolute;opacity:0;width:1px;height:1px}
+.mood small{font-size:.68rem;font-weight:600;color:var(--muted);text-align:center;line-height:1.1}
+.face{width:42px;height:42px}.face circle:first-child{stroke:none}.face .fe{fill:#18291f}.face .fm{fill:none;stroke:#18291f;stroke-width:1.6;stroke-linecap:round}
+.m1 .face circle:first-child{fill:#e88a8a}.m2 .face circle:first-child{fill:#f0b56b}.m3 .face circle:first-child{fill:#e6dca0}.m4 .face circle:first-child{fill:#9fd4b0}.m5 .face circle:first-child{fill:#5fbf86}
+.mood.sel,.mood:has(input:checked){border-color:var(--lake);background:var(--lake-soft)}
+.ciopen{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.tile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 6px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);text-align:center;font-size:.8rem;font-weight:600;cursor:pointer;min-height:72px;color:var(--ink)}
+.tile input{position:absolute;opacity:0;width:1px;height:1px}
+.tile .ic{width:26px;height:26px;color:var(--muted)}
+.tile:has(input:checked){border-color:var(--lake);background:var(--lake-soft)}
+.tile.pos:has(input:checked){border-color:var(--good);background:var(--good-soft)}.tile.pos:has(input:checked) .ic{color:var(--good)}
+.tile.neg:has(input:checked),.tile.warm:has(input:checked){border-color:var(--amber);background:var(--amber-soft)}.tile.neg:has(input:checked) .ic,.tile.warm:has(input:checked) .ic{color:var(--amber)}
+.tile:focus-within{outline:2px solid var(--lake);outline-offset:2px}
+.lvlbtns{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.lv{padding:10px 0;border-radius:10px;font-weight:700;font-variant-numeric:tabular-nums;background:var(--bg)}
+.lv.on{background:var(--amber);border-color:var(--amber);color:#fff}
+.lvlpick[data-lvl=clvl] .lv.on{background:var(--alert);border-color:var(--alert)}
+.lvlpick[data-lvl=lvl] .lv.on{background:var(--lake);border-color:var(--lake)}
+.lvllbl{display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);margin-top:4px}
+.yesno{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.yn{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;border-radius:14px;border:2px solid var(--line);text-align:center;font-weight:700;font-size:.88rem;cursor:pointer}
+.yn input{position:absolute;opacity:0;width:1px;height:1px}
+.yn.ok:has(input:checked){border-color:var(--good);background:var(--good-soft);color:var(--good)}
+.yn.bad:has(input:checked){border-color:var(--alert);background:var(--alert-soft);color:var(--alert)}
+details.more{border-top:1px dashed var(--line);padding-top:8px}
+details.more summary{cursor:pointer;color:var(--lake);font-weight:600;list-style:none;display:flex;gap:6px;align-items:center}
+details.more summary::-webkit-details-marker{display:none}
+details.more[open] summary{margin-bottom:10px}
+.ringrow{align-items:center;gap:16px;flex-wrap:nowrap}
+.ring{width:118px;height:118px;flex:none}
+.ring .rbg{fill:none;stroke:var(--line);stroke-width:10}
+.ring .rfg{fill:none;stroke:var(--lake);stroke-width:10;stroke-linecap:round}
+.ring .rt1{font-family:var(--display);font-weight:800;font-size:30px;fill:var(--lake);text-anchor:middle;font-variant-numeric:tabular-nums}
+.ring .rt2{font-size:12px;fill:var(--muted);text-anchor:middle}
+.ringdays{display:none}
+.sosrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bigbtn{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:14px;border-radius:16px;border:0;text-align:left}
+.bigbtn small{font-weight:500;color:var(--muted)}
+.bigbtn.sos{background:var(--alert-soft);color:var(--alert)}.bigbtn.warn{background:var(--amber-soft);color:var(--amber)}
+.grid9{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.grid9 button{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 4px;border-radius:16px;font-size:.82rem}
+.grid9 .ic{color:var(--lake)}
+.week h2{font-size:1.05rem;display:flex;gap:6px;align-items:center}
+.wstrip{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.wday{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;border:0;background:none}
+.wface{width:30px;height:30px;display:grid;place-items:center}.wface .face{width:30px;height:30px}
+.wface.none{border:2px dashed var(--line);border-radius:50%}
+.wdot{width:10px;height:10px;border-radius:3px;aspect-ratio:auto;padding:0}
+.wday small{font-size:.68rem;color:var(--muted);text-transform:uppercase}
+.wmsg{margin:0;font-weight:600}
+.jseg{width:100%}.jseg button{flex:1;display:flex;gap:6px;align-items:center;justify-content:center;padding:10px 6px}
+.jseg button.on .ic{color:var(--bg)}
+.wcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.wcard summary{display:flex;gap:12px;align-items:center;cursor:pointer;list-style:none;font-size:1.02rem}
+.wcard summary::-webkit-details-marker{display:none}
+.wcard .ic{color:var(--lake)}
+.wcard p{margin:10px 0 0;line-height:1.55}
+@media (max-width:360px){.lvlbtns{grid-template-columns:repeat(5,1fr)}.mood small{font-size:.6rem}.face{width:36px;height:36px}}
+.gate.install h1{font-size:1.5rem}
+.steps.big{font-size:1.05rem;gap:12px}.steps.big .ic{color:var(--lake);vertical-align:-3px}
+.huge{font-size:1.15rem;padding:18px 20px;border-radius:16px;display:flex;gap:10px;align-items:center;justify-content:center;width:100%}
+.as-btn{display:block;text-align:center;text-decoration:none;padding:14px;border-radius:14px;background:var(--lake);color:var(--bg);font-weight:700;width:100%}
+.pointer .ic.huge{width:64px;height:64px;color:#fff;stroke-width:2.6;background:var(--alert);border-radius:50%;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.pointer{display:flex;flex-direction:column;align-items:center;gap:4px}.pointer span{background:var(--alert);color:#fff;font-weight:800;padding:4px 12px;border-radius:999px;font-size:.9rem}
+.pointer{position:fixed;z-index:20;pointer-events:none}
+.pointer.bottom{left:50%;bottom:calc(8px + env(safe-area-inset-bottom,0px));transform:translateX(-50%)}
+.pointer.top{right:calc(10px + env(safe-area-inset-right,0px));top:calc(4px + env(safe-area-inset-top,0px))}
+.pointer.top .ic,.pointer.topright .ic{transform:rotate(180deg)}
+.pointer.topright{right:calc(4px + env(safe-area-inset-right,0px));top:calc(4px + env(safe-area-inset-top,0px))}
+@media (prefers-reduced-motion:no-preference){.pointer .ic{animation:bob 1.1s ease-in-out infinite}.pointer.top .ic,.pointer.topright .ic{animation-name:bobup}
+@keyframes bob{50%{transform:translateY(10px)}}@keyframes bobup{0%,100%{transform:rotate(180deg)}50%{transform:rotate(180deg) translateY(10px)}}}
 .empty{color:var(--muted);font-size:.92rem;padding:12px 0}
 @media (prefers-reduced-motion:no-preference){.toast{animation:up .2s ease-out}@keyframes up{from{opacity:.4;transform:translate(-50%,8px)}}}
 </style>
@@ -215,53 +321,182 @@ nav.tabs button[aria-current="page"]{color:var(--lake)}
 /* ===== USTAWIENIA TESTU – zmień tutaj ===== */
 const TEST_END='2027-10-14';      // ostatni dzień testów (RRRR-MM-DD)
 const ACCESS_CODE='PRZEBUDZENI';  // kod dla grupy; pusty '' = bez kodu
-const APP_VERSION='1.0';
+const APP_VERSION='2.0';
+const FEATURE_STEPS=false;   // 12 Kroków: true = włączone, false = ukryte (dane zostają)
 const APP_AUTHOR='StoneMatic';
 /* ============================================ */
 const KEY='dzienniczek-trzezwosci-v1';
 const LOGO='data:image/webp;base64,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';
 const SAMPLE_PLAN=['Izoluję się i nie odbieram telefonów','Myślę „jeden raz nic nie zmieni”','Śpię mniej niż 6 godzin','Odczekać 20 minut, głód mija jak fala','Zadzwonić do kogoś z listy','Wyjść na spacer, zmienić miejsce','Zjeść coś i napić się wody (HALT)','Córka i jej zaufanie','Zdrowie wątroby','Spokojne poranki bez wstydu'];
-const QUOTES=[
- ['Tylko dzisiaj.','hasło wspólnot 12 kroków'],
- ['Krok po kroku.','hasło wspólnot 12 kroków'],
- ['Najpierw rzeczy najważniejsze.','hasło wspólnot 12 kroków'],
- ['Żyj i pozwól żyć innym.','hasło wspólnot 12 kroków'],
- ['Podróż tysiąca mil zaczyna się od pierwszego kroku.','Lao Tzu'],
- ['Kto zwycięża innych, jest silny. Kto zwycięża siebie, jest potężny.','Lao Tzu'],
- ['Kto zna innych, jest mądry. Kto zna siebie, jest oświecony.','Lao Tzu'],
- ['Nie dlatego nie mamy odwagi, że rzeczy są trudne. Dlatego są trudne, że nie mamy odwagi.','Seneka'],
- ['Przez całe życie trzeba się uczyć, jak żyć.','Seneka'],
- ['Nie rzeczy nas niepokoją, lecz nasze mniemania o rzeczach.','Epiktet'],
- ['Nikt nie jest wolny, kto nie panuje nad sobą.','Epiktet'],
- ['Szczęście twojego życia zależy od jakości twoich myśli.','Marek Aureliusz'],
- ['Kto ma po co żyć, zniesie prawie każde jak.','Fryderyk Nietzsche'],
- ['Nic nie jest stałe oprócz zmiany.','Heraklit'],
- ['Mierz siłę na zamiary, nie zamiar podług sił.','Adam Mickiewicz'],
- ['Ludzkie przygody ludzkie noś.','Jan Kochanowski'],
- ['Każdy dzień ma dość swojej biedy.','Ewangelia wg św. Mateusza 6,34'],
- ['Każdy święty ma przeszłość, a każdy grzesznik ma przyszłość.','Oscar Wilde'],
- ['Wszyscy myślą o tym, by zmienić świat, ale nikt nie myśli o tym, by zmienić siebie.','Lew Tołstoj'],
- ['Idź śmiało w kierunku swoich marzeń.','Henry David Thoreau'],
- ['To też minie.','przysłowie'],
- ['Nie musisz wygrać całego życia. Wystarczy, że wygrasz dzisiaj.',''],
- ['Głód jest jak fala. Rośnie, osiąga szczyt i opada. Ty zostajesz.',''],
- ['Prośba o pomoc to odwaga, nie słabość.',''],
- ['Nawrót nie wymazuje drogi, którą już przeszedłeś.',''],
- ['Dziś nie musisz być idealny. Wystarczy, że będziesz trzeźwy.',''],
- ['Uczucia przychodzą i odchodzą. Nie musisz za nimi iść.',''],
- ['Zadzwoń, zanim sięgniesz. Telefon jest lżejszy niż kieliszek.',''],
- ['Nie oceniaj swojego wczoraj. Zadbaj o swoje dzisiaj.',''],
- ['Każdy trzeźwy dzień to cegła w nowym domu.',''],
- ['Wdzięczność za małe rzeczy robi miejsce na większe.',''],
- ['Jesteś ważniejszy niż twój nałóg.',''],
- ['Zmęczony? Głodny? Zły? Samotny? Najpierw zadbaj o to.','zasada HALT'],
- ['Nie jesteś sam. Grupa jest obok.','']
+/* ===== SENTENCJE: rano motywujące, wieczorem uspokajające (możesz edytować) =====
+   Format: ["treść", "źródło lub puste"]. Własne teksty w duchu programu i terapii. */
+const MORNING_Q=[
+ ["Dziś masz do przejścia tylko jeden dzień. Ten.", "Tylko dzisiaj · hasło wspólnot 12 kroków"],
+ ["Nie musisz obiecywać trzeźwości do końca życia. Wystarczy do wieczora.", ""],
+ ["Zacznij od jednej dobrej decyzji. Następne przyjdą łatwiej.", ""],
+ ["Krok po kroku. Dziś tylko następny krok.", "hasło wspólnot 12 kroków"],
+ ["Pościel łóżko, wypij szklankę wody, zjedz śniadanie. Małe rzeczy budują dobry dzień.", ""],
+ ["Najpierw rzeczy najważniejsze. Twoja trzeźwość jest dziś na pierwszym miejscu.", "hasło wspólnot 12 kroków"],
+ ["Wczoraj już minęło. Dziś zaczynasz od czystej kartki.", ""],
+ ["Zaplanuj dzień tak, żeby nie zostawić miejsca na nudę i samotność.", ""],
+ ["Zadzwoń dziś do kogoś z grupy. Nie dlatego, że musisz, tylko dlatego, że możesz.", ""],
+ ["Każdy trzeźwy poranek to dowód, że da się żyć inaczej.", ""],
+ ["Nie czekaj, aż poczujesz się gotowy. Najpierw działanie, motywacja przyjdzie po nim.", ""],
+ ["Nie musisz dziś zrobić wszystkiego. Zrób to, co najważniejsze.", ""],
+ ["Masz prawo do dobrego dnia.", ""],
+ ["Jeśli przyjdzie głód, przyjdzie i odejdzie. Ty zostaniesz.", ""],
+ ["Dbaj dziś o siebie: nie bądź zbyt głodny, zły, samotny ani zmęczony.", "zasada HALT"],
+ ["Znajdź dziś jedną rzecz, za którą jesteś wdzięczny. Tylko jedną.", ""],
+ ["Twoja trzeźwość to także prezent dla ludzi, którzy Cię kochają.", ""],
+ ["Nie porównuj swojej drogi z cudzą. Idź swoim tempem.", ""],
+ ["Omiń dziś ten pierwszy. Bez pierwszego nie ma następnych.", ""],
+ ["Idź na mityng, nawet jeśli nie masz ochoty. Właśnie wtedy najbardziej.", ""],
+ ["Zmiana nie dzieje się w jeden dzień. Dzieje się codziennie, po trochu.", ""],
+ ["Robisz coś trudnego i dobrego. Uśmiechnij się do siebie.", ""],
+ ["Rób dziś to, co służy trzeźwości. Odpuść to, co jej szkodzi.", ""],
+ ["Prośba o pomoc to odwaga, nie słabość.", ""],
+ ["Zacznij dzień od wdzięczności, a reszta wyda się lżejsza.", ""],
+ ["Nie musisz znać wszystkich odpowiedzi. Wystarczy następny dobry krok.", ""],
+ ["Dobre nawyki są jak mięśnie. Każdego dnia trochę silniejsze.", ""],
+ ["Twoja przeszłość może Cię uczyć, ale nie musi Tobą rządzić.", ""],
+ ["Zapytaj się rano: co dziś może być dla mnie trudne i jak się na to przygotuję?", ""],
+ ["W grupie nikt Cię nie ocenia. Rozumieją, bo byli w tym samym miejscu.", ""],
+ ["Żyj i pozwól żyć innym. Zajmij się dziś swoją drogą.", "hasło wspólnot 12 kroków"],
+ ["Kiedy jest ciężko, zrób następną rzecz. Tylko następną.", ""],
+ ["Piętnaście minut spaceru zmienia nastrój bardziej, niż myślisz.", ""],
+ ["Dziś możesz być dla kogoś dowodem, że się da.", ""],
+ ["Trzeźwość to nie kara. To wolność, której uczysz się na nowo.", ""],
+ ["Dbaj o siebie tak, jak dbałbyś o kogoś, na kim Ci zależy.", ""],
+ ["Każde „nie” dla nałogu to „tak” dla siebie.", ""],
+ ["Nie musisz iść sam. Z grupą jest łatwiej.", ""],
+ ["Jeden dzień trzeźwości to więcej, niż kiedyś wydawało się możliwe.", ""],
+ ["Słuchaj tych, którzy są dłużej w trzeźwości. Kiedyś to Ciebie będą słuchać nowi.", ""],
+ ["Zapytaj się dziś: co mogę zrobić dla swojej trzeźwości?", ""],
+ ["Trudny poranek nie musi oznaczać trudnego dnia. To też minie.", ""],
+ ["Mały postęp to też postęp.", ""],
+ ["Nie odkładaj rozmowy, która może Cię dziś ochronić.", ""],
+ ["Obudziłeś się trzeźwy. To już jest dzisiejsze zwycięstwo.", ""],
+ ["Bądź dziś uczciwy wobec siebie. Na tym buduje się wszystko inne.", ""],
+ ["Masz plan na trudną chwilę? Sprawdź go teraz, zanim będzie potrzebny.", ""],
+ ["Traktuj dziś trzeźwość jak najważniejszą sprawę. Bo nią jest.", ""],
+ ["Nie musisz dziś naprawić całego życia. Wystarczy, że nie dołożysz nowych szkód.", ""],
+ ["Zrób dziś coś, z czego jutro będziesz dumny.", ""],
+ ["Rób, co możesz, z tym, co masz, tam, gdzie jesteś.", "Theodore Roosevelt"],
+ ["Dobrze zrobione jest lepsze niż dobrze powiedziane.", "Benjamin Franklin"],
+ ["Jesteśmy tym, co robimy wielokrotnie. Doskonałość nie jest więc czynem, lecz nawykiem.", "Will Durant, o myśli Arystotelesa"],
+ ["Geniusz to jeden procent natchnienia i dziewięćdziesiąt dziewięć procent potu.", "Thomas Edison"],
+ ["Rób to, czego się boisz, a strach umrze.", "Ralph Waldo Emerson"],
+ ["Działanie nie zawsze przynosi szczęście, ale bez działania nie ma szczęścia.", "Benjamin Disraeli"],
+ ["Naszą największą chwałą nie jest to, że nigdy nie upadamy, ale że podnosimy się za każdym razem.", "Oliver Goldsmith"],
+ ["Podróż tysiąca mil zaczyna się od pierwszego kroku.", "Lao Tzu"],
+ ["Nie dlatego nie mamy odwagi, że rzeczy są trudne. Dlatego są trudne, że nie mamy odwagi.", "Seneka"],
+ ["Kropla drąży skałę.", "przysłowie polskie"],
+ ["Nie od razu Kraków zbudowano.", "przysłowie polskie"],
+ ["Bez pracy nie ma kołaczy.", "przysłowie polskie"],
+ ["Kto rano wstaje, temu Pan Bóg daje.", "przysłowie polskie"],
+ ["Lepiej późno niż wcale.", "przysłowie polskie"],
+ ["Firma, praca, rodzina. Wszystko stoi na tym, że jesteś trzeźwy.", ""],
+ ["Dobry szef zaczyna od zarządzania sobą.", ""],
+ ["Na trzeźwo podejmujesz lepsze decyzje. W domu i w pracy.", ""],
+ ["Termin, klient, kłótnia z szefem. Stres minie, a Twoja decyzja o trzeźwości zostaje.", ""],
+ ["Najlepsza inwestycja, jaką dziś zrobisz, to inwestycja w siebie.", ""],
+ ["Ludzie zaufają Ci znowu nie dzięki obietnicom, tylko dzięki temu, co robisz każdego dnia.", ""]
 ];
-function quoteToday(){const d=today();const n=Math.floor((d-new Date(2026,0,1))/864e5);return QUOTES[((n%QUOTES.length)+QUOTES.length)%QUOTES.length]}
+const EVENING_Q=[
+ ["Dzień się kończy. Jeśli był trzeźwy, zrobiłeś dziś najważniejsze.", ""],
+ ["Odpuść to, na co nie masz wpływu. Nie musisz tego nieść do łóżka.", ""],
+ ["Krótki bilans: co dziś się udało? Za co jesteś wdzięczny?", "codzienny obrachunek"],
+ ["Nie musisz być dziś z siebie w pełni zadowolony. Wystarczy, że byłeś uczciwy.", ""],
+ ["Jeśli kogoś dziś zraniłeś, możesz to przyznać już teraz, a naprawić jutro.", ""],
+ ["Oddychaj powoli: wdech na cztery, wydech na sześć. Ciało uczy się spokoju.", ""],
+ ["Wieczór jest na odpoczynek, nie na rozliczanie się z całym życiem.", ""],
+ ["Każdy trzeźwy wieczór to cegła w nowym życiu.", ""],
+ ["Wieczorny głód jest częsty i mija. Herbata, telefon do kogoś, wcześniejszy sen.", ""],
+ ["Odłóż telefon na pół godziny przed snem. Daj głowie odpocząć.", ""],
+ ["Bądź dla siebie łagodny. Wykonujesz trudną pracę.", ""],
+ ["Przed snem przypomnij sobie trzy dobre rzeczy z dzisiaj. Nawet małe.", ""],
+ ["Jutro to nowy dzień. Nie musisz go przeżywać dziś.", ""],
+ ["Kiedy myśli krążą, zapisz je. Na papierze tracą siłę.", ""],
+ ["Podziękuj sobie za dzisiejszy trud.", ""],
+ ["Dobry sen to sprzymierzeniec trzeźwości. Zadbaj o niego.", ""],
+ ["Po ciężkim dniu nie oceniaj się. Zauważ, co Cię dziś wspierało.", ""],
+ ["Nie wszystko musi być dziś rozwiązane. Wystarczy, że jesteś trzeźwy.", ""],
+ ["Pomyśl o kimś, kto dziś Ci pomógł. Jutro możesz mu podziękować.", ""],
+ ["Spokój przychodzi, gdy przestajesz walczyć z tym, czego nie zmienisz.", ""],
+ ["Wieczorna cisza też może być przyjacielem.", ""],
+ ["Smutek czy złość nie znaczą, że robisz coś źle. Uczucia przychodzą i odchodzą.", ""],
+ ["Zamknij dzień jak książkę. Jutro zaczniesz nowy rozdział.", ""],
+ ["Nie zostawaj sam z trudnymi myślami. Telefon do kogoś z grupy też jest częścią programu.", ""],
+ ["Rozluźnij ramiona, szczękę i dłonie. Ciało pamięta napięcie całego dnia.", ""],
+ ["Trzeźwość to także odpoczynek bez ucieczki.", ""],
+ ["Zrobiłeś dziś tyle, ile mogłeś. To wystarczy.", ""],
+ ["Jeśli się modlisz, oddaj w modlitwie to, co Cię dziś gryzie. Jeśli nie, nazwij to i odłóż.", ""],
+ ["Wybacz sobie dzisiejsze potknięcia. Jutro spróbujesz jeszcze raz.", ""],
+ ["Nie musisz dziś niczego udowadniać. Możesz po prostu odpocząć.", ""],
+ ["Ciepły prysznic, herbata, spokojna muzyka. Zadbaj o siebie bez nałogu.", ""],
+ ["Co dziś było dobre? Zatrzymaj się przy tym na chwilę.", ""],
+ ["Każdy dzień bez nałogu leczy ciało i głowę, nawet jeśli jeszcze tego nie czujesz.", ""],
+ ["Jeśli coś Cię niepokoi, zapisz to i powiedz sponsorowi albo terapeucie. Nie noś tego sam.", ""],
+ ["Zmęczona głowa przesadza. Wieczorne czarne myśli rano wyglądają inaczej.", ""],
+ ["Spokojnej nocy. Jutro też dasz radę, krok po kroku.", ""],
+ ["Odpocznij. Trzeźwość potrzebuje siły, a siła potrzebuje snu.", ""],
+ ["Czy byłeś dziś dobry dla kogoś? A czy byłeś dobry dla siebie?", ""],
+ ["Twoje ciało zasypia dziś bez trucizny. To powód do wdzięczności.", ""],
+ ["Nie przewijaj w głowie całego dnia. Wybierz jedną dobrą chwilę i z nią zaśnij.", ""],
+ ["Kto jest dziś trzeźwy, ten wygrał ten dzień. Bez względu na resztę.", ""],
+ ["Pozwól sobie na odpoczynek bez poczucia winy.", ""],
+ ["Jutro rano zaczniesz od nowa. Tyle wystarczy dziś wiedzieć.", ""],
+ ["Gdzie byłem dziś w porządku? Co jutro mogę zrobić lepiej?", "codzienny obrachunek"],
+ ["Zgaś światło, zamknij oczy i policz dziesięć spokojnych oddechów.", ""],
+ ["Twoja wartość nie zależy od tego, jak minął dzień.", ""],
+ ["Trudne emocje wieczorem to znak, że potrzebujesz odpoczynku, a nie nagrody.", ""],
+ ["Nie możesz zasnąć? Nie walcz. Wstań, napij się wody, zapisz myśli i wróć do łóżka.", ""],
+ ["Powiedz „dziękuję za dziś”: sobie, bliskim albo sile większej od siebie, jakkolwiek ją rozumiesz.", ""],
+ ["Dobranoc. Kolejny dzień trzeźwości za Tobą.", ""],
+ ["Nie rzeczy nas niepokoją, lecz nasze mniemania o rzeczach.", "Epiktet"],
+ ["Nawet najciemniejsza noc się skończy i wzejdzie słońce.", "Victor Hugo"],
+ ["Masz władzę nad swoim umysłem, nie nad tym, co dzieje się na zewnątrz. Pamiętaj o tym, a znajdziesz siłę.", "Marek Aureliusz"],
+ ["Co nagle, to po diable.", "przysłowie polskie"],
+ ["Spiesz się powoli.", "dawne przysłowie łacińskie"],
+ ["Prawdziwych przyjaciół poznaje się w biedzie.", "przysłowie polskie"],
+ ["Mądry Polak po szkodzie, a mądrzejszy, kto wyciąga z niej wnioski.", "przysłowie, z dopiskiem"],
+ ["Każdy dzień ma dość swojej biedy. Jutro zatroszczy się o siebie.", "Ewangelia wg św. Mateusza 6,34"],
+ ["Praca może poczekać do jutra. Twój odpoczynek nie.", ""],
+ ["Wieczorem nie oceniaj całego życia. Oceniaj tylko to, czy byłeś dziś trzeźwy i uczciwy.", ""]
+];
+const HARD_Q=[
+ ["Upadek to nie koniec drogi. To miejsce, z którego wstajesz.", ""],
+ ["Ciężki dzień nie przekreśla wszystkich dobrych dni przed nim.", ""],
+ ["Nie jesteś swoim najgorszym dniem.", ""],
+ ["Dziś wystarczy przetrwać. O reszcie pomyślisz jutro.", ""],
+ ["Zadzwoń do kogoś. Nie musisz mówić wszystkiego. Wystarczy: „ciężko mi”.", ""],
+ ["Ból mija. Decyzja podjęta w bólu może zostać na długo. Poczekaj z nią.", ""],
+ ["To, że jest Ci ciężko, znaczy, że walczysz. Nie że przegrywasz.", ""],
+ ["Głód to fala. Przeczekaj ją, a zobaczysz, jak opada.", ""],
+ ["Bądź dla siebie tak łagodny, jak byłbyś dla przyjaciela w tej sytuacji.", ""],
+ ["Wielu ludzi z grupy miało taki dzień i przez niego przeszło. Ty też przejdziesz.", ""],
+ ["Nie musisz dziś być silny. Wystarczy, że nie będziesz sam.", ""],
+ ["Każda godzina trzeźwości w trudnym dniu liczy się podwójnie.", ""],
+ ["Po burzy przychodzi cisza. Daj sobie czas.", ""],
+ ["Zjedz coś, napij się wody, prześpij się. Czasem to połowa rozwiązania.", ""],
+ ["Twoje uczucia są ważne, ale nie muszą decydować za Ciebie.", ""],
+ ["Nawrót to informacja, nie wyrok. Wróć do planu i do ludzi.", ""],
+ ["Najtrudniejsze dni uczą najwięcej. Zapisz, czego nauczył Cię ten.", ""],
+ ["Ktoś na Ciebie czeka i się o Ciebie martwi. Odezwij się.", ""],
+ ["Nie oceniaj całej drogi po jednym zakręcie.", ""],
+ ["Oddychaj. Jesteś tutaj. Na teraz to wystarczy.", ""]
+];
+function isHardTime(){try{const m=dayMap(),t=iso(today()),y=iso(new Date(today().getTime()-864e5));
+ const bad=k=>m[k]&&(m[k].cls==='hard'||m[k].cls==='relapse');return bad(t)||bad(y)||hardDays()}catch(e){return false}}
+function dayPart(){const h=new Date().getHours();return (h>=4&&h<17)?'m':'e'}
+function quoteToday(part){part=part||dayPart();const d=today();if(part==='e'&&new Date().getHours()<4)d.setDate(d.getDate()-1);
+ const n=Math.floor((d-new Date(2026,0,1))/864e5),L=part==='m'?MORNING_Q:EVENING_Q;
+ if(isHardTime()){const H=HARD_Q,k=n*2+(part==='e'?1:0);return H[((k%H.length)+H.length)%H.length]}
+ return L[((n%L.length)+L.length)%L.length]}
 function greet(){const h=new Date().getHours();
  if(h>=4&&h<11)return 'Dzień dobry';if(h<18&&h>=11)return 'Cześć';if(h<23&&h>=18)return 'Dobry wieczór';return 'Dobrej nocy'}
 const hello=()=>greet()+(S.name?', '+esc(S.name):'');
-const quoteCard=(big)=>{const q=quoteToday();return `<figure class="quote${big?' big':''}"><div class="label">Myśl na dziś</div><blockquote>${esc(q[0])}</blockquote>${q[1]?`<figcaption>${esc(q[1])}</figcaption>`:''}</figure>`};
+const quoteCard=(big,part)=>{part=part||dayPart();const q=quoteToday(part);return `<figure class="quote${big?' big':''}${part==='e'?' evening':''}"><div class="label">${isHardTime()?'Na trudniejszy czas':part==='m'?'Na dobry początek dnia':'Na spokojny wieczór'}</div><blockquote>${esc(q[0])}</blockquote>${q[1]?`<figcaption>${esc(q[1])}</figcaption>`:''}</figure>`};
 const isStandalone=()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}catch(e){return false}};
 const inFrame=()=>{try{return window.top!==window.self}catch(e){return true}};
 const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent);
@@ -287,13 +522,121 @@ function nextStone(a,d){
  const nx=addYears(a.start,Y+1);const left=Math.round((nx-today())/864e5);
  return `Do ${Y+1}. rocznicy: <b>${left} ${left===1?'dzień':'dni'}</b>`}
 function isAnniv(a){if(!a||!a.start)return 0;const r=soberYMD(a.start);return r.y>=1&&r.m===0&&r.d===0?r.y:0}
+
+/* ---------- ikony i elementy dotykowe (2.0) ---------- */
+const IC={
+ sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+ moon:'<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
+ heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+ flame:'<path d="M12 3c2 4 6 5 6 10a6 6 0 0 1-12 0c0-3 2-4 2-7 2 1 3 3 3 5 1-2 1-5 1-8z"/>',
+ shield:'<path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+ cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+ book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M8 7h7"/>',
+ phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
+ walk:'<circle cx="13" cy="4" r="2"/><path d="M10 21l2-6 3 3v3M9 12l2-4 4 2 2 3M11 8l-3 3"/>',
+ bed:'<path d="M3 18V8M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="2"/>',
+ people:'<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0M14 20a4.5 4.5 0 0 1 7-3.5"/>',
+ pray:'<path d="M8 21v-5l-3-4V6l3 3M16 21v-5l3-4V6l-3 3M8 16l4-12 4 12"/>',
+ gym:'<path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"/>',
+ home:'<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>',
+ music:'<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
+ food:'<path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 2-2 6 0 8v10"/>',
+ bolt:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+ brief:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2M3 12h18"/>',
+ chat:'<path d="M4 5h16v10H9l-5 4z"/>',
+ glass:'<path d="M6 3h12l-2 9a4 4 0 0 1-8 0zM12 16v5M8 21h8"/>',
+ coins:'<ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3 3 7 3s7-1.3 7-3v-6"/>',
+ hour:'<path d="M6 3h12M6 21h12M7 3c0 5 10 5 10 9s-10 4-10 9M17 3c0 5-10 5-10 9"/>',
+ star:'<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6-5.3-3-5.3 3 1.2-6L3.4 9.3l6-.7z"/>',
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+ leaf:'<path d="M5 19c0-9 6-14 15-14 0 9-5 15-14 15"/><path d="M5 19l7-7"/>',
+ target:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>',
+ play:'<circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4z"/>',
+ map:'<path d="M12 21s-6-6-6-11a6 6 0 0 1 12 0c0 5-6 11-6 11z"/><circle cx="12" cy="10" r="2"/>',
+ bulb:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/>',
+ chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+ wave:'<path d="M2 12c3-4 5-4 8 0s5 4 8 0 4-3 4-3"/>',
+ drop:'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>',
+ cloud:'<path d="M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9z"/>',
+ smile:'<circle cx="12" cy="12" r="9"/><path d="M8 14q4 3 8 0M9 9.5h.01M15 9.5h.01"/>',
+ frown:'<circle cx="12" cy="12" r="9"/><path d="M8 16q4-3 8 0M9 9.5h.01M15 9.5h.01"/>',
+ angry:'<circle cx="12" cy="12" r="9"/><path d="M8 16q4-3 8 0M8 8l3 1.5M16 8l-3 1.5"/>',
+ eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+ lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+ share:'<path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v8h14v-8"/>',
+ arrow:'<path d="M12 4v16M5 13l7 7 7-7"/>',
+ gift:'<rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 12h18M12 8v13M12 8s-1-5-4-5-3 3 0 5M12 8s1-5 4-5 3 3 0 5"/>'
+};
+const icon=(k,c)=>`<svg class="ic${c?' '+c:''}" viewBox="0 0 24 24" aria-hidden="true">${IC[k]||IC.star}</svg>`;
+const POS_EMO=['spokój','radość','wdzięczność','nadzieja'];
+const EMO_IC={'spokój':'leaf','radość':'sun','wdzięczność':'gift','nadzieja':'star','smutek':'cloud','złość':'bolt','lęk':'wave','wstyd':'eye','poczucie winy':'drop','samotność':'people','nuda':'hour','zmęczenie':'bed','napięcie':'angry','żal':'frown'};
+const TRIG_IC={'głód (H)':'food','złość (A)':'bolt','samotność (L)':'people','zmęczenie (T)':'bed','stres w pracy':'brief','konflikt':'chat','spotkanie ze znajomymi':'people','alkohol w zasięgu':'glass','pieniądze':'coins','nuda':'hour','świętowanie':'star','wspomnienia':'clock'};
+const HELPS=[['mityng','people'],['telefon do kogoś','phone'],['spacer','walk'],['sen','bed'],['modlitwa / medytacja','pray'],['sport','gym'],['rodzina','home'],['muzyka','music'],['jedzenie i woda','food'],['lektura','book']];
+const GRATS=[['rodzina','home'],['zdrowie','heart'],['praca','brief'],['przyjaciele','people'],['grupa','shield'],['trzeźwość','star'],['natura','leaf'],['spokojny dzień','sun']];
+const MOODS=[[1,'Bardzo źle','m1'],[2,'Źle','m2'],[3,'Tak sobie','m3'],[4,'Dobrze','m4'],[5,'Świetnie','m5']];
+const MOOD_EMO={1:['smutek'],2:['napięcie'],3:[],4:['spokój'],5:['radość']};
+const MOOD_LVL={1:9,2:6,3:3,4:2,5:1};
+function faceSvg(m){const mouth={1:'M8 16.5q4-4 8 0',2:'M8.5 16q3.5-2 7 0',3:'M8.5 15.5h7',4:'M8 14.5q4 3 8 0',5:'M7.5 13.5q4.5 5 9 0'}[m];
+ return `<svg class="face" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="8.5" cy="10" r="1.2" class="fe"/><circle cx="15.5" cy="10" r="1.2" class="fe"/><path d="${mouth}" class="fm"/></svg>`}
+function moodOf(f){if(f.mood)return f.mood;if(f.quick)return 4;const heavy=f.emotions.some(e=>HEAVY.includes(e));
+ if(heavy)return f.level>=7?1:f.level>=4?2:3;return f.emotions.some(e=>POS_EMO.includes(e))?4:3}
+const tiles=(name,items,map,cls,sel=[])=>'<div class="tiles">'+items.map((x,i)=>{const lbl=Array.isArray(x)?x[0]:x,ic=Array.isArray(x)?x[1]:(map&&map[x])||'star';
+ return `<label class="tile ${cls?typeof cls==='function'?cls(lbl):cls:''}"><input type="checkbox" name="${name}" value="${esc(lbl)}" id="${name}-${i}"${sel.includes(lbl)?' checked':''}>${icon(ic)}<span>${esc(lbl)}</span></label>`}).join('')+'</div>';
+const levelPick=(id,def,lo,hi)=>`<div class="lvlpick" data-lvl="${id}"><input type="hidden" id="${id}" name="${id}" value="${def}">
+ <div class="lvlbtns">${Array.from({length:10},(_,i)=>`<button type="button" class="lv${i+1<=def?' on':''}" data-lvlset="${id}" data-v="${i+1}" aria-label="${i+1} z 10">${i+1}</button>`).join('')}</div>
+ <div class="lvllbl"><span>${lo}</span><span>${hi}</span></div></div>`;
+const more=(inner,label)=>`<details class="more"><summary>${icon('book')} ${label||'Dodaj opis (opcjonalnie)'}</summary><div class="stack">${inner}</div></details>`;
+function weekStrip(){
+ const m=dayMap();const days=[...Array(7)].map((_,i)=>daysAgo(6-i));
+ const moods=days.map(d=>{const k=iso(d);const fs=S.feelings.filter(f=>!f.ex&&iso(new Date(f.at))===k);return fs.length?fs.reduce((s,f)=>s+moodOf(f),0)/fs.length:null});
+ const a=moods.slice(4).filter(x=>x!==null),b=moods.slice(0,4).filter(x=>x!==null);
+ const avg=x=>x.reduce((s,y)=>s+y,0)/x.length;let msg='';
+ if(a.length>=2&&b.length>=2){const d=avg(a)-avg(b);msg=d<=-1?'Ostatnie dni są słabsze. Zadbaj o siebie i odezwij się do kogoś z grupy.':d>=1?'Twój nastrój się poprawia. Tak trzymaj!':'Twój nastrój jest stabilny.'}
+ return `<section class="card week"><div class="row between"><h2>${icon('chart')} Twój tydzień</h2><button class="ghost" data-tab="kalendarz">Kalendarz ›</button></div>
+  <div class="wstrip">${days.map((d,i)=>{const k=iso(d),c=m[k]?m[k].cls:'',mo=moods[i];return `<button class="wday" data-tab="kalendarz" aria-label="${d.toLocaleDateString('pl-PL',{weekday:'long'})}"><span class="wface ${mo?'m'+Math.round(mo):'none'}">${mo?faceSvg(Math.round(mo)):''}</span><span class="cday ${c} wdot"></span><small>${WDS[(d.getDay()+6)%7]}</small></button>`}).join('')}</div>
+  ${msg?`<p class="small wmsg">${msg}</p>`:''}</section>`;
+}
+function checkinCard(){
+ const tk=iso(today());const last=S.feelings.filter(f=>!f.ex&&f.checkin&&iso(new Date(f.at))===tk).sort((a,b)=>b.at.localeCompare(a.at))[0];
+ const open=last&&S.ciOpen===last.id;
+ const nt=nudgeText();
+ return `<section class="card checkin${nt?' nudge':''}"><h2>${nt?'Jak tam u Ciebie'+(S.name?', '+esc(S.name):'')+'?':'Jak się teraz czujesz?'}</h2>${nt?`<p>${nt}</p>`:''}
+  <div class="moods">${MOODS.map(([n,l,c])=>`<button class="mood ${c}${last&&last.mood===n?' sel':''}" data-mood="${n}" aria-label="${l}">${faceSvg(n)}<small>${l}</small></button>`).join('')}</div>
+  ${last?`<p class="small muted">Ostatnio dziś o ${new Date(last.at).toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'})}: <b>${MOODS[last.mood-1][1]}</b>${last.emotions.length?' · '+esc(last.emotions.join(', ')):''}</p>`:'<p class="small muted">Jedno dotknięcie wystarczy. Zapiszę to w Twoim dzienniczku.</p>'}
+  ${open?`<div class="ciopen"><div class="label">Co czujesz? (opcjonalnie)</div>${tiles('ciemo',EMOTIONS,EMO_IC,x=>POS_EMO.includes(x)?'pos':'neg',last.emotions)}
+   <div class="label">Co na to wpływa? (opcjonalnie)</div>${tiles('citrg',[['sen','bed'],['praca','brief'],['rodzina','home'],['zdrowie','heart'],['pieniądze','coins'],['samotność','people'],['stres','bolt'],['grupa','shield']],null,'',last.tags||[])}
+   <button class="primary" data-ciclose="1">Gotowe</button></div>`:''}
+ </section>`;
+}
+function vWiedza(){
+ const W=[
+  ['wave','Głód to fala','Głód narasta, osiąga szczyt i opada, zwykle w ciągu 20–30 minut. Nie musisz z nim walczyć ani go spełniać. Obserwuj go jak falę: oddychaj, zajmij ręce, zmień miejsce, zadzwoń do kogoś. Każdy przeczekany głód osłabia następny.'],
+  ['food','HALT: cztery pułapki','Najłatwiej sięgnąć po substancję, gdy jesteś Głodny, Zły, Samotny albo Zmęczony (ang. Hungry, Angry, Lonely, Tired). Kiedy czujesz niepokój, sprawdź najpierw te cztery rzeczy. Często wystarczy zjeść, porozmawiać albo się wyspać.'],
+  ['eye','Sygnały ostrzegawcze nawrotu','Nawrót zaczyna się, zanim sięgniesz: wycofujesz się z ludzi, opuszczasz mityngi, śpisz źle, myślisz „jeden raz nic nie zmieni”, wraca złość i pretensje. Gdy zauważysz u siebie dwa lub trzy takie sygnały, porozmawiaj ze sponsorem albo terapeutą.'],
+  ['bed','Sen i trzeźwość','Po odstawieniu sen często jest gorszy przez kilka tygodni. To normalne i mija. Pomagają stałe pory, mniej kawy po południu, odłożony telefon przed snem. Zmęczenie wzmacnia głód, więc sen to część leczenia.'],
+  ['shield','Co zrobić po nawrocie','Nawrót to nie koniec drogi. Najważniejsze: nie zostawaj z tym sam, zadzwoń do sponsora lub terapeuty, wróć na mityng. Zastanów się, co go poprzedziło, i dopisz to do sygnałów ostrzegawczych. Wstyd każe się ukryć, a pomoc zaczyna się od powiedzenia prawdy.'],
+  ['people','Dlaczego grupa pomaga','Na mityngu spotykasz ludzi, którzy rozumieją bez tłumaczenia. Słuchanie cudzych historii pokazuje, że wyjście jest możliwe, a mówienie o swojej odbiera siłę wstydowi. Regularność jest ważniejsza niż to, czy masz ochotę iść.'],
+  ['heart','Uczucia: nazwij, żeby oswoić','Nałóg często służył do zagłuszania uczuć. W trzeźwości wracają mocniej i to jest normalne. Samo nazwanie uczucia („czuję złość”, „czuję lęk”) zmniejsza jego siłę. Uczucia przychodzą i odchodzą. Nie musisz za nimi iść.'],
+  ['home','Rozmowa z bliskimi','Bliscy często są zranieni i nieufni. Zaufanie wraca powoli, dzięki czynom, a nie obietnicom. Mów o tym, co czujesz, zamiast tłumaczyć się z przeszłości. Dla rodzin są grupy Al-Anon, gdzie mogą znaleźć wsparcie dla siebie.'],
+  ['drop','Odstawienie: kiedy do lekarza','Nagłe odstawienie alkoholu po długim piciu, a także leków uspokajających, może być niebezpieczne. Drżenie, poty, kołatanie serca, omamy albo drgawki wymagają pilnej pomocy: dzwoń 112. Leków nie odstawiaj sam, rób to z lekarzem.']
+ ];
+ return `<header class="top"><h1>Wiedza</h1></header>
+ <p class="muted">Krótko i po ludzku o tym, co dzieje się w trzeźwieniu. Dotknij, żeby rozwinąć.</p>
+ <div class="stack">${W.map(([ic,t,d],i)=>`<details class="wcard"${i===0?' open':''}><summary>${icon(ic,'big')}<b>${t}</b></summary><p>${d}</p></details>`).join('')}</div>
+ <section class="card"><div class="row" style="gap:10px"><button data-film="1">${icon('play')} Film: jak korzystać</button><button data-privacy="1">${icon('lock')} Prywatność</button>${!isStandalone()&&!inFrame()?`<button data-reinstall="1">${icon('gift')} Dodaj do ekranu</button>`:''}</div></section>
+ <p class="small muted">Wiedza ogólna, nie zastępuje porady lekarza ani terapeuty.</p>`;
+}
+const NAVGROUP={uczucia:'uczucia',glod:'uczucia',bilans:'uczucia',kalendarz:'kalendarz',cele:'kalendarz',pomoc:'plan',plan:'plan',dzis:'dzis',wiedza:'wiedza',ustawienia:'dzis'};
+const navActive=k=>(NAVGROUP[tab]||tab)===k;
+const segJ=cur=>`<div class="seg jseg">${[['uczucia','Uczucia','heart'],['glod','Głód','flame'],['bilans','Bilans','moon']].map(([k,l,ic])=>`<button class="${cur===k?'on':''}" data-tab="${k}">${icon(ic)}${l}</button>`).join('')}</div>`;
+const segP=cur=>`<div class="seg jseg">${[['kalendarz','Kalendarz','cal'],['cele','Cele','target']].map(([k,l,ic])=>`<button class="${cur===k?'on':''}" data-tab="${k}">${icon(ic)}${l}</button>`).join('')}</div>`;
+
 const TABS=[
- ['dzis','Dziś','<path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/>'],
- ['uczucia','Uczucia','<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'],
- ['glod','Głód','<path d="M12 3c2 4 6 5 6 10a6 6 0 0 1-12 0c0-3 2-4 2-7 2 1 3 3 3 5 1-2 1-5 1-8z"/>'],
- ['plan','SOS','<path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/>'],
- ['kroki','Kroki','<path d="M3 20h5v-4h5v-4h5V8h3"/><path d="M3 20V9"/>'],
- ['bilans','Bilans','<path d="M5 4h11l3 3v13H5z"/><path d="M9 10h6M9 14h6M9 18h3"/>']
+ ['dzis','Dziś',IC.sun],
+ ['uczucia','Dziennik',IC.book],
+ ['plan','SOS',IC.shield],
+ ['kalendarz','Postępy',IC.chart],
+ ['wiedza','Wiedza',IC.bulb]
 ];
 
 const today=()=>{const d=new Date();d.setHours(0,0,0,0);return d};
@@ -379,7 +722,7 @@ const DEF_GROUP='Pogłębieni z Przebudzenia';
 const gName=()=>(S.group&&S.group.name)||DEF_GROUP;
 const gLogo=()=>(S.group&&S.group.logo)||LOGO;
 const gImg=(cls)=>`<img src="${gLogo()}" alt="Logo grupy ${esc(gName())}"${cls?` class="${cls}"`:''}>`;
-const SUB_PRESETS=['alkohol','nikotyna','marihuana','narkotyki','leki','hazard','gry i internet','zakupy','współuzależnienie'];
+const SUB_PRESETS=['alkohol','nikotyna','marihuana','metamfetamina','amfetamina','kokaina','opioidy','dopalacze','narkotyki','leki','hazard','gry i internet','zakupy','współuzależnienie'];
 const daysWord=n=>n===1?'dzień':'dni';
 function fitLogo(file){return new Promise((res,rej)=>{
  const r=new FileReader();r.onerror=rej;r.onload=()=>{const im=new Image();im.onerror=rej;im.onload=()=>{
@@ -389,80 +732,41 @@ function fitLogo(file){return new Promise((res,rej)=>{
 
 /* ---------- widoki ---------- */
 function vDzis(){
- const d=sober();
- const next=STONES.find(x=>x>(d??0));
- const lastF=S.feelings.slice().sort((a,b)=>b.at.localeCompare(a.at))[0];
- const todayNotes=S.notes.some(n=>n.kind==='bilans'&&n.at.slice(0,10)===new Date().toISOString().slice(0,10));
  return `
- <header class="brand">${gImg()}<div><div class="g">${esc(gName())}</div><h1>${hello()}</h1><span class="muted small">${new Date().toLocaleDateString('pl-PL',{weekday:'long',day:'numeric',month:'long'})}</span><br><span class="trial">Wersja testowa · ${trialLeft()===1?'został 1 dzień':'zostało '+trialLeft()+' dni'}</span></div></header>
- ${hardDays()?`<section class="card alertcard"><h2>Ostatnie dni są trudne</h2><p>Widzę kilka ciężkich wpisów z rzędu. To dobry moment, żeby porozmawiać z terapeutą albo kimś z grupy. Nie czekaj, aż będzie gorzej.</p><div class="row"><button class="primary" data-helpfeel="1">Pomoc teraz</button><button data-tab="plan">Moje kontakty</button></div></section>`:''}
- ${quoteCard(false)}
- <section class="counter">
-  ${(()=>{const a=S.addictions[0],d=a?sober(a):null;
-   if(d===null)return `<h2>Ustaw datę początku trzeźwości</h2><p class="muted">Otwórz ustawienia poniżej i wpisz, od kiedy liczysz.</p>`;
-   const an=isAnniv(a);
-   return `<div class="label">Bez: ${esc(a.name||'substancji')}</div>
-   <div class="row" style="align-items:baseline;gap:12px"><div class="days">${d}</div><div class="muted">${daysWord(d)} trzeźwości<br><span class="small">${d>=365?'<b>'+ymdText(a.start)+'</b><br>':''}od ${new Date(a.start).toLocaleDateString('pl-PL')}</span></div></div>
-   ${an?`<p class="anniv">Dziś mija ${an} ${yWord(an)} trzeźwości. Gratulacje!</p>`:''}
-   <p class="small">${nextStone(a,d)}</p>
-   <div class="stones">${stonesHtml(a,d)}</div>`})()}
-  ${S.addictions.length>1?`<ul class="list subs">${S.addictions.slice(1).map(a=>{const d=sober(a);return `<li><span>Bez: <b>${esc(a.name)}</b></span><span class="subdays">${d===null?'<span class="muted small">ustaw datę</span>':d>=365?ymdText(a.start).split(', ').slice(0,2).join(', '):d+' '+daysWord(d)}</span></li>`}).join('')}</ul>`:''}
-  <details class="new" style="border:0;background:none"><summary style="padding:4px 0">Ustawienia</summary>
-   <div class="stack" style="padding:8px 0 0">
-   <form id="f-start" class="stack">
-    <label class="field"><span>Twoje imię</span><input id="st-name" name="name" value="${esc(S.name||'')}" placeholder="jak mamy się do Ciebie zwracać" autocomplete="given-name"></label>
-    <button class="primary" type="submit">Zapisz imię</button></form>
-   <div class="field"><span>Moje uzależnienia</span>
-    <p class="small muted">Możesz dodać kilka, np. alkohol i nikotynę albo współuzależnienie. Każde ma swój licznik i swoje podpowiedzi.</p>
-    <ul class="list">${S.addictions.map(a=>`<li class="addrow"><span style="flex:1;min-width:0"><b>${esc(a.name)}</b><br><input type="date" id="ad-${a.id}" data-addate="${a.id}" value="${a.start||''}" max="${iso(today())}" aria-label="Data początku: ${esc(a.name)}"></span><span class="stack" style="gap:4px"><button class="ghost danger" data-adreset="${a.id}">Od dziś</button>${S.addictions.length>1?`<button class="ghost danger" data-addel="${a.id}">Usuń</button>`:''}</span></li>`).join('')}</ul>
-    <form id="f-addsub" class="stack"><input id="new-sub" name="sub" list="sub-presets" placeholder="Dodaj: wybierz z listy lub wpisz"><datalist id="sub-presets">${SUB_PRESETS.map(x=>`<option value="${x}">`).join('')}</datalist>
-     <div class="row"><input type="date" id="new-sub-date" name="date" max="${iso(today())}" style="flex:1;min-width:0" aria-label="Od kiedy"><button type="submit">Dodaj</button></div></form>
-   </div>
-   <div class="field"><span>Moja grupa</span>
-    <div class="row" style="gap:12px">${gImg('grp-prev')}<span class="small muted" style="flex:1;min-width:0">Logo i nazwa grupy na ekranach aplikacji. Kolory zostają bez zmian.</span></div>
-    <form id="f-group" class="stack"><input id="grp-name" name="gname" value="${esc((S.group&&S.group.name)||'')}" placeholder="${DEF_GROUP}">
-     <label class="btn filebtn" for="grp-logo">Wybierz logo z telefonu</label><input type="file" id="grp-logo" accept="image/*" class="visually-hidden">
-     <div class="row"><button class="primary" type="submit">Zapisz grupę</button>${S.group&&(S.group.name||S.group.logo)?`<button type="button" data-grpreset="1">Przywróć ${DEF_GROUP}</button>`:''}</div></form>
-   </div>
-   <div class="field"><span>Blokada PIN-em</span>
-    ${S.pinHash?`<p class="small muted">Blokada jest włączona. Aplikacja poprosi o PIN przy otwarciu i po powrocie po minucie.</p>
-     <form id="f-pinoff" class="row"><input type="password" inputmode="numeric" id="pin-cur" maxlength="6" placeholder="Obecny PIN" style="flex:1;min-width:0" autocomplete="off"><button type="submit">Wyłącz blokadę</button></form>`
-    :`<p class="small muted">Chroni Twoje wpisy przed innymi osobami, które mają dostęp do telefonu.</p>
-     <form id="f-pin" class="stack"><div class="row"><input type="password" inputmode="numeric" id="pin-new" maxlength="6" placeholder="PIN (4–6 cyfr)" style="flex:1;min-width:0" autocomplete="off"><input type="password" inputmode="numeric" id="pin-rep" maxlength="6" placeholder="Powtórz PIN" style="flex:1;min-width:0" autocomplete="off"></div><button type="submit">Włącz blokadę</button></form>`}
-    <p class="small muted">Zapamiętaj PIN. Nie da się go odzyskać, a bez niego można tylko usunąć wszystkie dane.</p></div>
-   <p class="small muted">Nawrót to część drogi, nie jej koniec. Licznik możesz zacząć od nowa w każdej chwili.</p>
-   </div></details>
+ <header class="brand">${gImg()}<div style="flex:1;min-width:0"><div class="g">${esc(gName())}</div><h1>${hello()}</h1><span class="muted small">${new Date().toLocaleDateString('pl-PL',{weekday:'long',day:'numeric',month:'long'})}</span><br><span class="trial">Wersja testowa · ${trialLeft()===1?'został 1 dzień':'zostało '+trialLeft()+' dni'}</span></div><button class="gear" data-tab="ustawienia" aria-label="Ustawienia">⚙</button></header>
+ ${hardDays()?`<section class="card alertcard"><h2>Ostatnie dni są trudne</h2><p>Widzę kilka ciężkich wpisów z rzędu. To dobry moment, żeby porozmawiać z terapeutą albo kimś z grupy.</p><div class="row"><button class="primary" data-helpfeel="1">Pomoc teraz</button><button data-tab="plan">Moje kontakty</button></div></section>`:''}
+ ${checkinCard()}
+ <section class="counters">${S.addictions.length?S.addictions.map((a,i)=>counterCard(a,i===0)).join(''):''}</section>
+ <section class="sosrow">
+  <button class="bigbtn sos" data-helpnow="1">${icon('flame','big')}<b>Mam silny głód</b><small>Poprowadzę Cię</small></button>
+  <button class="bigbtn warn" data-helpfeel="1">${icon('cloud','big')}<b>Jest mi ciężko</b><small>Pomogę Ci teraz</small></button>
  </section>
- <section class="quick">
-  <button class="sos" data-helpnow="1"><b>Mam silny głód</b><small>Poprowadzę Cię krok po kroku</small></button>
-  <button class="warn" data-helpfeel="1"><b>Jest mi ciężko</b><small>Smutek, lęk, samotność, złość</small></button>
-  <button class="ok" data-good="1"><b>Dziś jest dobrze</b><small>${goodToday()?'Zapisane. Tak trzymaj!':'Jednym dotknięciem zapisz dobry dzień'}</small></button>
-  <button data-go="plan" data-find="1" style="grid-column:1/-1"><b>Znajdź pomoc w pobliżu</b><small>Poradnie, ośrodki, mityngi AA i NA na mapie</small></button>
-  <button data-go="uczucia" data-open="1"><b>Zapisz uczucie</b><small>${lastF?'Ostatnio: '+esc(lastF.emotions.join(', ')):'Jak się teraz czujesz?'}</small></button>
-  <button data-go="glod" data-open="1"><b>Zapisz głód</b><small>Siła, wyzwalacz, co pomogło</small></button>
-  <button class="calbtn" data-tab="kalendarz"><b>Kalendarz dni</b><small>Lepsze i gorsze dni w miesiącu i roku</small></button>
-  <button data-go="bilans" data-open="1"><b>Bilans dnia</b><small>${todayNotes?'Dzisiejszy już zapisany':'Jeszcze nie dziś'}</small></button>
-  <button data-go="cele"><b>Moje cele</b><small>${S.goals.filter(g=>!g.done).length} w toku</small></button>
-  <button class="stepsbtn" data-tab="kroki"><b>12 Kroków</b><small>${stepsDone()}/12 ukończone · teraz krok ${currentStep()+1}: ${STEPS[currentStep()].t}</small></button>
-  <button class="filmbtn" data-film="1"><b>▶ Jak korzystać?</b><small>Film instruktażowy, 2 minuty</small></button>
+ ${quoteCard(false)}
+ ${weekStrip()}
+ <section class="grid9">
+  <button data-go="uczucia" data-open="1">${icon('heart','big')}<span>Uczucia</span></button>
+  <button data-go="glod" data-open="1">${icon('flame','big')}<span>Głód</span></button>
+  <button data-go="bilans" data-open="1">${icon('moon','big')}<span>Bilans dnia</span></button>
+  <button data-tab="kalendarz">${icon('cal','big')}<span>Kalendarz</span></button>
+  <button data-go="cele">${icon('target','big')}<span>Cele</span></button>
+  <button data-tab="wiedza">${icon('bulb','big')}<span>Wiedza</span></button>
+  <button data-go="plan" data-find="1">${icon('map','big')}<span>Pomoc blisko</span></button>
+  <button data-tab="plan">${icon('phone','big')}<span>Moi ludzie</span></button>
+  <button data-film="1">${icon('play','big')}<span>Film</span></button>
  </section>
  ${listSec('reasons','Dlaczego to robię','Dopisz swój powód, np. dzieci, zdrowie, praca')}`;
 }
 
 function vUczucia(){
  const list=S.feelings.slice().sort((a,b)=>b.at.localeCompare(a.at));
- return `<header class="top"><h1>Dzienniczek uczuć</h1></header>
+ return `<header class="top"><h1>Dziennik</h1></header>${segJ('uczucia')}
  ${tipCard()}
- <details class="new" id="new-form"><summary>Nowy wpis</summary>
+ <details class="new" id="new-form" open><summary>${icon('heart')} Zapisz uczucie</summary>
  <form id="f-feel">
-  <div class="field"><span>Co czujesz? (możesz wybrać kilka)</span>${chips('emo',EMOTIONS,false)}</div>
-  <label class="field"><span>Inne uczucie</span><input id="emo-other" name="other" placeholder="własnymi słowami"></label>
-  ${scale('lvl','Natężenie (0–10)')}
-  ${ta('sit','Sytuacja – co się wydarzyło?')}
-  ${ta('tho','Myśli','Co sobie wtedy mówiłem/am?')}
-  ${ta('bod','Ciało','Gdzie to czuję?')}
-  ${ta('did','Co z tym zrobiłem/am?')}
-  ${ta('need','Czego potrzebuję?')}
+  <div class="field"><span>Co czujesz? Dotknij jedno lub kilka.</span>${tiles('emo',EMOTIONS,EMO_IC,x=>POS_EMO.includes(x)?'pos':'neg')}</div>
+  <div class="field"><span>Jak mocno?</span>${levelPick('lvl',5,'słabo','bardzo mocno')}</div>
+  ${more(`<label class="field"><span>Inne uczucie</span><input id="emo-other" name="other" placeholder="własnymi słowami"></label>
+  ${ta('sit','Co się wydarzyło?')}${ta('tho','Co sobie wtedy myślałem/am?')}${ta('bod','Gdzie to czuję w ciele?')}${ta('did','Co z tym zrobiłem/am?')}${ta('need','Czego potrzebuję?')}`)}
   <button class="primary" type="submit">Zapisz wpis</button>
  </form></details>
  <div class="stack">${list.length?list.slice(0,shown.feelings).map(f=>`<article class="card entry">
@@ -474,20 +778,19 @@ function vUczucia(){
 
 function vGlod(){
  const list=S.cravings.slice().sort((a,b)=>b.at.localeCompare(a.at));
- return `<header class="top"><h1>Dziennik głodu</h1></header>
+ return `<header class="top"><h1>Dziennik</h1></header>${segJ('glod')}
  ${tipCard()}
  <p class="muted small">Głód narasta, osiąga szczyt i opada, zwykle w ciągu kilkunastu–kilkudziesięciu minut. Zapisując go, uczysz się swoich wyzwalaczy.</p>
- <details class="new" id="new-form"><summary>Nowy wpis</summary>
+ <details class="new" id="new-form" open><summary>${icon('flame')} Zapisz głód</summary>
  <form id="f-crave">
-  ${scale('clvl','Siła głodu (0–10)',6)}
+  <div class="field"><span>Jak silny?</span>${levelPick('clvl',6,'słaby','bardzo silny')}</div>
   ${S.addictions.length>1?`<div class="field"><span>Na co jest głód?</span>${chips('csub',S.addictions.map(a=>a.name),false)}</div>`:''}
-  <div class="field"><span>Co go wywołało?</span>${chips('trg',TRIGGERS,true)}</div>
-  ${ta('csit','Sytuacja – gdzie byłem/am, z kim?')}
-  ${ta('cdid','Co zrobiłem/am, żeby sobie poradzić?')}
-  <label class="field"><span>Ile trwał (minuty)</span><input type="number" min="0" max="1440" id="cmin" name="min" inputmode="numeric" placeholder="np. 20"></label>
-  <div class="field"><span>Czy sięgnąłem/am po substancję?</span><div class="chips">
-   <label class="chip"><input type="radio" name="used" value="nie" id="used-n" checked><span>Nie</span></label>
-   <label class="chip warm"><input type="radio" name="used" value="tak" id="used-t"><span>Tak</span></label></div></div>
+  <div class="field"><span>Co go wywołało?</span>${tiles('trg',TRIGGERS,TRIG_IC,'warm')}</div>
+  <div class="field"><span>Co pomogło?</span>${tiles('chelp',HELPS,null,'pos')}</div>
+  <div class="field"><span>Czy sięgnąłem/am po substancję?</span><div class="yesno">
+   <label class="yn ok"><input type="radio" name="used" value="nie" id="used-n" checked>${icon('shield','big')}<span>Nie, przetrwałem/am</span></label>
+   <label class="yn bad"><input type="radio" name="used" value="tak" id="used-t">${icon('drop','big')}<span>Tak, sięgnąłem/am</span></label></div></div>
+  ${more(`${ta('csit','Gdzie byłem/am, z kim?')}${ta('cdid','Co jeszcze zrobiłem/am?')}<label class="field"><span>Ile trwał (minuty)</span><input type="number" min="0" max="1440" id="cmin" name="min" inputmode="numeric" placeholder="np. 20"></label>`)}
   <button class="primary" type="submit">Zapisz wpis</button>
  </form></details>
  <div class="stack">${list.length?list.slice(0,shown.cravings).map(c=>`<article class="card entry">
@@ -534,7 +837,7 @@ function vPlan(){
 function vCele(){
  const open=S.goals.filter(g=>!g.done),done=S.goals.filter(g=>g.done);
  const g=x=>`<div class="goal${x.done?' done':''}"><input type="checkbox" id="g-${x.id}" data-gtog="${x.id}"${x.done?' checked':''}><label for="g-${x.id}" style="flex:1;min-width:0"><span class="gt">${esc(x.text)}</span><br><span class="small muted">${x.from==='terapeuta'?'Zadanie od terapeuty':'Cel własny'}${x.ex?' · przykład':''}</span></label>${delBtn('goals',x.id)}</div>`;
- return `<header class="top"><h1>Cele i zadania</h1><span class="muted small">${done.length}/${S.goals.length} wykonane</span></header>
+ return `<header class="top"><h1>Postępy</h1><span class="muted small">${done.length}/${S.goals.length} celów</span></header>${segP('cele')}
  <form id="f-goal" class="card">
   <label class="field"><span>Nowy cel lub zadanie</span><input id="g-text" name="text" placeholder="np. Przeczytać rozdział o nawrotach"></label>
   <div class="row between"><div class="chips">
@@ -566,13 +869,14 @@ function summaryText(){
 function vBilans(){
  const w=weekStats();
  const notes=S.notes.slice().sort((a,b)=>b.at.localeCompare(a.at));
- return `<header class="top"><h1>Notatki i bilanse</h1><button data-tab="kalendarz">Kalendarz</button></header>
- <details class="new" id="new-form"><summary>Bilans dnia</summary>
+ return `<header class="top"><h1>Dziennik</h1></header>${segJ('bilans')}
+ ${new Date().getHours()>=17?summaryCard(iso(today())):''}
+ <details class="new" id="new-form" open><summary>${icon('moon')} Bilans dnia</summary>
  <form id="f-bilans">
-  ${ta('b-good','Co mi się dziś udało?')}
-  ${ta('b-hard','Co było trudne?')}
-  ${ta('b-grat','Za co jestem wdzięczny/a?')}
-  ${ta('b-tom','Mój plan na jutro')}
+  <div class="field"><span>Jak minął dzień?</span><div class="moods">${MOODS.map(([n,l,c])=>`<label class="mood ${c}"><input type="radio" name="bmood" value="${n}" id="bm-${n}">${faceSvg(n)}<small>${l}</small></label>`).join('')}</div></div>
+  <div class="field"><span>Co dziś pomogło?</span>${tiles('bhelp',HELPS,null,'pos')}</div>
+  <div class="field"><span>Za co jestem wdzięczny/a?</span>${tiles('bgrat',GRATS,null,'pos')}</div>
+  ${more(`${ta('b-good','Co mi się udało?')}${ta('b-hard','Co było trudne?')}${ta('b-grat','Za co jeszcze dziękuję?')}${ta('b-tom','Mój plan na jutro')}`)}
   <button class="primary" type="submit">Zapisz bilans</button></form></details>
  <details class="new"><summary>Notatka (np. po sesji)</summary>
  <form id="f-note">${ta('n-text','Treść')}<button class="primary" type="submit">Zapisz notatkę</button></form></details>
@@ -725,7 +1029,7 @@ function vKalendarz(){
   <p class="small muted">To podpowiedzi do rozmowy z terapeutą lub sponsorem. Im więcej wpisów, tym są trafniejsze.</p></section>`:'';
  const tabs=`<div class="seg"><button class="${calMode==='m'?'on':''}" data-calmode="m">Miesiąc</button><button class="${calMode==='y'?'on':''}" data-calmode="y">Rok</button></div>`;
  if(calMode==='y'){
-  return `<header class="top"><h1>Kalendarz</h1>${tabs}</header>
+  return `<header class="top"><h1>Postępy</h1>${tabs}</header>${segP('kalendarz')}
   <div class="row between"><button class="ghost" data-calyear="-1">‹ ${calY-1}</button><h2>${calY}</h2><button class="ghost" data-calyear="1"${calY>=today().getFullYear()?' disabled':''}>${calY+1} ›</button></div>
   <div class="yeargrid">${MON.map((n,i)=>{const ks=Object.keys(m).filter(k=>k.startsWith(calY+'-'+String(i+1).padStart(2,'0')));const cnt={};ks.forEach(k=>cnt[m[k].cls]=(cnt[m[k].cls]||0)+1);
    return `<button class="minim" data-calmonth="${i}"><b>${n}</b><span class="cal mini">${monthGrid(calY,i,m,true)}</span><small>${ks.length?`${cnt.good||0} dobrych · ${(cnt.hard||0)+(cnt.relapse||0)} ciężkich`:'brak wpisów'}</small></button>`}).join('')}</div>
@@ -733,7 +1037,7 @@ function vKalendarz(){
  }
  const pre=calY+'-'+String(calM+1).padStart(2,'0');const ks=Object.keys(m).filter(k=>k.startsWith(pre));const cnt={};ks.forEach(k=>cnt[m[k].cls]=(cnt[m[k].cls]||0)+1);
  const isNow=calY===today().getFullYear()&&calM===today().getMonth();
- return `<header class="top"><h1>Kalendarz</h1>${tabs}</header>
+ return `<header class="top"><h1>Postępy</h1>${tabs}</header>${segP('kalendarz')}
  <section class="card">
   <div class="row between"><button class="ghost" data-calnav="-1" aria-label="Poprzedni miesiąc">‹</button><h2>${MON[calM]} ${calY}</h2><button class="ghost" data-calnav="1"${isNow?' disabled':''} aria-label="Następny miesiąc">›</button></div>
   <div class="cal">${WDS.map(x=>`<span class="cwd">${x}</span>`).join('')}${monthGrid(calY,calM,m,false)}</div>
@@ -742,6 +1046,51 @@ function vKalendarz(){
   <p class="small muted">Dotknij dnia, żeby zobaczyć, co się wtedy działo.</p></section>
  ${calDay&&calDay.startsWith(pre)?dayDetails(calDay,m):''}
  ${insHtml}`;
+}
+
+/* ---------- licznik: karta dla każdego uzależnienia ---------- */
+function ringSvg(a,d){
+ const Y=soberYMD(a.start).y;let frac;
+ if(Y<1){const nx=STONES.find(x=>x>d)||365,pv=[0,...STONES].filter(x=>x<=d).pop();frac=(d-pv)/(nx-pv)}
+ else{const last=addYears(a.start,Y),nx=addYears(a.start,Y+1);frac=(today()-last)/(nx-last)}
+ frac=Math.max(0.02,Math.min(1,frac));const R=52,C=2*Math.PI*R;
+ return `<svg class="ring" viewBox="0 0 120 120" role="img" aria-label="Postęp do następnego celu: ${Math.round(frac*100)}%"><circle cx="60" cy="60" r="${R}" class="rbg"/><circle cx="60" cy="60" r="${R}" class="rfg" stroke-dasharray="${(C*frac).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 60 60)"/><text x="60" y="58" class="rt1">${d}</text><text x="60" y="78" class="rt2">${d===1?'dzień':'dni'}</text></svg>`;
+}
+function counterCard(a,main){
+ const d=sober(a);
+ if(d===null)return `<div class="counter${main?'':' sub'}"><div class="label">Bez: ${esc(a.name||'substancji')}</div><p class="muted">Ustaw datę początku w <button class="linkbtn" data-tab="ustawienia">Ustawieniach</button>.</p></div>`;
+ const an=isAnniv(a);
+ return `<div class="counter${main?'':' sub'}"><div class="label">Bez: ${esc(a.name||'substancji')}</div>
+   <div class="row ringrow">${main?ringSvg(a,d):`<div class="days">${d}</div>`}<div class="muted">${main?`<b class="ringdays">${d}</b> `:''}${daysWord(d)} trzeźwości<br><span class="small">${d>=365?'<b>'+ymdText(a.start)+'</b><br>':''}od ${new Date(a.start).toLocaleDateString('pl-PL')}</span></div></div>
+   ${an?`<p class="anniv">Dziś mija ${an} ${yWord(an)} trzeźwości. Gratulacje!</p>`:''}
+   <p class="small">${nextStone(a,d)}</p>
+   ${main?`<div class="stones">${stonesHtml(a,d)}</div>`:''}</div>`;
+}
+function vUstawienia(){
+ return `<header class="top"><h1>Ustawienia</h1><button class="ghost" data-tab="dzis">Gotowe</button></header>
+   <section class="card"><h2>Twoje imię</h2><form id="f-start" class="stack">
+    <label class="field"><span>Twoje imię</span><input id="st-name" name="name" value="${esc(S.name||'')}" placeholder="jak mamy się do Ciebie zwracać" autocomplete="given-name"></label>
+    <button class="primary" type="submit">Zapisz imię</button></form></section>
+   <section class="card"><h2>Moje uzależnienia</h2>
+    <p class="small muted">Możesz dodać kilka, np. alkohol i nikotynę albo współuzależnienie. Każde ma swój licznik i swoje podpowiedzi.</p>
+    <ul class="list">${S.addictions.map((a,i)=>`<li class="addrow"><span style="flex:1;min-width:0"><b>${esc(a.name)}</b><br><input type="date" id="ad-${a.id}" data-addate="${a.id}" value="${a.start||''}" max="${iso(today())}" aria-label="Data początku: ${esc(a.name)}"></span><span class="stack" style="gap:4px">${i>0?`<button class="ghost" data-admain="${a.id}">Ustaw jako główne</button>`:'<span class="pill good">główne</span>'}<button class="ghost danger" data-adreset="${a.id}">Od dziś</button>${S.addictions.length>1?`<button class="ghost danger" data-addel="${a.id}">Usuń</button>`:''}</span></li>`).join('')}</ul>
+    <form id="f-addsub" class="stack"><input id="new-sub" name="sub" list="sub-presets" placeholder="Dodaj: wybierz z listy lub wpisz"><datalist id="sub-presets">${SUB_PRESETS.map(x=>`<option value="${x}">`).join('')}</datalist>
+     <div class="row"><input type="date" id="new-sub-date" name="date" max="${iso(today())}" style="flex:1;min-width:0" aria-label="Od kiedy"><button type="submit">Dodaj</button></div></form>
+   </section>
+   <section class="card"><h2>Moja grupa</h2>
+    <div class="row" style="gap:12px">${gImg('grp-prev')}<span class="small muted" style="flex:1;min-width:0">Logo i nazwa grupy na ekranach aplikacji. Kolory zostają bez zmian.</span></div>
+    <form id="f-group" class="stack"><input id="grp-name" name="gname" value="${esc((S.group&&S.group.name)||'')}" placeholder="${DEF_GROUP}">
+     <label class="btn filebtn" for="grp-logo">Wybierz logo z telefonu</label><input type="file" id="grp-logo" accept="image/*" class="visually-hidden">
+     <div class="row"><button class="primary" type="submit">Zapisz grupę</button>${S.group&&(S.group.name||S.group.logo)?`<button type="button" data-grpreset="1">Przywróć ${DEF_GROUP}</button>`:''}</div></form>
+   </section>
+   <section class="card"><h2>Blokada PIN-em</h2>
+    ${S.pinHash?`<p class="small muted">Blokada jest włączona. Aplikacja poprosi o PIN przy otwarciu i po powrocie po minucie.</p>
+     <form id="f-pinoff" class="row"><input type="password" inputmode="numeric" id="pin-cur" maxlength="6" placeholder="Obecny PIN" style="flex:1;min-width:0" autocomplete="off"><button type="submit">Wyłącz blokadę</button></form>`
+    :`<p class="small muted">Chroni Twoje wpisy przed innymi osobami, które mają dostęp do telefonu.</p>
+     <form id="f-pin" class="stack"><div class="row"><input type="password" inputmode="numeric" id="pin-new" maxlength="6" placeholder="PIN (4–6 cyfr)" style="flex:1;min-width:0" autocomplete="off"><input type="password" inputmode="numeric" id="pin-rep" maxlength="6" placeholder="Powtórz PIN" style="flex:1;min-width:0" autocomplete="off"></div><button type="submit">Włącz blokadę</button></form>`}
+    <p class="small muted">Zapamiętaj PIN. Nie da się go odzyskać, a bez niego można tylko usunąć wszystkie dane.</p></section>
+   <p class="small muted">Nawrót to część drogi, nie jej koniec. Licznik możesz zacząć od nowa w każdej chwili.</p>
+ <button class="primary" data-tab="dzis">Gotowe, wróć do ekranu głównego</button>`;
 }
 function vFilm(){
  return `<header class="top"><h1>Jak korzystać z aplikacji</h1></header>
@@ -810,7 +1159,13 @@ const SUB_TIPS={
  'zakup':['Usuń zapisane karty ze sklepów internetowych.','Odczekaj 48 godzin przed każdym zakupem spoza listy.'],
  'współuzależ':['Zatrzymaj się i zapytaj: czyja to odpowiedzialność, moja czy jego/jej?','Zrób dziś jedną rzecz tylko dla siebie.','Nie musisz ratować drugiej osoby. Możesz zadbać o siebie.','Sprawdź mityng Al-Anon w pobliżu w zakładce SOS.']
 };
-function subTips(names){const out=[];(names||[]).forEach(n=>{const k=Object.keys(SUB_TIPS).find(k=>String(n).toLowerCase().includes(k));if(k)SUB_TIPS[k].forEach(t=>{if(!out.includes(t))out.push(t)})});return out}
+const SUB_SYN=[[/amfetamin|metamfet|meta\b|mefedron|klefedron|kokain|crack|heroin|opioid|opiat|fentanyl|dopalacz|mdma|ecstasy|ekstaz|lsd|grzyb|ketamin|narkot/,'narkotyk'],
+ [/marihuan|zioł|zielsk|thc|haszysz|konopi/,'marihuan'],[/nikotyn|papieros|e-?papier|vape|wap|snus|tyto/,'nikotyn'],
+ [/alkohol|pici|wódk|piw|win/,'alkohol'],[/lek|tablet|benzo|xanax|relanium|tramadol|kodein/,'lek'],
+ [/hazard|bukmach|kasyn|zakład|automat|poker|ruletk/,'hazard'],[/gry|gier|gra\b|gaming/,'gry'],[/internet|social|telefon|scroll/,'internet'],
+ [/zakup|shopping/,'zakup'],[/współuzal|wspoluzal|al-anon|ddA|dda/i,'współuzależ']];
+function subTips(names){const out=[];(names||[]).forEach(n=>{const low=String(n).toLowerCase();
+ SUB_SYN.forEach(([re,k])=>{if(re.test(low))SUB_TIPS[k].forEach(t=>{if(!out.includes(t))out.push(t)})})});return out}
 const shown={feelings:30,cravings:30,notes:30};
 const moreBtn=(k,len)=>len>shown[k]?`<button data-more="${k}">Pokaż starsze (${len-shown[k]})</button>`:'';
 let help=null,lastTip=null,waveTimer=null,breathTimer=null;
@@ -851,6 +1206,48 @@ function vPomoc(){
   ${m==='relapse'?(help.subs.length?S.addictions.filter(a=>help.subs.includes(a.name)):S.addictions).map(a=>`<button data-restart="${a.id}">Licz od dziś: ${esc(a.name)}</button>`).join(''):`<button class="primary" data-better="1">Jest mi lepiej</button>`}
   <button class="ghost" data-tab="dzis">Wróć do ekranu głównego</button></div>`;
 }
+
+/* ---------- podsumowanie dnia i przypomnienie ---------- */
+function realEntries(){return S.feelings.filter(x=>!x.ex).concat(S.cravings.filter(x=>!x.ex),S.notes.filter(x=>!x.ex))}
+function daySummary(k){
+ const F=S.feelings.filter(x=>!x.ex&&iso(new Date(x.at))===k),C=S.cravings.filter(x=>!x.ex&&iso(new Date(x.at))===k),N=S.notes.filter(x=>!x.ex&&iso(new Date(x.at))===k);
+ const m=dayMap()[k];return {F,C,N,cls:m?m.cls:null,maxC:Math.max(0,...C.map(c=>c.level)),used:C.some(c=>c.used),bil:N.some(n=>n.kind==='bilans'),good:F.some(f=>f.quick)};
+}
+function summaryCard(k){
+ const d=daySummary(k);
+ if(!d.F.length&&!d.C.length&&!d.N.length)return `<section class="card sumcard"><div class="label">Twój dzień</div><p>Dziś nic jeszcze nie zapisałeś. Jak minął dzień? Wystarczy jedno dotknięcie poniżej.</p></section>`;
+ const emos={};d.F.forEach(f=>f.emotions.forEach(e=>emos[e]=(emos[e]||0)+1));const top=Object.entries(emos).sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0]);
+ const rows=[];
+ if(d.F.length)rows.push(['Uczucia',`${d.F.length} ${d.F.length===1?'wpis':'wpisy'}${top.length?' · '+top.join(', '):''}`]);
+ if(d.C.length)rows.push(['Głód',`${d.C.length}× · najsilniejszy ${d.maxC}/10 · ${d.used?'był nawrót':'wszystkie przetrwane'}`]);
+ rows.push(['Bilans dnia',d.bil?'zapisany':'jeszcze nie']);
+ const msg=d.used?'Dzień był bardzo trudny. Najważniejsze, że to zapisałeś. Jutro porozmawiaj o tym ze sponsorem albo terapeutą.'
+  :d.cls==='hard'?'Ciężki dzień, a jednak go przetrwałeś. To jest siła.'
+  :d.cls==='mid'?'Było trudniej, ale dałeś radę. Każdy przetrwany głód wzmacnia.'
+  :'Spokojny, dobry dzień. Zapamiętaj go.';
+ const lbl=d.cls?DAY_CLS[d.cls][0]:'';
+ return `<section class="card sumcard"><div class="row between"><div class="label">Podsumowanie dnia</div>${lbl?`<span class="sumlbl"><span class="cday ${d.cls} sumdot"></span>${lbl}</span>`:''}</div>
+  <dl class="kv">${rows.map(r=>`<dt>${r[0]}</dt><dd>${esc(r[1])}</dd>`).join('')}</dl><p class="summsg">${msg}</p></section>`;
+}
+function nudgeText(){
+ const tk=iso(today()),h=new Date().getHours();const all=realEntries();if(!all.length)return '';
+ if(all.some(x=>iso(new Date(x.at))===tk))return '';
+ const last=all.map(x=>x.at).sort().pop();const gap=Math.round((today()-new Date(iso(new Date(last))+'T00:00'))/864e5);
+ if(gap<2&&h<12)return '';
+ return gap>=3?`${gap<5?'Minęły':'Minęło'} ${gap} dni od ostatniego wpisu. Nie szkodzi. Ważne, że jesteś. Dotknij buźkę, jak się dziś masz.`:'Dziś jeszcze nic nie zapisałeś. Wystarczy dotknąć buźkę.';
+}
+function nudgeCard(){
+ const tk=iso(today()),h=new Date().getHours();
+ const all=realEntries();if(!all.length)return '';
+ if(all.some(x=>iso(new Date(x.at))===tk))return '';
+ const last=all.map(x=>x.at).sort().pop();const gap=Math.round((today()-new Date(iso(new Date(last))+'T00:00'))/864e5);
+ if(gap<2&&h<12)return '';
+ const nm=S.name?', '+esc(S.name):'';
+ const txt=gap>=3?`${gap<5?'Minęły':'Minęło'} ${gap} dni od ostatniego wpisu. Nie szkodzi. Ważne, że jesteś. Jak się dziś masz?`:`Dziś jeszcze nic nie zapisałeś. Wystarczy jedno dotknięcie.`;
+ return `<section class="card nudge"><h2>Jak tam u Ciebie${nm}?</h2><p>${txt}</p>
+  <div class="nudgebtns"><button class="ok" data-good="1">Dobrze</button><button class="warn" data-helpfeel="1">Ciężko</button><button class="sos" data-helpnow="1">Mam głód</button></div>
+  <button class="ghost" data-go="uczucia" data-open="1">Zapisz, co czuję</button></section>`;
+}
 const goodToday=()=>S.feelings.some(f=>f.quick&&iso(new Date(f.at))===iso(today()));
 const GOOD_MSG=['Dobry dzień to cegła w nowym domu.','Zapamiętaj ten dzień. Przyda się, gdy przyjdzie gorszy.','Spokój też trzeba zauważać. Dobrze, że to robisz.','Tak wygląda trzeźwość, która działa.'];
 function tipCard(){
@@ -881,7 +1278,7 @@ function breathe(btn){
   breathTimer=setTimeout(step,s[2])};
  step();
 }
-const VIEWS={kalendarz:vKalendarz,kroki:vKroki,krok:vKrok,film:vFilm,prywatnosc:vPrywatnosc,dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
+const VIEWS={wiedza:vWiedza,ustawienia:vUstawienia,kalendarz:vKalendarz,kroki:vKroki,krok:vKrok,film:vFilm,prywatnosc:vPrywatnosc,dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
 let unlocked=false;
 try{unlocked=localStorage.getItem(KEY+'-ok')==='1'}catch(e){}
 if(S.unlocked)unlocked=true;
@@ -914,6 +1311,43 @@ async function pinKey(k){
   render();const d=document.querySelector('.pdots');if(d){d.classList.add('shake');setTimeout(()=>d.classList.remove('shake'),400)}toast('Nieprawidłowy PIN');return}
  render();
 }
+
+/* ---------- łatwa instalacja ---------- */
+let installEvt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;try{render()}catch(err){}});
+window.addEventListener('appinstalled',()=>{S.installSeen=true;save();try{render();toast('Zainstalowano. Ikona jest na ekranie telefonu.')}catch(err){}});
+const UA=navigator.userAgent||'';
+const inAppBrowser=()=>/FBAN|FBAV|FB_IAB|Instagram|WhatsApp|Line\/|Messenger|MicroMessenger|Snapchat|TikTok/i.test(UA);
+const isAndroid=()=>/android/i.test(UA);
+const isIOSChrome=()=>/CriOS/i.test(UA);
+const APP_URL=location.href.split('#')[0];
+function installScreen(){
+ const steps=(arr)=>`<ol class="steps big">${arr.map(x=>`<li>${x}</li>`).join('')}</ol>`;
+ if(inAppBrowser()){
+  const intent=isAndroid()?`<a class="btn primary as-btn" href="intent://${location.host}${location.pathname}#Intent;scheme=https;package=com.android.chrome;end">Otwórz w Chrome</a>`:'';
+  return `<h1>Otwórz w przeglądarce</h1>
+   <p class="muted">Ten link otworzył się w komunikatorze. Stąd nie da się dodać aplikacji do telefonu.</p>
+   ${intent}
+   ${steps(isIOS()?['Dotknij <b>⋯</b> albo <b>ikonę kompasu</b> w rogu ekranu.','Wybierz <b>Otwórz w Safari</b>.','Tam dodasz aplikację jednym gestem.']:['Dotknij <b>⋮</b> w prawym górnym rogu.','Wybierz <b>Otwórz w Chrome</b> albo <b>Otwórz w przeglądarce</b>.'])}
+   <button data-copy="${esc(APP_URL)}">Skopiuj link</button>`;
+ }
+ if(installEvt){
+  return `<h1>Zainstaluj aplikację</h1>
+   <p class="muted">Jedno dotknięcie i ikona pojawi się na ekranie telefonu. Twoje wpisy będą wtedy bezpieczne.</p>
+   <button class="primary huge" data-doinstall="1">${icon('gift','big')} Zainstaluj aplikację</button>`;
+ }
+ if(isIOS()){
+  const top=isIOSChrome();
+  return `<h1>Dodaj do ekranu głównego</h1>
+   <p class="muted">Trzy dotknięcia i aplikacja będzie miała swoją ikonę. Twoje wpisy będą wtedy bezpieczne.</p>
+   ${steps([`Dotknij <b>Udostępnij</b> ${icon('share')} ${top?'u góry ekranu, obok adresu':'na dole ekranu'}.${top?'':' Jeśli go nie widzisz, dotknij najpierw <b>⋯</b>.'}`,'Przewiń i wybierz <b>Do ekranu początkowego</b>.','Dotknij <b>Dodaj</b>.'])}
+   <div class="pointer ${top?'top':'bottom'}" aria-hidden="true">${top?`${icon('arrow','huge')}<span>Tutaj</span>`:`<span>Tutaj</span>${icon('arrow','huge')}`}</div>`;
+ }
+ return `<h1>Dodaj do ekranu głównego</h1>
+  <p class="muted">Wtedy otworzysz aplikację jednym dotknięciem, a Twoje wpisy będą bezpieczne.</p>
+  ${steps(['Dotknij <b>⋮</b> w prawym górnym rogu przeglądarki.','Wybierz <b>Zainstaluj aplikację</b> albo <b>Dodaj do ekranu głównego</b>.','Potwierdź.'])}
+  <div class="pointer topright" aria-hidden="true">${icon('arrow','huge')}<span>Tutaj</span></div>`;
+}
 function gate(){
  const app=document.getElementById('app'),tb=document.getElementById('tabs');
  if(new Date()>endDate()){
@@ -944,11 +1378,8 @@ function gate(){
   return true}
  if(!S.installSeen&&!isStandalone()&&!inFrame()){
   tb.innerHTML='';
-  app.innerHTML=`<section class="gate">${gImg()}
-   <h1>Dodaj aplikację do ekranu głównego</h1>
-   <p class="muted">Wtedy otworzysz ją jednym dotknięciem, a Twoje wpisy będą bezpieczne.</p>
-   ${isIOS()?`<ol class="steps"><li>Dotknij przycisku <b>Udostępnij</b> na dole Safari.</li><li>Wybierz <b>Do ekranu początkowego</b>.</li><li>Dotknij <b>Dodaj</b>.</li></ol>`:`<ol class="steps"><li>Dotknij <b>⋮</b> w prawym górnym rogu przeglądarki.</li><li>Wybierz <b>Zainstaluj aplikację</b> albo <b>Dodaj do ekranu głównego</b>.</li><li>Potwierdź.</li></ol>`}
-   <div class="stack"><button class="primary" data-installok="1">Gotowe</button></div>${credit()}</section>`;
+  app.innerHTML=`<section class="gate install">${gImg()}${installScreen()}
+   <div class="stack"><button class="ghost" data-installok="1">${installEvt||inAppBrowser()?'Pomiń na razie':'Zrobione'}</button></div>${credit()}</section>`;
   return true}
  const h=new Date().getHours();
  if(h>=4&&h<11&&S.lastMorning!==iso(today())){
@@ -959,15 +1390,30 @@ function gate(){
    ${quoteCard(true)}
    <div class="stack"><button class="primary" data-morning="1">Zaczynam dzień</button></div>${credit()}</section>`;
   return true}
+ const ek=iso(h<4?new Date(today().getTime()-864e5):today());
+ if((h>=19||h<2)&&S.lastEvening!==ek){
+  tb.innerHTML='';
+  app.innerHTML=`<section class="gate">${gImg()}
+   <h1>${'Dobry wieczór'+(S.name?', '+esc(S.name):'')}</h1>
+   <p class="muted">${sober()?`Kolejny, ${sober()}. dzień trzeźwości dobiega końca.`:'Dzień dobiega końca.'}</p>
+   ${summaryCard(ek)}
+   ${quoteCard(true,'e')}
+   <div class="stack"><button class="primary" data-evening="bilans">Zrób bilans dnia</button>
+   <button class="okbtn" data-evening="good">Dziś było dobrze</button>
+   <button class="ghost" data-evening="close">Dobranoc</button></div>${credit()}</section>`;
+  return true}
  return false}
+let lastTab=null;
 function render(openForm){
+ const keepY=(lastTab===tab)?scrollY:null;lastTab=tab;
  if(tab!=='prywatnosc'&&tab!=='film'&&gate())return;
  const ex=S.examples&&(S.feelings.concat(S.cravings,S.goals,S.notes).some(x=>x.ex)||['warning','strategies','reasons'].some(k=>S.plan[k].some(x=>SAMPLE_PLAN.includes(x))));
  document.getElementById('app').innerHTML=
   (ex&&!['pomoc','prywatnosc','film'].includes(tab)?`<div class="banner"><span>Widzisz przykładowe wpisy, żeby pokazać, jak działa dzienniczek.</span><button data-clear="1">Usuń przykłady</button></div>`:'')+
   (!storageOk?`<div class="banner" style="background:var(--alert-soft)">Ta przeglądarka nie pozwala zapisywać danych. Wpisy znikną po zamknięciu strony.</div>`:'')+
   VIEWS[tab]()+credit();
- document.getElementById('tabs').innerHTML=TABS.map(t=>`<button data-tab="${t[0]}"${t[0]===tab?' aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${t[2]}</svg>${t[1]}</button>`).join('');
+ document.getElementById('tabs').innerHTML=TABS.map(t=>`<button data-tab="${t[0]}"${navActive(t[0])?' aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${t[2]}</svg>${t[1]}</button>`).join('');
+ if(keepY!==null)scrollTo(0,keepY);
  if(openForm){const f=document.getElementById('new-form');if(f){f.open=true;const i=f.querySelector('input,textarea');i&&i.focus()}}
 }
 function go(t,open){if(breathTimer){clearTimeout(breathTimer);breathTimer=null}{const fv=document.getElementById('film-video');if(fv)try{fv.pause()}catch(e){}}tab=t;render(open);window.scrollTo(0,0)}
@@ -982,13 +1428,13 @@ document.addEventListener('submit',e=>{
   return toast('Nieprawidłowy kod. Zapytaj prowadzącego grupę.')}
  if(f.id==='f-name'){S.name=v(f,'first-name');save();render();return S.name?toast('Miło Cię poznać, '+S.name):null}
  if(f.id==='f-feel'){const emos=vals(f,'emo');const o=v(f,'emo-other');if(o)emos.push(o);
-  if(!emos.length)return toast('Wybierz lub wpisz uczucie');
+  if(!emos.length)return toast('Dotknij przynajmniej jedno uczucie');
   S.feelings.push({id:uid(),at:now,emotions:emos,level:+f.lvl.value,situation:v(f,'sit'),thoughts:v(f,'tho'),body:v(f,'bod'),did:v(f,'did'),need:v(f,'need')});
   const heavy=emos.filter(e=>HEAVY.includes(e));
   if(heavy.length&&+f.lvl.value>=6){save();toast('Zapisano wpis');return openHelp('feel',heavy,+f.lvl.value)}
   if(heavy.length)lastTip={mode:'feel',tags:heavy};
   toast('Zapisano wpis')}
- else if(f.id==='f-crave'){S.cravings.push({id:uid(),at:now,level:+f.clvl.value,subs:vals(f,'csub'),triggers:vals(f,'trg'),situation:v(f,'csit'),did:v(f,'cdid'),minutes:+v(f,'cmin')||0,used:f.querySelector('input[name=used]:checked').value==='tak'});
+ else if(f.id==='f-crave'){S.cravings.push({id:uid(),at:now,level:+f.clvl.value,subs:vals(f,'csub'),triggers:vals(f,'trg'),situation:v(f,'csit'),did:[...vals(f,'chelp'),v(f,'cdid')].filter(Boolean).join(', '),minutes:+v(f,'cmin')||0,used:f.querySelector('input[name=used]:checked').value==='tak'});
   {const used=f.querySelector('input[name=used]:checked').value==='tak',lv=+f.clvl.value,tr=vals(f,'trg');
    const sb=vals(f,'csub');
    if(used){save();return openHelp('relapse',tr,lv,sb)}
@@ -1002,6 +1448,8 @@ document.addEventListener('submit',e=>{
  else if(f.id==='f-addsub'){const n=v(f,'new-sub');if(!n)return toast('Wpisz lub wybierz uzależnienie');
   if(S.addictions.some(a=>a.name.toLowerCase()===n.toLowerCase()))return toast('To uzależnienie już jest na liście');
   S.addictions.push({id:uid(),name:n,start:v(f,'new-sub-date')});toast('Dodano: '+n)}
+ else if(f.id==='f-myq'){const t=v(f,'myq-text');if(!t)return toast('Wpisz treść sentencji');
+  S.myQuotes=S.myQuotes||[];S.myQuotes.push({id:uid(),text:t,src:v(f,'myq-src'),part:f.querySelector('input[name=myq-part]:checked').value});toast('Dodano sentencję')}
  else if(f.id==='f-group'){
   const file=f.querySelector('#grp-logo').files[0],nm=v(f,'grp-name');
   if(file){fitLogo(file).then(u=>{S.group={name:nm,logo:u};save();render();toast('Zapisano grupę')}).catch(()=>toast('Nie udało się wczytać obrazka. Wybierz plik JPG lub PNG.'));return}
@@ -1010,7 +1458,12 @@ document.addEventListener('submit',e=>{
  else if(f.id==='f-contact'){const n=v(f,'c-name'),p=v(f,'c-phone');if(!n||!p)return toast('Podaj imię i numer');S.plan.contacts.push({id:uid(),name:n,phone:p});toast('Dodano osobę')}
  else if(f.dataset.padd){const k=f.dataset.padd,x=v(f,'add-'+k);if(!x)return;S.plan[k].push(x);toast('Dodano')}
  else if(f.id==='f-goal'){const t=v(f,'g-text');if(!t)return toast('Wpisz treść celu');S.goals.push({id:uid(),at:now,text:t,from:f.querySelector('input[name=from]:checked').value,done:false});toast('Dodano cel')}
- else if(f.id==='f-bilans'){const b={good:v(f,'b-good'),hard:v(f,'b-hard'),grateful:v(f,'b-grat'),tomorrow:v(f,'b-tom')};if(!Object.values(b).some(Boolean))return toast('Wypełnij choć jedno pole');S.notes.push({id:uid(),at:now,kind:'bilans',...b});toast('Zapisano bilans')}
+ else if(f.id==='f-bilans'){const bm=f.querySelector('input[name=bmood]:checked');
+  const b={mood:bm?+bm.value:0,good:[...vals(f,'bhelp').map(x=>'pomogło: '+x),v(f,'b-good')].filter(Boolean).join(', '),hard:v(f,'b-hard'),grateful:[...vals(f,'bgrat'),v(f,'b-grat')].filter(Boolean).join(', '),tomorrow:v(f,'b-tom')};
+  if(!b.mood&&!b.good&&!b.hard&&!b.grateful&&!b.tomorrow)return toast('Dotknij buźkę albo coś z listy');
+  S.notes.push({id:uid(),at:now,kind:'bilans',...b});
+  if(b.mood)S.feelings.push({id:uid(),at:now,mood:b.mood,emotions:MOOD_EMO[b.mood].slice(),level:MOOD_LVL[b.mood],situation:'Bilans dnia',thoughts:'',body:'',did:'',need:'',checkin:true});
+  toast('Zapisano bilans. Dobranoc!')}
  else if(f.id==='f-note'){const t=v(f,'n-text');if(!t)return;S.notes.push({id:uid(),at:now,kind:'notatka',text:t});toast('Zapisano notatkę')}
  const top=!!lastTip;save();render();if(top)window.scrollTo(0,0);
 });
@@ -1019,6 +1472,10 @@ document.addEventListener('input',e=>{const t=e.target;
  if(t.dataset&&t.dataset.sq!==undefined){const d=stepData(+t.dataset.sq);d.answers[+t.dataset.k]=t.value;d.updated=new Date().toISOString();
   if(!d.status&&t.value.trim())d.status='praca';clearTimeout(sqTimer);sqTimer=setTimeout(save,600)}});
 document.addEventListener('change',e=>{
+ if(e.target.name==='ciemo'||e.target.name==='citrg'){const f=S.feelings.find(x=>x.id===S.ciOpen);if(f){
+   const box=e.target.closest('.ciopen');const em=[...box.querySelectorAll('input[name=ciemo]:checked')].map(x=>x.value);
+   f.emotions=em.length?em:MOOD_EMO[f.mood].slice();f.tags=[...box.querySelectorAll('input[name=citrg]:checked')].map(x=>x.value);
+   const heavy=f.emotions.filter(x=>HEAVY.includes(x));if(heavy.length&&f.mood<=2)f.level=Math.max(f.level,7);save()}return}
  if(e.target.dataset&&e.target.dataset.stst!==undefined){const d=stepData(+e.target.dataset.stst);d.status=e.target.value;d.updated=new Date().toISOString();save();
   toast(d.status==='done'?'Gratulacje! Krok ukończony.':'Zapisano status');if(d.status==='done')setTimeout(()=>render(),300);return}
  const t=e.target;
@@ -1029,6 +1486,12 @@ document.addEventListener('click',e=>{
  const b=e.target.closest('button,input[type=checkbox][data-gtog]');if(!b)return;
  const d=b.dataset;
  if(d.tab)return go(d.tab);
+ if(d.mood){const n=+d.mood;const e={id:uid(),at:new Date().toISOString(),mood:n,emotions:MOOD_EMO[n].slice(),level:MOOD_LVL[n],situation:'',thoughts:'',body:'',did:'',need:'',checkin:true,tags:[]};
+  S.feelings.push(e);S.ciOpen=e.id;save();
+  if(n===1){toast('Zapisano. Jestem z Tobą.');return openHelp('feel',['smutek'],9)}
+  render();return toast(n>=4?'Zapisano. Dobrze to słyszeć!':n===3?'Zapisano. Dzięki, że dbasz o siebie.':'Zapisano. Może jedna z podpowiedzi pomoże?')}
+ if(d.ciclose){S.ciOpen=null;save();return render()}
+ if(d.lvlset){const box=b.closest('.lvlpick');const val=+d.v;box.querySelector('input').value=val;box.querySelectorAll('.lv').forEach((x,i)=>x.classList.toggle('on',i<val));return}
  if(d.good){
   if(!goodToday())S.feelings.push({id:uid(),at:new Date().toISOString(),emotions:['spokój'],level:2,situation:'Szybki wpis: dziś jest dobrze',thoughts:'',body:'',did:'',need:'',quick:true});
   save();render();return toast(GOOD_MSG[Math.floor(Math.random()*GOOD_MSG.length)])}
@@ -1046,6 +1509,7 @@ document.addEventListener('click',e=>{
  if(d.calmonth!==undefined){calM=+d.calmonth;calMode='m';calDay=null;return render()}
  if(d.more){shown[d.more]+=30;const y=scrollY;render();scrollTo(0,y);return}
  if(d.step!==undefined){stepIdx=+d.step;return go('krok')}
+ if(d.admain){const i=S.addictions.findIndex(x=>x.id===d.admain);if(i>0){const [a]=S.addictions.splice(i,1);S.addictions.unshift(a);save();render();toast('Główne: '+a.name)}return}
  if(d.grpreset){S.group={name:'',logo:''};save();render();return toast('Przywrócono '+DEF_GROUP)}
  if(d.helpnow)return openHelp('crave',[],0);
  if(d.helpfeel)return openHelp('feel',[],0);
@@ -1055,8 +1519,13 @@ document.addEventListener('click',e=>{
  if(d.restart){const a=S.addictions.find(x=>x.id===d.restart);if(a)a.start=iso(today());save();toast('Nowy start. Każdy dzień się liczy.');help=null;return go('dzis')}
  if(b.id==='breath-btn')return breathe(b);
  if(d.skipname){S.name='';save();return render()}
+ if(d.doinstall){if(!installEvt)return;installEvt.prompt();installEvt.userChoice.then(r=>{installEvt=null;if(r&&r.outcome==='accepted'){S.installSeen=true;save()}render()}).catch(()=>{});return}
+ if(d.reinstall){S.installSeen=false;save();return render()}
  if(d.installok){S.installSeen=true;save();return render()}
  if(d.morning){S.lastMorning=iso(today());save();return go('dzis')}
+ if(d.evening){const hh=new Date().getHours();S.lastEvening=iso(hh<4?new Date(today().getTime()-864e5):today());
+  if(d.evening==='good'&&!goodToday())S.feelings.push({id:uid(),at:new Date().toISOString(),emotions:['spokój'],level:2,situation:'Szybki wpis: dziś jest dobrze',thoughts:'',body:'',did:'',need:'',quick:true});
+  save();if(d.evening==='bilans')return go('bilans',true);if(d.evening==='good'){go('dzis');return toast('Zapisane. Dobranoc!')}return go('dzis')}
  if(d.go){go(d.go,!!d.open);if(d.find){const el=document.getElementById('finder');el&&el.scrollIntoView()}return}
  if(b.id==='use-geo'){
   const fail=()=>toast('Lokalizacja niedostępna. Wpisz miejscowość.');
@@ -1068,13 +1537,14 @@ document.addEventListener('click',e=>{
  if(d.gtog){const g=S.goals.find(x=>x.id===d.gtog);g.done=b.checked;save();return setTimeout(render,150)}
  if(d.clear){['feelings','cravings','goals','notes'].forEach(k=>S[k]=S[k].filter(x=>!x.ex));S.plan.contacts=S.plan.contacts.filter(c=>!/przykład/.test(c.name));['warning','strategies','reasons'].forEach(k=>S.plan[k]=S.plan[k].filter(x=>!SAMPLE_PLAN.includes(x)));S.examples=false;save();render();return toast('Usunięto przykłady')}
  // dwustopniowe potwierdzenie usuwania
- if(d.del||d.pdel||d.cdel||d.adreset||d.addel){
+ if(d.del||d.pdel||d.cdel||d.adreset||d.addel||d.qdel){
   if(!b.classList.contains('armed')){b.classList.add('armed');const old=b.textContent;b.textContent='Na pewno?';setTimeout(()=>{if(b.isConnected){b.classList.remove('armed');b.textContent=old}},3000);return}
   if(d.del)S[d.del]=S[d.del].filter(x=>x.id!==d.id);
   if(d.pdel)S.plan[d.pdel].splice(+d.i,1);
   if(d.cdel)S.plan.contacts=S.plan.contacts.filter(c=>c.id!==d.cdel);
   if(d.adreset){const a=S.addictions.find(x=>x.id===d.adreset);if(a)a.start=iso(today());toast('Licznik liczy od dziś. Każdy dzień się liczy.')}
   if(d.addel){S.addictions=S.addictions.filter(x=>x.id!==d.addel)}
+  if(d.qdel){S.myQuotes=(S.myQuotes||[]).filter(x=>x.id!==d.qdel)}
   save();render();return}
  if(b.id==='restore-btn'){try{const o=JSON.parse(document.getElementById('restore-txt').value);if(!o||!Array.isArray(o.feelings))throw 0;S=o;normalize();applyMeta();save();render();toast('Przywrócono dane')}catch(err){toast('To nie wygląda na kopię zapasową z tej aplikacji')}}
 });
