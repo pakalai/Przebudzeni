@@ -335,6 +335,34 @@ details.more[open] summary{margin-bottom:10px}
 .goalcard{border-left:6px solid var(--amber)}
 .goalcard .goaltext{font-size:1.1rem;font-weight:700;margin:6px 0 2px}
 .goalcard .row{margin-top:10px}
+.gainbox{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;text-align:left;margin-top:12px;background:var(--lake-soft);border:0;border-radius:14px;padding:12px 14px;font-weight:400;color:var(--ink)}
+.gainbox .label{display:flex;gap:6px;align-items:center;color:var(--lake)}
+.gainbox .gtitle{font-weight:700;line-height:1.35}.gainbox .gtitle .ic{width:16px;height:16px;vertical-align:-2px;color:var(--lake)}
+.gainbox .small{color:var(--muted)}
+.gainbox.fresh{background:linear-gradient(135deg,var(--amber-soft),var(--lake-soft));box-shadow:0 0 0 2px var(--amber) inset}
+.gainlink{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:linear-gradient(135deg,var(--lake-soft),var(--amber-soft));border:0;border-radius:16px;padding:16px;margin-bottom:12px;color:var(--ink)}
+.gainlink span{display:flex;flex-direction:column;gap:2px}.gainlink small{color:var(--muted);font-weight:400}.gainlink .ic{color:var(--lake);flex:none}
+.gainhero .bigday{font-family:var(--display);font-size:2.6rem;font-weight:800;color:var(--lake);line-height:1}.gainhero .bigday small{font-size:1rem;color:var(--muted)}
+.timeline{display:flex;flex-direction:column;gap:0;margin:8px 0 14px;position:relative}
+.gstep{display:flex;gap:12px;position:relative;padding-bottom:14px}
+.gstep::before{content:"";position:absolute;left:13px;top:28px;bottom:0;width:2px;background:var(--line)}
+.gstep:last-child::before{display:none}
+.gdot{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;z-index:1}
+.gdot .ic{width:16px;height:16px;color:#fff}
+.gstep.done .gdot,.gstep.now .gdot{background:var(--lake);border-color:var(--lake)}
+.gstep.now .gdot{box-shadow:0 0 0 5px var(--lake-soft)}
+.gbody{flex:1;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.gstep.now .gbody{border-color:var(--lake);box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.gstep.next .gbody{opacity:.62}
+.gitem{display:flex;flex-direction:column;gap:4px;margin-top:10px}.gitem p{margin:0;line-height:1.45}
+.gchip{display:inline-flex;align-items:center;gap:5px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--lake)}
+.gchip .ic{width:15px;height:15px}.gchip.g-uroda{color:#b5568a}.gchip.g-mozg{color:#2f6f8f}.gchip.g-zycie{color:var(--amber)}
+.gwarn{background:var(--alert-soft);border-radius:10px;padding:8px 10px;margin:10px 0 0}
+.gsrc{font-size:.75rem;color:var(--muted);margin:10px 0 0;line-height:1.4}
+.emoq{margin:6px 0 12px;padding:12px 14px;background:var(--amber-soft);border-radius:12px}
+.emoq .label{margin-bottom:4px}.emoq blockquote{margin:0;font-family:var(--display);font-weight:700;font-size:1.05rem;line-height:1.4}
+.emoq figcaption{font-size:.8rem;color:var(--muted);margin-top:6px}.emoq figcaption::before{content:"— "}
+.sugcard.good{border-left-color:var(--amber)}
 .empty{color:var(--muted);font-size:.92rem;padding:12px 0}
 @media (prefers-reduced-motion:no-preference){.toast{animation:up .2s ease-out}@keyframes up{from{opacity:.4;transform:translate(-50%,8px)}}}
 </style>
@@ -348,7 +376,7 @@ details.more[open] summary{margin-bottom:10px}
 /* ===== USTAWIENIA TESTU – zmień tutaj ===== */
 const TEST_END='2027-10-14';      // ostatni dzień testów (RRRR-MM-DD)
 const ACCESS_CODE='PRZEBUDZENI';  // kod dla grupy; pusty '' = bez kodu
-const APP_VERSION='3.1.1';
+const APP_VERSION='3.1.3';
 const FEATURE_STEPS=false;   // 12 Kroków: true = włączone, false = ukryte (dane zostają)
 const APP_AUTHOR='StoneMatic';
 /* ============================================ */
@@ -451,7 +479,24 @@ const MORNING_Q=[
  ["Kto ma po co żyć, zniesie prawie każde jak.", "Friedrich Nietzsche, Zmierzch bożyszcz"],
  ["Zapisz w sercu, że każdy dzień jest najlepszym dniem w roku.", "Ralph Waldo Emerson"],
  ["Kto śmiało idzie w stronę swoich marzeń i próbuje żyć życiem, które sobie wyobraził, osiągnie więcej, niż się spodziewa.", "Henry David Thoreau, Walden"],
- ["Uprawiajmy nasz ogród.", "Wolter, Kandyd"]
+ ["Uprawiajmy nasz ogród.", "Wolter, Kandyd"],
+ ["Twój czas jest ograniczony, więc nie marnuj go, żyjąc cudzym życiem.", "Steve Jobs, przemówienie na Uniwersytecie Stanforda (2005)"],
+ ["Wszyscy myślą o zmienianiu świata, ale nikt nie myśli o zmienianiu siebie.", "Lew Tołstoj"],
+ ["Człowiekowi można odebrać wszystko poza jednym: ostatnią z ludzkich wolności, czyli wyborem własnej postawy wobec okoliczności.", "Viktor Frankl, „Człowiek w poszukiwaniu sensu”"],
+ ["Nie masz wpływu na wszystko, co Cię spotyka, ale możesz zdecydować, że Cię to nie umniejszy.", "Maya Angelou, „Letter to My Daughter”"],
+ ["Z ludźmi jest jak z jazdą na rowerze: tylko w ruchu łatwo utrzymać równowagę.", "Albert Einstein, list do syna (1930)"],
+ ["Odwaga to nie brak strachu, ale zwycięstwo nad nim.", "Nelson Mandela, „Długi marsz ku wolności”"],
+ ["Nie lękajcie się!", "Jan Paweł II (1978)"],
+ ["Musicie od siebie wymagać, nawet gdyby inni od was nie wymagali.", "Jan Paweł II, Jasna Góra (1983)"],
+ ["Łańcuchy nawyku są zbyt lekkie, by je poczuć, dopóki nie staną się zbyt ciężkie, by je zerwać.", "Samuel Johnson (1748), powtarzał Warren Buffett"],
+ ["Być zwyciężonym i nie ulec – to zwycięstwo.", "Józef Piłsudski"],
+ ["Wiele razy w życiu zawiodłem. I właśnie dlatego odnoszę sukcesy.", "Michael Jordan (1997)"],
+ ["Każda nieudana próba to krok bliżej sukcesu.", "Denzel Washington, przemówienie na Uniwersytecie Pensylwanii (2011)"],
+ ["Przyszłość ludzkości idzie przez rodzinę.", "Jan Paweł II, „Familiaris consortio” (1981)"],
+ ["Sami możemy zrobić tak niewiele, razem możemy zrobić tak wiele.", "Helen Keller"],
+ ["Praca to miłość, która stała się widzialna.", "Khalil Gibran, „Prorok” (1923)"],
+ ["Jedynym sposobem na wielką pracę jest kochać to, co się robi.", "Steve Jobs, przemówienie na Uniwersytecie Stanforda (2005)"],
+ ["Sukces to kiepski nauczyciel. Wmawia mądrym ludziom, że nie mogą przegrać.", "Bill Gates, „Droga ku przyszłości” (1995)"]
 ];
 const EVENING_Q=[
  ["Dzień się kończy. Jeśli był trzeźwy, zrobiłeś dziś najważniejsze.", ""],
@@ -512,7 +557,11 @@ const EVENING_Q=[
  ["Najwyższe dobro jest jak woda. Daje życie wszystkiemu i nie walczy.", "Lao Tzu, Tao Te Ching"],
  ["Uczyć się i w porę powtarzać to, czego się nauczyło, czyż to nie radość?", "Konfucjusz, Dialogi konfucjańskie"],
  ["Nienawiść nigdy nie ustaje dzięki nienawiści. Ustaje dzięki życzliwości.", "Budda, Dhammapada"],
- ["Nie porzucaj nadzieje, jakoć się kolwiek dzieje.", "Jan Kochanowski, Pieśni"]
+ ["Nie porzucaj nadzieje, jakoć się kolwiek dzieje.", "Jan Kochanowski, Pieśni"],
+ ["Wasze dzieci nie są waszymi dziećmi. Są synami i córkami tęsknoty Życia za samym sobą.", "Khalil Gibran, „Prorok” (1923)"],
+ ["Słabi nigdy nie przebaczają. Przebaczenie to cecha silnych.", "Mahatma Gandhi"],
+ ["Ciemność nie wypędzi ciemności, potrafi to tylko światło.", "Martin Luther King, „Siła miłości” (1963)"],
+ ["Uczucia przychodzą i odchodzą jak chmury na wietrznym niebie. Świadomy oddech jest moją kotwicą.", "Thich Nhat Hanh"]
 ];
 const HARD_Q=[
  ["Upadek to nie koniec drogi. To miejsce, z którego wstajesz.", ""],
@@ -538,7 +587,11 @@ const HARD_Q=[
  ["Póki życia, póty nadziei.", "Cyceron, Listy do Attyka"],
  ["To, co stoi na drodze, staje się drogą. Także ten trudny dzień.", "Marek Aureliusz, z dopiskiem"],
  ["Nie porzucaj nadzieje, jakoć się kolwiek dzieje.", "Jan Kochanowski, Pieśni"],
- ["Kto ma po co żyć, zniesie prawie każde jak. Przypomnij sobie swoje po co.", "Friedrich Nietzsche, z dopiskiem"]
+ ["Kto ma po co żyć, zniesie prawie każde jak. Przypomnij sobie swoje po co.", "Friedrich Nietzsche, z dopiskiem"],
+ ["Świat łamie każdego, a potem wielu jest silniejszych w miejscach złamań.", "Ernest Hemingway, „Pożegnanie z bronią” (1929)"],
+ ["Choć świat jest pełen cierpienia, jest też pełen jego przezwyciężania.", "Helen Keller, „Optymizm” (1903)"],
+ ["Jeśli nie możesz latać, biegnij. Jeśli nie możesz biec, idź. Jeśli nie możesz iść, czołgaj się. Ale cokolwiek robisz, posuwaj się naprzód.", "Martin Luther King (1967)"],
+ ["Być zwyciężonym i nie ulec – to zwycięstwo.", "Józef Piłsudski"]
 ];
 function isHardTime(){try{const m=dayMap(),t=iso(today()),y=iso(new Date(today().getTime()-864e5));
  const bad=k=>m[k]&&(m[k].cls==='hard'||m[k].cls==='relapse');return bad(t)||bad(y)||hardDays()}catch(e){return false}}
@@ -678,12 +731,13 @@ function vWiedza(){
   ['drop','Odstawienie: kiedy do lekarza','Nagłe odstawienie alkoholu po długim piciu, a także leków uspokajających, może być niebezpieczne. Drżenie, poty, kołatanie serca, omamy albo drgawki wymagają pilnej pomocy: dzwoń 112. Leków nie odstawiaj sam, rób to z lekarzem.']
  ];
  return `<header class="top"><h1>Wiedza</h1></header>
+ <button class="gainlink" data-gains="${(S.addictions.find(x=>x.start)||{}).id||''}">${icon('star','big')}<span><b>Zyski z trzeźwości</b><small>Co dzieje się teraz w Twoim ciele, mózgu i z urodą. Na podstawie badań.</small></span></button>
  <p class="muted">Krótko i po ludzku o tym, co dzieje się w trzeźwieniu. Dotknij, żeby rozwinąć.</p>
  <div class="stack">${W.map(([ic,t,d],i)=>`<details class="wcard"${i===0?' open':''}><summary>${icon(ic,'big')}<b>${t}</b></summary><p>${d}</p></details>`).join('')}</div>
  <section class="card"><div class="row" style="gap:10px"><button data-film="1">${icon('play')} Film: jak korzystać</button><button data-privacy="1">${icon('lock')} Prywatność</button>${!isStandalone()&&!inFrame()?`<button data-reinstall="1">${icon('gift')} Dodaj do ekranu</button>`:''}</div></section>
  <p class="small muted">Wiedza ogólna, nie zastępuje porady lekarza ani terapeuty.</p>`;
 }
-const NAVGROUP={polec:'polec',uczucia:'uczucia',glod:'uczucia',bilans:'uczucia',kalendarz:'kalendarz',cele:'kalendarz',pomoc:'plan',plan:'plan',dzis:'dzis',wiedza:'wiedza',ustawienia:'dzis'};
+const NAVGROUP={zyski:'wiedza',polec:'polec',uczucia:'uczucia',glod:'uczucia',bilans:'uczucia',kalendarz:'kalendarz',cele:'kalendarz',pomoc:'plan',plan:'plan',dzis:'dzis',wiedza:'wiedza',ustawienia:'dzis'};
 const navActive=k=>(NAVGROUP[tab]||tab)===k;
 const segJ=cur=>`<div class="seg jseg">${[['uczucia','Uczucia','heart'],['glod','Głód','flame'],['bilans','Bilans','moon']].map(([k,l,ic])=>`<button class="${cur===k?'on':''}" data-tab="${k}">${icon(ic)}${l}</button>`).join('')}</div>`;
 const segP=cur=>`<div class="seg jseg">${[['kalendarz','Kalendarz','cal'],['cele','Cele','target']].map(([k,l,ic])=>`<button class="${cur===k?'on':''}" data-tab="${k}">${icon(ic)}${l}</button>`).join('')}</div>`;
@@ -970,16 +1024,38 @@ function pickSugg(ci){
   let sc=(want[cat]||0)+Math.min(boost[cat]||0,3)-(recent.includes(id)?2:0)+(hashS(ci.id+id)%100)/400;
   if(sc>bs){bs=sc;best=x}}
  return best}
+
+const EMO_Q={
+ 'spokój':['Nigdzie człowiek nie znajdzie spokojniejszego schronienia niż we własnej duszy.','Marek Aureliusz, „Rozmyślania”'],
+ 'radość':['Prawdziwa radość to rzecz poważna.','Seneka, „Listy do Lucyliusza”'],
+ 'wdzięczność':['Wdzięczność jest nie tylko największą z cnót, ale matką wszystkich pozostałych.','Cyceron, „W obronie Plancjusza”'],
+ 'nadzieja':['Musimy godzić się na skończone rozczarowania, ale nigdy nie tracić nieskończonej nadziei.','Martin Luther King'],
+ 'smutek':['Im głębiej smutek wydrąży twoje wnętrze, tym więcej radości możesz w sobie pomieścić.','Khalil Gibran, „Prorok” (1923)'],
+ 'złość':['Każdy potrafi się rozgniewać, to łatwe. Ale gniewać się na właściwą osobę, we właściwej mierze, we właściwym czasie i we właściwy sposób – to już nie jest łatwe.','Arystoteles, „Etyka nikomachejska”'],
+ 'lęk':['Odwaga to nie brak strachu, ale zwycięstwo nad nim.','Nelson Mandela, „Długi marsz ku wolności”'],
+ 'wstyd':['Wszystko, co ludzkie, da się nazwać, a to, co da się nazwać, łatwiej udźwignąć.','Fred Rogers'],
+ 'poczucie winy':['Słabi nigdy nie przebaczają. Przebaczenie to cecha silnych. Także przebaczenie sobie.','Mahatma Gandhi, z dopiskiem'],
+ 'samotność':['Sami możemy zrobić tak niewiele, razem możemy zrobić tak wiele.','Helen Keller'],
+ 'nuda':['Z ludźmi jest jak z jazdą na rowerze: tylko w ruchu łatwo utrzymać równowagę.','Albert Einstein, list do syna (1930)'],
+ 'zmęczenie':['Jeśli nie możesz biec, idź. Jeśli nie możesz iść, czołgaj się. Ale cokolwiek robisz, posuwaj się naprzód.','Martin Luther King (1967)'],
+ 'napięcie':['Uczucia przychodzą i odchodzą jak chmury na wietrznym niebie. Świadomy oddech jest moją kotwicą.','Thich Nhat Hanh'],
+ 'żal':['Najpiękniejsi ludzie, jakich znamy, to ci, którzy poznali porażkę, cierpienie, walkę i stratę, i znaleźli drogę wyjścia z głębin.','Elisabeth Kübler-Ross (1975)']
+};
+function emoQuote(emos){const e=(emos||[]).find(x=>EMO_Q[x]);if(!e)return '';const q=EMO_Q[e];
+ return `<figure class="emoq"><div class="label">Na Twoje uczucie: ${esc(e)}</div><blockquote>${esc(q[0])}</blockquote><figcaption>${esc(q[1])}</figcaption></figure>`}
 function suggCard(){
  const tk=iso(today());
  const ci=S.feelings.filter(f=>f.checkin&&iso(new Date(f.at))===tk).sort((a,b)=>b.at.localeCompare(a.at))[0];
- if(!ci||!ci.mood||ci.mood>3)return '';
+ if(!ci||!ci.mood)return '';
+ const eq=ci.emoPicked?emoQuote(ci.emotions):'';
+ if(ci.mood>3){if(!eq||(S.sugState&&S.sugState.for===ci.id&&S.sugState.closed))return '';
+  return `<section class="card sugcard good">${eq}<button class="linkbtn small" data-sugclose="1">Zamknij</button></section>`}
  const st=S.sugState||{};
  if(st.for===ci.id&&st.closed)return '';
  if(st.for===ci.id&&st.done)return `<section class="card sugcard"><div class="label">${icon('heart')} Propozycja dla Ciebie</div><p>Trzymam kciuki. Za jakiś czas dotknij buźki i daj znać, jak się czujesz.</p><button class="linkbtn" data-sugclose="1">Zamknij</button></section>`;
  let x=pickSugg(ci);if(!x&&st.for===ci.id&&(st.skip||[]).length){st.skip=[];x=pickSugg(ci)}if(!x)return '';
  return `<section class="card sugcard"><div class="label">${icon('heart')} Propozycja dla Ciebie</div>
-  <p class="sugtext">${esc(x[2])}</p>
+  ${eq}<p class="sugtext">${esc(x[2])}</p>
   <div class="row"><button class="primary" data-sugdo="${x[0]}">Spróbuję</button><button data-sugnext="${x[0]}">Inna propozycja</button></div>
   <button class="linkbtn small" data-sugclose="1">Nie teraz</button></section>`;
 }
@@ -1318,6 +1394,94 @@ function ringSvg(a,d){
  frac=Math.max(0.02,Math.min(1,frac));const R=52,C=2*Math.PI*R;
  return `<svg class="ring" viewBox="0 0 120 120" role="img" aria-label="Postęp do następnego celu: ${Math.round(frac*100)}%"><circle cx="60" cy="60" r="${R}" class="rbg"/><circle cx="60" cy="60" r="${R}" class="rfg" stroke-dasharray="${(C*frac).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 60 60)"/><text x="60" y="58" class="rt1">${d}</text><text x="60" y="78" class="rt2">${d===1?'dzień':'dni'}</text></svg>`;
 }
+
+/* ---------- zyski z trzeźwości: etapy oparte na badaniach ---------- */
+const GCAT={cialo:['heart','Ciało'],mozg:['bulb','Mózg'],uroda:['star','Uroda'],zycie:['sun','Samopoczucie']};
+const SRC={unsw:'UNSW Sydney, przegląd badań (2025)',bmj:'Mehta i wsp., BMJ Open (2018)',mri:'van Eijk i wsp., Alcoholism: Clinical & Experimental Research (2013)',
+ ros:'Li i wsp., Journal of the American Academy of Dermatology (2017), badanie 82 tys. kobiet',who:'Światowa Organizacja Zdrowia (WHO)',nhs:'NHS (brytyjska służba zdrowia)',
+ volk:'Volkow i wsp., Journal of Neuroscience (2001)',harv:'Schuster i wsp., Journal of Clinical Psychiatry (2018)',klin:'wiedza kliniczna o odstawieniu'};
+const GAINS={
+ alkohol:[
+  {d:1,t:'Pierwsza doba',i:[['cialo','Alkohol opuszcza organizm w ciągu około doby. Ciało zaczyna się nawadniać, a poziom cukru we krwi stabilizuje się.']],w:'Przy długim piciu mogą pojawić się objawy odstawienia. Drżenie, omamy albo drgawki to sygnał, żeby od razu dzwonić 112.',s:['unsw']},
+  {d:3,t:'3 dni',i:[['cialo','U większości osób najtrudniejsze objawy odstawienia słabną w ciągu kilku dni.'],['zycie','Poranki bez kaca: więcej jasności i sił od rana.']],s:['unsw']},
+  {d:7,t:'Tydzień',i:[['zycie','Sen staje się głębszy i daje więcej odpoczynku.'],['uroda','Skóra jest lepiej nawilżona, a twarz i okolice oczu mniej opuchnięte.'],['cialo','Wątroba zaczyna się regenerować. U osób pijących umiarkowanie już tydzień może zmniejszyć jej stłuszczenie.']],s:['unsw']},
+  {d:14,t:'2 tygodnie',i:[['mozg','Badanie rezonansem magnetycznym pokazało, że już po 2 tygodniach abstynencji mózg zaczyna odbudowywać utraconą objętość istoty szarej.'],['cialo','Mniej zgagi, wzdęć i kłopotów z żołądkiem.']],s:['mri','unsw']},
+  {d:30,t:'Miesiąc',i:[['cialo','W badaniu opublikowanym w BMJ Open miesiąc bez alkoholu obniżył insulinooporność średnio o około 25%, a także ciśnienie krwi. Spadły waga i czynniki wzrostu związane z nowotworami.'],['uroda','Mniej zaczerwienienia i opuchlizny, zdrowszy koloryt. Mniej pustych kalorii to często mniej kilogramów.'],['zycie','Lepszy nastrój, więcej energii i pewności siebie.']],s:['bmj','unsw']},
+  {d:90,t:'3 miesiące',i:[['mozg','Koncentracja, pamięć i myślenie wyraźnie się poprawiają, także u osób, które piły dużo.'],['uroda','Alkohol wiąże się z trądzikiem różowatym (rumieniem twarzy), szczególnie u kobiet. Bez niego skóra ma szansę się wyciszyć.'],['zycie','Nowe nawyki stają się Twoje.']],s:['unsw','ros']},
+  {d:180,t:'Pół roku',i:[['cialo','U osób pijących umiarkowanie uszkodzenia wątroby mogą do tego czasu całkowicie się cofnąć. Organizm lepiej broni się przed infekcjami.']],s:['unsw']},
+  {d:365,t:'Rok',i:[['cialo','Spada ryzyko chorób serca, udaru, cukrzycy typu 2 i kilku nowotworów. Niższe ciśnienie chroni serce, nerki i oczy.'],['zycie','Rok trzeźwości to ogromna zmiana: w zdrowiu, relacjach i pieniądzach.']],s:['unsw','who']}],
+ nikotyn:[
+  {d:1,t:'Pierwsza doba',i:[['cialo','Już po 20 minutach spadają tętno i ciśnienie. Po 12 godzinach poziom tlenku węgla we krwi wraca do normy.']],s:['who']},
+  {d:2,t:'2 dni',i:[['uroda','Wracają smak i węch. Jedzenie znowu smakuje.']],s:['nhs']},
+  {d:14,t:'2 tygodnie',i:[['cialo','Poprawia się krążenie, a płuca pracują sprawniej. Ten proces trwa od 2 do 12 tygodni.'],['uroda','Lepsze ukrwienie to zdrowszy koloryt skóry.']],s:['who']},
+  {d:90,t:'3 miesiące',i:[['cialo','Mniej kaszlu i zadyszki. Poprawa trwa od 1 do 9 miesięcy.']],s:['who']},
+  {d:365,t:'Rok',i:[['cialo','Ryzyko choroby wieńcowej jest o połowę mniejsze niż u osoby palącej.']],s:['who']},
+  {d:1825,t:'5 lat',i:[['cialo','Ryzyko udaru zbliża się do ryzyka osoby niepalącej (od 5 do 15 lat).']],s:['who']},
+  {d:3650,t:'10 lat',i:[['cialo','Ryzyko raka płuc spada o połowę. Maleje też ryzyko nowotworów jamy ustnej, gardła, przełyku, pęcherza, szyjki macicy i trzustki.']],s:['who']},
+  {d:5475,t:'15 lat',i:[['cialo','Ryzyko choroby wieńcowej jest takie jak u osoby, która nigdy nie paliła.']],s:['who']}],
+ stym:[
+  {d:1,t:'Pierwsze dni',i:[['cialo','Organizm odsypia i nadrabia: dużo snu i powrót apetytu to normalne.'],['zycie','Zmęczenie i obniżony nastrój na początku znaczą, że mózg się regeneruje, a nie że tak już zostanie.']],w:'Jeśli pojawią się myśli o zrobieniu sobie krzywdy, dzwoń od razu: 116 123 albo 112.',s:['klin']},
+  {d:10,t:'10 dni',i:[['cialo','Najostrzejsza faza odstawienia zwykle mija po 7–10 dniach. Sen i apetyt stopniowo się wyrównują.']],s:['klin']},
+  {d:30,t:'Miesiąc',i:[['uroda','Skóra ma czas się goić, a waga wraca do zdrowej. Regularne jedzenie i sen widać w lustrze.'],['zycie','Głód substancji słabnie, choć może jeszcze wracać falami.']],s:['klin']},
+  {d:90,t:'3 miesiące',i:[['mozg','Myślenie staje się jaśniejsze. Radość z codziennych rzeczy wraca stopniowo. Ten proces potrzebuje czasu.']],s:['klin']},
+  {d:365,t:'Rok',i:[['mozg','Badanie mózgu pokazało, że po 12–17 miesiącach abstynencji transportery dopaminy, ważne dla odczuwania radości, odbudowały się o około 16–19%. Mózg potrafi się naprawiać.']],s:['volk']}],
+ marihuan:[
+  {d:7,t:'Tydzień',i:[['mozg','Pamięć i uczenie się poprawiają się już w pierwszym tygodniu bez marihuany.']],s:['harv']},
+  {d:14,t:'2 tygodnie',i:[['zycie','Drażliwość, niepokój i kłopoty ze snem z okresu odstawienia zwykle słabną w ciągu 1–2 tygodni.']],s:['klin']},
+  {d:30,t:'Miesiąc',i:[['cialo','Sen się stabilizuje. Jeśli marihuana była palona, płuca mniej kaszlą.'],['uroda','Więcej energii i lepszy sen widać po twarzy.']],s:['klin']},
+  {d:90,t:'3 miesiące',i:[['mozg','Wracają motywacja i koncentracja. Łatwiej budować nowe nawyki.']],s:['klin']}],
+ inne:[
+  {d:7,t:'Tydzień',i:[['zycie','Napięcie zaczyna opadać, a sen się poprawia.']],s:['klin']},
+  {d:30,t:'Miesiąc',i:[['mozg','Mózg uczy się, że da się żyć bez nałogu. Głód zwykle słabnie i przychodzi rzadziej.']],s:['klin']},
+  {d:90,t:'3 miesiące',i:[['zycie','Nowe nawyki się utrwalają, wraca zaufanie bliskich.']],s:['klin']},
+  {d:365,t:'Rok',i:[['zycie','Zdrowie, relacje i finanse wyraźnie się poprawiają.']],s:['klin']}]
+};
+const LOSS={
+ alkohol:{t:'alkohol',s:['who','ros'],x:['Odwadnia skórę i rozszerza naczynka: zaczerwienienie, opuchlizna, szary koloryt.','Spłyca sen, więc rano brakuje sił.','Obciąża wątrobę, serce i ciśnienie, zmniejsza objętość mózgu.','Według WHO nie ma bezpiecznej dawki alkoholu. Zwiększa ryzyko co najmniej 7 nowotworów, w tym raka piersi.']},
+ nikotyn:{t:'nikotyna i palenie',s:['who'],x:['Przyspiesza starzenie się skóry: zmarszczki, szary koloryt.','Odbiera smak i węch.','Uszkadza serce, naczynia krwionośne i płuca.']},
+ stym:{t:'stymulanty',s:['klin','volk'],x:['Wyniszczają ciało: utrata wagi, problemy ze skórą i zębami, bezsenność.','Zaburzają układ nagrody w mózgu, dlatego bez substancji długo trudno czuć radość.']},
+ marihuan:{t:'marihuana',s:['harv','klin'],x:['Osłabia pamięć, uczenie się i motywację.','Zaburza sen. Palona drażni płuca.']},
+ inne:{t:'nałóg',s:['klin'],x:['Zabiera czas, pieniądze, sen i bliskość z ludźmi.']}
+};
+function gKey(name){const n=String(name||'').toLowerCase();
+ if(/amfetamin|metamfet|meta\b|mefedron|klefedron|kokain|crack|stymul/.test(n))return 'stym';
+ if(/marihuan|zioł|zielsk|thc|haszysz|konopi/.test(n))return 'marihuan';
+ if(/nikotyn|papieros|e-?papier|vape|wap|snus|tyto|palen/.test(n))return 'nikotyn';
+ if(/alkohol|pici|wódk|piw|win/.test(n))return 'alkohol';
+ return 'inne'}
+function gainsState(a){const d=sober(a);const L=GAINS[gKey(a.name)];if(d===null)return null;
+ const reached=L.filter(m=>d>=m.d),cur=reached[reached.length-1]||null,next=L.find(m=>d<m.d)||null;return {d,L,cur,next,fresh:cur&&cur.d===d}}
+const inDays=n=>n===1?'jutro':'za '+n+' '+daysWord(n);
+function gainBox(a){
+ const g=gainsState(a);if(!g)return '';
+ const m=g.cur||g.next;if(!m)return '';
+ const it=m.i[g.d%m.i.length];
+ return `<button class="gainbox${g.fresh?' fresh':''}" data-gains="${a.id}">
+  <span class="label">${icon('star')} ${g.cur?(g.fresh?'Nowy etap! ':'')+'Teraz w Twoim ciele':'Pierwszy zysk już blisko'}</span>
+  <span class="gtitle">${esc(m.t)}: ${icon(GCAT[it[0]][0])} ${esc(it[1])}</span>
+  <span class="small">${g.next?`Następny etap ${inDays(g.next.d-g.d)}: ${esc(g.next.t.toLowerCase())}`:'Wszystkie etapy są za Tobą. Brawo!'} · Zobacz wszystkie →</span></button>`;
+}
+let gainsFor=null;
+function vZyski(){
+ const list=S.addictions.filter(x=>x.start);
+ const a=list.find(x=>x.id===gainsFor)||list[0];
+ if(!a)return `<header class="top"><h1>Zyski z trzeźwości</h1></header><p>Ustaw datę początku trzeźwości pod <button class="linkbtn" data-tab="ustawienia">kołem zębatym</button>, a pokażę, co dzieje się w Twoim ciele.</p>`;
+ const g=gainsState(a),k=gKey(a.name),loss=LOSS[k];
+ const chip=c=>`<span class="gchip g-${c}">${icon(GCAT[c][0])}${GCAT[c][1]}</span>`;
+ return `<header class="top"><h1>Zyski z trzeźwości</h1><button class="ghost" data-tab="dzis">Gotowe</button></header>
+ ${list.length>1?`<div class="seg">${list.map(x=>`<button class="${x.id===a.id?'on':''}" data-gains="${x.id}">${esc(x.name)}</button>`).join('')}</div>`:''}
+ <section class="card gainhero"><div class="label">Bez: ${esc(a.name)}</div><div class="bigday">${g.d} <small>${daysWord(g.d)}</small></div>
+  <p>${g.next?`Do następnego etapu (${esc(g.next.t.toLowerCase())}) zostało ${g.next.d-g.d} ${daysWord(g.next.d-g.d)}.`:'Wszystkie etapy z tej listy są za Tobą.'}</p></section>
+ <div class="timeline">${g.L.map(m=>{const st=g.d>=m.d?(g.cur===m?'now':'done'):'next';
+  return `<article class="gstep ${st}"><div class="gdot">${st==='next'?'':icon('check')}</div><div class="gbody">
+   <div class="row between"><b>${esc(m.t)}</b><span class="small muted">${st==='next'?inDays(m.d-g.d):st==='now'?'jesteś tutaj':'za Tobą'}</span></div>
+   ${m.i.map(([c,t])=>`<div class="gitem">${chip(c)}<p>${esc(t)}</p></div>`).join('')}
+   ${m.w?`<p class="small gwarn">${esc(m.w)}</p>`:''}
+   <p class="gsrc">Źródło: ${m.s.map(x=>SRC[x]).join('; ')}</p></div></article>`}).join('')}</div>
+ <section class="card"><h2>Co zabiera ${esc(loss.t)}</h2><ul class="plist">${loss.x.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+  <p class="gsrc">Źródło: ${loss.s.map(x=>SRC[x]).join('; ')}</p></section>
+ <p class="small muted">Każdy organizm jest inny. To wyniki badań i średnie, a nie obietnica. Pytania o zdrowie zadawaj lekarzowi.</p>`;
+}
 function counterCard(a,main){
  const d=sober(a);
  if(d===null)return `<div class="counter${main?'':' sub'}"><div class="label">Bez: ${esc(a.name||'substancji')}</div><p class="muted">Ustaw datę początku w <button class="linkbtn" data-tab="ustawienia">Ustawieniach</button>.</p></div>`;
@@ -1326,7 +1490,8 @@ function counterCard(a,main){
    <div class="row ringrow">${main?ringSvg(a,d):`<div class="days">${d}</div>`}<div class="muted">${main?`<b class="ringdays">${d}</b> `:''}${daysWord(d)} trzeźwości<br><span class="small">${d>=365?'<b>'+ymdText(a.start)+'</b><br>':''}od ${new Date(a.start).toLocaleDateString('pl-PL')}</span></div></div>
    ${an?`<p class="anniv">Dziś mija ${an} ${yWord(an)} trzeźwości. Gratulacje!</p>`:''}
    <p class="small">${nextStone(a,d)}</p>
-   ${main?`<div class="stones">${stonesHtml(a,d)}</div>`:''}</div>`;
+   ${main?`<div class="stones">${stonesHtml(a,d)}</div>`:''}
+   ${gainBox(a)}</div>`;
 }
 function vUstawienia(){
  return `<header class="top"><h1>Ustawienia</h1><button class="ghost" data-tab="dzis">Gotowe</button></header>
@@ -1518,8 +1683,8 @@ const goodToday=()=>S.feelings.some(f=>f.quick&&iso(new Date(f.at))===iso(today(
 const GOOD_MSG=['Dobry dzień to cegła w nowym domu.','Zapamiętaj ten dzień. Przyda się, gdy przyjdzie gorszy.','Spokój też trzeba zauważać. Dobrze, że to robisz.','Tak wygląda trzeźwość, która działa.'];
 function tipCard(){
  if(!lastTip)return '';
- const t=tipsFor(lastTip.tags,lastTip.mode,lastTip.subs).slice(0,3);lastTip=null;
- return `<section class="card tipcard"><div class="label">Co może pomóc teraz</div><ul class="list">${t.map(x=>`<li><span>${esc(x)}</span></li>`).join('')}</ul>
+ const t=tipsFor(lastTip.tags,lastTip.mode,lastTip.subs).slice(0,3),tg=lastTip.tags;lastTip=null;
+ return `<section class="card tipcard">${emoQuote(tg)}<div class="label">Co może pomóc teraz</div><ul class="list">${t.map(x=>`<li><span>${esc(x)}</span></li>`).join('')}</ul>
   <button data-helpnow="1">Potrzebuję więcej pomocy</button></section>`;
 }
 function hardDays(){
@@ -1561,7 +1726,7 @@ function vPolec(){
   <p class="small muted">Zaproszenie zawiera link i kod dostępu. Twoje wpisy nie są wysyłane, zostają tylko u Ciebie.</p>
  </section>`;
 }
-const VIEWS={polec:vPolec,wiedza:vWiedza,ustawienia:vUstawienia,kalendarz:vKalendarz,kroki:vKroki,krok:vKrok,film:vFilm,prywatnosc:vPrywatnosc,dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
+const VIEWS={zyski:vZyski,polec:vPolec,wiedza:vWiedza,ustawienia:vUstawienia,kalendarz:vKalendarz,kroki:vKroki,krok:vKrok,film:vFilm,prywatnosc:vPrywatnosc,dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
 let unlocked=false,haveApp=false,relatedApp=false;
 try{if(navigator.getInstalledRelatedApps&&!isStandalone())navigator.getInstalledRelatedApps().then(r=>{if(r&&r.length){relatedApp=true;try{render()}catch(e){}}}).catch(()=>{})}catch(e){}
 try{unlocked=localStorage.getItem(KEY+'-ok')==='1'}catch(e){}
@@ -1739,6 +1904,7 @@ function render(openForm){
  document.getElementById('tabs').style.setProperty('--n',TABS.length);
  document.getElementById('tabs').innerHTML=TABS.map(t=>`<button data-tab="${t[0]}"${navActive(t[0])?' aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${t[2]}</svg>${t[1]}</button>`).join('');
  if(keepY!==null)scrollTo(0,keepY);
+ else if(tab==='zyski'){const n=document.querySelector('.gstep.now');if(n)setTimeout(()=>n.scrollIntoView({block:'center'}),60)}
  if(openForm){const f=document.getElementById('new-form');if(f){f.open=true;const i=f.querySelector('input,textarea');i&&i.focus()}}
 }
 function go(t,open){if(breathTimer){clearTimeout(breathTimer);breathTimer=null}{const fv=document.getElementById('film-video');if(fv)try{fv.pause()}catch(e){}}tab=t;render(open);window.scrollTo(0,0)}
@@ -1876,6 +2042,7 @@ document.addEventListener('click',e=>{
  if(d.summary)return copy(summaryText());
  if(d.backup){const t=JSON.stringify(S);try{navigator.clipboard.writeText(t).then(()=>toast('Skopiowano. Otwórz drugą aplikację i dotknij „Wklej moje wpisy”.'),()=>copy(t))}catch(e){copy(t)}return}
  if(d.seek!==undefined){const fv=document.getElementById('film-video');if(fv){try{fv.currentTime=+d.seek;const pr=fv.play();if(pr&&pr.catch)pr.catch(()=>{})}catch(e){}fv.scrollIntoView({behavior:'smooth',block:'start'})}return}
+ if(d.gains!==undefined){gainsFor=d.gains;return go('zyski')}
  if(d.movestart){moving=true;return render()}
  if(d.movenew){S.moveAsked=true;saveLocal();return render()}
  if(d.moveback){moving=false;return render()}

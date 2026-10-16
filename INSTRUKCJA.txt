@@ -1,4 +1,4 @@
-Azyl – wersja 3.1.1, autor: StoneMatic
+Azyl – wersja 3.1.3, autor: StoneMatic
 Aktualizacja na GitHubie
 
 1. Wgraj wszystkie pliki z folderu "przebudzeni" do repozytorium Przebudzeni,
@@ -7,11 +7,10 @@ Aktualizacja na GitHubie
 2. Telefony pobierają nową wersję same, przy kolejnym otwarciu aplikacji.
    Czasem potrzebne są dwa otwarcia.
 
-Numeracja wersji (trzy liczby)
-   3.0.1, 3.0.2 …  poprawki
-   3.1.0, 3.2.0 …  nowe funkcje
-   4.0.0           duże zmiany
-   Wersja jest w index.html (APP_VERSION) i w sw.js (przebudzeni-v3.0.0).
+Numeracja wersji
+   Każda aktualizacja podnosi ostatnią cyfrę o 1:
+   3.1.1 → 3.1.2 → … → 3.1.9 → 3.2.0 → 3.2.1 → … → 3.2.9 → 3.3.0
+   Wersja jest w index.html (APP_VERSION) i w sw.js (przebudzeni-v3.1.3).
 
 Dane użytkowników
 3. Wpisy są na telefonie użytkownika. Bez kont, e-maili i statystyk.
