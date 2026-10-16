@@ -3,21 +3,21 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Pogłębieni z Przebudzenia">
-<meta property="og:title" content="Pogłębieni z Przebudzenia">
-<meta property="og:description" content="Twój dzienniczek trzeźwości. Dotknij, aby otworzyć.">
+<meta property="og:site_name" content="Azyl">
+<meta property="og:title" content="Azyl">
+<meta property="og:description" content="Azyl – bezpieczne miejsce na trudny czas. Twój dzienniczek trzeźwości.">
 <meta property="og:url" content="https://pakalai.github.io/Przebudzeni/">
 <meta property="og:image" content="https://pakalai.github.io/Przebudzeni/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="Twój dzienniczek trzeźwości. Dotknij, aby otworzyć.">
+<meta name="description" content="Azyl – bezpieczne miejsce na trudny czas. Twój dzienniczek trzeźwości.">
 <meta name="theme-color" content="#1e6a47">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
-<title>Pogłębieni z Przebudzenia</title>
+<title>Azyl</title>
 <style>
 /* Layout: jedna kolumna jak notatnik, stała dolna nawigacja kciukiem, karty tylko dla wpisów */
 :root{
@@ -119,13 +119,13 @@ a.phone{color:var(--lake);text-decoration:none}
 .chart small{font-size:.7rem;color:var(--muted)}
 nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);
   padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);z-index:5}
-nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr)}
-nav.tabs button{border:0;border-radius:0;background:none;padding:10px 2px 12px;font-size:.72rem;font-weight:600;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:4px}
+nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(var(--n,6),minmax(0,1fr))}
+nav.tabs button{border:0;border-radius:0;background:none;padding:10px 0 12px;min-width:0;white-space:nowrap;font-size:.7rem;justify-content:center;font-weight:600;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:4px}
 nav.tabs button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 nav.tabs button[aria-current="page"]{color:var(--lake)}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:.9rem;z-index:9;max-width:calc(100% - 32px)}
 .brand{display:flex;align-items:center;gap:14px}
-.brand img{width:64px;height:64px;flex:none}
+.brand img{width:48px;height:48px;flex:none;border-radius:13px}
 .brand .g{font-family:var(--display);font-weight:800;font-size:1.05rem;color:var(--lake);line-height:1.15}
 .counter{border-top:5px solid var(--sun)}
 .find{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -133,7 +133,7 @@ nav.tabs button[aria-current="page"]{color:var(--lake)}
 .find a small{color:var(--muted);font-weight:500}
 .find a:focus-visible{outline:2px solid var(--lake);outline-offset:2px}
 .gate{min-height:70vh;display:flex;flex-direction:column;justify-content:center;gap:18px;text-align:center;align-items:center}
-.gate img{width:120px;height:120px}
+.gate img{width:120px;height:120px;border-radius:28px;box-shadow:0 6px 18px rgba(0,0,0,.15)}
 .gate form,.gate .stack{width:100%;max-width:340px}
 .gate input{text-align:center;font-size:1.1rem;letter-spacing:.08em;text-transform:uppercase}
 .trial{display:inline-block;margin-top:4px;font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--amber-soft);color:var(--amber)}
@@ -159,7 +159,7 @@ nav.tabs button[aria-current="page"]{color:var(--lake)}
 .subs li{align-items:center}.subdays{font-weight:700;color:var(--lake);font-variant-numeric:tabular-nums;white-space:nowrap}
 .addrow input[type=date]{margin-top:4px;padding:6px 10px}
 .grp-prev{width:56px;height:56px;object-fit:contain;flex:none}
-.brand img{object-fit:contain}.gate img{object-fit:contain}
+.brand img{object-fit:cover}.gate img{object-fit:contain}
 .filebtn{display:block;text-align:center}
 .visually-hidden{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
 .linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--lake);text-decoration:underline;cursor:pointer;font-weight:600;font-size:inherit}
@@ -308,6 +308,23 @@ details.more[open] summary{margin-bottom:10px}
 .pointer.topright{right:calc(4px + env(safe-area-inset-right,0px));top:calc(4px + env(safe-area-inset-top,0px))}
 @media (prefers-reduced-motion:no-preference){.pointer .ic{animation:bob 1.1s ease-in-out infinite}.pointer.top .ic,.pointer.topright .ic{animation-name:bobup}
 @keyframes bob{50%{transform:translateY(10px)}}@keyframes bobup{0%,100%{transform:rotate(180deg)}50%{transform:rotate(180deg) translateY(10px)}}}
+.quote{background:linear-gradient(135deg,var(--amber-soft),color-mix(in srgb,var(--amber-soft) 70%,var(--amber)));border-left:6px solid var(--amber);padding:20px 20px 18px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.quote.evening{background:linear-gradient(135deg,var(--lake-soft),color-mix(in srgb,var(--lake-soft) 75%,var(--lake)));border-left-color:var(--lake)}
+.quote blockquote{font-size:1.3rem;line-height:1.38;color:var(--ink)}
+.quote.big blockquote{font-size:1.55rem}
+.quote .label{display:flex;align-items:center;gap:6px;color:var(--ink);opacity:.8}
+.quote .label .ic{width:18px;height:18px}
+.quote figcaption{font-weight:600}
+.qrcard{text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+.qrcard .lead{font-size:1.1rem;font-weight:600;margin:0}
+.qrsvg{width:min(78vw,300px);height:auto;border-radius:14px;border:6px solid #fff;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.12);shape-rendering:crispEdges}
+.code{letter-spacing:.08em;color:var(--lake)}
+.appicon{display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:600}
+.appicon img{width:72px!important;height:72px!important;border-radius:18px;box-shadow:0 3px 10px rgba(0,0,0,.18);background:#fff}
+.okline{background:var(--lake-soft);color:var(--lake);font-weight:700;border-radius:12px;padding:10px 14px;margin:0}
+.brand h1{font-size:1.45rem;margin:0}
+.brand .trial{padding:1px 8px;font-size:.75rem}
+.brand+.quote,.brand~.quote:first-of-type{margin-top:4px}
 .empty{color:var(--muted);font-size:.92rem;padding:12px 0}
 @media (prefers-reduced-motion:no-preference){.toast{animation:up .2s ease-out}@keyframes up{from{opacity:.4;transform:translate(-50%,8px)}}}
 </style>
@@ -321,12 +338,13 @@ details.more[open] summary{margin-bottom:10px}
 /* ===== USTAWIENIA TESTU – zmień tutaj ===== */
 const TEST_END='2027-10-14';      // ostatni dzień testów (RRRR-MM-DD)
 const ACCESS_CODE='PRZEBUDZENI';  // kod dla grupy; pusty '' = bez kodu
-const APP_VERSION='2.0';
+const APP_VERSION='2.3';
 const FEATURE_STEPS=false;   // 12 Kroków: true = włączone, false = ukryte (dane zostają)
 const APP_AUTHOR='StoneMatic';
 /* ============================================ */
 const KEY='dzienniczek-trzezwosci-v1';
-const LOGO='data:image/webp;base64,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';
+const APP_NAME='Azyl';
+const LOGO="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyZjlhNWYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyZjg2YjgiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0idXJsKCNnKSIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTQiIHI9IjMwIiBmaWxsPSJub25lIiBzdHJva2U9IiNmNWY1ZWMiIHN0cm9rZS13aWR0aD0iNSIvPjxwYXRoIGQ9Ik0yOCA1MCBMNTAgMzIgTDcyIDUwIiBzdHJva2U9IiNmNWY1ZWMiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIi8+PGNpcmNsZSBjeD0iNTAiIGN5PSI2MCIgcj0iOSIgZmlsbD0iI2VmYjAyYyIvPjwvc3ZnPg==";
 const SAMPLE_PLAN=['Izoluję się i nie odbieram telefonów','Myślę „jeden raz nic nie zmieni”','Śpię mniej niż 6 godzin','Odczekać 20 minut, głód mija jak fala','Zadzwonić do kogoś z listy','Wyjść na spacer, zmienić miejsce','Zjeść coś i napić się wody (HALT)','Córka i jej zaufanie','Zdrowie wątroby','Spokojne poranki bez wstydu'];
 /* ===== SENTENCJE: rano motywujące, wieczorem uspokajające (możesz edytować) =====
    Format: ["treść", "źródło lub puste"]. Własne teksty w duchu programu i terapii. */
@@ -400,7 +418,43 @@ const MORNING_Q=[
  ["Na trzeźwo podejmujesz lepsze decyzje. W domu i w pracy.", ""],
  ["Termin, klient, kłótnia z szefem. Stres minie, a Twoja decyzja o trzeźwości zostaje.", ""],
  ["Najlepsza inwestycja, jaką dziś zrobisz, to inwestycja w siebie.", ""],
- ["Ludzie zaufają Ci znowu nie dzięki obietnicom, tylko dzięki temu, co robisz każdego dnia.", ""]
+ ["Ludzie zaufają Ci znowu nie dzięki obietnicom, tylko dzięki temu, co robisz każdego dnia.", ""],
+ ["Kto zna innych, jest mądry. Kto zna siebie, jest oświecony. Kto zwycięża innych, jest silny. Kto zwycięża siebie, jest naprawdę potężny.", "Lao Tzu, Tao Te Ching"],
+ ["Drzewo, którego nie obejmiesz ramionami, wyrosło z maleńkiego kiełka.", "Lao Tzu, Tao Te Ching"],
+ ["Trudne zaczynaj, póki jest łatwe. Wielkie rób, póki jest małe.", "Lao Tzu, Tao Te Ching"],
+ ["Kto wie, kiedy dość, ten nie zazna wstydu. Kto wie, kiedy się zatrzymać, ten uniknie zguby.", "Lao Tzu, Tao Te Ching"],
+ ["Jesteśmy tym, co myślimy. Wszystko, czym jesteśmy, rodzi się z naszych myśli.", "Budda, Dhammapada"],
+ ["Większym zwycięzcą od tego, kto w bitwie pokonał tysiące, jest ten, kto pokonał samego siebie.", "Budda, Dhammapada"],
+ ["Wysiłkiem, uważnością i panowaniem nad sobą mądry buduje wyspę, której nie zaleje żadna powódź.", "Budda, Dhammapada"],
+ ["Szlachetny człowiek wymaga od siebie. Małostkowy wymaga od innych.", "Konfucjusz, Dialogi konfucjańskie"],
+ ["Jeśli przestaniesz o jeden kosz ziemi przed szczytem, to ty się zatrzymałeś. Jeśli dorzucisz choć jeden, to ty idziesz naprzód.", "Konfucjusz, Dialogi konfucjańskie"],
+ ["Stajemy się mężni, czyniąc mężne rzeczy, a umiarkowani, czyniąc rzeczy umiarkowane.", "Arystoteles, Etyka nikomachejska"],
+ ["Jedna jaskółka nie czyni wiosny. I jeden dzień nie czyni człowieka szczęśliwym.", "Arystoteles, Etyka nikomachejska"],
+ ["Pierwszym i najlepszym ze zwycięstw jest zwycięstwo nad sobą.", "Platon, Prawa"],
+ ["Charakter człowieka jest jego losem.", "Heraklit z Efezu"],
+ ["Nie można dwa razy wejść do tej samej rzeki. Ty też dziś jesteś już kimś nowym.", "Heraklit z Efezu, z dopiskiem"],
+ ["Chwytaj każdą godzinę. Mniej będziesz zależał od jutra, jeśli dzisiejszy dzień weźmiesz w swoje ręce.", "Seneka, Listy do Lucyliusza"],
+ ["Jeśli nie wiesz, do którego portu płyniesz, żaden wiatr nie będzie pomyślny.", "Seneka, Listy do Lucyliusza"],
+ ["Póki żyjesz, ucz się, jak żyć.", "Seneka, Listy do Lucyliusza"],
+ ["Nie ten jest ubogi, kto ma mało, ale ten, kto wciąż pragnie więcej.", "Seneka, Listy do Lucyliusza"],
+ ["Musisz zmienić duszę, nie niebo nad głową. Gdziekolwiek pojedziesz, zabierasz siebie.", "Seneka, Listy do Lucyliusza"],
+ ["O świcie, gdy niechętnie wstajesz, powiedz sobie: budzę się, by wykonać pracę człowieka.", "Marek Aureliusz, Rozmyślania"],
+ ["Nie trać już czasu na rozprawianie, jaki powinien być dobry człowiek. Bądź nim.", "Marek Aureliusz, Rozmyślania"],
+ ["To, co stoi na drodze, staje się drogą.", "Marek Aureliusz, Rozmyślania"],
+ ["Jakie są twoje codzienne myśli, taki stanie się twój umysł. Dusza barwi się myślami.", "Marek Aureliusz, Rozmyślania"],
+ ["Najpierw powiedz sobie, kim chcesz być. Potem rób to, co trzeba.", "Epiktet, Diatryby"],
+ ["Nikt nie jest wolny, kto nie panuje nad sobą.", "Epiktet"],
+ ["Chwytaj dzień, jak najmniej ufając jutru.", "Horacy, Pieśni"],
+ ["Nie można mieć ani mniejszego, ani większego panowania niż panowanie nad samym sobą.", "Leonardo da Vinci, Notatniki"],
+ ["Moim rzemiosłem i moją sztuką jest żyć.", "Michel de Montaigne, Próby"],
+ ["Staraj się raczej zwyciężać siebie niż los i zmieniać swoje pragnienia raczej niż porządek świata.", "Kartezjusz, Rozprawa o metodzie"],
+ ["Wszystko, co wspaniałe, jest równie trudne, jak rzadkie.", "Baruch Spinoza, Etyka"],
+ ["Nie wystarczy wiedzieć, trzeba też stosować. Nie wystarczy chcieć, trzeba też działać.", "Johann Wolfgang von Goethe"],
+ ["Życie można zrozumieć tylko wstecz, ale żyć trzeba naprzód.", "Søren Kierkegaard, Dzienniki"],
+ ["Kto ma po co żyć, zniesie prawie każde jak.", "Friedrich Nietzsche, Zmierzch bożyszcz"],
+ ["Zapisz w sercu, że każdy dzień jest najlepszym dniem w roku.", "Ralph Waldo Emerson"],
+ ["Kto śmiało idzie w stronę swoich marzeń i próbuje żyć życiem, które sobie wyobraził, osiągnie więcej, niż się spodziewa.", "Henry David Thoreau, Walden"],
+ ["Uprawiajmy nasz ogród.", "Wolter, Kandyd"]
 ];
 const EVENING_Q=[
  ["Dzień się kończy. Jeśli był trzeźwy, zrobiłeś dziś najważniejsze.", ""],
@@ -462,7 +516,17 @@ const EVENING_Q=[
  ["Mądry Polak po szkodzie, a mądrzejszy, kto wyciąga z niej wnioski.", "przysłowie, z dopiskiem"],
  ["Każdy dzień ma dość swojej biedy. Jutro zatroszczy się o siebie.", "Ewangelia wg św. Mateusza 6,34"],
  ["Praca może poczekać do jutra. Twój odpoczynek nie.", ""],
- ["Wieczorem nie oceniaj całego życia. Oceniaj tylko to, czy byłeś dziś trzeźwy i uczciwy.", ""]
+ ["Wieczorem nie oceniaj całego życia. Oceniaj tylko to, czy byłeś dziś trzeźwy i uczciwy.", ""],
+ ["Nigdzie człowiek nie znajdzie spokojniejszego schronienia niż we własnej duszy.", "Marek Aureliusz, Rozmyślania"],
+ ["Jedne rzeczy są w naszej mocy, inne nie. Spokój zaczyna się od tego rozróżnienia.", "Epiktet, Encheiridion, z dopiskiem"],
+ ["Częściej cierpimy w wyobraźni niż w rzeczywistości.", "Seneka, Listy do Lucyliusza"],
+ ["Najlepszym lekarstwem na gniew jest zwłoka.", "Seneka, O gniewie"],
+ ["Życie bez zastanowienia nad sobą nie jest warte życia.", "Sokrates, w Obronie Sokratesa Platona"],
+ ["Całe nieszczęście ludzi bierze się stąd, że nie umieją spokojnie posiedzieć w pokoju.", "Blaise Pascal, Myśli"],
+ ["Najwyższe dobro jest jak woda. Daje życie wszystkiemu i nie walczy.", "Lao Tzu, Tao Te Ching"],
+ ["Uczyć się i w porę powtarzać to, czego się nauczyło, czyż to nie radość?", "Konfucjusz, Dialogi konfucjańskie"],
+ ["Nienawiść nigdy nie ustaje dzięki nienawiści. Ustaje dzięki życzliwości.", "Budda, Dhammapada"],
+ ["Nie porzucaj nadzieje, jakoć się kolwiek dzieje.", "Jan Kochanowski, Pieśni"]
 ];
 const HARD_Q=[
  ["Upadek to nie koniec drogi. To miejsce, z którego wstajesz.", ""],
@@ -484,7 +548,13 @@ const HARD_Q=[
  ["Najtrudniejsze dni uczą najwięcej. Zapisz, czego nauczył Cię ten.", ""],
  ["Ktoś na Ciebie czeka i się o Ciebie martwi. Odezwij się.", ""],
  ["Nie oceniaj całej drogi po jednym zakręcie.", ""],
- ["Oddychaj. Jesteś tutaj. Na teraz to wystarczy.", ""]
+ ["Oddychaj. Jesteś tutaj. Na teraz to wystarczy.", ""],
+ ["Wytrwaj i bądź twardy. Ten ból kiedyś przyniesie ci pożytek.", "Owidiusz, Amores"],
+ ["Czasem już samo życie jest aktem odwagi.", "Seneka, Listy do Lucyliusza"],
+ ["Póki życia, póty nadziei.", "Cyceron, Listy do Attyka"],
+ ["To, co stoi na drodze, staje się drogą. Także ten trudny dzień.", "Marek Aureliusz, z dopiskiem"],
+ ["Nie porzucaj nadzieje, jakoć się kolwiek dzieje.", "Jan Kochanowski, Pieśni"],
+ ["Kto ma po co żyć, zniesie prawie każde jak. Przypomnij sobie swoje po co.", "Friedrich Nietzsche, z dopiskiem"]
 ];
 function isHardTime(){try{const m=dayMap(),t=iso(today()),y=iso(new Date(today().getTime()-864e5));
  const bad=k=>m[k]&&(m[k].cls==='hard'||m[k].cls==='relapse');return bad(t)||bad(y)||hardDays()}catch(e){return false}}
@@ -492,11 +562,11 @@ function dayPart(){const h=new Date().getHours();return (h>=4&&h<17)?'m':'e'}
 function quoteToday(part){part=part||dayPart();const d=today();if(part==='e'&&new Date().getHours()<4)d.setDate(d.getDate()-1);
  const n=Math.floor((d-new Date(2026,0,1))/864e5),L=part==='m'?MORNING_Q:EVENING_Q;
  if(isHardTime()){const H=HARD_Q,k=n*2+(part==='e'?1:0);return H[((k%H.length)+H.length)%H.length]}
- return L[((n%L.length)+L.length)%L.length]}
+ const st=[37,41,43,47,53].find(p=>L.length%p)||1;return L[(((n*st)%L.length)+L.length)%L.length]}
 function greet(){const h=new Date().getHours();
  if(h>=4&&h<11)return 'Dzień dobry';if(h<18&&h>=11)return 'Cześć';if(h<23&&h>=18)return 'Dobry wieczór';return 'Dobrej nocy'}
 const hello=()=>greet()+(S.name?', '+esc(S.name):'');
-const quoteCard=(big,part)=>{part=part||dayPart();const q=quoteToday(part);return `<figure class="quote${big?' big':''}${part==='e'?' evening':''}"><div class="label">${isHardTime()?'Na trudniejszy czas':part==='m'?'Na dobry początek dnia':'Na spokojny wieczór'}</div><blockquote>${esc(q[0])}</blockquote>${q[1]?`<figcaption>${esc(q[1])}</figcaption>`:''}</figure>`};
+const quoteCard=(big,part)=>{part=part||dayPart();const q=quoteToday(part);return `<figure class="quote${big?' big':''}${part==='e'?' evening':''}"><div class="label">${icon(part==='e'?'moon':'sun')}${isHardTime()?'Na trudniejszy czas':part==='m'?'Na dobry początek dnia':'Na spokojny wieczór'}</div><blockquote>${esc(q[0])}</blockquote>${q[1]?`<figcaption>${esc(q[1])}</figcaption>`:''}</figure>`};
 const isStandalone=()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}catch(e){return false}};
 const inFrame=()=>{try{return window.top!==window.self}catch(e){return true}};
 const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent);
@@ -525,6 +595,8 @@ function isAnniv(a){if(!a||!a.start)return 0;const r=soberYMD(a.start);return r.
 
 /* ---------- ikony i elementy dotykowe (2.0) ---------- */
 const IC={
+ check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+ qr:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h3M21 18v3M17 21v.01"/>',
  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
  moon:'<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
  heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
@@ -626,7 +698,7 @@ function vWiedza(){
  <section class="card"><div class="row" style="gap:10px"><button data-film="1">${icon('play')} Film: jak korzystać</button><button data-privacy="1">${icon('lock')} Prywatność</button>${!isStandalone()&&!inFrame()?`<button data-reinstall="1">${icon('gift')} Dodaj do ekranu</button>`:''}</div></section>
  <p class="small muted">Wiedza ogólna, nie zastępuje porady lekarza ani terapeuty.</p>`;
 }
-const NAVGROUP={uczucia:'uczucia',glod:'uczucia',bilans:'uczucia',kalendarz:'kalendarz',cele:'kalendarz',pomoc:'plan',plan:'plan',dzis:'dzis',wiedza:'wiedza',ustawienia:'dzis'};
+const NAVGROUP={polec:'polec',uczucia:'uczucia',glod:'uczucia',bilans:'uczucia',kalendarz:'kalendarz',cele:'kalendarz',pomoc:'plan',plan:'plan',dzis:'dzis',wiedza:'wiedza',ustawienia:'dzis'};
 const navActive=k=>(NAVGROUP[tab]||tab)===k;
 const segJ=cur=>`<div class="seg jseg">${[['uczucia','Uczucia','heart'],['glod','Głód','flame'],['bilans','Bilans','moon']].map(([k,l,ic])=>`<button class="${cur===k?'on':''}" data-tab="${k}">${icon(ic)}${l}</button>`).join('')}</div>`;
 const segP=cur=>`<div class="seg jseg">${[['kalendarz','Kalendarz','cal'],['cele','Cele','target']].map(([k,l,ic])=>`<button class="${cur===k?'on':''}" data-tab="${k}">${icon(ic)}${l}</button>`).join('')}</div>`;
@@ -636,7 +708,8 @@ const TABS=[
  ['uczucia','Dziennik',IC.book],
  ['plan','SOS',IC.shield],
  ['kalendarz','Postępy',IC.chart],
- ['wiedza','Wiedza',IC.bulb]
+ ['wiedza','Wiedza',IC.bulb],
+ ['polec','Poleć',IC.qr]
 ];
 
 const today=()=>{const d=new Date();d.setHours(0,0,0,0);return d};
@@ -718,10 +791,12 @@ function sober(a){
  a=a||S.addictions[0];if(!a||!a.start)return null;
  const s=new Date(a.start+'T00:00:00');return Math.max(0,Math.round((today()-s)/864e5));
 }
-const DEF_GROUP='Pogłębieni z Przebudzenia';
-const gName=()=>(S.group&&S.group.name)||DEF_GROUP;
-const gLogo=()=>(S.group&&S.group.logo)||LOGO;
-const gImg=(cls)=>`<img src="${gLogo()}" alt="Logo grupy ${esc(gName())}"${cls?` class="${cls}"`:''}>`;
+const DEF_GROUP='';
+const gName=()=>APP_NAME;
+const hasGroup=()=>false;
+const gLogo=()=>LOGO;
+const gImg=(cls)=>`<img src="${gLogo()}" alt="Logo ${esc(gName())}"${cls?` class="${cls}"`:''}>`;
+const appImg=(cls)=>`<img src="${LOGO}" alt="Logo aplikacji Azyl"${cls?` class="${cls}"`:''}>`;
 const SUB_PRESETS=['alkohol','nikotyna','marihuana','metamfetamina','amfetamina','kokaina','opioidy','dopalacze','narkotyki','leki','hazard','gry i internet','zakupy','współuzależnienie'];
 const daysWord=n=>n===1?'dzień':'dni';
 function fitLogo(file){return new Promise((res,rej)=>{
@@ -733,15 +808,15 @@ function fitLogo(file){return new Promise((res,rej)=>{
 /* ---------- widoki ---------- */
 function vDzis(){
  return `
- <header class="brand">${gImg()}<div style="flex:1;min-width:0"><div class="g">${esc(gName())}</div><h1>${hello()}</h1><span class="muted small">${new Date().toLocaleDateString('pl-PL',{weekday:'long',day:'numeric',month:'long'})}</span><br><span class="trial">Wersja testowa · ${trialLeft()===1?'został 1 dzień':'zostało '+trialLeft()+' dni'}</span></div><button class="gear" data-tab="ustawienia" aria-label="Ustawienia">⚙</button></header>
+ <header class="brand">${gImg()}<div style="flex:1;min-width:0"><h1>${hello()}</h1><span class="muted small">${new Date().toLocaleDateString('pl-PL',{weekday:'long',day:'numeric',month:'long'})} · <span class="trial">test: ${trialLeft()} dni</span></span></div><button class="gear" data-tab="ustawienia" aria-label="Ustawienia">⚙</button></header>
  ${hardDays()?`<section class="card alertcard"><h2>Ostatnie dni są trudne</h2><p>Widzę kilka ciężkich wpisów z rzędu. To dobry moment, żeby porozmawiać z terapeutą albo kimś z grupy.</p><div class="row"><button class="primary" data-helpfeel="1">Pomoc teraz</button><button data-tab="plan">Moje kontakty</button></div></section>`:''}
+ ${quoteCard(false)}
  ${checkinCard()}
  <section class="counters">${S.addictions.length?S.addictions.map((a,i)=>counterCard(a,i===0)).join(''):''}</section>
  <section class="sosrow">
   <button class="bigbtn sos" data-helpnow="1">${icon('flame','big')}<b>Mam silny głód</b><small>Poprowadzę Cię</small></button>
   <button class="bigbtn warn" data-helpfeel="1">${icon('cloud','big')}<b>Jest mi ciężko</b><small>Pomogę Ci teraz</small></button>
  </section>
- ${quoteCard(false)}
  ${weekStrip()}
  <section class="grid9">
   <button data-go="uczucia" data-open="1">${icon('heart','big')}<span>Uczucia</span></button>
@@ -1077,12 +1152,6 @@ function vUstawienia(){
     <form id="f-addsub" class="stack"><input id="new-sub" name="sub" list="sub-presets" placeholder="Dodaj: wybierz z listy lub wpisz"><datalist id="sub-presets">${SUB_PRESETS.map(x=>`<option value="${x}">`).join('')}</datalist>
      <div class="row"><input type="date" id="new-sub-date" name="date" max="${iso(today())}" style="flex:1;min-width:0" aria-label="Od kiedy"><button type="submit">Dodaj</button></div></form>
    </section>
-   <section class="card"><h2>Moja grupa</h2>
-    <div class="row" style="gap:12px">${gImg('grp-prev')}<span class="small muted" style="flex:1;min-width:0">Logo i nazwa grupy na ekranach aplikacji. Kolory zostają bez zmian.</span></div>
-    <form id="f-group" class="stack"><input id="grp-name" name="gname" value="${esc((S.group&&S.group.name)||'')}" placeholder="${DEF_GROUP}">
-     <label class="btn filebtn" for="grp-logo">Wybierz logo z telefonu</label><input type="file" id="grp-logo" accept="image/*" class="visually-hidden">
-     <div class="row"><button class="primary" type="submit">Zapisz grupę</button>${S.group&&(S.group.name||S.group.logo)?`<button type="button" data-grpreset="1">Przywróć ${DEF_GROUP}</button>`:''}</div></form>
-   </section>
    <section class="card"><h2>Blokada PIN-em</h2>
     ${S.pinHash?`<p class="small muted">Blokada jest włączona. Aplikacja poprosi o PIN przy otwarciu i po powrocie po minucie.</p>
      <form id="f-pinoff" class="row"><input type="password" inputmode="numeric" id="pin-cur" maxlength="6" placeholder="Obecny PIN" style="flex:1;min-width:0" autocomplete="off"><button type="submit">Wyłącz blokadę</button></form>`
@@ -1097,7 +1166,7 @@ function vFilm(){
  <section class="card filmcard"><video id="film-video" controls playsinline preload="metadata" poster="instrukcja-okladka.jpg" src="instrukcja.mp4">Twoja przeglądarka nie odtwarza tego filmu.</video>
   <p class="small muted">Film trwa ok. 2 minuty i ma muzykę. Pobiera się tylko wtedy, gdy go włączysz.</p></section>
  <section class="card"><h2>W skrócie</h2><ol class="steps">
-  <li>Wpisz kod grupy i swoje imię.</li>
+  <li>Wpisz kod dostępu i swoje imię.</li>
   <li>Dodaj aplikację do ekranu głównego.</li>
   <li>W <b>Ustawieniach</b> na ekranie Dziś ustaw datę początku trzeźwości.</li>
   <li>Gdy jest trudno, dotknij <b style="color:var(--alert)">Mam silny głód</b> albo <b style="color:var(--amber)">Jest mi ciężko</b>.</li>
@@ -1278,8 +1347,26 @@ function breathe(btn){
   breathTimer=setTimeout(step,s[2])};
  step();
 }
-const VIEWS={wiedza:vWiedza,ustawienia:vUstawienia,kalendarz:vKalendarz,kroki:vKroki,krok:vKrok,film:vFilm,prywatnosc:vPrywatnosc,dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
-let unlocked=false;
+
+/* ---------- Poleć: kod QR ---------- */
+const SHARE_URL="https://pakalai.github.io/Przebudzeni/";
+const QR_SVG=`<svg class="qrsvg" viewBox="-3 -3 39 39" role="img" aria-label="Kod QR do aplikacji"><rect x="-3" y="-3" width="39" height="39" fill="#fff"/><path fill="#16402e" d="M0 0h7v1h-7zM9 0h1v1h-1zM11 0h3v1h-3zM15 0h4v1h-4zM21 0h1v1h-1zM23 0h1v1h-1zM26 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM14 1h1v1h-1zM16 1h2v1h-2zM19 1h1v1h-1zM24 1h1v1h-1zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h4v1h-4zM14 2h1v1h-1zM20 2h2v1h-2zM23 2h2v1h-2zM26 2h1v1h-1zM28 2h3v1h-3zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM10 3h2v1h-2zM17 3h2v1h-2zM20 3h1v1h-1zM22 3h1v1h-1zM26 3h1v1h-1zM28 3h3v1h-3zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h3v1h-3zM12 4h1v1h-1zM14 4h2v1h-2zM18 4h3v1h-3zM23 4h1v1h-1zM26 4h1v1h-1zM28 4h3v1h-3zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM11 5h9v1h-9zM24 5h1v1h-1zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h7v1h-7zM9 7h1v1h-1zM11 7h1v1h-1zM13 7h1v1h-1zM17 7h1v1h-1zM21 7h1v1h-1zM24 7h1v1h-1zM1 8h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM8 8h2v1h-2zM13 8h1v1h-1zM15 8h5v1h-5zM21 8h5v1h-5zM27 8h2v1h-2zM30 8h1v1h-1zM1 9h1v1h-1zM3 9h1v1h-1zM5 9h1v1h-1zM9 9h1v1h-1zM11 9h2v1h-2zM15 9h2v1h-2zM18 9h1v1h-1zM21 9h1v1h-1zM23 9h1v1h-1zM25 9h1v1h-1zM29 9h3v1h-3zM1 10h2v1h-2zM6 10h3v1h-3zM13 10h1v1h-1zM15 10h1v1h-1zM17 10h1v1h-1zM23 10h2v1h-2zM29 10h1v1h-1zM3 11h1v1h-1zM8 11h1v1h-1zM13 11h2v1h-2zM16 11h3v1h-3zM21 11h1v1h-1zM23 11h1v1h-1zM26 11h1v1h-1zM31 11h2v1h-2zM0 12h1v1h-1zM2 12h1v1h-1zM5 12h3v1h-3zM10 12h1v1h-1zM12 12h1v1h-1zM16 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM24 12h1v1h-1zM26 12h1v1h-1zM28 12h2v1h-2zM1 13h1v1h-1zM3 13h1v1h-1zM5 13h1v1h-1zM7 13h1v1h-1zM9 13h3v1h-3zM13 13h5v1h-5zM19 13h1v1h-1zM21 13h1v1h-1zM23 13h1v1h-1zM27 13h1v1h-1zM29 13h1v1h-1zM1 14h1v1h-1zM3 14h1v1h-1zM6 14h2v1h-2zM9 14h3v1h-3zM13 14h2v1h-2zM16 14h4v1h-4zM21 14h6v1h-6zM28 14h1v1h-1zM30 14h2v1h-2zM1 15h1v1h-1zM3 15h2v1h-2zM7 15h8v1h-8zM16 15h1v1h-1zM18 15h4v1h-4zM23 15h4v1h-4zM28 15h1v1h-1zM3 16h1v1h-1zM6 16h1v1h-1zM8 16h4v1h-4zM13 16h1v1h-1zM17 16h1v1h-1zM20 16h2v1h-2zM24 16h1v1h-1zM26 16h1v1h-1zM28 16h4v1h-4zM0 17h1v1h-1zM2 17h1v1h-1zM8 17h2v1h-2zM14 17h1v1h-1zM16 17h1v1h-1zM21 17h1v1h-1zM23 17h1v1h-1zM29 17h3v1h-3zM1 18h2v1h-2zM6 18h3v1h-3zM11 18h1v1h-1zM13 18h4v1h-4zM18 18h1v1h-1zM23 18h3v1h-3zM27 18h1v1h-1zM29 18h1v1h-1zM31 18h1v1h-1zM1 19h1v1h-1zM4 19h2v1h-2zM9 19h1v1h-1zM11 19h1v1h-1zM15 19h1v1h-1zM17 19h2v1h-2zM20 19h1v1h-1zM22 19h1v1h-1zM25 19h1v1h-1zM27 19h1v1h-1zM31 19h1v1h-1zM0 20h2v1h-2zM3 20h4v1h-4zM9 20h7v1h-7zM17 20h3v1h-3zM22 20h3v1h-3zM26 20h1v1h-1zM28 20h2v1h-2zM31 20h1v1h-1zM0 21h1v1h-1zM10 21h2v1h-2zM15 21h7v1h-7zM23 21h1v1h-1zM25 21h1v1h-1zM27 21h1v1h-1zM30 21h2v1h-2zM2 22h1v1h-1zM4 22h3v1h-3zM8 22h1v1h-1zM10 22h2v1h-2zM16 22h3v1h-3zM20 22h1v1h-1zM23 22h1v1h-1zM27 22h1v1h-1zM29 22h1v1h-1zM31 22h1v1h-1zM3 23h2v1h-2zM8 23h3v1h-3zM12 23h1v1h-1zM15 23h4v1h-4zM21 23h2v1h-2zM27 23h1v1h-1zM32 23h1v1h-1zM0 24h4v1h-4zM5 24h4v1h-4zM10 24h1v1h-1zM18 24h2v1h-2zM21 24h9v1h-9zM32 24h1v1h-1zM8 25h2v1h-2zM12 25h1v1h-1zM15 25h4v1h-4zM24 25h1v1h-1zM28 25h1v1h-1zM30 25h2v1h-2zM0 26h7v1h-7zM10 26h1v1h-1zM14 26h2v1h-2zM20 26h3v1h-3zM24 26h1v1h-1zM26 26h1v1h-1zM28 26h2v1h-2zM31 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM9 27h2v1h-2zM13 27h4v1h-4zM18 27h1v1h-1zM21 27h1v1h-1zM24 27h1v1h-1zM28 27h1v1h-1zM32 27h1v1h-1zM0 28h1v1h-1zM2 28h3v1h-3zM6 28h1v1h-1zM8 28h2v1h-2zM12 28h7v1h-7zM20 28h1v1h-1zM24 28h6v1h-6zM0 29h1v1h-1zM2 29h3v1h-3zM6 29h1v1h-1zM9 29h3v1h-3zM16 29h2v1h-2zM19 29h1v1h-1zM22 29h3v1h-3zM26 29h3v1h-3zM30 29h2v1h-2zM0 30h1v1h-1zM2 30h3v1h-3zM6 30h1v1h-1zM10 30h1v1h-1zM13 30h7v1h-7zM23 30h1v1h-1zM26 30h5v1h-5zM0 31h1v1h-1zM6 31h1v1h-1zM8 31h3v1h-3zM14 31h2v1h-2zM18 31h4v1h-4zM24 31h2v1h-2zM0 32h7v1h-7zM9 32h1v1h-1zM11 32h2v1h-2zM15 32h1v1h-1zM17 32h2v1h-2zM20 32h7v1h-7zM29 32h1v1h-1zM32 32h1v1h-1z"/></svg>`;
+function vPolec(){
+ return `<header class="top"><h1>Poleć aplikację</h1></header>
+ <section class="card qrcard">
+  <p class="lead">Pokaż ten kod drugiej osobie.<br>Niech zeskanuje go aparatem telefonu.</p>
+  ${QR_SVG}
+  <p class="small muted">Kod dostępu do wpisania: <b class="code">${esc(ACCESS_CODE)}</b></p>
+ </section>
+ <section class="card"><div class="stack">
+  <button class="primary" data-sharelink="1">${icon('share')} Wyślij zaproszenie</button>
+  <button data-copy="${esc(SHARE_URL)}">Skopiuj link</button></div>
+  <p class="small muted">Zaproszenie zawiera link i kod dostępu. Twoje wpisy nie są wysyłane, zostają tylko u Ciebie.</p>
+ </section>`;
+}
+const VIEWS={polec:vPolec,wiedza:vWiedza,ustawienia:vUstawienia,kalendarz:vKalendarz,kroki:vKroki,krok:vKrok,film:vFilm,prywatnosc:vPrywatnosc,dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
+let unlocked=false,haveApp=false,relatedApp=false;
+try{if(navigator.getInstalledRelatedApps&&!isStandalone())navigator.getInstalledRelatedApps().then(r=>{if(r&&r.length){relatedApp=true;try{render()}catch(e){}}}).catch(()=>{})}catch(e){}
 try{unlocked=localStorage.getItem(KEY+'-ok')==='1'}catch(e){}
 if(S.unlocked)unlocked=true;
 function applyMeta(){normalize();if(S.pinHash&&typeof locked!=='undefined'&&!applyMeta.done){locked=true}applyMeta.done=true;if(S.unlocked)unlocked=true;if(S.city)city=S.city}
@@ -1354,16 +1441,41 @@ function gate(){
   tb.innerHTML='';
   app.innerHTML=`<section class="gate">${gImg()}
    <h1>Test zakończony</h1>
-   <p class="muted">Dziękujemy za udział w testach aplikacji grupy ${esc(gName())}. Twoje wpisy nadal są na tym telefonie. Skopiuj je, jeśli chcesz je zachować.</p>
+   <p class="muted">Dziękujemy za udział w testach aplikacji Azyl. Twoje wpisy nadal są na tym telefonie. Skopiuj je, jeśli chcesz je zachować.</p>
    <div class="stack"><button class="primary" data-backup="1">Kopiuj moje wpisy</button>
    <p class="small muted">W razie kryzysu: <span class="phone">112</span> · <span class="phone">116 123</span> · uzależnienia <span class="phone">800 199 990</span> (16–21)</p></div>${credit()}</section>`;
+  return true}
+ if(!isStandalone()&&!inFrame()&&haveApp){
+  tb.innerHTML='';
+  app.innerHTML=`<section class="gate">${gImg()}
+   <h1>Otwórz aplikację z ikony</h1>
+   <p class="muted">Twoje wpisy są w aplikacji na ekranie telefonu, a nie tutaj w przeglądarce. Zamknij tę kartę i dotknij ikony <b>Azyl</b>.</p>
+   <div class="appicon">${appImg()}<span>Azyl</span></div>
+   <p class="small muted">${isIOS()?'Na iPhonie aplikacja z ikony i Safari mają osobne schowki, dlatego tutaj nie widać Twoich danych.':'Aplikacja z ikony ma Twoje wpisy i przypomnienia.'}</p>
+   <div class="stack"><button class="ghost" data-browserok="1">Jednak chcę korzystać w przeglądarce</button></div>${credit()}</section>`;
+  return true}
+ if(!isStandalone()&&!inFrame()&&!unlocked&&S.name===undefined&&!S.browserOk){
+  tb.innerHTML='';
+  app.innerHTML=`<section class="gate">${gImg()}
+   <h1>Witaj w Azylu</h1>
+   ${relatedApp?'<p class="okline">Ta aplikacja jest już zainstalowana na tym telefonie.</p>':''}
+   <p class="muted">Masz już aplikację <b>Azyl</b> na ekranie telefonu?</p>
+   <div class="stack">
+    <button class="primary huge" data-haveapp="1">${icon('check','big')} Tak, mam już aplikację</button>
+    <button class="huge" data-browserok="1">${icon('gift','big')} Nie, jestem tu pierwszy raz</button>
+   </div>${credit()}</section>`;
+  return true}
+ if(!S.installSeen&&!isStandalone()&&!inFrame()){
+  tb.innerHTML='';
+  app.innerHTML=`<section class="gate install">${gImg()}${installScreen()}
+   <div class="stack"><button class="ghost" data-installok="1">${installEvt||inAppBrowser()?'Pomiń na razie':'Zrobione'}</button></div>${credit()}</section>`;
   return true}
  if(ACCESS_CODE&&!unlocked){
   tb.innerHTML='';
   app.innerHTML=`<section class="gate">${gImg()}
-   <h1>Witaj w aplikacji grupy</h1>
+   <h1>Witaj w Azylu</h1>
    <p class="muted">Wersja testowa do ${endDate().toLocaleDateString('pl-PL')}. Wpisz kod, który dostałeś/aś na spotkaniu.</p>
-   <form id="f-code" class="stack"><input id="code" name="code" autocomplete="off" autocapitalize="characters" placeholder="Kod grupy" aria-label="Kod grupy"><button class="primary" type="submit">Wejdź</button></form>
+   <form id="f-code" class="stack"><input id="code" name="code" autocomplete="off" autocapitalize="characters" placeholder="Kod dostępu" aria-label="Kod dostępu"><button class="primary" type="submit">Wejdź</button></form>
    <p class="small muted">Twoje wpisy zostaną tylko na tym telefonie. <button class="linkbtn" data-privacy="1">Jak dbamy o prywatność</button></p>
    <button data-film="1">▶ Zobacz, jak to działa (film, 2 min)</button>${credit()}</section>`;
   return true}
@@ -1375,11 +1487,6 @@ function gate(){
    <p class="muted">Aplikacja będzie Cię witać po imieniu. Wystarczy samo imię albo pseudonim.</p>
    <form id="f-name" class="stack"><input id="first-name" name="name" autocomplete="given-name" placeholder="Twoje imię" aria-label="Twoje imię" style="text-transform:none;letter-spacing:0"><button class="primary" type="submit">Dalej</button><button type="button" class="ghost" data-skipname="1">Pomiń</button></form>
    ${credit()}</section>`;
-  return true}
- if(!S.installSeen&&!isStandalone()&&!inFrame()){
-  tb.innerHTML='';
-  app.innerHTML=`<section class="gate install">${gImg()}${installScreen()}
-   <div class="stack"><button class="ghost" data-installok="1">${installEvt||inAppBrowser()?'Pomiń na razie':'Zrobione'}</button></div>${credit()}</section>`;
   return true}
  const h=new Date().getHours();
  if(h>=4&&h<11&&S.lastMorning!==iso(today())){
@@ -1412,6 +1519,7 @@ function render(openForm){
   (ex&&!['pomoc','prywatnosc','film'].includes(tab)?`<div class="banner"><span>Widzisz przykładowe wpisy, żeby pokazać, jak działa dzienniczek.</span><button data-clear="1">Usuń przykłady</button></div>`:'')+
   (!storageOk?`<div class="banner" style="background:var(--alert-soft)">Ta przeglądarka nie pozwala zapisywać danych. Wpisy znikną po zamknięciu strony.</div>`:'')+
   VIEWS[tab]()+credit();
+ document.getElementById('tabs').style.setProperty('--n',TABS.length);
  document.getElementById('tabs').innerHTML=TABS.map(t=>`<button data-tab="${t[0]}"${navActive(t[0])?' aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${t[2]}</svg>${t[1]}</button>`).join('');
  if(keepY!==null)scrollTo(0,keepY);
  if(openForm){const f=document.getElementById('new-form');if(f){f.open=true;const i=f.querySelector('input,textarea');i&&i.focus()}}
@@ -1510,7 +1618,7 @@ document.addEventListener('click',e=>{
  if(d.more){shown[d.more]+=30;const y=scrollY;render();scrollTo(0,y);return}
  if(d.step!==undefined){stepIdx=+d.step;return go('krok')}
  if(d.admain){const i=S.addictions.findIndex(x=>x.id===d.admain);if(i>0){const [a]=S.addictions.splice(i,1);S.addictions.unshift(a);save();render();toast('Główne: '+a.name)}return}
- if(d.grpreset){S.group={name:'',logo:''};save();render();return toast('Przywrócono '+DEF_GROUP)}
+ if(d.grpreset){S.group={name:'',logo:''};save();render();return toast('Usunięto grupę')}
  if(d.helpnow)return openHelp('crave',[],0);
  if(d.helpfeel)return openHelp('feel',[],0);
  if(d.tipnext){help.i++;return render()}
@@ -1521,7 +1629,11 @@ document.addEventListener('click',e=>{
  if(d.skipname){S.name='';save();return render()}
  if(d.doinstall){if(!installEvt)return;installEvt.prompt();installEvt.userChoice.then(r=>{installEvt=null;if(r&&r.outcome==='accepted'){S.installSeen=true;save()}render()}).catch(()=>{});return}
  if(d.reinstall){S.installSeen=false;save();return render()}
- if(d.installok){S.installSeen=true;save();return render()}
+ if(d.sharelink){const txt='Zapraszam Cię do aplikacji Azyl, dzienniczka trzeźwości'+(hasGroup()?' (grupa '+gName()+')':'')+'. Kod dostępu: '+ACCESS_CODE;
+  if(navigator.share){navigator.share({title:'Azyl',text:txt,url:SHARE_URL}).catch(()=>{})}else copy(txt+'\n'+SHARE_URL);return}
+ if(d.haveapp){haveApp=true;return render()}
+ if(d.browserok){haveApp=false;S.browserOk=true;save();return render()}
+ if(d.installok){S.installSeen=true;save();if(isIOS()&&!inAppBrowser()){haveApp=true}return render()}
  if(d.morning){S.lastMorning=iso(today());save();return go('dzis')}
  if(d.evening){const hh=new Date().getHours();S.lastEvening=iso(hh<4?new Date(today().getTime()-864e5):today());
   if(d.evening==='good'&&!goodToday())S.feelings.push({id:uid(),at:new Date().toISOString(),emotions:['spokój'],level:2,situation:'Szybki wpis: dziś jest dobrze',thoughts:'',body:'',did:'',need:'',quick:true});

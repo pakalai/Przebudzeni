@@ -1,4 +1,4 @@
-Pogłębieni z Przebudzenia – wersja 2.0, autor: StoneMatic
+Azyl – wersja 2.3, autor: StoneMatic
 Wdrożenie na serwer
 
 1. Wgraj cały folder "przebudzeni" na serwer (np. przez FTP do public_html),
