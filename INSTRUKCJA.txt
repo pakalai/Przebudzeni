@@ -1,4 +1,4 @@
-Azyl – wersja 3.1.3, autor: StoneMatic
+Azyl – wersja 3.1.6, autor: StoneMatic
 Aktualizacja na GitHubie
 
 1. Wgraj wszystkie pliki z folderu "przebudzeni" do repozytorium Przebudzeni,
@@ -10,7 +10,7 @@ Aktualizacja na GitHubie
 Numeracja wersji
    Każda aktualizacja podnosi ostatnią cyfrę o 1:
    3.1.1 → 3.1.2 → … → 3.1.9 → 3.2.0 → 3.2.1 → … → 3.2.9 → 3.3.0
-   Wersja jest w index.html (APP_VERSION) i w sw.js (przebudzeni-v3.1.3).
+   Wersja jest w index.html (APP_VERSION) i w sw.js (przebudzeni-v3.1.6).
 
 Dane użytkowników
 3. Wpisy są na telefonie użytkownika. Bez kont, e-maili i statystyk.
@@ -30,3 +30,23 @@ Pliki
 10. icon-*.png, apple-touch-icon.png – ikony Azyl.
 11. Sentencje: listy MORNING_Q, EVENING_Q i HARD_Q na początku skryptu w index.html.
 12. 12 Kroków są ukryte (FEATURE_STEPS=false).
+
+Nowe w 3.1.4
+13. Przy pierwszym otwarciu użytkownik wybiera: Trzeźwienie / Nastrój i depresja / Jedno i drugie
+    (zmiana: Ustawienia). Tryb „Nastrój” ukrywa licznik dni i głód.
+14. Zakładka Nastrój: wykres 14 dni, małe kroki (aktywacja), test PHQ-9 co 2 tygodnie,
+    leki z przypomnieniem na ekranie Dziś, sen, data wizyty i podsumowanie dla lekarza.
+15. Dziennik → Myśli: zapis myśli (CBT) z pułapkami myślenia.
+16. SOS: plan bezpieczeństwa w 6 krokach, moje wyzwalacze z planem, 800 70 2222.
+17. Pomoc teraz: nazwij uczucie + HALT, podpowiedzi dopasowane do emocji.
+18. Stopka: © 2026 StoneMatic, Krystian Prucnel · Regulamin · Zgłoś uwagę.
+    Uwagi przychodzą e-mailem, WhatsAppem albo SMS-em (FEEDBACK_EMAIL, FEEDBACK_WA, FEEDBACK_SMS na początku skryptu, od 3.1.5).
+
+Nowe w 3.1.6
+19. Wersja otwarta: bez kodu dostępu i bez daty końca testu.
+20. Prostszy układ: 5 zakładek (Dziś, Dziennik, Postępy, SOS, Więcej), na ekranie Dziś jedna karta „Teraz”.
+21. Funkcje nastroju (sen, leki, test) pojawiają się, gdy Azyl zauważy słabsze dni albo w trybie Nastrój.
+22. Serwer: https://azyl-sync.krystian-prucnel.workers.dev  (SYNC_URL w index.html)
+    Synchronizacja, przypomnienia na ekranie telefonu, anonimowy licznik do 30.11.2026 (STATS_UNTIL).
+    Panel statystyk: https://azyl-sync.krystian-prucnel.workers.dev/panel
+23. Nowy film instruktażowy (6:20).

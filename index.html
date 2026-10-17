@@ -365,6 +365,63 @@ details.more[open] summary{margin-bottom:10px}
 .sugcard.good{border-left-color:var(--amber)}
 .empty{color:var(--muted);font-size:.92rem;padding:12px 0}
 @media (prefers-reduced-motion:no-preference){.toast{animation:up .2s ease-out}@keyframes up{from{opacity:.4;transform:translate(-50%,8px)}}}
+
+/* 3.1.4: nastrój */
+nav.tabs button{font-size:.64rem;letter-spacing:-.01em}
+.mchart{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:3px;align-items:end;height:84px}
+.mchart div{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:3px;min-width:0}
+.mchart i{display:block;width:100%;border-radius:4px 4px 0 0;min-height:3px;background:var(--line)}
+.mchart i.m1{background:#e88a8a}.mchart i.m2{background:#f0b56b}.mchart i.m3{background:#e6dca0}.mchart i.m4{background:#9fd4b0}.mchart i.m5{background:#5fbf86}
+.mchart small{font-size:.62rem;color:var(--muted)}
+.act{display:flex;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.act:first-of-type{border-top:0}
+.act .at{flex:1;min-width:0}
+.act.done .at b{text-decoration:line-through;text-decoration-color:var(--muted)}
+.facepick{display:flex;gap:4px;flex-wrap:wrap}
+.facepick button{padding:2px;border:0;background:none;border-radius:50%}
+.facepick .face,.minif .face{width:30px;height:30px}
+.minif{display:inline-grid;vertical-align:middle}
+.ideas{display:flex;flex-wrap:wrap;gap:6px}
+.ideas button{font-size:.82rem;padding:6px 10px;border-radius:999px;background:var(--lake-soft);border-color:transparent;color:var(--lake)}
+.medrow{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.medrow:first-of-type{border-top:0}
+.phq-q{display:flex;flex-direction:column;gap:8px;padding:12px 0;border-top:1px solid var(--line)}
+.phq-q:first-of-type{border-top:0}
+.phq-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.phq-opts label{position:relative;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.85rem;cursor:pointer;background:var(--surface)}
+.phq-opts input{position:absolute;opacity:0;width:1px;height:1px}
+.phq-opts label:has(input:checked){border-color:var(--lake);background:var(--lake-soft);font-weight:700}
+.phq-opts label:focus-within{outline:2px solid var(--lake);outline-offset:2px}
+.score{font-family:var(--display);font-size:2.4rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.crisis{background:var(--alert-soft);border-color:transparent}
+.crisis a.phone,.numbers a.phone{color:var(--alert);font-weight:800;text-decoration:none;white-space:nowrap}
+.docsum{white-space:pre-wrap;font:inherit;font-size:.9rem;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;margin:0;max-height:340px;overflow:auto}
+.bigbtn.calm{background:var(--good-soft);color:var(--good)}
+.modepick{display:flex;flex-direction:column;gap:10px;width:100%;max-width:380px}
+.modepick button{display:flex;gap:12px;align-items:center;text-align:left;padding:14px 16px;border-radius:14px}
+.modepick button small{display:block;font-weight:400;color:var(--muted)}
+.modepick button.on{border-color:var(--lake);background:var(--lake-soft)}
+.trap{font-size:.8rem}
+.lvlchg{font-variant-numeric:tabular-nums}
+.secnum{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--lake);color:var(--bg);font-size:.8rem;margin-right:6px;vertical-align:2px}
+.tg{font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* 3.1.6: prosty układ */
+.tiles2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.tile2{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:16px 6px;border-radius:16px;min-height:96px;text-align:center}
+.tile2 .ic{color:var(--lake)}
+.tile2 b{font-size:.85rem}
+.tile2 small{font-size:.72rem;color:var(--muted);font-weight:600}
+.hicons{display:flex;gap:8px}
+.hicons .gear .ic{width:22px;height:22px}
+.st4{display:grid;grid-template-columns:repeat(auto-fit,minmax(68px,1fr));gap:8px}
+.st4 .st{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.75rem;font-weight:600;padding:10px 4px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.st4 .st.ok{background:var(--good-soft);border-color:transparent;color:var(--good)}
+.st4 .st .ic{color:currentColor}
+.nowcard{border-width:2px}
+header.top .back{font-size:1.6rem;line-height:1;padding:2px 10px 6px}
+details.wcard>summary .pill{margin-left:auto}
+.sosrow .bigbtn{min-height:96px}
 </style>
 
 <div class="wrap" id="app"></div>
@@ -372,13 +429,19 @@ details.more[open] summary{margin-bottom:10px}
 <div class="toast" id="toast" hidden></div>
 
 <script>
+/*! Azyl © 2026 StoneMatic, Krystian Prucnel. Wszelkie prawa zastrzeżone. Kopiowanie i wykorzystywanie kodu bez zgody autora zabronione. */
 (function(){
 /* ===== USTAWIENIA TESTU – zmień tutaj ===== */
-const TEST_END='2027-10-14';      // ostatni dzień testów (RRRR-MM-DD)
-const ACCESS_CODE='PRZEBUDZENI';  // kod dla grupy; pusty '' = bez kodu
-const APP_VERSION='3.1.3';
+const TEST_END='2099-12-31';      // ostatni dzień testów (RRRR-MM-DD)
+const ACCESS_CODE='';  // kod dla grupy; pusty '' = bez kodu
+const APP_VERSION='3.1.6';
+const STATS_UNTIL='2026-11-30';  // anonimowy licznik urządzeń działa do tej daty
 const FEATURE_STEPS=false;   // 12 Kroków: true = włączone, false = ukryte (dane zostają)
 const APP_AUTHOR='StoneMatic';
+const APP_OWNER='Krystian Prucnel';
+const FEEDBACK_EMAIL='krystian.prucnel@pakal.pl';   // „Zgłoś uwagę”: e-mail
+const FEEDBACK_SMS='+48783210210';   // „Zgłoś uwagę”: SMS
+const FEEDBACK_WA='48783210210';     // „Zgłoś uwagę”: WhatsApp (bez plusa)
 /* ============================================ */
 const KEY='dzienniczek-trzezwosci-v1';
 const APP_NAME='Azyl';
@@ -607,7 +670,7 @@ const quoteCard=(big,part)=>{part=part||dayPart();const q=quoteToday(part);retur
 const isStandalone=()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}catch(e){return false}};
 const inFrame=()=>{try{return window.top!==window.self}catch(e){return true}};
 const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent);
-const EMOTIONS=['spokój','radość','wdzięczność','nadzieja','smutek','złość','lęk','wstyd','poczucie winy','samotność','nuda','zmęczenie','napięcie','żal'];
+const EMOTIONS=['spokój','radość','wdzięczność','nadzieja','smutek','złość','lęk','wstyd','poczucie winy','samotność','nuda','zmęczenie','napięcie','żal','bezradność','pustka'];
 const TRIGGERS=['głód (H)','złość (A)','samotność (L)','zmęczenie (T)','stres w pracy','konflikt','spotkanie ze znajomymi','alkohol w zasięgu','pieniądze','nuda','świętowanie','wspomnienia'];
 const STONES=[1,7,14,30,60,90,180];
 const yWord=n=>n===1?'rok':(n%10>=2&&n%10<=4&&(n%100<12||n%100>14))?'lata':'lat';
@@ -675,11 +738,20 @@ const IC={
  lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
  share:'<path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v8h14v-8"/>',
  arrow:'<path d="M12 4v16M5 13l7 7 7-7"/>',
+ mind:'<path d="M9.5 4A3.5 3.5 0 0 0 6 7.2 3.3 3.3 0 0 0 4 13a3.5 3.5 0 0 0 3 5.3A2.8 2.8 0 0 0 12 19V5.5A2.5 2.5 0 0 0 9.5 4zM14.5 4A3.5 3.5 0 0 1 18 7.2 3.3 3.3 0 0 1 20 13a3.5 3.5 0 0 1-3 5.3A2.8 2.8 0 0 1 12 19"/>',
+ stairs:'<path d="M3 20h5v-5h5v-5h5V5h3"/>',
+ pill:'<rect x="2.5" y="8.5" width="19" height="7" rx="3.5" transform="rotate(-35 12 12)"/><path d="M9.6 8.6l4.8 6.8"/>',
+ hands:'<path d="M5 19c0-4 2-6 2-9V6M19 19c0-4-2-6-2-9V6M7 10c2 0 3 1 3 3M17 10c-2 0-3 1-3 3"/>',
+ empty:'<circle cx="12" cy="12" r="8" stroke-dasharray="3 3"/>',
+ grid:'<rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/>',
+ cog:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+ bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/>',
+ doc:'<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/>',
  gift:'<rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 12h18M12 8v13M12 8s-1-5-4-5-3 3 0 5M12 8s1-5 4-5 3 3 0 5"/>'
 };
 const icon=(k,c)=>`<svg class="ic${c?' '+c:''}" viewBox="0 0 24 24" aria-hidden="true">${IC[k]||IC.star}</svg>`;
 const POS_EMO=['spokój','radość','wdzięczność','nadzieja'];
-const EMO_IC={'spokój':'leaf','radość':'sun','wdzięczność':'gift','nadzieja':'star','smutek':'cloud','złość':'bolt','lęk':'wave','wstyd':'eye','poczucie winy':'drop','samotność':'people','nuda':'hour','zmęczenie':'bed','napięcie':'angry','żal':'frown'};
+const EMO_IC={'spokój':'leaf','radość':'sun','wdzięczność':'gift','nadzieja':'star','smutek':'cloud','złość':'bolt','lęk':'wave','wstyd':'eye','poczucie winy':'drop','samotność':'people','nuda':'hour','zmęczenie':'bed','napięcie':'angry','żal':'frown','bezradność':'hands','pustka':'empty'};
 const TRIG_IC={'głód (H)':'food','złość (A)':'bolt','samotność (L)':'people','zmęczenie (T)':'bed','stres w pracy':'brief','konflikt':'chat','spotkanie ze znajomymi':'people','alkohol w zasięgu':'glass','pieniądze':'coins','nuda':'hour','świętowanie':'star','wspomnienia':'clock'};
 const HELPS=[['mityng','people'],['telefon do kogoś','phone'],['spacer','walk'],['sen','bed'],['modlitwa / medytacja','pray'],['sport','gym'],['rodzina','home'],['muzyka','music'],['jedzenie i woda','food'],['lektura','book']];
 const GRATS=[['rodzina','home'],['zdrowie','heart'],['praca','brief'],['przyjaciele','people'],['grupa','shield'],['trzeźwość','star'],['natura','leaf'],['spokojny dzień','sun']];
@@ -712,7 +784,7 @@ function checkinCard(){
  const nt=nudgeText();
  return `<section class="card checkin${nt?' nudge':''}"><h2>${nt?'Jak tam u Ciebie'+(S.name?', '+esc(S.name):'')+'?':'Jak się teraz czujesz?'}</h2>${nt?`<p>${nt}</p>`:''}
   <div class="moods">${MOODS.map(([n,l,c])=>`<button class="mood ${c}${last&&last.mood===n?' sel':''}" data-mood="${n}" aria-label="${l}">${faceSvg(n)}<small>${l}</small></button>`).join('')}</div>
-  ${last?`<p class="small muted">Ostatnio dziś o ${new Date(last.at).toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'})}: <b>${MOODS[last.mood-1][1]}</b>${last.emotions.length?' · '+esc(last.emotions.join(', ')):''}</p>`:'<p class="small muted">Jedno dotknięcie wystarczy. Zapiszę to w Twoim dzienniczku.</p>'}
+  ${last?`<p class="small muted">Ostatnio dziś o ${new Date(last.at).toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'})}: <b>${MOODS[last.mood-1][1]}</b>${last.emotions.length?' · '+esc(last.emotions.join(', ')):''}</p>`:''}
   ${open?`<div class="ciopen"><div class="label">Co czujesz? (opcjonalnie)</div>${tiles('ciemo',EMOTIONS,EMO_IC,x=>POS_EMO.includes(x)?'pos':'neg',last.emoPicked?last.emotions:[])}
    <div class="label">Co na to wpływa? (opcjonalnie)</div>${tiles('citrg',[['sen','bed'],['praca','brief'],['rodzina','home'],['zdrowie','heart'],['pieniądze','coins'],['samotność','people'],['stres','bolt'],['grupa','shield']],null,'',last.tags||[])}
    <button class="primary" data-ciclose="1">Gotowe</button></div>`:''}
@@ -720,35 +792,46 @@ function checkinCard(){
 }
 function vWiedza(){
  const W=[
-  ['wave','Głód to fala','Głód narasta, osiąga szczyt i opada, zwykle w ciągu 20–30 minut. Nie musisz z nim walczyć ani go spełniać. Obserwuj go jak falę: oddychaj, zajmij ręce, zmień miejsce, zadzwoń do kogoś. Każdy przeczekany głód osłabia następny.'],
-  ['food','HALT: cztery pułapki','Najłatwiej sięgnąć po substancję, gdy jesteś Głodny, Zły, Samotny albo Zmęczony (ang. Hungry, Angry, Lonely, Tired). Kiedy czujesz niepokój, sprawdź najpierw te cztery rzeczy. Często wystarczy zjeść, porozmawiać albo się wyspać.'],
-  ['eye','Sygnały ostrzegawcze nawrotu','Nawrót zaczyna się, zanim sięgniesz: wycofujesz się z ludzi, opuszczasz mityngi, śpisz źle, myślisz „jeden raz nic nie zmieni”, wraca złość i pretensje. Gdy zauważysz u siebie dwa lub trzy takie sygnały, porozmawiaj ze sponsorem albo terapeutą.'],
-  ['bed','Sen i trzeźwość','Po odstawieniu sen często jest gorszy przez kilka tygodni. To normalne i mija. Pomagają stałe pory, mniej kawy po południu, odłożony telefon przed snem. Zmęczenie wzmacnia głód, więc sen to część leczenia.'],
-  ['shield','Co zrobić po nawrocie','Nawrót to nie koniec drogi. Najważniejsze: nie zostawaj z tym sam, zadzwoń do sponsora lub terapeuty, wróć na mityng. Zastanów się, co go poprzedziło, i dopisz to do sygnałów ostrzegawczych. Wstyd każe się ukryć, a pomoc zaczyna się od powiedzenia prawdy.'],
-  ['people','Dlaczego grupa pomaga','Na mityngu spotykasz ludzi, którzy rozumieją bez tłumaczenia. Słuchanie cudzych historii pokazuje, że wyjście jest możliwe, a mówienie o swojej odbiera siłę wstydowi. Regularność jest ważniejsza niż to, czy masz ochotę iść.'],
-  ['heart','Uczucia: nazwij, żeby oswoić','Nałóg często służył do zagłuszania uczuć. W trzeźwości wracają mocniej i to jest normalne. Samo nazwanie uczucia („czuję złość”, „czuję lęk”) zmniejsza jego siłę. Uczucia przychodzą i odchodzą. Nie musisz za nimi iść.'],
-  ['home','Rozmowa z bliskimi','Bliscy często są zranieni i nieufni. Zaufanie wraca powoli, dzięki czynom, a nie obietnicom. Mów o tym, co czujesz, zamiast tłumaczyć się z przeszłości. Dla rodzin są grupy Al-Anon, gdzie mogą znaleźć wsparcie dla siebie.'],
-  ['drop','Odstawienie: kiedy do lekarza','Nagłe odstawienie alkoholu po długim piciu, a także leków uspokajających, może być niebezpieczne. Drżenie, poty, kołatanie serca, omamy albo drgawki wymagają pilnej pomocy: dzwoń 112. Leków nie odstawiaj sam, rób to z lekarzem.']
+  ['wave','Głód to fala','Głód narasta, osiąga szczyt i opada, zwykle w ciągu 20–30 minut. Nie musisz z nim walczyć ani go spełniać. Obserwuj go jak falę: oddychaj, zajmij ręce, zmień miejsce, zadzwoń do kogoś. Każdy przeczekany głód osłabia następny.','u'],
+  ['food','HALT: cztery pułapki','Najłatwiej sięgnąć po substancję, gdy jesteś Głodny, Zły, Samotny albo Zmęczony (ang. Hungry, Angry, Lonely, Tired). Kiedy czujesz niepokój, sprawdź najpierw te cztery rzeczy. Często wystarczy zjeść, porozmawiać albo się wyspać.','u'],
+  ['eye','Sygnały ostrzegawcze nawrotu','Nawrót zaczyna się, zanim sięgniesz: wycofujesz się z ludzi, opuszczasz mityngi, śpisz źle, myślisz „jeden raz nic nie zmieni”, wraca złość i pretensje. Gdy zauważysz u siebie dwa lub trzy takie sygnały, porozmawiaj ze sponsorem albo terapeutą.','u'],
+  ['bed','Sen i trzeźwość','Po odstawieniu sen często jest gorszy przez kilka tygodni. To normalne i mija. Pomagają stałe pory, mniej kawy po południu, odłożony telefon przed snem. Zmęczenie wzmacnia głód, więc sen to część leczenia.','w'],
+  ['shield','Co zrobić po nawrocie','Nawrót to nie koniec drogi. Najważniejsze: nie zostawaj z tym sam, zadzwoń do sponsora lub terapeuty, wróć na mityng. Zastanów się, co go poprzedziło, i dopisz to do sygnałów ostrzegawczych. Wstyd każe się ukryć, a pomoc zaczyna się od powiedzenia prawdy.','u'],
+  ['people','Dlaczego grupa pomaga','Na mityngu spotykasz ludzi, którzy rozumieją bez tłumaczenia. Słuchanie cudzych historii pokazuje, że wyjście jest możliwe, a mówienie o swojej odbiera siłę wstydowi. Regularność jest ważniejsza niż to, czy masz ochotę iść.','u'],
+  ['heart','Uczucia: nazwij, żeby oswoić','Nałóg często służył do zagłuszania uczuć. W trzeźwości wracają mocniej i to jest normalne. Samo nazwanie uczucia („czuję złość”, „czuję lęk”) zmniejsza jego siłę. Uczucia przychodzą i odchodzą. Nie musisz za nimi iść.','w'],
+  ['home','Rozmowa z bliskimi','Bliscy często są zranieni i nieufni. Zaufanie wraca powoli, dzięki czynom, a nie obietnicom. Mów o tym, co czujesz, zamiast tłumaczyć się z przeszłości. Dla rodzin są grupy Al-Anon, gdzie mogą znaleźć wsparcie dla siebie.','u'],
+  ['drop','Odstawienie: kiedy do lekarza','Nagłe odstawienie alkoholu po długim piciu, a także leków uspokajających, może być niebezpieczne. Drżenie, poty, kołatanie serca, omamy albo drgawki wymagają pilnej pomocy: dzwoń 112. Leków nie odstawiaj sam, rób to z lekarzem.','u'],
+  ['mind','Depresja to choroba, nie słabość','Depresja to nie lenistwo ani zły charakter. To choroba, która zmienia sen, apetyt, energię, myślenie i to, jak widzisz siebie. Dobrze się leczy: psychoterapią, lekami albo jednym i drugim. Do psychiatry na NFZ nie potrzebujesz skierowania. Poprawa przychodzi stopniowo. Często najpierw wraca sen i energia, a dopiero potem nastrój.','d'],
+  ['stairs','Najpierw działanie, potem ochota','W depresji czekanie, aż przyjdzie ochota, zwykle nie działa. Działa odwrotnie: mała czynność, nawet bez ochoty, po jakimś czasie poprawia nastrój. To metoda z terapii poznawczo-behawioralnej, nazywana aktywacją. Planuj małe, konkretne kroki i zapisuj, jak się czujesz po nich. W zakładce Nastrój zobaczysz, co pomaga Ci najbardziej.','d'],
+  ['pill','Leki: co warto wiedzieć','Leki przeciwdepresyjne zwykle zaczynają działać po 2–4 tygodniach, a pełny efekt bywa później. Nie odstawiaj ich nagle i nie zmieniaj dawki sam/a, nawet gdy czujesz się lepiej. Skutki uboczne zgłoś lekarzowi, często da się je zmniejszyć. Aplikacja tylko przypomina, o leczeniu decyduje lekarz.','d'],
+  ['drop','Alkohol a depresja','Alkohol na chwilę uspokaja, ale następnego dnia pogłębia lęk i smutek, psuje sen i osłabia działanie leków. Wiele osób po kilku tygodniach trzeźwości zauważa wyraźną poprawę nastroju. Jeśli pijesz albo bierzesz, żeby poradzić sobie z nastrojem, powiedz o tym lekarzowi.','d'],
+  ['mind','Pułapki myślenia','Depresja i nałóg podsuwają myśli, które brzmią jak fakty: „zawsze wszystko psuję”, „nikt mnie nie lubi”, „to bez sensu”. To pułapki: czarnowidztwo, wszystko albo nic, czytanie w myślach, etykietki. Złap taką myśl, zapisz ją i sprawdź jak detektyw: co przemawia za, a co przeciw? W Dzienniku służy do tego zakładka Myśli.','w'],
+  ['bolt','Wyzwalacze zewnętrzne i wewnętrzne','Zewnętrzne to miejsca, ludzie, sytuacje, dni tygodnia, nawet muzyka, które kojarzą się z braniem. Wewnętrzne to emocje i myśli, przy których dawniej sięgało się po substancję: złość, smutek, samotność, ale też euforia. Wypisz swoje w zakładce SOS i do każdego dopisz plan. Część wyzwalaczy da się usunąć, na resztę trzeba mieć sposób.','u'],
+  ['wave','Emocja, myśl, głód','Głód rzadko przychodzi znikąd. Najpierw jest emocja, potem myśl, która ją tłumaczy („zasłużyłem”, „jeden raz nic nie zmieni”), a dopiero potem głód. Kiedy nauczysz się zauważać tę myśl, możesz ją zatrzymać, zanim urośnie.','u'],
+  ['sun','Tylko dziś: 24 godziny','„Nigdy więcej” przeraża. „Dziś nie biorę” da się udźwignąć. Myśl kawałkami po 24 godziny: rano zaplanuj dzień, wieczorem zrób bilans. W bilansie zapisuj nie tylko błędy, ale też to, co się udało. Nawet zwykły dzień ma w sobie coś dobrego.','u'],
+  ['leaf','Dobry i zły stres','Stres nie zawsze szkodzi. Dobry stres mobilizuje do działania i mija. Zły stres trwa długo i odcina od ludzi i od siebie. Chronią przed nim cztery rzeczy: ciało (ruch, sen), działanie, kontakt z ludźmi i wyobraźnia (plany, marzenia, twórczość). Pomaga też znajomość własnych wartości: wiesz wtedy, o co warto się martwić, a co odpuścić.','w'],
+  ['shield','Asertywność w praktyce','Asertywność to mówienie o swoich potrzebach i granicach spokojnie, bez ataku i bez uległości. Patrz w oczy, weź oddech, mów krótko. Nie musisz się tłumaczyć. „Nie, dziękuję” to pełne zdanie, także wtedy, gdy ktoś coś proponuje.','w'],
+  ['eye','Jak oszukuje nas głowa','Każdy ma sposoby, żeby nie czuć bólu: zaprzeczanie („nie mam problemu”), pomniejszanie („inni mają gorzej”), obwinianie innych, ucieczka w działanie. W nałogu i w depresji takie mechanizmy podtrzymują chorobę. Są też dojrzałe sposoby: humor, pomaganie innym, przewidywanie trudności i planowanie, przekuwanie emocji w pracę albo twórczość.','w'],
+  ['people','Gdy ktoś bliski jest w kryzysie','Słuchaj uważnie, nie oceniaj, nie mów „weź się w garść”. Pytaj wprost, także o myśli samobójcze: takie pytanie nie podsuwa pomysłu, a często przynosi ulgę. Pomóż nazwać problem, zadbaj o bezpieczeństwo i zróbcie razem mały plan na najbliższe godziny. Po radę możesz zadzwonić o każdej porze: 800 70 2222.','w']
  ];
  return `<header class="top"><h1>Wiedza</h1></header>
- <button class="gainlink" data-gains="${(S.addictions.find(x=>x.start)||{}).id||''}">${icon('star','big')}<span><b>Zyski z trzeźwości</b><small>Co dzieje się teraz w Twoim ciele, mózgu i z urodą. Na podstawie badań.</small></span></button>
+ ${isTrz()?`<button class="gainlink" data-gains="${(S.addictions.find(x=>x.start)||{}).id||''}">${icon('star','big')}<span><b>Zyski z trzeźwości</b><small>Co dzieje się teraz w Twoim ciele, mózgu i z urodą. Na podstawie badań.</small></span></button>`:''}
  <p class="muted">Krótko i po ludzku o tym, co dzieje się w trzeźwieniu. Dotknij, żeby rozwinąć.</p>
- <div class="stack">${W.map(([ic,t,d],i)=>`<details class="wcard"${i===0?' open':''}><summary>${icon(ic,'big')}<b>${t}</b></summary><p>${d}</p></details>`).join('')}</div>
+ <div class="stack">${wiedzaList(W).map(([ic,t,d],i)=>`<details class="wcard"${i===0?' open':''}><summary>${icon(ic,'big')}<b>${t}</b></summary><p>${d}</p></details>`).join('')}</div>
  <section class="card"><div class="row" style="gap:10px"><button data-film="1">${icon('play')} Film: jak korzystać</button><button data-privacy="1">${icon('lock')} Prywatność</button>${!isStandalone()&&!inFrame()?`<button data-reinstall="1">${icon('gift')} Dodaj do ekranu</button>`:''}</div></section>
  <p class="small muted">Wiedza ogólna, nie zastępuje porady lekarza ani terapeuty.</p>`;
 }
-const NAVGROUP={zyski:'wiedza',polec:'polec',uczucia:'uczucia',glod:'uczucia',bilans:'uczucia',kalendarz:'kalendarz',cele:'kalendarz',pomoc:'plan',plan:'plan',dzis:'dzis',wiedza:'wiedza',ustawienia:'dzis'};
+const NAVGROUP={dzis:'dzis',uczucia:'uczucia',glod:'uczucia',mysli:'uczucia',bilans:'uczucia',postepy:'postepy',nastroj:'postepy',malekroki:'postepy',leki:'postepy',sen:'postepy',testy:'postepy',phq:'postepy',lekarz:'postepy',kalendarz:'postepy',cele:'postepy',zyski:'postepy',plan:'plan',pomoc:'plan',wiecej:'wiecej',wiedza:'wiecej',polec:'wiecej',film:'wiecej',prywatnosc:'wiecej',regulamin:'wiecej',uwaga:'wiecej',ustawienia:'wiecej'};
 const navActive=k=>(NAVGROUP[tab]||tab)===k;
-const segJ=cur=>`<div class="seg jseg">${[['uczucia','Uczucia','heart'],['glod','Głód','flame'],['bilans','Bilans','moon']].map(([k,l,ic])=>`<button class="${cur===k?'on':''}" data-tab="${k}">${icon(ic)}${l}</button>`).join('')}</div>`;
+const segJ=cur=>`<div class="seg jseg">${[['uczucia','Uczucia','heart'],...(isTrz()?[['glod','Głód','flame']]:[]),['mysli','Myśli','mind'],['bilans','Bilans','moon']].map(([k,l,ic])=>`<button class="${cur===k?'on':''}" data-tab="${k}">${icon(ic)}${l}</button>`).join('')}</div>`;
 const segP=cur=>`<div class="seg jseg">${[['kalendarz','Kalendarz','cal'],['cele','Cele','target']].map(([k,l,ic])=>`<button class="${cur===k?'on':''}" data-tab="${k}">${icon(ic)}${l}</button>`).join('')}</div>`;
 
 const TABS=[
  ['dzis','Dziś',IC.sun],
  ['uczucia','Dziennik',IC.book],
+ ['postepy','Postępy',IC.chart],
  ['plan','SOS',IC.shield],
- ['kalendarz','Postępy',IC.chart],
- ['wiedza','Wiedza',IC.bulb],
- ['polec','Poleć',IC.qr]
+ ['wiecej','Więcej',IC.grid]
 ];
 
 const today=()=>{const d=new Date();d.setHours(0,0,0,0);return d};
@@ -765,7 +848,8 @@ function sample(){
   feelings:[
    {id:uid(),ex:true,at:ts(0,8),emotions:['napięcie','lęk'],level:6,situation:'Rano przed rozmową z szefem o premii.',thoughts:'„Znowu coś zawalę.”',body:'Ścisk w żołądku, szybki oddech.',did:'Zrobiłem 10 oddechów i zjadłem śniadanie.',need:'Spokoju i konkretnej informacji.'},
    {id:uid(),ex:true,at:ts(1,21),emotions:['samotność','smutek'],level:7,situation:'Wieczór sam w domu, żona u matki.',thoughts:'Nikt się mną nie interesuje.',body:'Ciężar w klatce.',did:'Zadzwoniłem do Marka z grupy.',need:'Kontaktu z kimś.'},
-   {id:uid(),ex:true,at:ts(3,19),emotions:['wdzięczność','spokój'],level:3,situation:'Mityng i spacer z psem.',thoughts:'Daję radę dzień po dniu.',body:'Rozluźnione ramiona.',did:'Zapisałem 3 rzeczy, za które jestem wdzięczny.',need:''}
+   {id:uid(),ex:true,at:ts(3,19),emotions:['wdzięczność','spokój'],level:3,situation:'Mityng i spacer z psem.',thoughts:'Daję radę dzień po dniu.',body:'Rozluźnione ramiona.',did:'Zapisałem 3 rzeczy, za które jestem wdzięczny.',need:''},
+   ...[[13,2],[12,2],[11,3],[10,2],[9,3],[8,3],[7,4],[6,3],[5,3],[4,4],[2,4]].map(([d,m])=>({id:uid(),ex:true,at:ts(d,9),mood:m,emotions:MOOD_EMO[m].slice(),level:MOOD_LVL[m],situation:'',thoughts:'',body:'',did:'',need:'',checkin:true}))
   ],
   cravings:[
    {id:uid(),ex:true,at:ts(1,20),level:8,triggers:['samotność (L)','zmęczenie (T)'],situation:'Przejeżdżałem obok sklepu, w którym zawsze kupowałem.',did:'Pojechałem dalej, zadzwoniłem do sponsora.',minutes:25,used:false},
@@ -794,14 +878,17 @@ if(!S||typeof S!=='object')S=sample();
 function normalize(){
  if(!Array.isArray(S.addictions))S.addictions=[{id:uid(),name:S.substance||'alkohol',start:S.start||''}];
  if(!S.group)S.group={name:'',logo:''};
+ ['acts','thoughts','phq','meds','medLog','sleep','trig'].forEach(k=>{if(!Array.isArray(S[k]))S[k]=[]});
+ if(!S.plan)S.plan={warning:[],strategies:[],contacts:[],reasons:[]};
+ ['places','safe','docQs'].forEach(k=>{if(!Array.isArray(S.plan[k]))S.plan[k]=[]});
 }
 normalize();
 
 /* ---------- synchronizacja: szyfrowanie na urządzeniu, scalanie trójstronne ---------- */
-const SYNC_URL='';
-const LOCAL_KEYS=['sync','installSeen','browserOk','ciOpen','lastMorning','lastEvening','moveAsked','sugState','goalSnooze'];
-const COLL=['feelings','cravings','goals','notes','addictions','myQuotes'];
-const PLAN_ID=['contacts'],PLAN_STR=['warning','strategies','reasons'];
+const SYNC_URL='https://azyl-sync.krystian-prucnel.workers.dev';
+const LOCAL_KEYS=['sync','installSeen','browserOk','ciOpen','lastMorning','lastEvening','moveAsked','sugState','goalSnooze','phqSnooze','push','pushAsked','featNo'];
+const COLL=['feelings','cravings','goals','notes','addictions','myQuotes','acts','thoughts','phq','meds','medLog','sleep','trig'];
+const PLAN_ID=['contacts'],PLAN_STR=['warning','strategies','reasons','places','safe','docQs'];
 const B32='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const te=new TextEncoder(),td=new TextDecoder();
 function newSyncCode(){const a=crypto.getRandomValues(new Uint8Array(16));let r='';for(const b of a)r+=B32[b%32];return 'AZYL-'+r.match(/.{4}/g).join('-')}
@@ -936,11 +1023,12 @@ function saveLocal(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){st
 function save(){
  saveLocal();
  if(typeof syncSoon==='function')syncSoon();
+ if(typeof pushSync==='function')pushSync();
  if(cloud){clearTimeout(cloudTimer);cloudTimer=setTimeout(cloudWrite,500)}
 }
 
 let tab='dzis';
-try{const h=location.hash.slice(1);if(TABS.some(t=>t[0]===h))tab=h}catch(e){}
+try{const h=location.hash.slice(1);if(h==='nastroj')tab='malekroki';else if(TABS.some(t=>t[0]===h)||['bilans','mysli','phq','lekarz','malekroki','leki'].includes(h))tab=h}catch(e){}
 
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,2400)}
 function copy(text){
@@ -999,9 +1087,12 @@ const SUGG=[
  ['l2','plan','Zajrzyj do swojego planu na trudną chwilę. Lepiej znać go, zanim będzie potrzebny.','','sos'],
  ['m1','duch','Chwila modlitwy, medytacji albo ciszy. Oddaj to, co Cię dziś gryzie.'],
  ['e1','sen','Odłóż telefon na pół godziny przed snem. Daj głowie odpocząć.','e'],
- ['e2','sen','Ciepła herbata i wcześniejszy sen. Wieczorne czarne myśli rano wyglądają inaczej.','e']
+ ['e2','sen','Ciepła herbata i wcześniejszy sen. Wieczorne czarne myśli rano wyglądają inaczej.','e'],
+ ['k1','kroki','Wybierz jeden mały krok na dziś. Mały i konkretny: 10 minut, nie cały dzień.','','kroki'],
+ ['k2','kroki','Rozbij to, co odkładasz, na najmniejszy możliwy krok i zrób tylko ten jeden.','','kroki'],
+ ['t1','pisanie','Zapisz myśl, która Cię dziś przygniata, i sprawdź ją jak detektyw: co przemawia za, a co przeciw?','','mysl']
 ];
-const SIG={'smutek':['ruch','ludzie','dlasiebie','pisanie'],'samotność':['ludzie','grupa','ruch'],'złość':['ruch','pisanie','spokoj'],'lęk':['spokoj','ludzie','pisanie'],
+const SIG={'smutek':['kroki','ruch','ludzie','pisanie'],'bezradność':['kroki','ludzie','plan'],'pustka':['kroki','ludzie','dlasiebie'],'samotność':['ludzie','grupa','ruch'],'złość':['ruch','pisanie','spokoj'],'lęk':['spokoj','ludzie','pisanie'],
  'napięcie':['spokoj','ruch'],'wstyd':['ludzie','grupa','pisanie'],'poczucie winy':['pisanie','ludzie','grupa'],'żal':['pisanie','ludzie','dlasiebie'],
  'zmęczenie':['cialo','sen'],'nuda':['plan','ruch','dlasiebie'],'sen':['cialo','sen'],'praca':['ruch','spokoj','plan'],'rodzina':['ludzie','pisanie','spokoj'],
  'zdrowie':['cialo','ludzie'],'pieniądze':['plan','pisanie'],'stres':['spokoj','ruch'],'grupa':['grupa','ludzie']};
@@ -1069,30 +1160,78 @@ function goalCard(){
 }
 function vDzis(){
  return `
- <header class="brand">${gImg()}<div style="flex:1;min-width:0"><h1>${hello()}</h1><span class="muted small">${new Date().toLocaleDateString('pl-PL',{weekday:'long',day:'numeric',month:'long'})} · <span class="trial">test: ${trialLeft()} dni</span></span></div><button class="gear" data-tab="ustawienia" aria-label="Ustawienia">⚙</button></header>
- ${hardDays()?`<section class="card alertcard"><h2>Ostatnie dni są trudne</h2><p>Widzę kilka ciężkich wpisów z rzędu. To dobry moment, żeby porozmawiać z terapeutą albo kimś z grupy.</p><div class="row"><button class="primary" data-helpfeel="1">Pomoc teraz</button><button data-tab="plan">Moje kontakty</button></div></section>`:''}
+ <header class="brand">${gImg()}<div style="flex:1;min-width:0"><h1>${hello()}</h1><span class="muted small">${new Date().toLocaleDateString('pl-PL',{weekday:'long',day:'numeric',month:'long'})}${TEST_END<'2090'?` · <span class="trial">test: ${trialLeft()} dni</span>`:''}</span></div>
+  <div class="hicons"><button class="gear" data-tab="polec" aria-label="Poleć aplikację">${icon('qr')}</button><button class="gear" data-tab="ustawienia" aria-label="Ustawienia">⚙</button></div></header>
  ${quoteCard(false)}
  ${checkinCard()}
- ${suggCard()}
- <section class="counters">${S.addictions.length?S.addictions.map((a,i)=>counterCard(a,i===0)).join(''):''}</section>
- ${goalCard()}
+ ${nowCard()}
+ ${isTrz()?`<section class="counters">${S.addictions.length?S.addictions.map((a,i)=>counterCard(a,i===0)).join(''):''}</section>`:''}
  <section class="sosrow">
-  <button class="bigbtn sos" data-helpnow="1">${icon('flame','big')}<b>Mam silny głód</b><small>Poprowadzę Cię</small></button>
-  <button class="bigbtn warn" data-helpfeel="1">${icon('cloud','big')}<b>Jest mi ciężko</b><small>Pomogę Ci teraz</small></button>
- </section>
- ${weekStrip()}
- <section class="grid9">
-  <button data-go="uczucia" data-open="1">${icon('heart','big')}<span>Uczucia</span></button>
-  <button data-go="glod" data-open="1">${icon('flame','big')}<span>Głód</span></button>
-  <button data-go="bilans" data-open="1">${icon('moon','big')}<span>Bilans dnia</span></button>
-  <button data-tab="kalendarz">${icon('cal','big')}<span>Kalendarz</span></button>
-  <button data-go="cele">${icon('target','big')}<span>Cele</span></button>
-  <button data-tab="wiedza">${icon('bulb','big')}<span>Wiedza</span></button>
-  <button data-go="plan" data-find="1">${icon('map','big')}<span>Pomoc blisko</span></button>
-  <button data-tab="plan">${icon('phone','big')}<span>Moi ludzie</span></button>
-  <button data-film="1">${icon('play','big')}<span>Film</span></button>
- </section>
- ${listSec('reasons','Dlaczego to robię','Dopisz swój powód, np. dzieci, zdrowie, praca')}`;
+  <button class="bigbtn warn" data-helpfeel="1">${icon('cloud','big')}<b>Jest mi ciężko</b></button>
+  ${isTrz()?`<button class="bigbtn sos" data-helpnow="1">${icon('flame','big')}<b>Mam głód</b></button>`:`<button class="bigbtn calm" data-tab="malekroki">${icon('stairs','big')}<b>Mały krok</b></button>`}
+ </section>`;
+}
+
+/* ---------- silnik sytuacji: jedna najważniejsza rzecz „Teraz” ----------
+   Każda reguła patrzy na wpisy i zwraca kartę albo nic. Pierwsza niepusta wygrywa.
+   W przyszłości tę listę może zastąpić AI, które zwróci tę samą kartę. */
+const moodOn=()=>isNas()||!!(S.feat&&S.feat.mood);
+function crisisDays(){if(!hardDays())return '';
+ return `<section class="card crisis nowcard"><div class="label">${icon('heart')} Trudne dni</div><p>Kilka ciężkich dni z rzędu. Porozmawiaj z kimś zaufanym.</p>
+  <div class="row"><button class="primary" data-helpfeel="1">Pomoc teraz</button><button data-tab="plan">${icon('phone')} Moi ludzie</button></div></section>`}
+function moodRevealCard(){
+ if(moodOn()||S.featNo===tkey())return '';
+ const v=moodSeries(7).filter(x=>x.v!==null).map(x=>x.v);if(v.length<3||avgOf(v)>2.6)return '';
+ return `<section class="card nudge"><div class="label">${icon('mind')} Ostatnio słabiej</div><p>Spróbujesz małych kroków? Pomagają przy gorszym nastroju.</p>
+  <div class="row"><button class="primary" data-feat="mood">${icon('stairs')} Tak</button><button class="ghost" data-featno="1">Nie teraz</button></div></section>`}
+function startSteps(){return [
+ ['smile','Buźka',S.feelings.some(f=>!f.ex&&f.checkin),''],
+ ['phone','Kontakt',S.plan.contacts.some(c=>!/przykład/.test(c.name)),'plan'],
+ ...(pushOk()&&!(isIOS()&&!isStandalone())?[['bell','Przypomnienia',pushCfg().on,'ustawienia']]:[]),
+ ...(SYNC_URL?[['sync','Kopia',!!(S.sync&&S.sync.code),'ustawienia']]:[])]}
+function startCard(){
+ if(S.startDone)return '';const st=startSteps();if(st.every(x=>x[2]))return '';
+ return `<section class="card"><div class="row between"><div class="label">${icon('star')} Na start</div><button class="ghost small" data-startdone="1">Pomiń</button></div>
+  <div class="st4">${st.map(([ic,l,ok,t])=>t&&!ok?`<button class="st" data-tab="${t}"${t==='ustawienia'?` data-to="${ic==='bell'?'pushcard':'synccard'}"`:t==='plan'?' data-to="det-contacts"':''}>${icon(ic,'big')}${l}</button>`:`<span class="st${ok?' ok':''}">${icon(ok?'check':ic,'big')}${l}</span>`).join('')}</div></section>`}
+const NOW_RULES=[
+ ['kryzys',()=>safetyCard()||crisisDays()],
+ ['propozycja',()=>suggCard()],
+ ['lek',()=>medCard()],
+ ['wizyta',()=>visitCard()],
+ ['nastroj',moodRevealCard],
+ ['cel',()=>goalCard()],
+ ['test',()=>phqDueCard()],
+ ['start',startCard],
+ ['przypomnienia',()=>pushAskCard()]
+];
+function nowCard(){for(const [,f] of NOW_RULES){const h=f();if(h)return h}return ''}
+
+/* ---------- Postępy: wykres i kafelki (pokazują się, gdy są potrzebne) ---------- */
+const TILE=(t,ic,l,st)=>`<button class="tile2" data-tab="${t}">${icon(ic,'big')}<b>${l}</b>${st?`<small>${st}</small>`:''}</button>`;
+const subHead=t=>`<header class="top"><button class="ghost back" data-tab="postepy" aria-label="Wróć">‹</button><h1 style="flex:1">${t}</h1></header>`;
+function vPostepy(){
+ const M=moodSeries(14,S.examples),vals=M.filter(x=>x.v!==null);
+ const a=avgOf(M.slice(0,7).filter(x=>x.v!==null).map(x=>x.v)),b=avgOf(M.slice(7).filter(x=>x.v!==null).map(x=>x.v));
+ const tr=a!==null&&b!==null?(b-a>=0.4?['sun','Lepiej niż tydzień temu']:a-b>=0.4?['cloud','Słabiej niż tydzień temu']:['leaf','Stabilnie']):null;
+ const tk=tkey(),A=S.acts.filter(x=>x.day===tk),L=phqLast(),sl=S.sleep.slice().sort((x,y)=>y.day.localeCompare(x.day))[0];
+ const medToday=S.meds.filter(m=>{const x=medTaken(m,tk);return x&&!x.skip}).length;
+ const T=[TILE('malekroki','stairs','Małe kroki',A.length?`${A.filter(x=>x.done).length}/${A.length} dziś`:''),TILE('kalendarz','cal','Kalendarz',''),TILE('cele','target','Cele',S.goals.filter(g=>!g.done).length?S.goals.filter(g=>!g.done).length+' w toku':'')];
+ if(isTrz()&&S.addictions.some(x=>x.start))T.push(TILE('zyski','star','Zyski',''));
+ if(S.meds.length||moodOn())T.push(TILE('leki','pill','Leki',S.meds.length?`${medToday}/${S.meds.length} dziś`:''));
+ if(moodOn()){T.push(TILE('sen','bed','Sen',sl?String(sl.hours).replace('.',',')+' h':''));T.push(TILE('testy','chart','Test',L?L.score+' pkt':''));}
+ if(moodOn()||S.visit)T.push(TILE('lekarz','doc','Lekarz',S.visit?new Date(S.visit+'T00:00').toLocaleDateString('pl-PL',{day:'numeric',month:'numeric'}):''));
+ return `<header class="top"><h1>Postępy</h1></header>
+ <section class="card"><div class="row between"><h2>${icon('chart')} Nastrój</h2>${tr?`<span class="pill">${icon(tr[0])} ${tr[1]}</span>`:''}</div>
+  ${vals.length?`<div class="mchart" role="img" aria-label="Średni nastrój w ostatnich 14 dniach, skala 1 do 5">${M.map((x,i)=>`<div><i class="${x.v?'m'+Math.round(x.v):''}" style="height:${x.v?x.v*18:3}%"></i><small>${i%2?'':x.d.getDate()}</small></div>`).join('')}</div>`:'<p class="small muted">Dotykaj buźki na ekranie Dziś.</p>'}</section>
+ <div class="tiles2">${T.join('')}</div>
+ ${!moodOn()?`<button class="ghost" data-feat="mood">${icon('mind')} Pokaż też: sen, leki, test nastroju</button>`:''}`;
+}
+
+/* ---------- Więcej ---------- */
+function vWiecej(){
+ const B=(attr,ic,l)=>`<button class="tile2" ${attr}>${icon(ic,'big')}<b>${l}</b></button>`;
+ return `<header class="top"><h1>Więcej</h1></header>
+ <div class="tiles2">${[B('data-tab="polec"','qr','Poleć'),B('data-tab="wiedza"','bulb','Wiedza'),B('data-film="1"','play','Film'),B('data-tab="ustawienia"','cog','Ustawienia'),B('data-privacy="1"','lock','Prywatność'),B('data-terms="1"','doc','Regulamin'),B('data-feedback="1"','chat','Zgłoś uwagę')].join('')}</div>`;
 }
 
 function vUczucia(){
@@ -1146,36 +1285,65 @@ function listSec(key,title,ph){
   ${arr.length?`<ul class="list">${arr.map((x,i)=>`<li><span>${esc(x)}</span><button class="ghost danger" data-pdel="${key}" data-i="${i}">Usuń</button></li>`).join('')}</ul>`:'<p class="empty">Pusto.</p>'}
   <form class="row" data-padd="${key}"><input id="add-${key}" name="v" placeholder="${esc(ph)}" style="flex:1;min-width:0"><button type="submit">Dodaj</button></form></section>`;
 }
+const openDet={};
+document.addEventListener('toggle',e=>{const d=e.target;if(d&&d.dataset&&d.dataset.k)openDet[d.dataset.k]=d.open},true);
+const det=(k,ic,t,inner,n)=>`<details class="wcard" id="det-${k}" data-k="${k}"${openDet[k]?' open':''}><summary>${icon(ic,'big')}<b>${t}</b>${n?`<span class="pill">${n}</span>`:''}</summary><div class="stack" style="margin-top:12px">${inner}</div></details>`;
+const listIn=(key,ph)=>{const arr=S.plan[key];return `${arr.length?`<ul class="list">${arr.map((x,i)=>`<li><span>${esc(x)}</span><button class="ghost danger" data-pdel="${key}" data-i="${i}">Usuń</button></li>`).join('')}</ul>`:''}
+ <form class="row" data-padd="${key}"><input id="add-${key}" name="v" placeholder="${esc(ph)}" style="flex:1;min-width:0"><button type="submit">Dodaj</button></form>`};
 function vPlan(){
- return `<header class="top"><h1>Plan awaryjny</h1></header>
- <div class="quick"><button class="sos" data-helpnow="1"><b>Pomoc teraz: głód</b><small>Oddech, odliczanie fali, telefon</small></button><button class="warn" data-helpfeel="1"><b>Pomoc teraz: ciężkie uczucia</b><small>Krok po kroku, bez myślenia</small></button></div>
- <section class="card" style="background:var(--alert-soft);border-color:transparent">
-  <h2>Teraz, kiedy jest trudno</h2>
-  <p>Zatrzymaj się. Głód minie. Masz 20 minut, żeby zrobić jedną rzecz z listy poniżej albo zadzwonić do kogoś.</p>
-  <ul class="list">
-   <li><span>Numer alarmowy</span><span class="row"><span class="phone">112</span><button class="ghost" data-copy="112">Kopiuj</button></span></li>
-   <li><span>Telefon zaufania dla dorosłych w kryzysie emocjonalnym</span><span class="row"><span class="phone">116 123</span><button class="ghost" data-copy="116 123">Kopiuj</button></span></li>
-   <li><span>Ogólnopolski Telefon Zaufania – uzależnienia<br><span class="small muted">bezpłatny, codziennie 16–21</span></span><span class="row"><span class="phone">800 199 990</span><button class="ghost" data-copy="800 199 990">Kopiuj</button></span></li>
-   <li><span>Niebieska Linia – przemoc w rodzinie<br><span class="small muted">bezpłatny, całą dobę</span></span><span class="row"><span class="phone">800 120 002</span><button class="ghost" data-copy="800 120 002">Kopiuj</button></span></li>
-  </ul></section>
- <section class="card" id="finder"><h2>Pomoc w pobliżu</h2>
-  <p class="small muted">${geo?'Szukam wokół Twojej lokalizacji.':'Wpisz miejscowość albo użyj lokalizacji telefonu.'}</p>
-  <form id="f-city" class="row"><input id="city" name="city" value="${esc(city)}" placeholder="np. Strzegom, Wrocław" style="flex:1 1 100%;min-width:0" autocomplete="address-level2"><button type="submit" class="primary">Szukaj</button><button type="button" id="use-geo">Moja lokalizacja</button></form>
-  <div class="find">${PLACES.map(p=>`<a href="${mapUrl(p[0])}" target="_blank" rel="noopener">${p[1]}<small>${p[2]}</small></a>`).join('')}</div>
-  <p class="small muted">Wyniki otwierają się w Mapach Google. Przed wizytą zadzwoń i potwierdź godziny. Pełną bazę placówek prowadzi Krajowe Centrum Przeciwdziałania Uzależnieniom.</p>
+ const C=S.plan.contacts;
+ return `<header class="top"><h1>SOS</h1></header>
+ <section class="sosrow">
+  <button class="bigbtn warn" data-helpfeel="1">${icon('cloud','big')}<b>Jest mi ciężko</b></button>
+  ${isTrz()?`<button class="bigbtn sos" data-helpnow="1">${icon('flame','big')}<b>Mam głód</b></button>`:`<a class="bigbtn sos" href="tel:800702222" style="text-decoration:none">${icon('phone','big')}<b>800 70 2222</b></a>`}
  </section>
- <section class="card"><h2>Moje osoby wsparcia</h2>
-  ${S.plan.contacts.length?`<ul class="list">${S.plan.contacts.map(c=>`<li><span><b>${esc(c.name)}</b><br><a class="phone" href="tel:${esc(c.phone.replace(/\s/g,''))}">${esc(c.phone)}</a></span><span class="row"><button class="ghost" data-copy="${esc(c.phone)}">Kopiuj</button><button class="ghost danger" data-cdel="${c.id}">Usuń</button></span></li>`).join('')}</ul>`:'<p class="empty">Dodaj sponsora, terapeutę lub bliską osobę.</p>'}
-  <form id="f-contact" class="stack"><div class="row"><input id="c-name" name="name" placeholder="Imię / rola" style="flex:1 1 140px;min-width:0"><input id="c-phone" name="phone" placeholder="Numer" inputmode="tel" style="flex:1 1 120px;min-width:0"></div><button type="submit">Dodaj osobę</button></form></section>
- ${listSec('strategies','Co mi pomaga','np. zimny prysznic, spacer, modlitwa')}
- ${listSec('warning','Moje sygnały ostrzegawcze','np. przestaję jeść regularnie')}
- `;
+ <section class="card numbers" style="background:var(--alert-soft);border-color:transparent">
+  <ul class="list">
+   <li><span>${icon('phone')} Alarmowy</span><a class="phone" href="tel:112">112</a></li>
+   <li><span>${icon('heart')} Kryzys psychiczny, całą dobę</span><a class="phone" href="tel:800702222">800 70 2222</a></li>
+   <li><span>${icon('chat')} Telefon zaufania</span><a class="phone" href="tel:116123">116 123</a></li>
+   ${isTrz()?`<li><span>${icon('drop')} Uzależnienia, 16–21</span><a class="phone" href="tel:800199990">800 199 990</a></li>`:''}
+   <li><span>${icon('home')} Przemoc w rodzinie</span><a class="phone" href="tel:800120002">800 120 002</a></li>
+  </ul></section>
+ <div class="row between"><h2>${icon('shield')} Mój plan</h2><button class="ghost" data-copyplan="1">Kopiuj</button></div>
+ <div class="stack">
+ ${det('contacts','phone','Do kogo dzwonię',`${C.length?`<ul class="list">${C.map(c=>`<li><span><b>${esc(c.name)}</b><br><a class="phone" href="tel:${esc(c.phone.replace(/\s/g,''))}">${esc(c.phone)}</a></span><button class="ghost danger" data-cdel="${c.id}">Usuń</button></li>`).join('')}</ul>`:''}
+  <form id="f-contact" class="stack"><div class="row"><input id="c-name" name="name" placeholder="Imię / rola" style="flex:1 1 140px;min-width:0"><input id="c-phone" name="phone" placeholder="Numer" inputmode="tel" style="flex:1 1 120px;min-width:0"></div><button type="submit">Dodaj osobę</button></form>`,C.length)}
+ ${det('warning','eye','Moje sygnały ostrzegawcze',listIn('warning','np. izoluję się, źle śpię'),S.plan.warning.length)}
+ ${det('strategies','leaf','Co mnie uspokaja',listIn('strategies','np. spacer, muzyka'),S.plan.strategies.length)}
+ ${det('places','people','Ludzie i miejsca, które pomagają oderwać myśli',listIn('places','np. park, siostra'),S.plan.places.length)}
+ ${det('safe','home','Bezpieczne otoczenie: co usuwam',listIn('safe','np. alkohol z domu'),S.plan.safe.length)}
+ ${det('reasons','heart','Dla kogo i po co warto',listIn('reasons','np. dzieci, zdrowie'),S.plan.reasons.length)}
+ ${det('trig','bolt','Moje wyzwalacze',trigCard(),S.trig.length)}
+ <details class="wcard" id="finder" data-k="finder"${openDet.finder||city||geo?' open':''}><summary>${icon('map','big')}<b>Pomoc w pobliżu</b></summary><div class="stack" style="margin-top:12px">
+  <form id="f-city" class="row"><input id="city" name="city" value="${esc(city)}" placeholder="np. Strzegom" style="flex:1 1 100%;min-width:0" autocomplete="address-level2"><button type="submit" class="primary">Szukaj</button><button type="button" id="use-geo">${icon('map')} Tutaj</button></form>
+  <div class="find">${placesList().map(p=>`<a href="${mapUrl(p[0])}" target="_blank" rel="noopener">${p[1]}<small>${p[2]}</small></a>`).join('')}</div>
+  <p class="small muted">Do psychiatry i terapii uzależnień nie potrzeba skierowania. Mityngi AA: aa.org.pl.</p></div></details>
+ </div>`;
 }
+const TRIG_EX={zew:'np. piwnica, piątek wieczorem, znajomi z imprez',wew:'np. złość po kłótni, nuda, euforia po sukcesie'};
+function trigCard(){
+ const L=k=>S.trig.filter(t=>t.kind===k);
+ const row=t=>`<li><span><b>${esc(t.text)}</b>${t.plan?`<br><span class="small">Mój plan: ${esc(t.plan)}</span>`:''}</span><button class="ghost danger" data-del="trig" data-id="${t.id}">Usuń</button></li>`;
+ return `<div class="stack">
+  <p class="small muted">Miejsca, ludzie, dni (zewnętrzne) albo emocje i myśli (wewnętrzne). Do każdego dopisz plan.</p>
+  ${['zew','wew'].map(k=>L(k).length?`<div class="tg">${k==='zew'?'Zewnętrzne':'Wewnętrzne'}</div><ul class="list">${L(k).map(row).join('')}</ul>`:'').join('')}
+  <form id="f-trig" class="stack">
+   <div class="chips"><label class="chip"><input type="radio" name="tkind" value="zew" id="tk-z" checked><span>Zewnętrzny</span></label><label class="chip"><input type="radio" name="tkind" value="wew" id="tk-w"><span>Wewnętrzny</span></label></div>
+   <input id="tr-text" placeholder="${TRIG_EX.zew}"><input id="tr-plan" placeholder="Mój plan, np. remont piwnicy, inna droga do pracy, telefon do kogoś">
+   <button type="submit">Dodaj wyzwalacz</button></form></div>`;
+}
+function planText(){
+ const sec=(t,a)=>a&&a.length?[t,...a.map(x=>'– '+x)].join('\n'):'';
+ return ['MÓJ PLAN BEZPIECZEŃSTWA'+(S.name?' – '+S.name:''),
+  sec('1. Moje sygnały ostrzegawcze:',S.plan.warning),sec('2. Co mogę zrobić sam/a:',S.plan.strategies),sec('3. Ludzie i miejsca, które pomagają:',S.plan.places),
+  sec('4. Do kogo zadzwonię:',S.plan.contacts.map(c=>c.name+': '+c.phone)),sec('5. Co usuwam z zasięgu:',S.plan.safe),sec('6. Dla kogo i po co warto:',S.plan.reasons),
+  'Telefony pomocy: 112 · 800 70 2222 (całą dobę) · 116 123'].filter(Boolean).join('\n\n')}
 
 function vCele(){
  const open=S.goals.filter(g=>!g.done),done=S.goals.filter(g=>g.done);
  const g=x=>`<div class="goal${x.done?' done':''}"><input type="checkbox" id="g-${x.id}" data-gtog="${x.id}"${x.done?' checked':''}><label for="g-${x.id}" style="flex:1;min-width:0"><span class="gt">${esc(x.text)}</span><br><span class="small muted">${x.from==='terapeuta'?'Zadanie od terapeuty':'Cel własny'}${x.ex?' · przykład':''}</span></label>${delBtn('goals',x.id)}</div>`;
- return `<header class="top"><h1>Postępy</h1><span class="muted small">${done.length}/${S.goals.length} celów</span></header>${segP('cele')}
+ return `<header class="top"><button class="ghost back" data-tab="postepy" aria-label="Wróć">‹</button><h1 style="flex:1">Cele</h1><span class="muted small">${done.length}/${S.goals.length}</span></header>
  <form id="f-goal" class="card">
   <label class="field"><span>Nowy cel lub zadanie</span><input id="g-text" name="text" placeholder="np. Przeczytać rozdział o nawrotach"></label>
   <div class="row between"><div class="chips">
@@ -1197,7 +1365,7 @@ function weekStats(){
 function summaryText(){
  const w=weekStats(),d=sober();
  return [`Podsumowanie tygodnia (${daysAgo(6).toLocaleDateString('pl-PL')} – ${today().toLocaleDateString('pl-PL')})`,
-  ...S.addictions.filter(a=>a.start).map(a=>`Dni bez: ${a.name}: ${sober(a)}`),
+  ...(isTrz()?S.addictions.filter(a=>a.start).map(a=>`Dni bez: ${a.name}: ${sober(a)}`):[]),
   `Wpisy w dzienniczku uczuć: ${w.F.length}`,
   `Najczęstsze uczucia: ${w.emo.map(e=>e[0]+' ('+e[1]+')').join(', ')||'brak'}`,
   `Epizody głodu: ${w.C.length}, średnia siła ${w.avg.toFixed(1)}/10, sięgnięcie: ${w.used}`,
@@ -1212,8 +1380,8 @@ function vBilans(){
  <details class="new" id="new-form" open><summary>${icon('moon')} Bilans dnia</summary>
  <form id="f-bilans">
   <div class="field"><span>Jak minął dzień?</span><div class="moods">${MOODS.map(([n,l,c])=>`<label class="mood ${c}"><input type="radio" name="bmood" value="${n}" id="bm-${n}">${faceSvg(n)}<small>${l}</small></label>`).join('')}</div></div>
-  <div class="field"><span>Co dziś pomogło?</span>${tiles('bhelp',HELPS,null,'pos')}</div>
-  <div class="field"><span>Za co jestem wdzięczny/a?</span>${tiles('bgrat',GRATS,null,'pos')}</div>
+  <div class="field"><span>Co dziś pomogło?</span>${tiles('bhelp',isTrz()?HELPS:HELPS.filter(h=>h[0]!=='mityng').concat([['mały krok','stairs'],['lek','pill']]),null,'pos')}</div>
+  <div class="field"><span>Za co jestem wdzięczny/a?</span>${tiles('bgrat',isTrz()?GRATS:GRATS.filter(g=>g[0]!=='trzeźwość'),null,'pos')}</div>
   ${more(`${ta('b-good','Co mi się udało?')}${ta('b-hard','Co było trudne?')}${ta('b-grat','Za co jeszcze dziękuję?')}${ta('b-tom','Mój plan na jutro')}`)}
   <button class="primary" type="submit">Zapisz bilans</button></form></details>
  <details class="new"><summary>Notatka (np. po sesji)</summary>
@@ -1243,6 +1411,11 @@ const PLACES=[
  ['mityng Al-Anon','Mityng Al-Anon','dla rodzin i współuzależnionych'],
  ['Anonimowi Hazardziści mityng','Mityng AH','Anonimowi Hazardziści']
 ];
+const PLACES_MOOD=[
+ ['poradnia zdrowia psychicznego','Poradnia zdrowia psychicznego','psychiatra i psycholog, NFZ bez skierowania'],
+ ['centrum zdrowia psychicznego','Centrum Zdrowia Psychicznego','pomoc bez skierowania, także pilna'],
+ ['psychoterapeuta','Psychoterapeuta','terapia, także prywatnie']];
+const placesList=()=>S.mode==='nastr'?PLACES_MOOD:S.mode==='oba'?PLACES.slice(0,3).concat(PLACES_MOOD,PLACES.slice(3)):PLACES;
 let geo=null,city='';
 try{city=localStorage.getItem(KEY+'-city')||''}catch(e){}
 if(S.city)city=S.city;
@@ -1250,7 +1423,7 @@ function mapUrl(q){
  if(geo)return 'https://www.google.com/maps/search/'+encodeURIComponent(q)+'/@'+geo[0].toFixed(4)+','+geo[1].toFixed(4)+',12z';
  return 'https://www.google.com/maps/search/'+encodeURIComponent(q+(city?' '+city:' w pobliżu'));
 }
-const credit=()=>`<p class="credit">Wersja ${APP_VERSION} · autor: ${APP_AUTHOR} · <button class="linkbtn" data-film="1">Instrukcja</button> · <button class="linkbtn" data-privacy="1">Prywatność</button></p>`;
+const credit=()=>`<p class="credit">Wersja ${APP_VERSION} · © 2026 ${APP_AUTHOR}, ${APP_OWNER} · <button class="linkbtn" data-film="1">Instrukcja</button> · <button class="linkbtn" data-privacy="1">Prywatność</button> · <button class="linkbtn" data-terms="1">Regulamin</button> · <button class="linkbtn" data-feedback="1">Zgłoś uwagę</button></p>`;
 let backTab='dzis';
 
 /* ---------- 12 Kroków: opisy i pytania własnymi słowami (nie oficjalny tekst AA) ---------- */
@@ -1286,7 +1459,7 @@ function vKroki(){
 }
 function vKrok(){
  const i=stepIdx,x=STEPS[i],d=stepData(i);
- return `<header class="top"><h1>Krok ${i+1}</h1><button class="ghost" data-tab="kroki">Wszystkie kroki</button></header>
+ return `<header class="top"><h1>Krok ${i+1}</h1><button class="ghost" data-tab="malekroki">Wszystkie kroki</button></header>
  <section class="card"><h2>${x.t}</h2><p>${x.d}</p>
   ${i===9?`<button data-go="bilans" data-open="1">Zrób dziś bilans dnia</button>`:''}</section>
  <section class="card"><div class="label">Pytania do refleksji</div>
@@ -1367,7 +1540,7 @@ function vKalendarz(){
   <p class="small muted">To podpowiedzi do rozmowy z terapeutą lub sponsorem. Im więcej wpisów, tym są trafniejsze.</p></section>`:'';
  const tabs=`<div class="seg"><button class="${calMode==='m'?'on':''}" data-calmode="m">Miesiąc</button><button class="${calMode==='y'?'on':''}" data-calmode="y">Rok</button></div>`;
  if(calMode==='y'){
-  return `<header class="top"><h1>Postępy</h1>${tabs}</header>${segP('kalendarz')}
+  return `<header class="top"><button class="ghost back" data-tab="postepy" aria-label="Wróć">‹</button><h1 style="flex:1">Kalendarz</h1>${tabs}</header>
   <div class="row between"><button class="ghost" data-calyear="-1">‹ ${calY-1}</button><h2>${calY}</h2><button class="ghost" data-calyear="1"${calY>=today().getFullYear()?' disabled':''}>${calY+1} ›</button></div>
   <div class="yeargrid">${MON.map((n,i)=>{const ks=Object.keys(m).filter(k=>k.startsWith(calY+'-'+String(i+1).padStart(2,'0')));const cnt={};ks.forEach(k=>cnt[m[k].cls]=(cnt[m[k].cls]||0)+1);
    return `<button class="minim" data-calmonth="${i}"><b>${n}</b><span class="cal mini">${monthGrid(calY,i,m,true)}</span><small>${ks.length?`${cnt.good||0} dobrych · ${(cnt.hard||0)+(cnt.relapse||0)} ciężkich`:'brak wpisów'}</small></button>`}).join('')}</div>
@@ -1375,7 +1548,7 @@ function vKalendarz(){
  }
  const pre=calY+'-'+String(calM+1).padStart(2,'0');const ks=Object.keys(m).filter(k=>k.startsWith(pre));const cnt={};ks.forEach(k=>cnt[m[k].cls]=(cnt[m[k].cls]||0)+1);
  const isNow=calY===today().getFullYear()&&calM===today().getMonth();
- return `<header class="top"><h1>Postępy</h1>${tabs}</header>${segP('kalendarz')}
+ return `<header class="top"><button class="ghost back" data-tab="postepy" aria-label="Wróć">‹</button><h1 style="flex:1">Kalendarz</h1>${tabs}</header>
  <section class="card">
   <div class="row between"><button class="ghost" data-calnav="-1" aria-label="Poprzedni miesiąc">‹</button><h2>${MON[calM]} ${calY}</h2><button class="ghost" data-calnav="1"${isNow?' disabled':''} aria-label="Następny miesiąc">›</button></div>
   <div class="cal">${WDS.map(x=>`<span class="cwd">${x}</span>`).join('')}${monthGrid(calY,calM,m,false)}</div>
@@ -1498,18 +1671,20 @@ function vUstawienia(){
    <section class="card"><h2>Twoje imię</h2><form id="f-start" class="stack">
     <label class="field"><span>Twoje imię</span><input id="st-name" name="name" value="${esc(S.name||'')}" placeholder="jak mamy się do Ciebie zwracać" autocomplete="given-name"></label>
     <button class="primary" type="submit">Zapisz imię</button></form></section>
-   <section class="card"><h2>Moje uzależnienia</h2>
+   <section class="card"><h2>W czym Azyl ma pomagać</h2>${modePick()}</section>
+   ${isTrz()?'':'<!--'}<section class="card"><h2>Moje uzależnienia</h2>
     <p class="small muted">Możesz dodać kilka, np. alkohol i nikotynę albo współuzależnienie. Każde ma swój licznik i swoje podpowiedzi.</p>
     <ul class="list">${S.addictions.map((a,i)=>`<li class="addrow"><span style="flex:1;min-width:0"><b>${esc(a.name)}</b><br><input type="date" id="ad-${a.id}" data-addate="${a.id}" value="${a.start||''}" max="${iso(today())}" aria-label="Data początku: ${esc(a.name)}"></span><span class="stack" style="gap:4px">${i>0?`<button class="ghost" data-admain="${a.id}">Ustaw jako główne</button>`:'<span class="pill good">główne</span>'}<button class="ghost danger" data-adreset="${a.id}">Od dziś</button>${S.addictions.length>1?`<button class="ghost danger" data-addel="${a.id}">Usuń</button>`:''}</span></li>`).join('')}</ul>
     <form id="f-addsub" class="stack"><input id="new-sub" name="sub" list="sub-presets" placeholder="Dodaj: wybierz z listy lub wpisz"><datalist id="sub-presets">${SUB_PRESETS.map(x=>`<option value="${x}">`).join('')}</datalist>
      <div class="row"><input type="date" id="new-sub-date" name="date" max="${iso(today())}" style="flex:1;min-width:0" aria-label="Od kiedy"><button type="submit">Dodaj</button></div></form>
-   </section>
+   </section>${isTrz()?'':'-->'}
    <section class="card"><h2>Blokada PIN-em</h2>
     ${S.pinHash?`<p class="small muted">Blokada jest włączona. Aplikacja poprosi o PIN przy otwarciu i po powrocie po minucie.</p>
      <form id="f-pinoff" class="row"><input type="password" inputmode="numeric" id="pin-cur" maxlength="6" placeholder="Obecny PIN" style="flex:1;min-width:0" autocomplete="off"><button type="submit">Wyłącz blokadę</button></form>`
     :`<p class="small muted">Chroni Twoje wpisy przed innymi osobami, które mają dostęp do telefonu.</p>
      <form id="f-pin" class="stack"><div class="row"><input type="password" inputmode="numeric" id="pin-new" maxlength="6" placeholder="PIN (4–6 cyfr)" style="flex:1;min-width:0" autocomplete="off"><input type="password" inputmode="numeric" id="pin-rep" maxlength="6" placeholder="Powtórz PIN" style="flex:1;min-width:0" autocomplete="off"></div><button type="submit">Włącz blokadę</button></form>`}
     <p class="small muted">Zapamiętaj PIN. Nie da się go odzyskać, a bez niego można tylko usunąć wszystkie dane.</p></section>
+   ${pushCard()}
    ${syncCard()}
    <section class="card"><h2>Kopia zapasowa i przenoszenie wpisów</h2>
     <p class="small muted">Wpisy są tylko na tym telefonie. Żeby przenieść je do innej ikony albo na nowy telefon: tutaj dotknij <b>Kopiuj</b>, a tam wklej i dotknij <b>Przywróć</b>.</p>
@@ -1522,10 +1697,10 @@ function vUstawienia(){
 function vFilm(){
  return `<header class="top"><h1>Jak korzystać z aplikacji</h1></header>
  <section class="card filmcard"><video id="film-video" controls playsinline preload="metadata" poster="instrukcja-okladka.jpg" src="instrukcja.mp4">Twoja przeglądarka nie odtwarza tego filmu.</video>
-  <p class="small muted">Film trwa ok. 5 minut i pokazuje wszystko krok po kroku. Pobiera się dopiero, gdy go włączysz. Dotknij rozdziału, żeby przeskoczyć.</p>
-  <div class="chapters">${[[0,'Początek'],[13,'Instalacja'],[25,'Masz starą ikonę?'],[36,'Pierwsze uruchomienie'],[57,'Ekran Dziś i propozycje'],[126,'Gdy przychodzi głód'],[160,'Dziennik: uczucia, głód, bilans'],[204,'Rano i wieczorem'],[214,'SOS, postępy, wiedza, poleć'],[249,'PIN, synchronizacja, kopia'],[295,'Prywatność']].map(([t,l])=>`<button class="chap" data-seek="${t}"><span>${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}</span>${l}</button>`).join('')}</div></section>
+  <p class="small muted">Film trwa ok. 6 minut i pokazuje wszystko krok po kroku. Pobiera się dopiero, gdy go włączysz. Dotknij rozdziału, żeby przeskoczyć.</p>
+  <div class="chapters">${[[0,'Początek'],[15,'Instalacja'],[26,'Masz starą ikonę?'],[34,'Pierwsze uruchomienie'],[55,'Ekran Dziś'],[90,'Gdy jest trudno'],[126,'Dziennik: uczucia, myśli, bilans'],[170,'Rano i wieczorem'],[178,'Postępy: nastrój, kroki, leki'],[273,'SOS i mój plan'],[307,'Przypomnienia, PIN, synchronizacja'],[365,'Prywatność']].map(([t,l])=>`<button class="chap" data-seek="${t}"><span>${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}</span>${l}</button>`).join('')}</div></section>
  <section class="card"><h2>W skrócie</h2><ol class="steps">
-  <li>Wpisz kod dostępu i swoje imię. Masz starą ikonę? Przenieś wpisy jednym dotknięciem.</li>
+  <li>${ACCESS_CODE?'Wpisz kod dostępu i swoje imię.':'Wpisz swoje imię i wybierz, w czym Azyl ma pomagać.'} Masz starą ikonę? Przenieś wpisy jednym dotknięciem.</li>
   <li>Dodaj aplikację do ekranu głównego.</li>
   <li>W <b>Ustawieniach</b> na ekranie Dziś ustaw datę początku trzeźwości.</li>
   <li>Gdy jest trudno, dotknij <b style="color:var(--alert)">Mam silny głód</b> albo <b style="color:var(--amber)">Jest mi ciężko</b>.</li>
@@ -1538,7 +1713,9 @@ function vPrywatnosc(){
  <section class="card privacy-hero"><h2>Twoje wpisy są tylko Twoje</h2>
   <p>Wszystko, co zapisujesz, jest na Twoim telefonie. Jeśli włączysz synchronizację, wpisy są szyfrowane i tylko Ty masz do nich klucz.</p></section>
  <section class="card"><ul class="plist">
-  <li><b>Bez kont i statystyk.</b> Nie zakładasz konta, nie podajesz e-maila ani telefonu. Nikt nie śledzi, jak korzystasz z aplikacji.</li>
+  <li><b>Bez kont.</b> Nie zakładasz konta, nie podajesz e-maila ani telefonu. Nikt nie widzi, co zapisujesz.</li>
+  ${statsOn()?'<li><b>Anonimowe liczenie.</b> Raz dziennie aplikacja zgłasza tylko, że jest używana: losowy numer urządzenia, wersję i rodzaj telefonu. Dzięki temu autor wie, ilu osobom Azyl pomaga. Bez wpisów, imienia i lokalizacji.</li>':''}
+  ${SYNC_URL?'<li><b>Przypomnienia, tylko jeśli je włączysz.</b> Serwer zna godziny przypomnień, nie treść dzienniczka. Na ekranie blokady pojawia się krótki, ogólny tekst.</li>':''}
   ${SYNC_URL?'<li><b>Synchronizacja, tylko jeśli ją włączysz.</b> Wpisy są szyfrowane na Twoim urządzeniu, zanim wyjdą do internetu. Na serwer trafia ciąg znaków, którego nikt nie odczyta bez Twojego kodu.</li>':'<li><b>Nic nie wysyłamy.</b> Twoje wpisy nie opuszczają telefonu.</li>'}
   <li><b>Nikt inny nie ma dostępu.</b> Ani autor aplikacji, ani prowadzący, ani grupa.</li>
   <li><b>Internet tylko wtedy, gdy trzeba.</b> Aplikacja łączy się z siecią, żeby pobrać swoje pliki i aktualizacje (bez Twoich wpisów). Mapy Google otwierają się dopiero, gdy dotkniesz „Pomoc w pobliżu”. O lokalizację telefon zawsze najpierw zapyta.</li>
@@ -1552,7 +1729,7 @@ function vPrywatnosc(){
 }
 
 /* ---------- pomoc teraz: podpowiedzi dopasowane do stanu ---------- */
-const HEAVY=['smutek','złość','lęk','wstyd','poczucie winy','samotność','napięcie','żal','zmęczenie','nuda'];
+const HEAVY=['smutek','złość','lęk','wstyd','poczucie winy','samotność','napięcie','żal','zmęczenie','nuda','bezradność','pustka'];
 const TIPS={
  _crave:['Odczekaj 20 minut. Głód rośnie, osiąga szczyt i opada.','Zmień miejsce. Wyjdź z pokoju, ze sklepu, z sytuacji.','Przewiń film do końca: przypomnij sobie, jak skończył się ostatni raz.','Zjedz coś i napij się wody albo herbaty.','Zajmij ręce: zmywanie, sprzątanie, spacer z psem.','Napisz do kogoś z grupy jedno zdanie: „Mam głód, pogadasz chwilę?”','Policz w myślach od 100 w dół co 7. To odciąga uwagę.'],
  'smutek':['Wyjdź na 10 minut na zewnątrz, na światło dzienne.','Weź prysznic i przebierz się w czyste ubranie.','Włącz muzykę, która kiedyś dodawała Ci sił.','Zapisz trzy małe rzeczy, które dziś się udały.','Napisz do jednej osoby: „Masz chwilę?”'],
@@ -1575,8 +1752,16 @@ const TIPS={
  'stres w pracy':['Zrób 10 minut przerwy z dala od biurka i telefonu.'],
  'konflikt':['Nie odpowiadaj teraz. Wróć do sprawy za godzinę.'],
  'pieniądze':['Zapisz jeden konkretny krok w sprawie pieniędzy na jutro. Dziś tylko tyle.'],
- 'wspomnienia':['Zapisz to wspomnienie w dzienniczku uczuć i pokaż je terapeucie.']
+ 'wspomnienia':['Zapisz to wspomnienie w dzienniczku uczuć i pokaż je terapeucie.'],
+ 'bezradność':['Rozbij to, co Cię przytłacza, na najmniejszy możliwy krok. Zrób tylko ten jeden.','Zapytaj siebie: co mogę zrobić w ciągu najbliższych 10 minut?','Poproś kogoś o pomoc w jednej konkretnej sprawie.'],
+ 'pustka':['Zrób jedną małą rzecz, która kiedyś sprawiała Ci przyjemność, nawet bez ochoty. Ochota często przychodzi dopiero po działaniu.','Wyjdź do ludzi, choćby na krótko.','Napisz do kogoś jedno zdanie: „Masz chwilę?”']
 };
+/* metody z terapii: emocja → zdrowy sposób */
+TIPS['smutek'].push('Nie odcinaj się od ludzi. Smutek łatwiej nieść, kiedy ktoś o nim wie.');
+TIPS['lęk'].push('Nazwij swój lęk dokładnie: czego się boję? Nazwany lęk jest mniejszy.');
+TIPS['złość'].push('Zapytaj siebie, co ta złość chce Ci powiedzieć. Często mówi, że ktoś przekroczył Twoją granicę.');
+TIPS['poczucie winy'].push('Naprawianie zaczyna się od zmiany zachowania, nie od karania siebie.');
+TIPS['konflikt'].push('Powiedz spokojnie i krótko, czego potrzebujesz. Patrz w oczy, oddychaj, nie tłumacz się.');
 const SUB_TIPS={
  'alkohol':['Nie wchodź dziś do sklepu z alkoholem. Jeśli musisz, idź z listą i z kimś.','Miej pod ręką napój bezalkoholowy, który lubisz.','Drżenie, poty, kołatanie serca albo omamy po odstawieniu alkoholu to stan zagrożenia. Dzwoń 112.'],
  'nikotyn':['Głód nikotyny trwa zwykle kilka minut. Wypij szklankę wody małymi łykami.','Zajmij ręce i usta: guma bez cukru, marchewka, długopis.','Przez pierwsze tygodnie omijaj miejsca i chwile, w których zwykle paliłeś/aś.'],
@@ -1613,26 +1798,37 @@ function tipsFor(tags,mode,subs){
 }
 function openHelp(mode,tags,level,subs){help={mode,tags:tags||[],subs:subs||[],level:level||0,start:Date.now(),i:0};go('pomoc')}
 const contactsHtml=()=>S.plan.contacts.length?`<ul class="list">${S.plan.contacts.map(c=>`<li><span><b>${esc(c.name)}</b><br><a class="phone" href="tel:${esc(c.phone.replace(/\s/g,''))}">${esc(c.phone)}</a></span><button class="ghost" data-copy="${esc(c.phone)}">Kopiuj</button></li>`).join('')}</ul>`:`<p class="small muted">Nie masz jeszcze osób wsparcia. Dodaj je w zakładce SOS.</p>`;
+const HELP_EMO=['smutek','złość','lęk','samotność','napięcie','wstyd','bezradność','pustka'];
+const HALT=[['głód (H)','Głodny/a','food'],['złość (A)','Zły/a','bolt'],['samotność (L)','Samotny/a','people'],['zmęczenie (T)','Zmęczony/a','bed']];
 function vPomoc(){
  if(!help)help={mode:'crave',tags:[],level:0,start:Date.now(),i:0};
  const m=help.mode,tips=tipsFor(help.tags,m,help.subs),tip=tips[help.i%tips.length];
  const name=S.name?', '+esc(S.name):'';
  const title=m==='relapse'?`Dobrze, że to zapisałeś/aś${name}.`:m==='feel'?`Jestem z Tobą${name}.`:`Wytrzymasz${name}. Głód minie.`;
  const lead=m==='relapse'?'Nawrót to nie koniec drogi. Teraz liczy się tylko jedno: nie zostawaj z tym sam/a.':m==='feel'?'Nie musisz teraz nic rozwiązywać. Zróbmy jedną małą rzecz naraz.':'Nie musisz teraz myśleć. Zrób po kolei to, co poniżej.';
+ let n=0;const H=t=>`<h2><span class="secnum">${++n}</span>${t}</h2>`;
+ const call=`<section class="card">${H(m==='relapse'?'Zadzwoń teraz':'Kontakt zamiast ucieczki')}${contactsHtml()}${m==='relapse'?'<p class="small muted">Sponsor, terapeuta albo ktoś bliski. Powiedz po prostu: „Potrzebuję pogadać”.</p>':'<p class="small muted">Nie musisz mówić wszystkiego. Wystarczy: „Masz chwilę?”</p>'}</section>`;
+ const name2=`<section class="card">${H('Nazwij, co się dzieje')}
+  <p class="small muted">Nazwane uczucie traci siłę. Dotknij, a dopasuję podpowiedzi.</p>
+  ${tiles('helpemo',HELP_EMO,EMO_IC,'neg',help.tags)}
+  <div class="label">Sprawdź HALT: czy jestem…</div>
+  ${tiles('helphalt',HALT.map(x=>[x[0],x[2]]),null,'warm',help.tags).replace(/>(głód|złość|samotność|zmęczenie) \([HALT]\)</g,(w,k)=>'>'+HALT.find(h=>h[0].startsWith(k))[1]+'<')}</section>`;
  return `<header class="top"><h1>${title}</h1></header>
  <p>${lead}</p>
  ${m==='crave'?`<section class="card wave"><div class="label">Fala głodu</div><div class="wave-time" data-wave="1">20:00</div><p class="small muted">Większość fal głodu słabnie w ciągu 20–30 minut. Odliczam razem z Tobą.</p></section>`:''}
- ${m==='relapse'?`<section class="card"><h2>1. Zadzwoń teraz</h2>${contactsHtml()}<p class="small muted">Sponsor, terapeuta albo ktoś z grupy. Powiedz po prostu: „Zapiłem/am, potrzebuję pogadać”.</p></section>`:''}
- <section class="card breath-card"><h2>${m==='relapse'?'2. ':'1. '}Oddychaj ze mną</h2>
+ ${m==='relapse'?call:''}
+ <section class="card breath-card">${H('Zatrzymaj się i oddychaj')}
   <div class="breath"><div class="ball" id="ball"></div><div class="breath-txt" id="breath-txt">Dotknij „Start”</div></div>
   <button class="primary" id="breath-btn">Start</button></section>
- <section class="card"><h2>${m==='relapse'?'3. ':'2. '}Zrób teraz jedną rzecz</h2>
+ ${m!=='relapse'?name2:''}
+ <section class="card">${H('Zrób teraz jedną rzecz')}
   <p class="tip">${esc(tip)}</p>
   <div class="row"><button class="primary" data-tipdone="1">Zrobione</button><button data-tipnext="1">Inna propozycja</button></div></section>
- ${m!=='relapse'?`<section class="card"><h2>3. Zadzwoń albo napisz</h2>${contactsHtml()}</section>`:''}
- ${S.plan.reasons.length?`<section class="card"><div class="label">Pamiętaj, dlaczego to robisz</div><ul class="list">${S.plan.reasons.map(r=>`<li><span>${esc(r)}</span></li>`).join('')}</ul></section>`:''}
- <section class="card" style="background:var(--alert-soft);border-color:transparent">
-  <p class="small">${m==='feel'?'Jeśli pojawiają się myśli, żeby zrobić sobie krzywdę, zadzwoń od razu: ':'Gdy jest naprawdę źle: '}<span class="phone">116 123</span> (telefon zaufania) albo <span class="phone">112</span>. Uzależnienia: <span class="phone">800 199 990</span> (16–21).</p></section>
+ ${m!=='relapse'?call:''}
+ ${S.plan.reasons.length?`<section class="card"><div class="label">Pamiętaj, dla kogo i po co</div><ul class="list">${S.plan.reasons.map(r=>`<li><span>${esc(r)}</span></li>`).join('')}</ul></section>`:''}
+ <section class="card crisis">
+  <p class="small">${m==='feel'?'Jeśli pojawiają się myśli, żeby zrobić sobie krzywdę, zadzwoń od razu':'Gdy jest naprawdę źle, zadzwoń'}: <a class="phone" href="tel:800702222">800 70 2222</a> (całą dobę), <a class="phone" href="tel:116123">116 123</a> albo <a class="phone" href="tel:112">112</a>.${isTrz()?' Uzależnienia: <a class="phone" href="tel:800199990">800 199 990</a> (16–21).':''}</p>
+  <button class="ghost" data-tab="plan">Mój plan bezpieczeństwa ›</button></section>
  <div class="stack">
   ${m==='relapse'?(help.subs.length?S.addictions.filter(a=>help.subs.includes(a.name)):S.addictions).map(a=>`<button data-restart="${a.id}">Licz od dziś: ${esc(a.name)}</button>`).join(''):`<button class="primary" data-better="1">Jest mi lepiej</button>`}
   <button class="ghost" data-tab="dzis">Wróć do ekranu głównego</button></div>`;
@@ -1710,6 +1906,276 @@ function breathe(btn){
  step();
 }
 
+
+/* ---------- 3.1.4: tryb, nastrój, małe kroki, zapis myśli, PHQ-9, leki, sen, wizyta ---------- */
+const isTrz=()=>S.mode!=='nastr';
+const isNas=()=>S.mode==='nastr'||S.mode==='oba';
+const MODES=[['trz','Trzeźwienie','Licznik dni, głód, plan na trudne chwile','shield'],['nastr','Nastrój i depresja','Małe kroki, myśli, leki, sen, test nastroju','mind'],['oba','Jedno i drugie','Wszystkie funkcje','heart']];
+const modePick=()=>`<div class="modepick">${MODES.map(([k,t,d,ic])=>`<button class="${S.mode===k?'on':''}" data-setmode="${k}">${icon(ic,'big')}<span><b>${t}</b><small>${d}</small></span></button>`).join('')}</div>`;
+function wiedzaList(W){const want=S.mode==='nastr'?['d','w']:S.mode==='oba'?['u','d','w']:['u','w','d'];
+ return W.filter(x=>want.includes(x[3]||'w')).sort((a,b)=>want.indexOf(a[3]||'w')-want.indexOf(b[3]||'w'))}
+const tkey=()=>iso(today());
+const daysTo=d=>Math.round((new Date(d+'T00:00:00')-today())/864e5);
+const miniFace=n=>`<span class="minif m${n}">${faceSvg(n)}</span>`;
+function moodSeries(n,withEx){return [...Array(n)].map((_,i)=>{const d=daysAgo(n-1-i),k=iso(d);const fs=S.feelings.filter(f=>(withEx||!f.ex)&&iso(new Date(f.at))===k);return {d,k,v:fs.length?fs.reduce((s,f)=>s+moodOf(f),0)/fs.length:null}})}
+const avgOf=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:null;
+const ACT_IDEAS=['spacer 10 minut','prysznic i czyste ubranie','telefon do kogoś bliskiego','10 minut na słońcu','coś prostego do jedzenia','posprzątać jedną półkę','ulubiona muzyka','jedna odkładana sprawa','kilka stron książki','wyjść do ludzi'];
+function actInsight(){
+ const done=S.acts.filter(a=>a.done&&a.after);
+ const by={};done.forEach(a=>{const k=a.text.toLowerCase();(by[k]=by[k]||{t:a.text,v:[]}).v.push(a.after)});
+ const best=Object.values(by).filter(x=>x.v.length>=2).map(x=>({t:x.t,a:avgOf(x.v),n:x.v.length})).sort((a,b)=>b.a-a.a).slice(0,3);
+ const days=moodSeries(28).filter(x=>x.v!==null);const withA=new Set(S.acts.filter(a=>a.done).map(a=>a.day));
+ const yes=days.filter(x=>withA.has(x.k)).map(x=>x.v),no=days.filter(x=>!withA.has(x.k)).map(x=>x.v);
+ let msg='';if(yes.length>=3&&no.length>=3){const d=avgOf(yes)-avgOf(no);msg=d>=0.3?`W dni z małymi krokami Twój nastrój jest wyraźnie lepszy (średnio ${avgOf(yes).toFixed(1).replace(".",",")} zamiast ${avgOf(no).toFixed(1).replace(".",",")} na 5). Działanie naprawdę pomaga.`:d<=-0.3?'Na razie w dni z krokami nastrój nie jest lepszy. Spróbuj mniejszych, przyjemniejszych kroków.':'W dni z krokami nastrój jest podobny. Daj temu czas, efekt zwykle przychodzi po kilku tygodniach.'}
+ if(!best.length&&!msg)return '';
+ return `<div class="label">Co Ci pomaga</div>${msg?`<p class="small">${msg}</p>`:''}${best.length?`<ul class="list">${best.map(x=>`<li><span>${esc(x.t)}</span><span class="small muted">po: ${x.a.toFixed(1).replace(".",",")}/5 · ${x.n}×</span></li>`).join('')}</ul>`:''}`;
+}
+function actsCard(){
+ const tk=tkey(),L=S.acts.filter(a=>a.day===tk);
+ const y=iso(daysAgo(1)),left=S.acts.filter(a=>a.day===y&&!a.done&&!L.some(b=>b.text===a.text));
+ return `<section class="card" id="kroki"><p class="small muted">${icon('bulb')} Najpierw działanie, potem ochota. 1–3 małe rzeczy.</p>
+  ${L.length?L.map(a=>`<div class="act${a.done?' done':''}"><div class="at"><b>${esc(a.text)}</b>${a.done?(a.after?`<br><span class="small muted">Po: ${miniFace(a.after)} ${MOODS[a.after-1][1]}</span>`:`<div class="small" style="margin-top:4px">Jak się czujesz po?</div><div class="facepick">${MOODS.map(([n,l,c])=>`<button class="${c}" data-actafter="${a.id}" data-v="${n}" aria-label="${l}">${faceSvg(n)}</button>`).join('')}</div>`):''}</div>
+   ${a.done?`<button class="ghost danger" data-del="acts" data-id="${a.id}">Usuń</button>`:`<button class="primary" data-actdone="${a.id}">${icon('check')} Zrobione</button>`}</div>`).join(''):''}
+  ${left.length?`<button class="ghost" data-actmove="1">Przenieś niezrobione z wczoraj (${left.length})</button>`:''}
+  <div class="ideas">${ACT_IDEAS.filter(t=>!L.some(a=>a.text===t)).slice(0,8).map(t=>`<button data-actadd="${esc(t)}">+ ${esc(t)}</button>`).join('')}</div>
+  <form id="f-act" class="row"><input id="act-text" placeholder="Własny krok, np. podlać kwiaty" style="flex:1;min-width:0"><button type="submit">Dodaj</button></form>
+  ${actInsight()}</section>`;
+}
+const PHQ_Q=['Niewielkie zainteresowanie lub brak przyjemności z robienia czegokolwiek','Smutek, przygnębienie lub poczucie beznadziei','Kłopoty z zaśnięciem, przerywany sen albo zbyt długi sen','Zmęczenie lub brak energii','Brak apetytu albo przejadanie się','Złe zdanie o sobie, poczucie, że jestem do niczego albo zawiodłem/am siebie lub rodzinę','Kłopoty ze skupieniem, np. przy czytaniu albo oglądaniu telewizji','Poruszanie się lub mówienie tak wolno, że inni mogli to zauważyć, albo przeciwnie: taki niepokój, że trudno usiedzieć w miejscu','Myśli, że lepiej byłoby umrzeć, albo myśli o zrobieniu sobie krzywdy'];
+const PHQ_A=['Wcale','Kilka dni','Ponad połowę dni','Prawie codziennie'];
+const PHQ_B=[[4,'minimalne'],[9,'łagodne'],[14,'umiarkowane'],[19,'umiarkowanie ciężkie'],[27,'ciężkie']];
+const phqBand=s=>PHQ_B.find(b=>s<=b[0])[1];
+const phqSorted=()=>S.phq.filter(x=>!x.ex).slice().sort((a,b)=>a.at.localeCompare(b.at));
+const phqLast=()=>phqSorted().pop();
+function phqCard(){
+ const L=phqSorted(),last=L[L.length-1];
+ const due=!last||daysTo(iso(new Date(last.at)))<=-14;
+ return `<section class="card">
+  ${last?`<div class="row" style="gap:14px"><span class="score">${last.score}</span><span><b>Objawy ${phqBand(last.score)}</b><br><span class="small muted">${new Date(last.at).toLocaleDateString('pl-PL')}${L.length>1?` · poprzednio ${L[L.length-2].score}`:''}</span></span></div>
+   ${L.length>1?`<div class="small muted">Historia: ${L.slice(-6).map(x=>x.score).join(' → ')} (mniej znaczy lepiej)</div>`:''}`:'<p class="small muted">9 pytań, 2 minuty. Ten sam kwestionariusz stosują lekarze. Powtarzaj co 2 tygodnie, żeby widzieć zmiany i pokazać je lekarzowi.</p>'}
+  ${due?`<button class="primary" data-tab="phq">Zrób test</button>`:`<span class="small muted">Następny test za ${14+daysTo(iso(new Date(last.at)))} dni.</span><button class="ghost" data-tab="phq">Zrób test teraz</button>`}</section>`;
+}
+const medTaken=(m,k)=>S.medLog.find(x=>x.med===m.id&&x.day===k);
+const nowHM=()=>{const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')};
+function medAdh(m,days){const ks=[...Array(days)].map((_,i)=>iso(daysAgo(i))).filter(k=>k>=(m.from||'0'));const t=ks.filter(k=>{const x=medTaken(m,k);return x&&!x.skip}).length;return [t,ks.length]}
+function medsCard(){
+ const tk=tkey();
+ return `<section class="card" id="leki">
+  ${S.meds.length?S.meds.map(m=>{const x=medTaken(m,tk),[t,n]=medAdh(m,7);return `<div class="medrow"><span style="flex:1;min-width:0"><b>${esc(m.name)}</b>${m.time?` · ${esc(m.time)}`:''}<br><span class="small muted">${x?(x.skip?'Dziś pominięty':'Wzięty dziś o '+new Date(x.at).toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'})):'Dziś jeszcze nie'} · 7 dni: ${t}/${n}</span></span>
+   <span class="row">${x?`<button class="ghost" data-meduntake="${m.id}">Cofnij</button>`:`<button class="primary" data-medtake="${m.id}">${icon('check')} Wzięty</button>`}<button class="ghost danger" data-mdel="${m.id}">Usuń</button></span></div>`}).join(''):'<p class="small muted">Dodaj leki, które bierzesz. Azyl przypomni na ekranie Dziś, gdy minie pora.</p>'}
+  <form id="f-med" class="stack"><div class="row"><input id="med-name" placeholder="Nazwa i dawka, jak na recepcie" style="flex:1 1 180px;min-width:0"><input type="time" id="med-time" value="08:00" style="flex:0 0 120px" aria-label="Pora"></div><button type="submit">Dodaj lek</button></form>
+  <p class="small muted">Azyl tylko przypomina. Dawkę i zmiany ustala lekarz. Leków nie odstawiaj nagle.</p></section>`;
+}
+function sleepCard(){
+ const tk=tkey(),cur=S.sleep.find(x=>x.day===tk),L=S.sleep.filter(x=>x.day>=iso(daysAgo(6)));
+ const h=avgOf(L.map(x=>x.hours)),q=avgOf(L.filter(x=>x.q).map(x=>x.q));
+ return `<section class="card" id="sen">
+  ${L.length?`<div class="stat"><div><span class="label">Średnio</span><b>${h.toFixed(1).replace(".",",")} h</b></div><div><span class="label">Jakość</span><b>${q?q.toFixed(1).replace(".",",")+'/5':'–'}</b></div><div><span class="label">Nocy</span><b>${L.length}</b></div></div>`:''}
+  <form id="f-sleep" class="stack"><div class="small"><b>${cur?'Dzisiejsza noc zapisana. Możesz poprawić:':'Jak spałeś/aś ostatniej nocy?'}</b></div>
+   <div class="row"><label class="field" style="flex:1"><span>Zasnąłem/am</span><input type="time" id="sl-bed" value="${cur?cur.bed:'23:00'}"></label><label class="field" style="flex:1"><span>Wstałem/am</span><input type="time" id="sl-wake" value="${cur?cur.wake:'07:00'}"></label></div>
+   <div class="moods">${MOODS.map(([n,l,c])=>`<label class="mood ${c}"><input type="radio" name="slq" value="${n}" id="slq-${n}"${cur&&cur.q===n?' checked':''}>${faceSvg(n)}<small>${['Fatalnie','Źle','Tak sobie','Dobrze','Świetnie'][n-1]}</small></label>`).join('')}</div>
+   <button type="submit">Zapisz sen</button></form>
+  <details class="more"><summary>${icon('bulb')} Co pomaga spać</summary><ul class="list">${['Stałe pory wstawania, także w weekend.','Rano 10–15 minut na dworze, na świetle dziennym.','Kawa i mocna herbata tylko do 14:00.','Telefon odłożony pół godziny przed snem.','Łóżko tylko do spania. Gdy nie możesz zasnąć przez 20 minut, wstań na chwilę.','Alkohol pomaga zasnąć, ale psuje sen w drugiej połowie nocy.'].map(x=>`<li><span>${x}</span></li>`).join('')}</ul></details></section>`;
+}
+function vNastroj(){
+ const M=moodSeries(14,S.examples),vals=M.filter(x=>x.v!==null);
+ const a=avgOf(M.slice(0,7).filter(x=>x.v!==null).map(x=>x.v)),b=avgOf(M.slice(7).filter(x=>x.v!==null).map(x=>x.v));
+ const trend=a!==null&&b!==null?(b-a>=0.4?'Ostatni tydzień jest lepszy niż poprzedni.':a-b>=0.4?'Ostatni tydzień jest słabszy. Zadbaj o małe kroki i sen. Jeśli to trwa, powiedz lekarzowi.':'Nastrój jest podobny jak tydzień wcześniej.'):'';
+ return `<header class="top"><h1>Nastrój</h1></header>
+ <section class="card"><div class="row between"><h2>${icon('chart')} Ostatnie 2 tygodnie</h2></div>
+  ${vals.length?`<div class="mchart" role="img" aria-label="Średni nastrój w ostatnich 14 dniach, skala 1 do 5">${M.map((x,i)=>`<div><i class="${x.v?'m'+Math.round(x.v):''}" style="height:${x.v?x.v*18:3}%"></i><small>${i%2?'':x.d.getDate()}</small></div>`).join('')}</div>
+   <p class="small">${trend||'Zapisuj nastrój codziennie, a zobaczysz, jak się zmienia.'}</p>`:'<p class="small muted">Dotykaj buźki na ekranie Dziś. Tu zobaczysz, jak zmienia się Twój nastrój.</p>'}</section>
+ ${actsCard()}
+ <section class="card"><h2>${icon('mind')} Zapis myśli</h2><p class="small muted">Gdy jakaś myśl przygniata, zapisz ją i sprawdź, ile w niej faktów. To ćwiczenie z terapii poznawczo-behawioralnej.</p>
+  <button data-go="mysli" data-open="1">Zapisz myśl</button></section>
+ ${phqCard()}
+ ${medsCard()}
+ ${sleepCard()}
+ <section class="card"><h2>${icon('doc')} Wizyta u lekarza</h2>
+  <label class="field"><span>Następna wizyta</span><input type="date" id="visit-date" data-visit="1" value="${esc(S.visit||'')}" min="${tkey()}"></label>
+  <button data-tab="lekarz">Przygotuj się do wizyty</button></section>
+ ${SYNC_URL&&!pushCfg().on?`<section class="card"><h2>${icon('bell')} Przypomnienia</h2><p class="small muted">O lekach, małych krokach i bilansie dnia, na ekranie telefonu.</p><button data-tab="ustawienia" data-to="pushcard">Ustaw przypomnienia</button></section>`:''}
+ <section class="card"><h2>${icon('shield')} Plan bezpieczeństwa</h2><p class="small muted">Sygnały ostrzegawcze, co mi pomaga, do kogo dzwonię. Wypełnij w dobry dzień.</p><button data-tab="plan">Otwórz mój plan</button></section>
+ <p class="small muted">Azyl wspiera leczenie, ale go nie zastępuje.</p>`;
+}
+const TRAPS=['Czarnowidztwo','Wszystko albo nic','Czytanie w myślach','Katastrofizacja','Etykietka („jestem beznadziejny/a”)','„Powinienem/powinnam”','Widzę tylko złe rzeczy','Wszystko przeze mnie','Zawsze / nigdy'];
+function vMysli(){
+ const list=S.thoughts.slice().sort((a,b)=>b.at.localeCompare(a.at));
+ return `<header class="top"><h1>Dziennik</h1></header>${segJ('mysli')}
+ <details class="new" id="new-form" open><summary>${icon('mind')} Zapisz myśl</summary>
+ <form id="f-thought">
+  ${ta('th-sit','1. Co się wydarzyło?','np. szef nie odpisał na wiadomość')}
+  ${ta('th-tho','2. Jaka myśl przyszła mi do głowy?','np. „zaraz mnie zwolnią”')}
+  <div class="field"><span>3. Co poczułem/am?</span>${tiles('themo',HEAVY,EMO_IC,'neg')}</div>
+  <div class="field"><span>Jak silne było to uczucie?</span>${levelPick('th-l1',7,'słabe','bardzo silne')}</div>
+  <div class="field"><span>4. Czy to któraś z pułapek myślenia?</span>${chips('trap',TRAPS,true)}</div>
+  ${ta('th-for','5. Co przemawia za tą myślą? Same fakty.')}
+  ${ta('th-against','6. Co przemawia przeciw?','np. w zeszłym miesiącu mnie pochwalił')}
+  ${ta('th-friend','7. Co powiedział(a)bym przyjacielowi w takiej sytuacji?')}
+  ${ta('th-alt','8. Bardziej realna, życzliwa myśl','np. „pewnie jest zajęty, zapytam jutro”')}
+  <div class="field"><span>9. Jak silne jest to uczucie teraz?</span>${levelPick('th-l2',5,'słabe','bardzo silne')}</div>
+  <button class="primary" type="submit">Zapisz</button>
+ </form></details>
+ <div class="stack">${list.length?list.map(t=>`<article class="card entry">
+  <div class="meta"><span class="small muted">${fmt(t.at)}</span>${t.l2!==undefined?`<span class="pill${t.l2<t.l1?' good':''} lvlchg">${t.l1} → ${t.l2}</span>`:''}</div>
+  <h3>${esc(t.thought)}</h3>
+  ${(t.traps||[]).length?`<div class="chips">${t.traps.map(x=>`<span class="pill amber trap">${esc(x)}</span>`).join('')}</div>`:''}
+  <dl class="kv">${[['Sytuacja',t.sit],['Uczucia',(t.emos||[]).join(', ')],['Za',t.pro],['Przeciw',t.con],['Przyjacielowi',t.friend],['Nowa myśl',t.alt]].filter(x=>x[1]).map(x=>`<dt>${x[0]}</dt><dd>${esc(x[1])}</dd>`).join('')}</dl>
+  <div class="row" style="justify-content:flex-end">${delBtn('thoughts',t.id)}</div></article>`).join(''):'<p class="empty">Brak zapisanych myśli.</p>'}</div>`;
+}
+let phqRes=null;
+function vPhq(){
+ if(phqRes){const r=S.phq.find(x=>x.id===phqRes);if(r){const L=phqSorted(),i=L.findIndex(x=>x.id===r.id),prev=i>0?L[i-1]:null;
+  const msg=r.score<=4?'Wynik nie wskazuje na depresję. Dbaj dalej o sen, ruch i ludzi.':r.score<=9?'Łagodne objawy. Obserwuj nastrój, rób małe kroki i powtórz test za 2 tygodnie. Jeśli nie będzie lepiej, porozmawiaj z lekarzem.':r.score<=14?'Umiarkowane objawy. Porozmawiaj o tym z lekarzem albo psychologiem. Depresja dobrze się leczy.':'Nasilone objawy. Umów wizytę u psychiatry jak najszybciej, nie potrzebujesz skierowania. Nie zostawaj z tym sam/a.';
+  return `<header class="top"><h1>Wynik testu</h1></header>
+  ${r.ans[8]>0?`<section class="card crisis"><h2>Ważne</h2><p>Zaznaczyłeś/aś myśli o śmierci albo o zrobieniu sobie krzywdy. Dobrze, że to nazwałeś/aś. Nie musisz być z tym sam/a.</p>
+   <p>Porozmawiaj o tym jeszcze dziś z kimś zaufanym albo z lekarzem. Jeśli czujesz, że możesz zrobić sobie krzywdę, zadzwoń: <a class="phone" href="tel:112">112</a>. Całodobowe wsparcie: <a class="phone" href="tel:800702222">800 70 2222</a>, telefon zaufania <a class="phone" href="tel:116123">116 123</a>.</p>
+   ${contactsHtml()}<div class="row"><button class="primary" data-helpfeel="1">Jest mi ciężko</button><button data-tab="plan">Mój plan bezpieczeństwa</button></div></section>`:''}
+  <section class="card"><div class="row" style="gap:14px"><span class="score">${r.score}</span><span><b>Objawy ${phqBand(r.score)}</b><br><span class="small muted">na 27 punktów${prev?` · poprzednio ${prev.score}${r.score<prev.score?', lepiej':r.score>prev.score?', gorzej':''}`:''}</span></span></div>
+   <p>${msg}</p><p class="small muted">To nie jest diagnoza. PHQ-9 pomaga ocenić nasilenie objawów i śledzić zmiany. Pokaż wynik lekarzowi.</p></section>
+  <div class="stack"><button class="primary" data-tab="postepy">Gotowe</button><button data-tab="lekarz">${icon('doc')} Dla lekarza</button></div>`}}
+ return `<header class="top"><h1>Test nastroju</h1></header>
+ <p class="muted">Jak często w ciągu <b>ostatnich 2 tygodni</b> dokuczały Ci te problemy?</p>
+ <form id="f-phq" class="card">${PHQ_Q.map((q,i)=>`<div class="phq-q"><b>${i+1}. ${q}</b><div class="phq-opts">${PHQ_A.map((a,v)=>`<label><input type="radio" name="phq${i}" value="${v}" id="phq${i}-${v}">${a}</label>`).join('')}</div></div>`).join('')}
+  <button class="primary" type="submit">Pokaż wynik</button></form>
+ <p class="small muted">Kwestionariusz PHQ-9 (Kroenke, Spitzer, Williams), dostępny bezpłatnie. Nie służy do samodzielnego stawiania diagnozy.</p>`;
+}
+function docSummary(){
+ const D=30,from=daysAgo(D-1),fk=iso(from),inW=x=>x.at>=from.toISOString();
+ const M=moodSeries(D),v=M.filter(x=>x.v!==null);
+ const a=avgOf(M.slice(0,15).filter(x=>x.v!==null).map(x=>x.v)),b=avgOf(M.slice(15).filter(x=>x.v!==null).map(x=>x.v));
+ const F=S.feelings.filter(f=>!f.ex&&inW(f));const emo={};F.forEach(f=>(f.emotions||[]).forEach(e=>emo[e]=(emo[e]||0)+1));
+ const P=phqSorted().filter(inW),SL=S.sleep.filter(x=>x.day>=fk),C=S.cravings.filter(c=>!c.ex&&inW(c));
+ const out=[`Podsumowanie dla lekarza${S.name?' – '+S.name:''} (${from.toLocaleDateString('pl-PL')} – ${today().toLocaleDateString('pl-PL')})`,''];
+ out.push(`Nastrój (samoocena 1–5): ${v.length?`średnio ${avgOf(v.map(x=>x.v)).toFixed(1).replace(".",",")}, zapisany w ${v.length} z ${D} dni`:'brak wpisów'}`);
+ if(a!==null&&b!==null)out.push(`  pierwsza połowa okresu: ${a.toFixed(1).replace(".",",")}, druga połowa: ${b.toFixed(1).replace(".",",")}`);
+ const te=Object.entries(emo).sort((x,y)=>y[1]-x[1]).slice(0,5);if(te.length)out.push(`Najczęstsze uczucia: ${te.map(e=>e[0]+' ('+e[1]+')').join(', ')}`);
+ if(P.length)out.push(`PHQ-9: ${P.map(x=>new Date(x.at).toLocaleDateString('pl-PL',{day:'numeric',month:'numeric'})+' – '+x.score+' pkt ('+phqBand(x.score)+')').join('; ')}`);
+ const p9=P.filter(x=>x.ans[8]>0);if(p9.length)out.push(`Uwaga: myśli o śmierci lub samookaleczeniu (PHQ-9, pyt. 9) zaznaczone ${p9.length}×, ostatnio ${new Date(p9[p9.length-1].at).toLocaleDateString('pl-PL')}`);
+ if(SL.length)out.push(`Sen: średnio ${avgOf(SL.map(x=>x.hours)).toFixed(1).replace(".",",")} h${SL.some(x=>x.q)?`, jakość ${avgOf(SL.filter(x=>x.q).map(x=>x.q)).toFixed(1).replace(".",",")}/5`:''} (${SL.length} ${SL.length===1?'noc':SL.length<5?'noce':'nocy'})`);
+ S.meds.forEach(m=>{const [t,n]=medAdh(m,D);out.push(`Lek: ${m.name}${m.time?' ('+m.time+')':''} – przyjęty ${t} z ${n} ${n===1?'dnia':'dni'}`)});
+ const dn=S.acts.filter(x=>x.done&&x.day>=fk).length;if(dn)out.push(`Małe kroki zrobione: ${dn}`);
+ if(isTrz()){S.addictions.filter(a=>a.start).forEach(a=>out.push(`Dni bez: ${a.name}: ${sober(a)}`));if(C.length)out.push(`Epizody głodu: ${C.length}, sięgnięcie: ${C.filter(c=>c.used).length}`)}
+ if(S.plan.docQs.length){out.push('','Moje pytania:');S.plan.docQs.forEach(q=>out.push('– '+q))}
+ return out.join('\n');
+}
+function vLekarz(){
+ const t=docSummary();
+ return `${subHead('Lekarz')}
+ <section class="card"><label class="field"><span>Data wizyty</span><input type="date" id="visit-date2" data-visit="1" value="${esc(S.visit||'')}" min="${tkey()}"></label>
+  <p class="small muted">Dzień przed wizytą Azyl przypomni o niej na ekranie Dziś.</p></section>
+ ${listSec('docQs','Moje pytania do lekarza','np. czy mogę prowadzić auto po tym leku?')}
+ <section class="card"><h2>${icon('doc')} Podsumowanie z 30 dni</h2>
+  <p class="small muted">Pokaż je lekarzowi na ekranie albo wyślij. Nic nie wychodzi z telefonu, dopóki sam/a tego nie zrobisz.</p>
+  <pre class="docsum">${esc(t)}</pre>
+  <div class="row"><button class="primary" data-docshare="1">${icon('share')} Wyślij</button><button data-copy="${esc(t)}">Kopiuj</button></div></section>
+ <section class="card"><div class="label">Warto powiedzieć lekarzowi</div><ul class="list">${['Jak działa lek i czy są skutki uboczne.','Jak śpisz i jak jesz.','Czy pijesz alkohol albo bierzesz inne substancje.','Czy pojawiają się myśli o śmierci. Lekarz musi to wiedzieć, żeby dobrze pomóc.'].map(x=>`<li><span>${x}</span></li>`).join('')}</ul></section>
+ `;
+}
+function medCard(){
+ const tk=tkey(),hm=nowHM(),due=S.meds.filter(m=>(m.time||'00:00')<=hm&&!medTaken(m,tk)&&(m.from||'')<=tk);
+ if(!due.length)return '';
+ return `<section class="card goalcard"><div class="label">${icon('pill')} Pora na lek</div>
+  ${due.map(m=>`<div class="medrow"><span><b>${esc(m.name)}</b>${m.time?` · ${esc(m.time)}`:''}</span><span class="row"><button class="primary" data-medtake="${m.id}">${icon('check')} Wzięty</button><button class="ghost" data-medskip="${m.id}">Nie dziś</button></span></div>`).join('')}</section>`;
+}
+function visitCard(){
+ if(!S.visit)return '';const n=daysTo(S.visit);if(n<0||n>2)return '';
+ return `<section class="card alertcard"><div class="label">${icon('doc')} Wizyta u lekarza</div><p><b>${n===0?'Dziś':n===1?'Jutro':'Pojutrze'}</b> masz wizytę. Przygotuj krótkie podsumowanie i pytania.</p><button class="primary" data-tab="lekarz">Przygotuj się</button></section>`;
+}
+function phqDueCard(){
+ if(!moodOn()||S.phqSnooze===tkey())return '';
+ {const fr=S.feelings.filter(f=>!f.ex).map(f=>f.at).sort()[0];if(!fr||daysTo(iso(new Date(fr)))>-3)return ''}
+ const last=phqLast();if(last&&daysTo(iso(new Date(last.at)))>-14)return '';
+ return `<section class="card"><div class="label">${icon('chart')} Test nastroju</div><p>${last?'Minęły 2 tygodnie od ostatniego testu. Sprawdźmy, jak się zmieniło.':'Krótki test nastroju, 2 minuty. Pomoże zobaczyć zmiany.'}</p>
+  <div class="row"><button class="primary" data-tab="phq">Zrób test</button><button class="ghost" data-phqsnooze="1">Później</button></div></section>`;
+}
+function safetyCard(){
+ const last=phqLast();if(!last||last.ans[8]<=0||daysTo(iso(new Date(last.at)))<-14)return '';
+ return `<section class="card crisis"><p><b>Pamiętaj: nie jesteś z tym sam/a.</b> Gdy przyjdą czarne myśli, otwórz swój plan albo zadzwoń: <a class="phone" href="tel:800702222">800 70 2222</a> (całą dobę), <a class="phone" href="tel:112">112</a>.</p><button class="ghost" data-tab="plan">Mój plan bezpieczeństwa ›</button></section>`;
+}
+function vRegulamin(){
+ return `<header class="top"><h1>Regulamin</h1></header>
+ <section class="card"><ul class="plist">
+  <li><b>Czym jest Azyl.</b> Dzienniczek, który wspiera trzeźwienie i dbanie o nastrój. ${TEST_END<'2090'?`Obecnie to wersja testowa, bezpłatna do ${endDate().toLocaleDateString('pl-PL')}.`:'Aplikacja jest bezpłatna.'}</li>
+  <li><b>Azyl nie zastępuje leczenia.</b> Aplikacja nie stawia diagnoz i nie jest wyrobem medycznym. Nie zastępuje lekarza, psychoterapeuty ani terapii uzależnień. Test PHQ-9 pomaga śledzić objawy, ale nie jest diagnozą. Decyzje o lekach podejmuje wyłącznie lekarz.</li>
+  <li><b>W kryzysie</b> dzwoń: <a class="phone" href="tel:112">112</a>, <a class="phone" href="tel:800702222">800 70 2222</a> (całą dobę), <a class="phone" href="tel:116123">116 123</a>.</li>
+  <li><b>Twoje dane.</b> Wpisy są przechowywane na Twoim urządzeniu. Szczegóły w zakładce <button class="linkbtn" data-privacy="1">Prywatność</button>.</li>
+  <li><b>Zmiany.</b> Aplikacja jest stale ulepszana. Rób kopię wpisów albo włącz synchronizację.</li>
+  <li><b>Prawa autorskie.</b> © 2026 ${APP_AUTHOR}, ${APP_OWNER}. Wszelkie prawa zastrzeżone. Kod, wygląd i treści aplikacji są chronione prawem autorskim. Kopiowanie, przerabianie, rozpowszechnianie lub wykorzystywanie ich w innych produktach bez pisemnej zgody autora jest zabronione. Cytaty należą do ich autorów. Kwestionariusz PHQ-9: K. Kroenke, R. Spitzer, J. Williams, udostępniony bezpłatnie.</li>
+ </ul></section>
+ <button class="primary" data-privback="1">Wróć</button>`;
+}
+function vUwaga(){
+ return `<header class="top"><h1>Zgłoś uwagę</h1></header>
+ <section class="card"><p>Coś nie działa, czegoś brakuje, coś jest niejasne? Napisz. Każda uwaga pomaga ulepszyć Azyl.</p>
+  <form id="f-fb" class="stack"><textarea id="fb-text" placeholder="Twoja uwaga albo pomysł" style="min-height:140px"></textarea>
+  <div class="small"><b>Wyślij przez:</b></div><div class="row">${FEEDBACK_EMAIL?`<button class="primary" type="submit" value="mail" style="flex:1">${icon('doc')} E-mail</button>`:''}${FEEDBACK_WA?`<button type="submit" value="wa" style="flex:1">${icon('chat')} WhatsApp</button>`:''}${FEEDBACK_SMS?`<button type="submit" value="sms" style="flex:1">${icon('phone')} SMS</button>`:''}${!FEEDBACK_EMAIL&&!FEEDBACK_SMS?`<button class="primary" type="submit" value="share">${icon('share')} Wyślij</button>`:''}</div></form>
+  <p class="small muted">Uwaga trafi do autora aplikacji, Krystiana Prucnela. Wysyłasz tylko to, co tu wpiszesz, oraz numer wersji i rodzaj telefonu. Twoje wpisy z dzienniczka nie są dołączane.</p></section>
+ <button data-privback="1">Wróć</button>`;
+}
+function shareText(title,text){if(navigator.share){navigator.share({title,text}).catch(()=>{})}else copy(text)}
+
+
+/* ---------- 3.1.6: licznik urządzeń i przypomnienia push ---------- */
+const srv=p=>SYNC_URL.replace(/\/$/,'')+p;
+const statsOn=()=>!!SYNC_URL&&iso(today())<=STATS_UNTIL;
+function devId(){let d=null;try{d=localStorage.getItem(KEY+'-dev')}catch(e){}
+ if(!d||!/^[0-9a-f]{24}$/.test(d)){d=hex(crypto.getRandomValues(new Uint8Array(12)));try{localStorage.setItem(KEY+'-dev',d)}catch(e){}}return d}
+const platform=()=>/iphone|ipad|ipod/i.test(navigator.userAgent)?'ios':/android/i.test(navigator.userAgent)?'android':'pc';
+function ping(){
+ if(!statsOn()||inFrame()||S.mode===undefined)return;const tk=iso(today());let last=null;try{last=localStorage.getItem(KEY+'-ping')}catch(e){}if(last===tk)return;
+ (async()=>{let g=null;if(S.sync&&S.sync.code)g=hex(await crypto.subtle.digest('SHA-256',te.encode('azyl-grp:'+normCode(S.sync.code)))).slice(0,16);
+  const r=await fetch(srv('/ping'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({d:devId(),g,v:APP_VERSION,m:S.mode||'',p:platform(),i:isStandalone()?1:0})});
+  if(r.ok)try{localStorage.setItem(KEY+'-ping',tk)}catch(e){}})().catch(()=>{})}
+const pushOk=()=>!!SYNC_URL&&'serviceWorker' in navigator&&'PushManager' in window&&'Notification' in window;
+const PUSH_DEF={on:false,t:{rano:'08:00',wieczor:'20:30',kroki:'13:00'},en:{rano:true,wieczor:true,kroki:false,leki:true}};
+const pushCfg=()=>{const p=S.push||{};return {on:!!p.on,t:Object.assign({},PUSH_DEF.t,p.t||{}),en:Object.assign({},PUSH_DEF.en,p.en||{}),sent:p.sent||''}};
+function pushTimes(){const p=pushCfg(),o=[];['rano','wieczor','kroki'].forEach(k=>{if(p.en[k]&&p.t[k])o.push({k,t:p.t[k]})});
+ if(p.en.leki)S.meds.forEach(m=>{if(m.time&&!o.some(x=>x.k==='lek'&&x.t===m.time))o.push({k:'lek',t:m.time})});return o}
+const urlKey=k=>{const t=k.replace(/-/g,'+').replace(/_/g,'/');return Uint8Array.from(atob(t+'==='.slice((t.length+3)%4)),c=>c.charCodeAt(0))};
+const withTimeout=(p,ms)=>Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej(new Error('czas')),ms))]);
+async function pushSub(create){const reg=await withTimeout(navigator.serviceWorker.ready,8000);let sub=await reg.pushManager.getSubscription();
+ if(!sub&&create){const k=(await (await fetch(srv('/push/key'))).json()).key;sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlKey(k)})}return sub}
+async function pushSend(sub){const czasy=pushTimes();
+ const r=await fetch(srv('/push/sub'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({d:devId(),sub:sub.toJSON(),tz:Intl.DateTimeFormat().resolvedOptions().timeZone||'Europe/Warsaw',czasy})});
+ if(!r.ok)throw new Error('HTTP '+r.status);const p=pushCfg();S.push={on:true,t:p.t,en:p.en,sent:JSON.stringify(czasy)};saveLocal()}
+async function pushOn(){
+ if(!pushOk())return toast('Ta przeglądarka nie obsługuje przypomnień.');
+ if(isIOS()&&!isStandalone())return toast('Najpierw dodaj Azyl do ekranu początkowego, potem włącz przypomnienia.');
+ let perm=Notification.permission;if(perm!=='granted')perm=await Notification.requestPermission();
+ if(perm!=='granted'){render();return toast('Telefon nie zezwolił na powiadomienia. Zmienisz to w ustawieniach telefonu.')}
+ toast('Włączam…');
+ try{const sub=await pushSub(true);await pushSend(sub);render();toast('Przypomnienia włączone')}
+ catch(e){toast('Nie udało się włączyć. Sprawdź internet i spróbuj ponownie.')}}
+async function pushOff(){const p=pushCfg();S.push={on:false,t:p.t,en:p.en,sent:''};saveLocal();render();
+ try{const sub=await pushSub(false);if(sub)await sub.unsubscribe()}catch(e){}
+ try{await fetch(srv('/push/del'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({d:devId()})})}catch(e){}
+ toast('Przypomnienia wyłączone')}
+let pushTimer=null;
+function pushSync(){if(!pushOk()||!pushCfg().on)return;if(JSON.stringify(pushTimes())===pushCfg().sent)return;
+ clearTimeout(pushTimer);pushTimer=setTimeout(async()=>{try{const sub=await pushSub(true);await pushSend(sub)}catch(e){}},1500)}
+function pushCard(){
+ if(!SYNC_URL)return '';
+ const p=pushCfg(),n=S.meds.length;
+ if(!pushOk())return `<section class="card" id="pushcard"><h2>${icon('bell')} Przypomnienia</h2><p class="small muted">Ta przeglądarka nie obsługuje przypomnień. Otwórz Azyl w Chrome (Android) albo dodaj go do ekranu początkowego (iPhone, iOS 16.4 lub nowszy).</p></section>`;
+ if(isIOS()&&!isStandalone())return `<section class="card" id="pushcard"><h2>${icon('bell')} Przypomnienia</h2><p class="small muted">Na iPhonie przypomnienia działają w aplikacji z ikony. Dodaj Azyl do ekranu początkowego i włącz je tam.</p></section>`;
+ if(!p.on)return `<section class="card" id="pushcard"><h2>${icon('bell')} Przypomnienia</h2>
+  <p class="small muted">Azyl może przypomnieć na ekranie telefonu: rano o myśli dnia, wieczorem o bilansie, o lekach. Tylko o tym, co wybierzesz.</p>
+  ${typeof Notification!=='undefined'&&Notification.permission==='denied'?'<p class="small" style="color:var(--alert)">Powiadomienia są zablokowane w ustawieniach telefonu dla tej strony. Odblokuj je, a potem włącz tutaj.</p>':''}
+  <button class="primary" data-pushon="1">${icon('bell')} Włącz przypomnienia</button></section>`;
+ const row=(k,lbl)=>`<div class="medrow"><label class="row" style="flex:1;min-width:0;flex-wrap:nowrap"><input type="checkbox" data-pen="${k}"${p.en[k]?' checked':''} style="width:auto"><span>${lbl}</span></label>${k==='leki'?`<span class="small muted">${n?n+' '+(n===1?'lek':'leki')+' z listy':'dodaj leki w zakładce Nastrój'}</span>`:`<input type="time" data-pt="${k}" value="${esc(p.t[k])}" style="flex:0 0 112px"${p.en[k]?'':' disabled'}>`}</div>`;
+ return `<section class="card" id="pushcard"><h2>${icon('bell')} Przypomnienia włączone</h2>
+  ${row('rano','Rano: myśl dnia')}${row('wieczor','Wieczorem: bilans dnia')}${row('kroki','W ciągu dnia: mały krok')}${row('leki','Leki, o ich porach')}
+  <div class="row"><button data-pushtest="1">Wyślij próbne</button><button class="ghost danger" data-pushoff="1">Wyłącz</button></div>
+  <p class="small muted">Na ekranie blokady pojawia się krótki, ogólny tekst, bez Twoich wpisów.</p></section>`;
+}
+function pushAskCard(){
+ if(!pushOk()||pushCfg().on||S.pushAsked||!isStandalone())return '';
+ if(typeof Notification!=='undefined'&&Notification.permission==='denied')return '';
+ return `<section class="card nudge"><div class="label">${icon('bell')} Przypomnienia</div><p>Chcesz, żeby Azyl przypominał rano o myśli dnia, a wieczorem o bilansie? Godziny wybierzesz sam/a.</p>
+  <div class="row"><button class="primary" data-pushon="1">Włącz</button><button class="ghost" data-pushask="1">Nie teraz</button></div></section>`;
+}
+
 /* ---------- Poleć: kod QR ---------- */
 const SHARE_URL="https://pakalai.github.io/Przebudzeni/";
 const QR_SVG=`<svg class="qrsvg" viewBox="-3 -3 39 39" role="img" aria-label="Kod QR do aplikacji"><rect x="-3" y="-3" width="39" height="39" fill="#fff"/><path fill="#16402e" d="M0 0h7v1h-7zM9 0h1v1h-1zM11 0h3v1h-3zM15 0h4v1h-4zM21 0h1v1h-1zM23 0h1v1h-1zM26 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM14 1h1v1h-1zM16 1h2v1h-2zM19 1h1v1h-1zM24 1h1v1h-1zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h4v1h-4zM14 2h1v1h-1zM20 2h2v1h-2zM23 2h2v1h-2zM26 2h1v1h-1zM28 2h3v1h-3zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM10 3h2v1h-2zM17 3h2v1h-2zM20 3h1v1h-1zM22 3h1v1h-1zM26 3h1v1h-1zM28 3h3v1h-3zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h3v1h-3zM12 4h1v1h-1zM14 4h2v1h-2zM18 4h3v1h-3zM23 4h1v1h-1zM26 4h1v1h-1zM28 4h3v1h-3zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM11 5h9v1h-9zM24 5h1v1h-1zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h7v1h-7zM9 7h1v1h-1zM11 7h1v1h-1zM13 7h1v1h-1zM17 7h1v1h-1zM21 7h1v1h-1zM24 7h1v1h-1zM1 8h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM8 8h2v1h-2zM13 8h1v1h-1zM15 8h5v1h-5zM21 8h5v1h-5zM27 8h2v1h-2zM30 8h1v1h-1zM1 9h1v1h-1zM3 9h1v1h-1zM5 9h1v1h-1zM9 9h1v1h-1zM11 9h2v1h-2zM15 9h2v1h-2zM18 9h1v1h-1zM21 9h1v1h-1zM23 9h1v1h-1zM25 9h1v1h-1zM29 9h3v1h-3zM1 10h2v1h-2zM6 10h3v1h-3zM13 10h1v1h-1zM15 10h1v1h-1zM17 10h1v1h-1zM23 10h2v1h-2zM29 10h1v1h-1zM3 11h1v1h-1zM8 11h1v1h-1zM13 11h2v1h-2zM16 11h3v1h-3zM21 11h1v1h-1zM23 11h1v1h-1zM26 11h1v1h-1zM31 11h2v1h-2zM0 12h1v1h-1zM2 12h1v1h-1zM5 12h3v1h-3zM10 12h1v1h-1zM12 12h1v1h-1zM16 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM24 12h1v1h-1zM26 12h1v1h-1zM28 12h2v1h-2zM1 13h1v1h-1zM3 13h1v1h-1zM5 13h1v1h-1zM7 13h1v1h-1zM9 13h3v1h-3zM13 13h5v1h-5zM19 13h1v1h-1zM21 13h1v1h-1zM23 13h1v1h-1zM27 13h1v1h-1zM29 13h1v1h-1zM1 14h1v1h-1zM3 14h1v1h-1zM6 14h2v1h-2zM9 14h3v1h-3zM13 14h2v1h-2zM16 14h4v1h-4zM21 14h6v1h-6zM28 14h1v1h-1zM30 14h2v1h-2zM1 15h1v1h-1zM3 15h2v1h-2zM7 15h8v1h-8zM16 15h1v1h-1zM18 15h4v1h-4zM23 15h4v1h-4zM28 15h1v1h-1zM3 16h1v1h-1zM6 16h1v1h-1zM8 16h4v1h-4zM13 16h1v1h-1zM17 16h1v1h-1zM20 16h2v1h-2zM24 16h1v1h-1zM26 16h1v1h-1zM28 16h4v1h-4zM0 17h1v1h-1zM2 17h1v1h-1zM8 17h2v1h-2zM14 17h1v1h-1zM16 17h1v1h-1zM21 17h1v1h-1zM23 17h1v1h-1zM29 17h3v1h-3zM1 18h2v1h-2zM6 18h3v1h-3zM11 18h1v1h-1zM13 18h4v1h-4zM18 18h1v1h-1zM23 18h3v1h-3zM27 18h1v1h-1zM29 18h1v1h-1zM31 18h1v1h-1zM1 19h1v1h-1zM4 19h2v1h-2zM9 19h1v1h-1zM11 19h1v1h-1zM15 19h1v1h-1zM17 19h2v1h-2zM20 19h1v1h-1zM22 19h1v1h-1zM25 19h1v1h-1zM27 19h1v1h-1zM31 19h1v1h-1zM0 20h2v1h-2zM3 20h4v1h-4zM9 20h7v1h-7zM17 20h3v1h-3zM22 20h3v1h-3zM26 20h1v1h-1zM28 20h2v1h-2zM31 20h1v1h-1zM0 21h1v1h-1zM10 21h2v1h-2zM15 21h7v1h-7zM23 21h1v1h-1zM25 21h1v1h-1zM27 21h1v1h-1zM30 21h2v1h-2zM2 22h1v1h-1zM4 22h3v1h-3zM8 22h1v1h-1zM10 22h2v1h-2zM16 22h3v1h-3zM20 22h1v1h-1zM23 22h1v1h-1zM27 22h1v1h-1zM29 22h1v1h-1zM31 22h1v1h-1zM3 23h2v1h-2zM8 23h3v1h-3zM12 23h1v1h-1zM15 23h4v1h-4zM21 23h2v1h-2zM27 23h1v1h-1zM32 23h1v1h-1zM0 24h4v1h-4zM5 24h4v1h-4zM10 24h1v1h-1zM18 24h2v1h-2zM21 24h9v1h-9zM32 24h1v1h-1zM8 25h2v1h-2zM12 25h1v1h-1zM15 25h4v1h-4zM24 25h1v1h-1zM28 25h1v1h-1zM30 25h2v1h-2zM0 26h7v1h-7zM10 26h1v1h-1zM14 26h2v1h-2zM20 26h3v1h-3zM24 26h1v1h-1zM26 26h1v1h-1zM28 26h2v1h-2zM31 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM9 27h2v1h-2zM13 27h4v1h-4zM18 27h1v1h-1zM21 27h1v1h-1zM24 27h1v1h-1zM28 27h1v1h-1zM32 27h1v1h-1zM0 28h1v1h-1zM2 28h3v1h-3zM6 28h1v1h-1zM8 28h2v1h-2zM12 28h7v1h-7zM20 28h1v1h-1zM24 28h6v1h-6zM0 29h1v1h-1zM2 29h3v1h-3zM6 29h1v1h-1zM9 29h3v1h-3zM16 29h2v1h-2zM19 29h1v1h-1zM22 29h3v1h-3zM26 29h3v1h-3zM30 29h2v1h-2zM0 30h1v1h-1zM2 30h3v1h-3zM6 30h1v1h-1zM10 30h1v1h-1zM13 30h7v1h-7zM23 30h1v1h-1zM26 30h5v1h-5zM0 31h1v1h-1zM6 31h1v1h-1zM8 31h3v1h-3zM14 31h2v1h-2zM18 31h4v1h-4zM24 31h2v1h-2zM0 32h7v1h-7zM9 32h1v1h-1zM11 32h2v1h-2zM15 32h1v1h-1zM17 32h2v1h-2zM20 32h7v1h-7zM29 32h1v1h-1zM32 32h1v1h-1z"/></svg>`;
@@ -1718,15 +2184,15 @@ function vPolec(){
  <section class="card qrcard">
   <p class="lead">Pokaż ten kod drugiej osobie.<br>Niech zeskanuje go aparatem telefonu.</p>
   ${QR_SVG}
-  <p class="small muted">Kod dostępu do wpisania: <b class="code">${esc(ACCESS_CODE)}</b></p>
+  ${ACCESS_CODE?`<p class="small muted">Kod dostępu do wpisania: <b class="code">${esc(ACCESS_CODE)}</b></p>`:'<p class="small muted">Bezpłatnie, bez zakładania konta.</p>'}
  </section>
  <section class="card"><div class="stack">
   <button class="primary" data-sharelink="1">${icon('share')} Wyślij zaproszenie</button>
   <button data-copy="${esc(SHARE_URL)}">Skopiuj link</button></div>
-  <p class="small muted">Zaproszenie zawiera link i kod dostępu. Twoje wpisy nie są wysyłane, zostają tylko u Ciebie.</p>
+  <p class="small muted">Zaproszenie zawiera link${ACCESS_CODE?' i kod dostępu':''}. Twoje wpisy nie są wysyłane, zostają tylko u Ciebie.</p>
  </section>`;
 }
-const VIEWS={zyski:vZyski,polec:vPolec,wiedza:vWiedza,ustawienia:vUstawienia,kalendarz:vKalendarz,kroki:vKroki,krok:vKrok,film:vFilm,prywatnosc:vPrywatnosc,dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
+const VIEWS={postepy:vPostepy,wiecej:vWiecej,malekroki:()=>subHead('Małe kroki')+actsCard(),leki:()=>subHead('Leki')+medsCard()+(SYNC_URL&&!pushCfg().on?`<button data-tab="ustawienia" data-to="pushcard">${icon('bell')} Przypomnienia o lekach</button>`:''),sen:()=>subHead('Sen')+sleepCard(),testy:()=>subHead('Test nastroju')+phqCard(),nastroj:vPostepy,mysli:vMysli,phq:vPhq,lekarz:vLekarz,regulamin:vRegulamin,uwaga:vUwaga,zyski:vZyski,polec:vPolec,wiedza:vWiedza,ustawienia:vUstawienia,kalendarz:vKalendarz,kroki:vKroki,krok:vKrok,film:vFilm,prywatnosc:vPrywatnosc,dzis:vDzis,uczucia:vUczucia,glod:vGlod,plan:vPlan,cele:vCele,bilans:vBilans,pomoc:vPomoc};
 let unlocked=false,haveApp=false,relatedApp=false;
 try{if(navigator.getInstalledRelatedApps&&!isStandalone())navigator.getInstalledRelatedApps().then(r=>{if(r&&r.length){relatedApp=true;try{render()}catch(e){}}}).catch(()=>{})}catch(e){}
 try{unlocked=localStorage.getItem(KEY+'-ok')==='1'}catch(e){}
@@ -1743,7 +2209,7 @@ async function hashPin(p){
 }
 if(S.pinHash)locked=true;
 document.addEventListener('visibilitychange',()=>{
- if(!document.hidden)try{syncNow()}catch(e){}
+ if(!document.hidden){try{syncNow()}catch(e){}try{ping()}catch(e){}}
  if(document.hidden){hiddenAt=Date.now()}
  else if(S.pinHash&&hiddenAt&&Date.now()-hiddenAt>60000){locked=true;pinBuf='';render()}
 });
@@ -1859,7 +2325,7 @@ function gate(){
    <p class="muted">Wersja testowa do ${endDate().toLocaleDateString('pl-PL')}. Wpisz kod, który dostałeś/aś na spotkaniu.</p>
    <form id="f-code" class="stack"><input id="code" name="code" autocomplete="off" autocapitalize="characters" placeholder="Kod dostępu" aria-label="Kod dostępu"><button class="primary" type="submit">Wejdź</button></form>
    <p class="small muted">Twoje wpisy zostaną tylko na tym telefonie. <button class="linkbtn" data-privacy="1">Jak dbamy o prywatność</button></p>
-   <button data-film="1">▶ Zobacz, jak to działa (film, 5 min)</button>${credit()}</section>`;
+   <button data-film="1">▶ Zobacz, jak to działa (film, 6 min)</button>${credit()}</section>`;
   return true}
  if(locked&&S.pinHash){tb.innerHTML='';app.innerHTML=lockScreen();return true}
  if(S.name===undefined){
@@ -1870,12 +2336,19 @@ function gate(){
    <form id="f-name" class="stack"><input id="first-name" name="name" autocomplete="given-name" placeholder="Twoje imię" aria-label="Twoje imię" style="text-transform:none;letter-spacing:0"><button class="primary" type="submit">Dalej</button><button type="button" class="ghost" data-skipname="1">Pomiń</button></form>
    ${credit()}</section>`;
   return true}
+ if(S.mode===undefined){
+  tb.innerHTML='';
+  app.innerHTML=`<section class="gate">${gImg()}
+   <h1>W czym Azyl ma Ci pomagać?</h1>
+   <p class="muted">Dopasuję ekran i podpowiedzi. Zmienisz to w każdej chwili w Ustawieniach.</p>
+   ${modePick()}${credit()}</section>`;
+  return true}
  const h=new Date().getHours();
  if(h>=4&&h<11&&S.lastMorning!==iso(today())){
   tb.innerHTML='';
   app.innerHTML=`<section class="gate">${gImg()}
    <h1>${hello()}</h1>
-   <p class="muted">${new Date().toLocaleDateString('pl-PL',{weekday:'long',day:'numeric',month:'long'})}${sober()?` · ${sober()}. dzień trzeźwości`:''}</p>
+   <p class="muted">${new Date().toLocaleDateString('pl-PL',{weekday:'long',day:'numeric',month:'long'})}${isTrz()&&sober()?` · ${sober()}. dzień trzeźwości`:''}</p>
    ${quoteCard(true)}
    <div class="stack"><button class="primary" data-morning="1">Zaczynam dzień</button></div>${credit()}</section>`;
   return true}
@@ -1884,7 +2357,7 @@ function gate(){
   tb.innerHTML='';
   app.innerHTML=`<section class="gate">${gImg()}
    <h1>${'Dobry wieczór'+(S.name?', '+esc(S.name):'')}</h1>
-   <p class="muted">${sober()?`Kolejny, ${sober()}. dzień trzeźwości dobiega końca.`:'Dzień dobiega końca.'}</p>
+   <p class="muted">${isTrz()&&sober()?`Kolejny, ${sober()}. dzień trzeźwości dobiega końca.`:'Dzień dobiega końca.'}</p>
    ${summaryCard(ek)}
    ${quoteCard(true,'e')}
    <div class="stack"><button class="primary" data-evening="bilans">Zrób bilans dnia</button>
@@ -1895,12 +2368,12 @@ function gate(){
 let lastTab=null;
 function render(openForm){
  const keepY=(lastTab===tab)?scrollY:null;lastTab=tab;
- if(tab!=='prywatnosc'&&tab!=='film'&&gate())return;
+ if(!['prywatnosc','film','regulamin','uwaga'].includes(tab)&&gate())return;
  const ex=S.examples&&(S.feelings.concat(S.cravings,S.goals,S.notes).some(x=>x.ex)||['warning','strategies','reasons'].some(k=>S.plan[k].some(x=>SAMPLE_PLAN.includes(x))));
  document.getElementById('app').innerHTML=
-  (ex&&!['pomoc','prywatnosc','film'].includes(tab)?`<div class="banner"><span>Widzisz przykładowe wpisy, żeby pokazać, jak działa dzienniczek.</span><button data-clear="1">Usuń przykłady</button></div>`:'')+
+  (ex&&!['pomoc','prywatnosc','film','regulamin','uwaga','phq'].includes(tab)?`<div class="banner"><span>Widzisz przykładowe wpisy, żeby pokazać, jak działa dzienniczek.</span><button data-clear="1">Usuń przykłady</button></div>`:'')+
   (!storageOk?`<div class="banner" style="background:var(--alert-soft)">Ta przeglądarka nie pozwala zapisywać danych. Wpisy znikną po zamknięciu strony.</div>`:'')+
-  VIEWS[tab]()+credit();
+  VIEWS[tab]()+`<p class="credit">Azyl ${APP_VERSION} · © 2026 ${APP_AUTHOR}</p>`;
  document.getElementById('tabs').style.setProperty('--n',TABS.length);
  document.getElementById('tabs').innerHTML=TABS.map(t=>`<button data-tab="${t[0]}"${navActive(t[0])?' aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${t[2]}</svg>${t[1]}</button>`).join('');
  if(keepY!==null)scrollTo(0,keepY);
@@ -1957,6 +2430,28 @@ document.addEventListener('submit',e=>{
   S.notes.push({id:uid(),at:now,kind:'bilans',...b});
   if(b.mood)S.feelings.push({id:uid(),at:now,mood:b.mood,emotions:MOOD_EMO[b.mood].slice(),level:MOOD_LVL[b.mood],situation:'Bilans dnia',thoughts:'',body:'',did:'',need:'',checkin:true});
   toast('Zapisano bilans. Dobranoc!')}
+ else if(f.id==='f-thought'){const th=v(f,'th-tho');if(!th)return toast('Wpisz myśl, która przyszła Ci do głowy');
+  const l1=+f.querySelector('#th-l1').value,l2=+f.querySelector('#th-l2').value,alt=v(f,'th-alt');
+  S.thoughts.push({id:uid(),at:now,sit:v(f,'th-sit'),thought:th,emos:vals(f,'themo'),l1,traps:vals(f,'trap'),pro:v(f,'th-for'),con:v(f,'th-against'),friend:v(f,'th-friend'),alt,...(alt?{l2}:{})});
+  toast(alt&&l2<l1?`Uczucie osłabło z ${l1} do ${l2}. Dobra robota.`:'Zapisano')}
+ else if(f.id==='f-act'){const t=v(f,'act-text');if(!t)return toast('Wpisz mały krok');S.acts.push({id:uid(),day:tkey(),text:t,done:false});toast('Dodano krok')}
+ else if(f.id==='f-med'){const n=v(f,'med-name');if(!n)return toast('Wpisz nazwę leku');S.meds.push({id:uid(),name:n,time:v(f,'med-time'),from:tkey()});toast('Dodano lek')}
+ else if(f.id==='f-sleep'){const bd=v(f,'sl-bed'),wk=v(f,'sl-wake');if(!bd||!wk)return toast('Podaj godziny');
+  const mm=t=>{const [h,m]=t.split(':').map(Number);return h*60+m};let d=mm(wk)-mm(bd);if(d<=0)d+=1440;
+  const q=f.querySelector('input[name=slq]:checked');S.sleep=S.sleep.filter(x=>x.day!==tkey());
+  S.sleep.push({id:uid(),day:tkey(),bed:bd,wake:wk,hours:Math.round(d/6)/10,q:q?+q.value:0});toast('Zapisano sen: '+String(Math.round(d/6)/10).replace('.',',')+' h')}
+ else if(f.id==='f-trig'){const t=v(f,'tr-text');if(!t)return toast('Wpisz wyzwalacz');S.trig.push({id:uid(),kind:f.querySelector('input[name=tkind]:checked').value,text:t,plan:v(f,'tr-plan')});toast('Dodano')}
+ else if(f.id==='f-phq'){const ans=PHQ_Q.map((_,i)=>{const x=f.querySelector(`input[name=phq${i}]:checked`);return x?+x.value:null});
+  const miss=ans.indexOf(null);if(miss>=0){toast('Odpowiedz na pytanie '+(miss+1));const el=f.querySelectorAll('.phq-q')[miss];el&&el.scrollIntoView({block:'center'});return}
+  const r={id:uid(),at:now,ans,score:ans.reduce((s2,x)=>s2+x,0)};S.phq.push(r);phqRes=r.id;save();go('phq');return}
+ else if(f.id==='f-fb'){const t=v(f,'fb-text');if(!t)return toast('Wpisz swoją uwagę');
+  const body=t+'\n\n— Azyl '+APP_VERSION+' · '+(S.mode||'')+' · '+(isStandalone()?'aplikacja':'przeglądarka')+' · '+UA.replace(/\(([^)]*)\).*/,'($1)').slice(0,120);
+  const via=(e.submitter&&e.submitter.value)||(FEEDBACK_EMAIL?'mail':FEEDBACK_SMS?'sms':'share');
+  if(via==='mail')location.href='mailto:'+FEEDBACK_EMAIL+'?subject='+encodeURIComponent('Azyl '+APP_VERSION+': uwaga')+'&body='+encodeURIComponent(body);
+  else if(via==='wa')location.href='https://wa.me/'+FEEDBACK_WA+'?text='+encodeURIComponent(body);
+  else if(via==='sms')location.href='sms:'+FEEDBACK_SMS+(isIOS()?'&':'?')+'body='+encodeURIComponent(body);
+  else shareText('Azyl: uwaga',body);
+  return toast('Dziękuję za uwagę!')}
  else if(f.id==='f-note'){const t=v(f,'n-text');if(!t)return;S.notes.push({id:uid(),at:now,kind:'notatka',text:t});toast('Zapisano notatkę')}
  const top=!!lastTip;save();render();if(top)window.scrollTo(0,0);
 });
@@ -1969,6 +2464,11 @@ document.addEventListener('change',e=>{
    const box=e.target.closest('.ciopen');const em=[...box.querySelectorAll('input[name=ciemo]:checked')].map(x=>x.value);
    if(e.target.name==='ciemo')f.emoPicked=em.length>0;f.emotions=em.length?em:MOOD_EMO[f.mood].slice();f.tags=[...box.querySelectorAll('input[name=citrg]:checked')].map(x=>x.value);
    const heavy=f.emotions.filter(x=>HEAVY.includes(x));if(heavy.length&&f.mood<=2)f.level=Math.max(f.level,7);save()}return}
+ if(e.target.name==='helpemo'||e.target.name==='helphalt'){if(help){help.tags=[...document.querySelectorAll('input[name=helpemo]:checked,input[name=helphalt]:checked')].map(x=>x.value);help.i=0;render()}return}
+ if(e.target.dataset&&e.target.dataset.visit){S.visit=e.target.value||'';save();render();return toast(S.visit?'Zapisano datę wizyty':'Usunięto datę wizyty')}
+ if(e.target.dataset&&(e.target.dataset.pen||e.target.dataset.pt)){const p=pushCfg();if(e.target.dataset.pen)p.en[e.target.dataset.pen]=e.target.checked;else if(e.target.value)p.t[e.target.dataset.pt]=e.target.value;
+  S.push={on:p.on,t:p.t,en:p.en,sent:p.sent};saveLocal();pushSync();render();return toast('Zapisano')}
+ if(e.target.name==='tkind'){const i=document.getElementById('tr-text');if(i)i.placeholder=TRIG_EX[e.target.value];return}
  if(e.target.dataset&&e.target.dataset.stst!==undefined){const d=stepData(+e.target.dataset.stst);d.status=e.target.value;d.updated=new Date().toISOString();save();
   toast(d.status==='done'?'Gratulacje! Krok ukończony.':'Zapisano status');if(d.status==='done')setTimeout(()=>render(),300);return}
  const t=e.target;
@@ -1978,7 +2478,26 @@ document.addEventListener('change',e=>{
 document.addEventListener('click',e=>{
  const b=e.target.closest('button,input[type=checkbox][data-gtog]');if(!b)return;
  const d=b.dataset;
- if(d.tab)return go(d.tab);
+ if(d.tab){if(d.tab==='phq'&&tab!=='phq')phqRes=null;go(d.tab);if(d.to){const el=document.getElementById(d.to);if(el){if(el.tagName==='DETAILS'){el.open=true;openDet[el.dataset.k]=true}el.scrollIntoView()}}return}
+ if(d.pushon){S.pushAsked=true;saveLocal();pushOn();return}
+ if(d.pushoff){pushOff();return}
+ if(d.pushask){S.pushAsked=true;saveLocal();render();return toast('Włączysz je w Ustawieniach.')}
+ if(d.pushtest){fetch(srv('/push/test'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({d:devId()})}).then(r=>r.json()).then(o=>toast(o.ok?'Wysłano. Powiadomienie powinno pojawić się za chwilę.':'Nie udało się wysłać. Wyłącz i włącz przypomnienia ponownie.')).catch(()=>toast('Brak połączenia z serwerem.'));return}
+ if(d.feat){S.feat=Object.assign({},S.feat||{},{[d.feat]:true});save();go('malekroki');return toast('W Postępach są teraz też sen, leki i test.')}
+ if(d.featno){S.featNo=tkey();saveLocal();return render()}
+ if(d.startdone){S.startDone=true;save();return render()}
+ if(d.setmode){const first=S.mode===undefined;S.mode=d.setmode;save();if(first)ping();if(!first)toast('Zapisano');return render()}
+ if(d.actadd){S.acts.push({id:uid(),day:tkey(),text:d.actadd,done:false});save();return render()}
+ if(d.actdone){const a=S.acts.find(x=>x.id===d.actdone);if(a){a.done=true;a.doneAt=new Date().toISOString()}save();render();return toast('Brawo! Mały krok to też krok.')}
+ if(d.actafter){const a=S.acts.find(x=>x.id===d.actafter);if(a)a.after=+d.v;save();render();return toast(+d.v>=4?'Zapamiętam, że to Ci pomaga.':'Zapisano. Dobrze, że to zrobiłeś/aś.')}
+ if(d.actmove){const y=iso(daysAgo(1));S.acts.filter(a=>a.day===y&&!a.done).forEach(a=>{if(!S.acts.some(b=>b.day===tkey()&&b.text===a.text))S.acts.push({id:uid(),day:tkey(),text:a.text,done:false})});save();return render()}
+ if(d.medtake||d.medskip){const id=d.medtake||d.medskip;S.medLog=S.medLog.filter(x=>!(x.med===id&&x.day===tkey()));S.medLog.push({id:uid(),med:id,day:tkey(),at:new Date().toISOString(),...(d.medskip?{skip:true}:{})});save();render();return toast(d.medskip?'Zapisano. Jeśli często pomijasz, powiedz lekarzowi.':'Zapisano')}
+ if(d.meduntake){S.medLog=S.medLog.filter(x=>!(x.med===d.meduntake&&x.day===tkey()));save();return render()}
+ if(d.phqsnooze){S.phqSnooze=tkey();saveLocal();return render()}
+ if(d.docshare)return shareText('Podsumowanie dla lekarza',docSummary());
+ if(d.copyplan)return copy(planText());
+ if(d.terms){backTab=['prywatnosc','film','regulamin','uwaga'].includes(tab)?backTab:tab;return go('regulamin')}
+ if(d.feedback){backTab=['prywatnosc','film','regulamin','uwaga'].includes(tab)?backTab:tab;return go('uwaga')}
  if(d.mood){const n=+d.mood;const e={id:uid(),at:new Date().toISOString(),mood:n,emotions:MOOD_EMO[n].slice(),level:MOOD_LVL[n],situation:'',thoughts:'',body:'',did:'',need:'',checkin:true,tags:[]};
   S.feelings.push(e);S.ciOpen=e.id;save();
   if(n===1){toast('Zapisano. Jestem z Tobą.');return openHelp('feel',['smutek'],9)}
@@ -1990,7 +2509,7 @@ document.addEventListener('click',e=>{
   if(d.sugclose){S.sugState.closed=true;saveLocal();return render()}
   if(d.sugnext){S.sugState.skip.push(d.sugnext);if(S.sugState.skip.length>=SUGG.length)S.sugState.skip=[];saveLocal();return render()}
   const x=SUGG.find(y=>y[0]===d.sugdo);S.sugLog=(S.sugLog||[]).concat({id:x[0],cat:x[1],at:new Date().toISOString()}).slice(-60);S.sugState.done=true;save();
-  if(x[4]==='breath')return openHelp('feel',['napięcie'],5);if(x[4]==='feel')return go('uczucia',true);if(x[4]==='sos')return go('plan');
+  if(x[4]==='breath')return openHelp('feel',['napięcie'],5);if(x[4]==='feel')return go('uczucia',true);if(x[4]==='kroki')return go('malekroki');if(x[4]==='mysl')return go('mysli',true);if(x[4]==='sos')return go('plan');
   render();return toast('Dobry wybór.')}
  if(d.goaldone){const g=S.goals.find(x=>x.id===d.goaldone);if(g){g.done=true;save();render();return toast('Brawo! Cel zrobiony.')}return}
  if(d.goalsnooze){S.goalSnooze=iso(today());saveLocal();render();return toast('Przypomnę jutro.')}
@@ -1998,8 +2517,8 @@ document.addEventListener('click',e=>{
  if(d.good){
   if(!goodToday())S.feelings.push({id:uid(),at:new Date().toISOString(),emotions:['spokój'],level:2,situation:'Szybki wpis: dziś jest dobrze',thoughts:'',body:'',did:'',need:'',quick:true});
   save();render();return toast(GOOD_MSG[Math.floor(Math.random()*GOOD_MSG.length)])}
- if(d.privacy){backTab=['prywatnosc','film'].includes(tab)?backTab:tab;return go('prywatnosc')}
- if(d.film){backTab=['prywatnosc','film'].includes(tab)?backTab:tab;return go('film')}
+ if(d.privacy){backTab=['prywatnosc','film','regulamin','uwaga'].includes(tab)?backTab:tab;return go('prywatnosc')}
+ if(d.film){backTab=['prywatnosc','film','regulamin','uwaga'].includes(tab)?backTab:tab;return go('film')}
  if(d.privback){return go(backTab||'dzis')}
  if(d.key!==undefined){return pinKey(d.key)}
  if(b.id==='pin-forgot'){
@@ -2024,7 +2543,7 @@ document.addEventListener('click',e=>{
  if(d.skipname){S.name='';save();return render()}
  if(d.doinstall){if(!installEvt)return;installEvt.prompt();installEvt.userChoice.then(r=>{installEvt=null;if(r&&r.outcome==='accepted'){S.installSeen=true;save()}render()}).catch(()=>{});return}
  if(d.reinstall){S.installSeen=false;save();return render()}
- if(d.sharelink){const txt='Zapraszam Cię do aplikacji Azyl, dzienniczka trzeźwości'+(hasGroup()?' (grupa '+gName()+')':'')+'. Kod dostępu: '+ACCESS_CODE;
+ if(d.sharelink){const txt='Zapraszam Cię do aplikacji Azyl, dzienniczka trzeźwości'+(hasGroup()?' (grupa '+gName()+')':'')+'.'+(ACCESS_CODE?' Kod dostępu: '+ACCESS_CODE:' Bezpłatnie, bez zakładania konta.');
   if(navigator.share){navigator.share({title:'Azyl',text:txt,url:SHARE_URL}).catch(()=>{})}else copy(txt+'\n'+SHARE_URL);return}
  if(d.haveapp){haveApp=true;return render()}
  if(d.browserok){haveApp=false;S.browserOk=true;save();return render()}
@@ -2053,7 +2572,7 @@ document.addEventListener('click',e=>{
  if(d.gtog){const g=S.goals.find(x=>x.id===d.gtog);g.done=b.checked;save();return setTimeout(render,150)}
  if(d.clear){['feelings','cravings','goals','notes'].forEach(k=>S[k]=S[k].filter(x=>!x.ex));S.plan.contacts=S.plan.contacts.filter(c=>!/przykład/.test(c.name));['warning','strategies','reasons'].forEach(k=>S.plan[k]=S.plan[k].filter(x=>!SAMPLE_PLAN.includes(x)));S.examples=false;save();render();return toast('Usunięto przykłady')}
  // dwustopniowe potwierdzenie usuwania
- if(d.del||d.pdel||d.cdel||d.adreset||d.addel||d.qdel){
+ if(d.del||d.pdel||d.cdel||d.adreset||d.addel||d.qdel||d.mdel){
   if(!b.classList.contains('armed')){b.classList.add('armed');const old=b.textContent;b.textContent='Na pewno?';setTimeout(()=>{if(b.isConnected){b.classList.remove('armed');b.textContent=old}},3000);return}
   if(d.del)S[d.del]=S[d.del].filter(x=>x.id!==d.id);
   if(d.pdel)S.plan[d.pdel].splice(+d.i,1);
@@ -2061,10 +2580,11 @@ document.addEventListener('click',e=>{
   if(d.adreset){const a=S.addictions.find(x=>x.id===d.adreset);if(a)a.start=iso(today());toast('Licznik liczy od dziś. Każdy dzień się liczy.')}
   if(d.addel){S.addictions=S.addictions.filter(x=>x.id!==d.addel)}
   if(d.qdel){S.myQuotes=(S.myQuotes||[]).filter(x=>x.id!==d.qdel)}
+  if(d.mdel){S.meds=S.meds.filter(x=>x.id!==d.mdel)}
   save();render();return}
  if(b.id==='restore-btn'){try{restoreFrom(document.getElementById('restore-txt').value)}catch(err){toast('To nie wygląda na wpisy z tej aplikacji')}}
 });
-save();render();syncStart();
+save();render();syncStart();ping();
 })();
 </script>
 <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}</script>
