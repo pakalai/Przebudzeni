@@ -1,5 +1,5 @@
-Azyl – wersja 3.1.6, autor: StoneMatic
-Aktualizacja na GitHubie
+Azyl – wersja 3.1.8, autor: StoneMatic
+Aktualizacja: Cloudflare Pages (azylapp.pages.dev) i GitHub (stary adres)
 
 1. Wgraj wszystkie pliki z folderu "przebudzeni" do repozytorium Przebudzeni,
    zastępując stare (Add file → Upload files → Commit changes).
@@ -10,7 +10,7 @@ Aktualizacja na GitHubie
 Numeracja wersji
    Każda aktualizacja podnosi ostatnią cyfrę o 1:
    3.1.1 → 3.1.2 → … → 3.1.9 → 3.2.0 → 3.2.1 → … → 3.2.9 → 3.3.0
-   Wersja jest w index.html (APP_VERSION) i w sw.js (przebudzeni-v3.1.6).
+   Wersja jest w index.html (APP_VERSION) i w sw.js (przebudzeni-v3.1.8).
 
 Dane użytkowników
 3. Wpisy są na telefonie użytkownika. Bez kont, e-maili i statystyk.
@@ -50,3 +50,18 @@ Nowe w 3.1.6
     Synchronizacja, przypomnienia na ekranie telefonu, anonimowy licznik do 30.11.2026 (STATS_UNTIL).
     Panel statystyk: https://azyl-sync.krystian-prucnel.workers.dev/panel
 23. Nowy film instruktażowy (6:20).
+
+Nowe w 3.1.7
+24. Nowy adres: https://azylapp.pages.dev/  (Cloudflare Pages, projekt „azylapp”)
+    Wgrywanie: Workers & Pages → azylapp → Create deployment → plik azyl-strona.zip.
+25. Stary adres (GitHub) sam przenosi wpisy na nowy adres (szyfrowaną synchronizacją)
+    i przekierowuje. Na GitHub wgrywaj te same pliki, dopóki ktoś może mieć starą ikonę.
+26. Na ekranie Dziś karta „Zainstaluj Azyl”, gdy ktoś używa przeglądarki zamiast ikony.
+27. Nowy kod QR i plakat bez kodu dostępu.
+
+Nowe w 3.1.8
+28. Nowy film (adres azylapp.pages.dev, przenosiny jednym przyciskiem).
+29. Test nastroju: odpowiedzi z liczbą dni (Wcale / Czasem 1–6 / Często 7–11 / Prawie codziennie 12–14).
+30. Sen: same praktyczne wskazówki. Pułapki myślenia z przykładami. Jaśniejsze małe kroki.
+31. Synchronizacja: przy łączeniu kodem na nowym telefonie wygrywają dane z konta (imię, tryb).
+32. Zyski: poprawna odmiana nagłówków („Co zabierają stymulanty”, „Co zabiera palenie”).
